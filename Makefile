@@ -17,6 +17,7 @@ run:
 
 site:
 	python scripts/build_site.py
+	python scripts/build_artifact.py
 
 serve: site
 	@echo "http://localhost:8000 - the dashboard fetches data.json, so it must be served"
