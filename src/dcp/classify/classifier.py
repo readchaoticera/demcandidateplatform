@@ -37,6 +37,17 @@ _STRIP_SELECTORS = (
 
 _SENTENCE_SPLIT = re.compile(r"(?<=[.!?])\s+(?=[A-Z\"'(])|\n{2,}|(?<=[.!?])(?=[A-Z])")
 
+#: A single page below this is not worth classifying.
+MIN_PAGE_CHARS = 120
+
+#: Below this much text across ALL of a candidate's pages, we have not really
+#: read their platform. Javascript-rendered sites return a near-empty shell to
+#: a plain HTTP fetch, which looks identical to a candidate who states no
+#: position - except the first is missing data and the second is a finding.
+#: Measured against real sites: campaigns that genuinely state no coverage
+#: position still publish several thousand characters of platform text.
+MIN_CORPUS_CHARS = 2000
+
 
 @dataclass
 class Match:
@@ -49,7 +60,7 @@ class Match:
     @property
     def counts_as_support(self) -> bool:
         """Whether this match may set a support tier."""
-        if self.stance in (Stance.NEGATE, Stance.ATTRIBUTED):
+        if self.stance in (Stance.NEGATE, Stance.ATTRIBUTED, Stance.HEDGED):
             return False
         if self.rule.requires_affirm:
             return self.stance is Stance.AFFIRM
@@ -117,14 +128,14 @@ def classify_text(text: str, source_url: str = "") -> ClassificationResult:
     """Classify one page's prose into a tier with supporting evidence."""
     result = ClassificationResult()
 
-    if not text or len(text) < 120:
+    if not text or len(text) < MIN_PAGE_CHARS:
         result.needs_review = True
         result.review_reason = "page had too little text to classify"
         return result
 
     matches = find_matches(text)
     if not matches:
-        result.tier = M4ATier.NO_HEALTHCARE_POSITION
+        result.tier = M4ATier.NO_COVERAGE_POSITION
         result.confidence = 0.6
         return result
 
@@ -159,7 +170,7 @@ def classify_text(text: str, source_url: str = "") -> ClassificationResult:
             result.confidence = 0.7
         else:
             # Phrases appeared, but only attributed to others or negated.
-            result.tier = M4ATier.NO_HEALTHCARE_POSITION
+            result.tier = M4ATier.NO_COVERAGE_POSITION
             result.confidence = 0.4
             result.needs_review = True
             result.review_reason = (
@@ -183,9 +194,6 @@ def classify_text(text: str, source_url: str = "") -> ClassificationResult:
     if chosen in (M4ATier.EXPLICIT_M4A, M4ATier.SINGLE_PAYER_SUBSTANCE) and result.explicitly_rejects_m4a:
         result.needs_review = True
         result.review_reason = "page both endorses and disclaims single-payer"
-    elif chosen is M4ATier.EXPLICIT_M4A and not affirmed:
-        result.needs_review = True
-        result.review_reason = "M4A named without a first-person commitment cue"
     elif result.confidence < 0.5:
         result.needs_review = True
         result.review_reason = "weak evidence"
@@ -208,9 +216,12 @@ def classify_pages(pages: dict[str, str]) -> ClassificationResult:
     all_rules: set[str] = set()
     rejects = False
     reviewed_reasons: list[str] = []
+    corpus_chars = 0
 
     for url, html in pages.items():
-        res = classify_text(extract_text(html), source_url=url)
+        text = extract_text(html)
+        corpus_chars += len(text)
+        res = classify_text(text, source_url=url)
         all_rules.update(res.matched_rules)
         rejects = rejects or res.explicitly_rejects_m4a
         if res.needs_review and res.review_reason:
@@ -224,6 +235,19 @@ def classify_pages(pages: dict[str, str]) -> ClassificationResult:
         out = ClassificationResult()
         out.needs_review = True
         out.review_reason = "no pages retrieved"
+        return out
+
+    # Too little text overall means we did not read the platform. Only demote
+    # a null result: a real quote found in a short page is still real evidence.
+    if corpus_chars < MIN_CORPUS_CHARS and best.tier in (
+        M4ATier.NO_COVERAGE_POSITION, M4ATier.UNKNOWN
+    ):
+        out = ClassificationResult(tier=M4ATier.UNKNOWN, needs_review=True)
+        out.review_reason = (
+            f"only {corpus_chars} characters retrieved across {len(pages)} page(s); "
+            "site is likely Javascript-rendered"
+        )
+        out.matched_rules = sorted(all_rules)
         return out
 
     best.matched_rules = sorted(all_rules)

@@ -10,7 +10,7 @@ Design notes that matter for correctness:
     The roster is therefore a list of (district, candidate) pairs, never a
     dict keyed by district.
 
-*   ``UNKNOWN`` is not ``NO_HEALTHCARE_POSITION``. The first means we failed to
+*   ``UNKNOWN`` is not ``NO_COVERAGE_POSITION``. The first means we failed to
     read the candidate's material; the second means we read it and there was
     no healthcare position in it. Collapsing the two inflates the denominator
     of any "share who support X" statistic, so they stay distinct all the way
@@ -99,8 +99,14 @@ class M4ATier(str, Enum):
     ACA_STRENGTHEN = "aca_strengthen"
     """Protect/expand the ACA, cap drug costs, extend subsidies. No structural change."""
 
-    NO_HEALTHCARE_POSITION = "no_healthcare_position"
-    """Material was retrieved and read; it contains no healthcare position."""
+    NO_COVERAGE_POSITION = "no_coverage_position"
+    """Material was read and states no position on how coverage should work.
+
+    This is NOT "says nothing about health". Candidates in this tier often
+    write at length about cancer research, mental health, reproductive rights
+    or veterans' care while taking no position on the insurance question this
+    project measures. Naming the tier for healthcare generally would misreport
+    them."""
 
     OPPOSED = "opposed"
     """Explicitly opposes Medicare for All / single-payer."""
@@ -125,7 +131,7 @@ TIER_ORDER: tuple[M4ATier, ...] = (
     M4ATier.SINGLE_PAYER_SUBSTANCE,
     M4ATier.PUBLIC_OPTION,
     M4ATier.ACA_STRENGTHEN,
-    M4ATier.NO_HEALTHCARE_POSITION,
+    M4ATier.NO_COVERAGE_POSITION,
     M4ATier.OPPOSED,
     M4ATier.UNKNOWN,
 )
@@ -152,7 +158,7 @@ class Provenance:
 class Evidence:
     """A verbatim quote supporting a classification decision.
 
-    Every tier assignment above NO_HEALTHCARE_POSITION must be backed by at
+    Every tier assignment above NO_COVERAGE_POSITION must be backed by at
     least one Evidence, so a human can audit any row in the final table.
     """
 

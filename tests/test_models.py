@@ -41,7 +41,7 @@ def test_on_general_ballot_covers_all_party_statuses():
 def test_unknown_tier_is_not_a_finding():
     # The distinction the whole denominator depends on.
     assert not M4ATier.UNKNOWN.is_finding
-    assert M4ATier.NO_HEALTHCARE_POSITION.is_finding
+    assert M4ATier.NO_COVERAGE_POSITION.is_finding
 
 
 def test_supports_universal_single_payer_excludes_public_option():

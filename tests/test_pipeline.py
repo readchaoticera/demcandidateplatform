@@ -22,7 +22,7 @@ def mk(name, state, num, tier=M4ATier.UNKNOWN, status=NominationStatus.ON_BALLOT
         name, District(state, num, ballot_rule=ballot_rule(state)), status, incumbent=inc
     )
     c.m4a_tier = tier
-    if tier not in (M4ATier.UNKNOWN, M4ATier.NO_HEALTHCARE_POSITION):
+    if tier not in (M4ATier.UNKNOWN, M4ATier.NO_COVERAGE_POSITION):
         c.m4a_evidence = [Evidence("quote", "http://x", "rule", tier)]
     return c
 
@@ -119,7 +119,7 @@ def test_unknown_is_excluded_from_the_classified_denominator():
 
 def test_no_healthcare_position_counts_as_classified():
     # We read the site and found nothing; that is a finding, unlike UNKNOWN.
-    roster = Roster(candidates=[mk("A", "OH", 1, M4ATier.NO_HEALTHCARE_POSITION)])
+    roster = Roster(candidates=[mk("A", "OH", 1, M4ATier.NO_COVERAGE_POSITION)])
     assert analyze(roster, AS_OF).classified == 1
 
 
@@ -192,6 +192,58 @@ def test_scoring_rejects_a_news_article_about_the_candidate():
            "<body>Jane Smith won her primary on Tuesday night.</body></html>"
     score = score_candidate_url(html, "https://localnews.example/article", c)
     assert not score.accepted
+
+
+def test_review_flags_on_unknown_rows_are_not_counted():
+    # A review flag on an UNKNOWN row restates the UNKNOWN; counting both
+    # inflates the apparent caveat load.
+    unknown = mk("A", "OH", 1, M4ATier.UNKNOWN)
+    unknown.m4a_notes = "REVIEW: only 40 characters retrieved"
+    flagged = mk("B", "OH", 2, M4ATier.EXPLICIT_M4A)
+    flagged.m4a_notes = "REVIEW: weak evidence"
+    assert analyze(Roster(candidates=[unknown, flagged]), AS_OF).needs_review == 1
+
+
+def test_incumbency_breakdown_is_suppressed_without_data():
+    roster = Roster(candidates=[mk("A", "OH", 1, M4ATier.EXPLICIT_M4A)])
+    a = analyze(roster, AS_OF)
+    assert not a.has_incumbency_data
+    assert "no source in this run marked" in to_markdown(a, roster)
+
+
+# --- proxy failure classification ------------------------------------------
+
+def test_policy_denial_is_an_egress_block():
+    from dcp.net import _is_egress_block
+    import requests
+    for msg in ("Tunnel connection failed: 403 Forbidden",
+                "Tunnel connection failed: 407 Proxy Authentication Required",
+                "Access to example.com is blocked by the network egress proxy"):
+        assert _is_egress_block(requests.exceptions.ProxyError(msg)), msg
+
+
+def test_upstream_failure_is_not_an_egress_block():
+    # A 502 means the proxy could not reach that one site. Treating it as a
+    # policy denial aborted whole runs over a single dead campaign domain.
+    from dcp.net import _is_egress_block
+    import requests
+    for msg in ("Tunnel connection failed: 502 Bad Gateway",
+                "Tunnel connection failed: 504 Gateway Timeout",
+                "Tunnel connection failed: 503 Service Unavailable"):
+        assert not _is_egress_block(requests.exceptions.ProxyError(msg)), msg
+
+
+# --- roster deserialisation ------------------------------------------------
+
+def test_legacy_tier_value_still_loads():
+    from dcp.cli import _parse_tier
+    assert _parse_tier("no_healthcare_position") is M4ATier.NO_COVERAGE_POSITION
+    assert _parse_tier("no_coverage_position") is M4ATier.NO_COVERAGE_POSITION
+
+
+def test_unrecognised_tier_becomes_unknown_not_a_crash():
+    from dcp.cli import _parse_tier
+    assert _parse_tier("something_invented_later") is M4ATier.UNKNOWN
 
 
 # --- adjudication ----------------------------------------------------------

@@ -358,6 +358,23 @@ def _write(path: Path, content: str) -> None:
     log.info("wrote %s (%d bytes)", path, len(content))
 
 
+#: Tier values written by earlier versions, mapped to their current names.
+#: Roster files outlive a rename, and crashing on one strands the artifact.
+_LEGACY_TIERS = {"no_healthcare_position": M4ATier.NO_COVERAGE_POSITION}
+
+
+def _parse_tier(value: str) -> M4ATier:
+    """Deserialise a tier, tolerating legacy and unrecognised values."""
+    try:
+        return M4ATier(value)
+    except ValueError:
+        tier = _LEGACY_TIERS.get(value)
+        if tier is not None:
+            return tier
+        log.warning("unrecognised tier %r in roster; treating as unknown", value)
+        return M4ATier.UNKNOWN
+
+
 def _load_roster() -> Roster:
     path = OUT / "roster.json"
     if not path.exists():
@@ -383,7 +400,7 @@ def _load_roster() -> Roster:
             campaign_url=row.get("campaign_url"),
             campaign_url_confidence=row.get("campaign_url_confidence", 0.0),
             issues_urls=row.get("issues_urls", []),
-            m4a_tier=M4ATier(row.get("m4a_tier", "unknown")),
+            m4a_tier=_parse_tier(row.get("m4a_tier", "unknown")),
             m4a_notes=row.get("m4a_notes", ""),
             conflicts=row.get("conflicts", []),
         )

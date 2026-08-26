@@ -78,7 +78,7 @@ def test_no_healthcare_content():
         "I am running for Congress to fight for working families. I grew up here, "
         "went to school here, and I want good jobs and strong schools."
     )
-    assert tier(text) is M4ATier.NO_HEALTHCARE_POSITION
+    assert tier(text) is M4ATier.NO_COVERAGE_POSITION
 
 
 # --- the false-positive traps ---------------------------------------------
@@ -110,11 +110,23 @@ def test_third_party_endorsement_quote_does_not_set_the_tier():
 
 
 def test_hedged_admiration_is_not_endorsement():
+    # The sentence names M4A in order to decline it, so it must not count even
+    # though bare mentions elsewhere on a candidate's own site do.
     result = classify_text(
         "While I admire the goal of Medicare for All, we should start with a public option." + PAD,
         "http://example.org",
     )
-    assert result.tier is not M4ATier.EXPLICIT_M4A
+    assert result.tier is M4ATier.PUBLIC_OPTION
+
+
+def test_bare_mention_on_own_site_counts_as_support():
+    # Real campaign copy states positions without first-person verbs.
+    for text in (
+        "Healthcare for All. Medicare for All. Good jobs. Affordable education.",
+        "My priorities: good jobs, Medicare for All, climate action, reproductive freedom.",
+        "Co-sponsored the Medicare For All Act and co-led a rally to unveil the legislation.",
+    ):
+        assert classify_text(text + PAD, "http://example.org").tier is M4ATier.EXPLICIT_M4A
 
 
 def test_explicit_opposition():

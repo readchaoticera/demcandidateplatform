@@ -31,7 +31,16 @@ class Stance(str, Enum):
     ATTRIBUTED = "attributed"
     """The position belongs to a third party (opponent, party, critics)."""
     NEUTRAL = "neutral"
-    """Mentioned without a detectable stance; too weak to set a tier."""
+    """Mentioned with no stance marker.
+
+    On a candidate's own campaign site this counts as support: naming a policy
+    on your issues page is the endorsement. Not so for tiers that require an
+    explicit affirmation."""
+
+    HEDGED = "hedged"
+    """Named, but explicitly held at arm's length - "while I admire the goal
+    of X, we should start with Y". Never counts as support at any tier: the
+    sentence exists precisely to decline the position it names."""
 
 
 @dataclass(frozen=True)
@@ -43,8 +52,17 @@ class Rule:
     """Higher weight wins when two rules of the same tier fire."""
 
     requires_affirm: bool = True
-    """If False, a NEUTRAL mention is enough (used for low tiers where mere
-    presence of the policy in an issues section is meaningful)."""
+    """If False, a NEUTRAL mention counts; NEGATE and ATTRIBUTED still do not.
+
+    False for every tier, and that is deliberate. This taxonomy is applied to
+    a candidate's OWN campaign website, where naming a policy on the issues
+    page IS the endorsement - that is what an issues page is for. Real copy
+    routinely states positions without a first-person verb: "Co-sponsored the
+    Medicare For All Act", "Working families deserve good jobs, Medicare for
+    All", or a bare "Healthcare for All" heading. Requiring "I support" missed
+    every one of those, including the lead sponsor of the bill. Statements
+    that are negated ("I don't support...") or belong to someone else ("my
+    opponent supports...") are still excluded by stance detection."""
 
     def compiled(self) -> re.Pattern[str]:
         return re.compile(self.pattern, re.IGNORECASE)
@@ -55,14 +73,17 @@ class Rule:
 # ---------------------------------------------------------------------------
 EXPLICIT_RULES: tuple[Rule, ...] = (
     Rule("m4a.phrase", M4ATier.EXPLICIT_M4A,
-         r"\bmedicare[\s\-‐-―]*for[\s\-‐-―]*all\b", weight=3.0),
-    Rule("m4a.abbrev", M4ATier.EXPLICIT_M4A, r"\bM4A\b", weight=2.0),
+         r"\bmedicare[\s\-\u2010-\u2015]*for[\s\-\u2010-\u2015]*all\b",
+         weight=3.0, requires_affirm=False),
+    Rule("m4a.abbrev", M4ATier.EXPLICIT_M4A, r"\bM4A\b",
+         weight=2.0, requires_affirm=False),
     Rule("m4a.improved_expanded", M4ATier.EXPLICIT_M4A,
-         r"\bimproved\s+and\s+expanded\s+medicare\b", weight=3.0),
-    Rule("m4a.single_payer", M4ATier.EXPLICIT_M4A,
-         r"\bsingle[\s\-]?payer\b", weight=2.5),
-    Rule("m4a.bill", M4ATier.EXPLICIT_M4A,
-         r"\bmedicare\s+for\s+all\s+act\b", weight=3.0),
+         r"\bimproved\s+and\s+expanded\s+medicare\b",
+         weight=3.0, requires_affirm=False),
+    Rule("m4a.single_payer", M4ATier.EXPLICIT_M4A, r"\bsingle[\s\-]?payer\b",
+         weight=2.5, requires_affirm=False),
+    Rule("m4a.bill", M4ATier.EXPLICIT_M4A, r"\bmedicare\s+for\s+all\s+act\b",
+         weight=3.0, requires_affirm=False),
 )
 
 # ---------------------------------------------------------------------------
@@ -71,18 +92,19 @@ EXPLICIT_RULES: tuple[Rule, ...] = (
 SUBSTANCE_RULES: tuple[Rule, ...] = (
     Rule("sp.replace_private", M4ATier.SINGLE_PAYER_SUBSTANCE,
          r"\b(replac\w+|eliminat\w+|abolish\w+|get\s+rid\s+of)\b[^.]{0,60}"
-         r"\bprivate\s+(health\s+)?insur\w+", weight=3.0),
+         r"\bprivate\s+(health\s+)?insur\w+", weight=3.0, requires_affirm=False),
     Rule("sp.national_program", M4ATier.SINGLE_PAYER_SUBSTANCE,
-         r"\bnational\s+health\s+(insurance|care)\s+(program|system|plan)\b", weight=2.5),
+         r"\bnational\s+health\s+(insurance|care)\s+(program|system|plan)\b",
+         weight=2.5, requires_affirm=False),
     Rule("sp.one_plan_everyone", M4ATier.SINGLE_PAYER_SUBSTANCE,
          r"\b(one|a\s+single)\s+(public\s+)?(plan|program|system)\b[^.]{0,50}"
-         r"\b(cover\w*|for)\s+(every|all)\b", weight=2.5),
+         r"\b(cover\w*|for)\s+(every|all)\b", weight=2.5, requires_affirm=False),
     Rule("sp.universal_public", M4ATier.SINGLE_PAYER_SUBSTANCE,
          r"\buniversal\b[^.]{0,40}\b(publicly[\s\-]funded|government[\s\-]funded|"
-         r"tax[\s\-]funded)\b", weight=2.0),
+         r"tax[\s\-]funded)\b", weight=2.0, requires_affirm=False),
     Rule("sp.free_at_point", M4ATier.SINGLE_PAYER_SUBSTANCE,
-         r"\bno\s+(premiums|copays|deductibles)\b[^.]{0,40}\b(everyone|all\s+americans)\b",
-         weight=1.5),
+         r"\bno\s+(premiums|copays|deductibles)\b[^.]{0,40}"
+         r"\b(everyone|all\s+americans)\b", weight=1.5, requires_affirm=False),
 )
 
 # ---------------------------------------------------------------------------
@@ -158,7 +180,10 @@ AFFIRM_CUES = re.compile(
     r"stands?\s+for|is\s+fighting\s+for|has\s+championed|fight(ing)?\s+for|"
     r"it(\s+i|')s\s+time\s+(for|to)\b|"
     r"believes?\s+(in|that)|supports?\b|advocat\w+\s+for|"
-    r"guarantee\w*\s+(that\s+)?(every|all)\b)\b",
+    r"guarantee\w*\s+(that\s+)?(every|all)\b|"
+    r"co[\s\-]?sponsor\w*|cosponsor\w*|voted\s+for|introduc\w+|"
+    r"has\s+(fought|pushed|worked)\s+for|champion\w*|"
+    r"deserves?\b|will\s+deliver)\b",
     re.IGNORECASE,
 )
 
@@ -192,6 +217,11 @@ HEDGE_CUES = re.compile(
 )
 
 
+def _clause(text: str) -> str:
+    """The final clause of ``text``, i.e. everything after the last break."""
+    return re.split(r"[,;:]", text)[-1]
+
+
 def detect_stance(sentence: str, match_start: int, match_end: int) -> Stance:
     """Classify the candidate's stance toward a matched phrase in its sentence.
 
@@ -212,8 +242,13 @@ def detect_stance(sentence: str, match_start: int, match_end: int) -> Stance:
     if NEGATE_CUES.search(neg_window_before) or NEGATE_CUES.search(neg_window_after):
         return Stance.NEGATE
 
-    if HEDGE_CUES.search(before[-140:]):
-        return Stance.NEUTRAL
+    # Hedges scope to their own clause, not the whole sentence. In "While I
+    # admire the goal of Medicare for All, we should start with a public
+    # option" the hedge governs Medicare for All only - letting it bleed past
+    # the comma would suppress the public-option position the sentence exists
+    # to state.
+    if HEDGE_CUES.search(_clause(before)):
+        return Stance.HEDGED
 
     if AFFIRM_CUES.search(before[-200:]) or AFFIRM_CUES.search(after[:60]):
         return Stance.AFFIRM

@@ -19,6 +19,7 @@ from __future__ import annotations
 
 import hashlib
 import json
+import re
 import logging
 import os
 import threading
@@ -82,21 +83,33 @@ class Response:
         return 200 <= self.status < 300
 
 
-def _is_egress_block(exc: Exception) -> bool:
-    """Heuristic for "the proxy refused us" vs "the site is down".
+#: Proxy statuses that mean "policy refused this host" - the run cannot
+#: succeed and should abort. A CONNECT answered 403/407 is a denial.
+_POLICY_DENIAL = re.compile(r"\b(403|407)\b|forbidden|egress|blocked by", re.IGNORECASE)
 
-    The agent proxy answers 403 to CONNECT, which surfaces through requests as
-    a ProxyError/TunnelError mentioning the status.
+#: Proxy statuses that mean "the proxy could not reach that host right now".
+#: Transient and per-site: the run should record a failure for this candidate
+#: and carry on. Treating these as policy denials aborted whole runs over one
+#: dead campaign domain.
+_UPSTREAM_FAILURE = re.compile(r"\b(50[0234]|408|522|523|524)\b", re.IGNORECASE)
+
+
+def _is_egress_block(exc: Exception) -> bool:
+    """Whether this failure is the network policy refusing us.
+
+    Distinguishing a policy denial from an unreachable site matters: the first
+    means no request in the run can succeed, the second means one campaign
+    site is down. Both surface through requests as a ProxyError, so the status
+    code inside the message is the only signal.
     """
-    text = f"{type(exc).__name__}: {exc}".lower()
-    markers = (
-        "tunnel connection failed",
-        "proxyerror",
-        "403 forbidden",
-        "egress",
-        "cannot connect to proxy",
-    )
-    return any(m in text for m in markers)
+    text = f"{type(exc).__name__}: {exc}"
+    if _UPSTREAM_FAILURE.search(text):
+        return False
+    if _POLICY_DENIAL.search(text):
+        return True
+    # A proxy error with no status at all (connection refused, no tunnel) means
+    # the proxy itself is unreachable, which no retry will fix.
+    return "cannot connect to proxy" in text.lower()
 
 
 class Fetcher:

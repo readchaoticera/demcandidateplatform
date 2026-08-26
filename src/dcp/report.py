@@ -44,6 +44,9 @@ class Analysis:
     by_state: dict[str, dict[str, int]] = field(default_factory=dict)
     by_incumbency: dict[str, dict[str, int]] = field(default_factory=dict)
     needs_review: int = 0
+    has_incumbency_data: bool = False
+    """False when no source marked incumbents, which makes the incumbency
+    breakdown meaningless rather than merely empty."""
 
     @property
     def coverage(self) -> float:
@@ -84,7 +87,14 @@ def analyze(roster: Roster, as_of: date) -> Analysis:
         unresolved_seats=unsettled_field_seats(as_of),
         by_state={k: dict(v) for k, v in sorted(by_state.items())},
         by_incumbency={k: dict(v) for k, v in by_inc.items()},
-        needs_review=sum(1 for c in on_ballot if "review" in c.m4a_notes.lower()),
+        # Only count review flags on rows that carry a finding. A flag on an
+        # UNKNOWN row is the same fact as the UNKNOWN itself, and reporting
+        # both makes the caveats look twice as large as they are.
+        needs_review=sum(
+            1 for c in on_ballot
+            if c.m4a_tier.is_finding and "review" in c.m4a_notes.lower()
+        ),
+        has_incumbency_data=any(c.incumbent for c in on_ballot),
     )
 
 
@@ -99,13 +109,14 @@ def to_markdown(analysis: Analysis, roster: Optional[Roster] = None) -> str:
     w("## Coverage first\n\n")
     w(f"- **{a.total_on_ballot}** Democratic candidates recorded as on the November ballot.\n")
     w(f"- **{a.classified}** ({a.coverage:.0%}) had a position we could actually read and classify.\n")
-    w(f"- **{a.unknown}** could not be classified (site unreachable, no site found, or no readable text).\n")
+    w(f"- **{a.unknown}** could not be classified (no site, unreachable, or too little readable text).\n")
     if a.unresolved_seats:
         w(f"- **{a.unresolved_seats} seats** are in states whose field is not yet settled: "
           "primaries still to come, or no party nomination at all. No candidate list "
           "compiled today can cover them.\n")
     if a.needs_review:
-        w(f"- **{a.needs_review}** classifications are flagged for human review.\n")
+        w(f"- **{a.needs_review}** of the classified rows are flagged for human "
+          "review; see `needs_review.csv`.\n")
     w("\n")
     if a.coverage < 0.8:
         w("> **Coverage is below 80%.** The shares below should be read as describing the\n"
@@ -127,13 +138,18 @@ def to_markdown(analysis: Analysis, roster: Optional[Roster] = None) -> str:
         w(f"| `{tier.value}` | {n} | {share} |\n")
     w("\n")
 
-    if a.by_incumbency:
+    if a.by_incumbency and a.has_incumbency_data:
         w("## By incumbency\n\n| Group | Explicit M4A | Classified | Share |\n|---|---|---|---|\n")
         for group, counts in sorted(a.by_incumbency.items()):
             cl = sum(v for k, v in counts.items() if k != M4ATier.UNKNOWN.value)
             ex = counts.get(M4ATier.EXPLICIT_M4A.value, 0)
             w(f"| {group} | {ex} | {cl} | {(ex/cl if cl else 0):.1%} |\n")
         w("\n")
+
+    if not a.has_incumbency_data:
+        w("## By incumbency\n\nNot available: no source in this run marked which "
+          "candidates are incumbents. The FEC provides that field, and it was "
+          "skipped because no API key was configured.\n\n")
 
     if a.coverage_gaps:
         w("## Known gaps\n\n")
