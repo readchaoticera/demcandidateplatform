@@ -165,6 +165,31 @@ def test_no_pages_is_unknown_not_no_position():
     assert result.needs_review
 
 
+def test_binary_payload_yields_no_text():
+    # A real false positive: "M4A" matched inside a binary file served from a
+    # page-like path, producing a fabricated Medicare for All endorsement.
+    from dcp.classify.classifier import looks_binary
+    binary = "B\x00\x01\x02\ufffd\ufffd}\x1e^\ufffd\x02\ufffd\\M4A\ufffd\x03b\x00" * 40
+    assert looks_binary(binary)
+    assert extract_text(binary) == ""
+    assert classify_pages({"http://x/f.bin": binary}).tier is M4ATier.UNKNOWN
+
+
+def test_pdf_is_detected_by_signature_not_byte_ratio():
+    # A PDF's header and object dictionaries are ASCII, which held one real
+    # file just under the ratio threshold while "M4A" matched inside its
+    # compressed streams.
+    from dcp.classify.classifier import looks_binary
+    pdf = "%PDF-1.4\r%\ufffd\ufffd\ufffd\ufffd\r\n427 0 obj\r<</Linearized 1/L 1258035>>" + "a" * 4000
+    assert looks_binary(pdf)
+    assert extract_text(pdf) == ""
+
+
+def test_real_html_is_not_mistaken_for_binary():
+    from dcp.classify.classifier import looks_binary
+    assert not looks_binary("<html><body><p>I support Medicare for All.</p></body></html>")
+
+
 def test_extract_text_drops_nav_and_scripts():
     html = """
     <html><body>

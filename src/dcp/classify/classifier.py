@@ -83,8 +83,54 @@ class ClassificationResult:
     notes: str = ""
 
 
+#: Above this share of undecodable or control bytes, the "page" is not text.
+#: Campaign sites serve PDFs, images and font files from paths that look like
+#: ordinary pages; decoded as text these are noise that regexes still match.
+#: A real one produced a false Medicare for All endorsement by matching "M4A"
+#: inside binary data.
+_BINARY_RATIO = 0.05
+
+
+#: Leading bytes of formats campaigns publish from page-like URLs. Checked
+#: because a ratio test alone is not enough: a PDF's header and object
+#: dictionaries are ASCII, which held one real file just under the threshold
+#: while "M4A" matched deeper in its compressed streams.
+_MAGIC = (
+    "%PDF",           # pdf
+    "PK\x03\x04",     # zip, docx, xlsx, pptx
+    "\x89PNG",        # png
+    "GIF8",           # gif
+    "\xff\xd8\xff",   # jpeg
+    "RIFF",           # webp, wav
+    "OggS",
+    "ID3",
+    "\x00\x00\x00",   # mp4 and friends
+    "wOFF", "wOF2", "\x00\x01\x00\x00",  # fonts
+)
+
+
+def looks_binary(text: str, sample: int = 4000) -> bool:
+    """Whether a decoded response body is binary rather than prose."""
+    if not text:
+        return False
+    if text.lstrip()[:8].startswith(_MAGIC):
+        return True
+    head = text[:sample]
+    bad = sum(
+        1 for ch in head
+        if ch == "\ufffd" or (ord(ch) < 32 and ch not in "\t\n\r")
+    )
+    return bad / len(head) > _BINARY_RATIO
+
+
 def extract_text(html: str) -> str:
-    """Strip a page down to readable prose."""
+    """Strip a page down to readable prose.
+
+    Returns "" for binary payloads, so they contribute no text and no matches
+    rather than yielding spurious ones.
+    """
+    if looks_binary(html):
+        return ""
     soup = BeautifulSoup(html, "lxml")
     for sel in _STRIP_SELECTORS:
         for node in soup.select(sel):

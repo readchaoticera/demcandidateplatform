@@ -45,6 +45,17 @@ FALLBACK_PATHS = (
 
 MAX_PAGES = 8
 
+#: Never follow links to these: they are documents and media, not pages.
+#: Campaigns publish PDFs from paths that otherwise look like issue pages, and
+#: decoding one as text produced a false Medicare for All match.
+NON_HTML_SUFFIX = re.compile(
+    r"\.(pdf|docx?|xlsx?|pptx?|zip|gz|csv|"
+    r"png|jpe?g|gif|webp|svg|ico|bmp|tiff?|"
+    r"mp[34]|m4[av]|mov|avi|webm|wav|ogg|"
+    r"woff2?|ttf|otf|eot|css|js|json|xml|rss)$",
+    re.IGNORECASE,
+)
+
 
 def _same_site(base: str, url: str) -> bool:
     b, u = urlparse(base).netloc.lower(), urlparse(url).netloc.lower()
@@ -65,6 +76,8 @@ def find_issue_links(homepage_html: str, base_url: str) -> list[str]:
             continue
         label = a.get_text(" ", strip=True)
         haystack = f"{label} {urlparse(href).path}"
+        if NON_HTML_SUFFIX.search(urlparse(href).path):
+            continue
         if not ISSUE_LINK.search(haystack) or NOT_AN_ISSUES_PAGE.search(haystack):
             continue
         weight = 2 if HEALTH_LINK.search(haystack) else 1

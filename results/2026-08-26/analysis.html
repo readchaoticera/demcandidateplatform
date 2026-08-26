@@ -1,0 +1,476 @@
+<title>How Many Democrats Back Medicare for All?</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=Public+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+
+<style>
+/* ---- Light palette. Cool ledger paper, federal ink, a clinical teal ramp.
+       Public Sans is the US Web Design System face; the teal ramp is
+       sequential because the tiers are ordinal, not categorical. ---- */
+:root {
+  --paper:      #EFF2F4;
+  --surface:    #FFFFFF;
+  --surface-2:  #F7F9FA;
+  --ink:        #141E28;
+  --ink-2:      #3D4B57;
+  --ink-3:      #66757F;
+  --rule:       #D2DAE0;
+  --rule-2:     #E3E9ED;
+
+  --t1: #0C5F5C;   /* explicit M4A          */
+  --t2: #1F847C;   /* single-payer substance */
+  --t3: #4FA79B;   /* public option          */
+  --t4: #9AC5BD;   /* ACA strengthening      */
+  --t5: #BFC9D0;   /* no coverage position   */
+  --t6: #7A5C36;   /* opposed                */
+  --unk:#8D9AA4;   /* unknown = missing data */
+
+  --flag:       #8A5A1E;
+  --flag-bg:    #F7EFE2;
+  --accent:     var(--t1);
+  --shadow:     0 1px 2px rgba(20,30,40,.06), 0 8px 24px -16px rgba(20,30,40,.28);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper:     #0E151B;
+    --surface:   #161F27;
+    --surface-2: #1B252E;
+    --ink:       #E8EDF1;
+    --ink-2:     #B3C0CA;
+    --ink-3:     #8493A0;
+    --rule:      #2C3A45;
+    --rule-2:    #223039;
+
+    --t1: #55C7BC;
+    --t2: #3FA79D;
+    --t3: #2F8378;
+    --t4: #2A5F59;
+    --t5: #45535E;
+    --t6: #A9814A;
+    --unk:#6A7883;
+
+    --flag:      #D9A45E;
+    --flag-bg:   #2A2114;
+    --shadow:    0 1px 2px rgba(0,0,0,.5), 0 8px 28px -18px rgba(0,0,0,.9);
+  }
+}
+
+:root[data-theme="dark"] {
+  --paper:     #0E151B;
+  --surface:   #161F27;
+  --surface-2: #1B252E;
+  --ink:       #E8EDF1;
+  --ink-2:     #B3C0CA;
+  --ink-3:     #8493A0;
+  --rule:      #2C3A45;
+  --rule-2:    #223039;
+
+  --t1: #55C7BC;
+  --t2: #3FA79D;
+  --t3: #2F8378;
+  --t4: #2A5F59;
+  --t5: #45535E;
+  --t6: #A9814A;
+  --unk:#6A7883;
+
+  --flag:      #D9A45E;
+  --flag-bg:   #2A2114;
+  --shadow:    0 1px 2px rgba(0,0,0,.5), 0 8px 28px -18px rgba(0,0,0,.9);
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: "Public Sans", ui-sans-serif, system-ui, -apple-system, sans-serif;
+  font-size: 17px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+.wrap {
+  max-width: 60rem;
+  margin: 0 auto;
+  padding: clamp(1.5rem, 4vw, 4rem) clamp(1.1rem, 4vw, 2.5rem) 6rem;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(2.5rem, 5vw, 4rem);
+}
+
+.prose { max-width: 40rem; }
+
+h1, h2, h3 {
+  font-family: Newsreader, ui-serif, Georgia, serif;
+  font-weight: 500;
+  text-wrap: balance;
+  margin: 0;
+  letter-spacing: -0.011em;
+}
+h1 { font-size: clamp(2.1rem, 5.6vw, 3.4rem); line-height: 1.08; }
+h2 { font-size: clamp(1.45rem, 3vw, 1.95rem); line-height: 1.16; }
+h3 { font-size: 1.1rem; font-weight: 600; }
+p  { margin: 0 0 1rem; color: var(--ink-2); }
+p:last-child { margin-bottom: 0; }
+strong { color: var(--ink); font-weight: 600; }
+
+.eyebrow {
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: .7rem;
+  font-weight: 500;
+  letter-spacing: .13em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+
+/* ---- masthead ---- */
+.masthead { display: flex; flex-direction: column; gap: 1.15rem; }
+.dek {
+  font-family: Newsreader, ui-serif, Georgia, serif;
+  font-size: clamp(1.1rem, 2.2vw, 1.3rem);
+  font-style: italic;
+  color: var(--ink-2);
+  max-width: 36rem;
+  margin: 0;
+}
+.byline {
+  display: flex; flex-wrap: wrap; gap: .5rem 1.4rem;
+  padding-top: 1rem; border-top: 1px solid var(--rule);
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: .74rem; color: var(--ink-3);
+  font-variant-numeric: tabular-nums;
+}
+
+/* ---- section frame ---- */
+section { display: flex; flex-direction: column; gap: 1.4rem; }
+.sec-head { display: flex; flex-direction: column; gap: .45rem; }
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--rule);
+  border-radius: 3px;
+  box-shadow: var(--shadow);
+}
+.card-pad { padding: clamp(1.2rem, 3vw, 1.9rem); }
+
+/* ---- the denominator, stated first ---- */
+.denom { display: grid; grid-template-columns: repeat(auto-fit, minmax(11rem, 1fr)); gap: 1px; background: var(--rule); }
+.denom > div { background: var(--surface); padding: 1.3rem 1.4rem; display: flex; flex-direction: column; gap: .3rem; }
+.denom .n {
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 2rem; font-weight: 500; line-height: 1;
+  font-variant-numeric: tabular-nums; color: var(--ink);
+}
+.denom .n.muted { color: var(--unk); }
+.denom .lbl { font-size: .84rem; color: var(--ink-3); line-height: 1.4; }
+
+.caveat {
+  background: var(--flag-bg);
+  border-left: 3px solid var(--flag);
+  padding: 1rem 1.2rem;
+  border-radius: 0 3px 3px 0;
+}
+.caveat p { color: var(--ink-2); margin: 0; font-size: .95rem; }
+.caveat strong { color: var(--flag); }
+
+/* ---- headline figures ---- */
+.figs { display: grid; grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr)); gap: 1rem; }
+.fig { padding: 1.5rem; display: flex; flex-direction: column; gap: .55rem; }
+.fig .pct {
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 2.9rem; font-weight: 500; line-height: 1;
+  color: var(--t1); font-variant-numeric: tabular-nums;
+}
+.fig .of { font-size: .88rem; color: var(--ink-3); }
+.fig .what { font-size: .95rem; color: var(--ink-2); }
+
+/* ---- stacked tally bar ---- */
+.tally { display: flex; width: 100%; height: 3.4rem; border-radius: 2px; overflow: hidden; border: 1px solid var(--rule); }
+.tally span { display: block; height: 100%; }
+.seg-1 { background: var(--t1); }
+.seg-3 { background: var(--t3); }
+.seg-4 { background: var(--t4); }
+.seg-5 { background: var(--t5); }
+/* Unknown is hatched, not filled: it is absent data, not a measured category. */
+.seg-u {
+  background:
+    repeating-linear-gradient(45deg,
+      var(--unk) 0 4px,
+      transparent 4px 9px),
+    var(--surface-2);
+}
+.tally-key { display: flex; flex-wrap: wrap; gap: .5rem 1.5rem; font-size: .82rem; color: var(--ink-3); }
+.tally-key span { display: inline-flex; align-items: center; gap: .45rem; }
+.chip { width: .8rem; height: .8rem; border-radius: 2px; flex: none; border: 1px solid rgba(128,128,128,.28); }
+
+/* ---- tables ---- */
+.scroll { overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; font-size: .93rem; }
+caption { text-align: left; font-size: .84rem; color: var(--ink-3); padding-bottom: .7rem; }
+th, td { padding: .62rem .8rem; text-align: left; border-bottom: 1px solid var(--rule-2); }
+thead th {
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: .68rem; font-weight: 600; letter-spacing: .09em;
+  text-transform: uppercase; color: var(--ink-3);
+  border-bottom: 1px solid var(--rule); white-space: nowrap;
+}
+td.num, th.num { text-align: right; font-family: "IBM Plex Mono", ui-monospace, monospace; font-variant-numeric: tabular-nums; }
+tbody tr:last-child td { border-bottom: none; }
+.tier-name { display: inline-flex; align-items: center; gap: .55rem; font-weight: 500; color: var(--ink); }
+tr.is-missing td { color: var(--ink-3); }
+tr.is-zero td { color: var(--ink-3); }
+
+.bar-cell { width: 34%; min-width: 6rem; }
+.minibar { height: .55rem; border-radius: 1px; display: block; }
+
+/* ---- evidence pair ---- */
+.evidence { display: grid; grid-template-columns: repeat(auto-fit, minmax(17rem, 1fr)); gap: 1rem; }
+.quote { padding: 1.3rem; display: flex; flex-direction: column; gap: .85rem; }
+.quote blockquote {
+  margin: 0;
+  font-family: Newsreader, ui-serif, Georgia, serif;
+  font-size: 1.06rem; line-height: 1.45; color: var(--ink);
+}
+.quote .who { font-size: .84rem; color: var(--ink-3); }
+.verdict {
+  display: inline-flex; align-items: center; gap: .5rem; align-self: flex-start;
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: .7rem; letter-spacing: .07em; text-transform: uppercase;
+  padding: .3rem .6rem; border-radius: 2px;
+  border: 1px solid var(--rule); color: var(--ink-2); background: var(--surface-2);
+}
+
+ul.notes { margin: 0; padding-left: 1.15rem; display: flex; flex-direction: column; gap: .6rem; color: var(--ink-2); }
+ul.notes li::marker { color: var(--ink-3); }
+
+code {
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: .86em;
+  background: var(--surface-2);
+  border: 1px solid var(--rule-2);
+  border-radius: 2px;
+  padding: .08em .34em;
+}
+
+footer {
+  border-top: 1px solid var(--rule);
+  padding-top: 1.4rem;
+  font-size: .84rem;
+  color: var(--ink-3);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .tally span { animation: grow .7s cubic-bezier(.2,.7,.3,1) both; }
+  @keyframes grow { from { transform: scaleX(0); transform-origin: left; } to { transform: scaleX(1); } }
+}
+</style>
+
+<div class="wrap">
+
+  <header class="masthead">
+    <div class="eyebrow">U.S. House · General election · November 3, 2026</div>
+    <h1>How many Democrats back Medicare for All?</h1>
+    <p class="dek">Every Democratic candidate on the November ballot, read against their own campaign website — and an honest account of how many we could not read at all.</p>
+    <div class="byline">
+      <span>433 candidates · 421 districts</span>
+      <span>Field as of Aug 26, 2026</span>
+      <span>Source: candidates' own sites</span>
+    </div>
+  </header>
+
+  <!-- The denominator comes before the number, deliberately. -->
+  <section>
+    <div class="sec-head">
+      <div class="eyebrow">First, the denominator</div>
+      <h2>What the number is out of</h2>
+    </div>
+    <div class="prose">
+      <p>Any “share who support X” figure is only as good as the share of candidates you actually managed to read. So that comes first.</p>
+    </div>
+    <div class="card denom">
+      <div><span class="n">433</span><span class="lbl">Democrats on the November ballot</span></div>
+      <div><span class="n">328</span><span class="lbl">whose position we could read and classify</span></div>
+      <div><span class="n muted">105</span><span class="lbl">we could not read — no site, unreachable, or a page that renders only in a browser</span></div>
+      <div><span class="n">76%</span><span class="lbl">coverage</span></div>
+    </div>
+    <div class="caveat">
+      <p><strong>Coverage is below 80%.</strong> Those 105 are missing data, not evidence of absence. Treat every share below as describing the candidates we could read — which is why each one is given twice.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-head">
+      <div class="eyebrow">The answer</div>
+      <h2>62 candidates explicitly endorse it</h2>
+    </div>
+    <div class="figs">
+      <div class="card fig">
+        <span class="pct">18.9%</span>
+        <span class="of">of the 328 we could read</span>
+        <span class="what">explicitly name Medicare for All or single-payer as their own position.</span>
+      </div>
+      <div class="card fig">
+        <span class="pct">14.3%</span>
+        <span class="of">of all 433 on the ballot</span>
+        <span class="what">The same 62 candidates, measured against the whole field instead.</span>
+      </div>
+    </div>
+    <div class="prose">
+      <p>Both readings of “supports Medicare for All” — the explicit endorsement alone, and explicit plus single-payer described without the brand name — come to the same 62, because <strong>no candidate described single-payer in substance while avoiding the term</strong>. Campaigns that hold the position say the words.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-head">
+      <div class="eyebrow">Distribution</div>
+      <h2>Most say nothing about coverage at all</h2>
+    </div>
+
+    <div class="tally" role="img" aria-label="433 candidates by position: 62 explicit Medicare for All, 10 public option, 110 ACA strengthening, 146 no coverage position, 105 unknown.">
+      <span class="seg-1" style="width:14.32%"></span>
+      <span class="seg-3" style="width:2.31%"></span>
+      <span class="seg-4" style="width:25.40%"></span>
+      <span class="seg-5" style="width:33.72%"></span>
+      <span class="seg-u" style="width:24.25%"></span>
+    </div>
+    <div class="tally-key">
+      <span><i class="chip" style="background:var(--t1)"></i>Explicit M4A</span>
+      <span><i class="chip" style="background:var(--t3)"></i>Public option</span>
+      <span><i class="chip" style="background:var(--t4)"></i>ACA strengthening</span>
+      <span><i class="chip" style="background:var(--t5)"></i>No coverage position</span>
+      <span><i class="chip seg-u"></i>Not readable</span>
+    </div>
+
+    <div class="card card-pad scroll">
+      <table>
+        <caption>Shares are of the 328 classified candidates. “Not readable” has no share because it is not a finding.</caption>
+        <thead>
+          <tr>
+            <th>Position</th>
+            <th class="num">Candidates</th>
+            <th class="num">Share</th>
+            <th class="bar-cell"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="tier-name"><i class="chip" style="background:var(--t1)"></i>Explicit Medicare for All</span></td>
+            <td class="num">62</td><td class="num">18.9%</td>
+            <td class="bar-cell"><i class="minibar" style="width:42.5%;background:var(--t1)"></i></td>
+          </tr>
+          <tr class="is-zero">
+            <td><span class="tier-name"><i class="chip" style="background:var(--t2)"></i>Single-payer, unbranded</span></td>
+            <td class="num">0</td><td class="num">0.0%</td>
+            <td class="bar-cell"></td>
+          </tr>
+          <tr>
+            <td><span class="tier-name"><i class="chip" style="background:var(--t3)"></i>Public option / Medicare buy-in</span></td>
+            <td class="num">10</td><td class="num">3.0%</td>
+            <td class="bar-cell"><i class="minibar" style="width:6.8%;background:var(--t3)"></i></td>
+          </tr>
+          <tr>
+            <td><span class="tier-name"><i class="chip" style="background:var(--t4)"></i>Strengthen the ACA</span></td>
+            <td class="num">110</td><td class="num">33.5%</td>
+            <td class="bar-cell"><i class="minibar" style="width:75.3%;background:var(--t4)"></i></td>
+          </tr>
+          <tr>
+            <td><span class="tier-name"><i class="chip" style="background:var(--t5)"></i>No coverage position stated</span></td>
+            <td class="num">146</td><td class="num">44.5%</td>
+            <td class="bar-cell"><i class="minibar" style="width:100%;background:var(--t5)"></i></td>
+          </tr>
+          <tr class="is-zero">
+            <td><span class="tier-name"><i class="chip" style="background:var(--t6)"></i>Opposed</span></td>
+            <td class="num">0</td><td class="num">0.0%</td>
+            <td class="bar-cell"></td>
+          </tr>
+          <tr class="is-missing">
+            <td><span class="tier-name"><i class="chip seg-u"></i>Not readable</span></td>
+            <td class="num">105</td><td class="num">—</td>
+            <td class="bar-cell"></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="prose">
+      <p>The largest group is not a position at all. <strong>146 candidates publish a platform that never says how coverage should work.</strong> That is not the same as silence on health — many of them write at length about cancer research, mental health, reproductive care or veterans’ services. They simply take no position on the insurance question.</p>
+      <p>Not one candidate on a readable site argued against Medicare for All. Among Democrats the disagreement isn’t <em>for or against</em> — it’s between naming it and not raising the subject.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-head">
+      <div class="eyebrow">How a candidate is scored</div>
+      <h2>The distinction the tiers exist to catch</h2>
+    </div>
+    <div class="evidence">
+      <div class="card quote">
+        <blockquote>“I support Medicare for All, which would remove the profit motive from health insurance and allow us all to access quality care, for a lower price.”</blockquote>
+        <span class="who">William Lawrence · MI-07</span>
+        <span class="verdict"><i class="chip" style="background:var(--t1)"></i>Explicit M4A</span>
+      </div>
+      <div class="card quote">
+        <blockquote>“Allowing Iowans the option to buy into Medicare at any age — which will increase competition, expand choice, and bring down costs — is the best way to do it.”</blockquote>
+        <span class="who">Christina Bohannan · IA-01</span>
+        <span class="verdict"><i class="chip" style="background:var(--t3)"></i>Public option</span>
+      </div>
+    </div>
+    <div class="prose">
+      <p>Both sentences contain the word “Medicare.” Only the first is Medicare for All. Keyword counting collapses them — and collapses a great deal else besides, all of it in the same direction, toward overstating support.</p>
+      <p>So every match is read in the context of its sentence before it counts. A statement that is negated (“I don’t support Medicare for All”), attributed to someone else (“my opponent supports…”), or held at arm’s length (“while I admire the goal…, we should start with a public option”) does not register as support. Every classification above the bottom tier carries the verbatim quote and the rule that fired, so any row can be checked by hand.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-head">
+      <div class="eyebrow">Geography</div>
+      <h2>Where explicit support concentrates</h2>
+    </div>
+    <div class="card card-pad scroll">
+      <table>
+        <caption>States with at least eight Democratic candidates on the ballot, ranked by the share of readable candidates endorsing Medicare for All.</caption>
+        <thead>
+          <tr>
+            <th>State</th>
+            <th class="num">On ballot</th>
+            <th class="num">Readable</th>
+            <th class="num">Explicit M4A</th>
+            <th class="num">Rate</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Michigan</td><td class="num">13</td><td class="num">11</td><td class="num">5</td><td class="num">45%</td></tr>
+          <tr><td>Missouri</td><td class="num">8</td><td class="num">5</td><td class="num">2</td><td class="num">40%</td></tr>
+          <tr><td>Minnesota</td><td class="num">8</td><td class="num">8</td><td class="num">3</td><td class="num">38%</td></tr>
+          <tr><td>Texas</td><td class="num">38</td><td class="num">25</td><td class="num">8</td><td class="num">32%</td></tr>
+          <tr><td>Pennsylvania</td><td class="num">17</td><td class="num">13</td><td class="num">4</td><td class="num">31%</td></tr>
+          <tr><td>New York</td><td class="num">26</td><td class="num">24</td><td class="num">6</td><td class="num">25%</td></tr>
+          <tr><td>California</td><td class="num">60</td><td class="num">47</td><td class="num">8</td><td class="num">17%</td></tr>
+          <tr><td>Florida</td><td class="num">28</td><td class="num">19</td><td class="num">3</td><td class="num">16%</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="prose">California fields 60 Democrats across 52 districts — more candidates than seats, because its top-two primary can send two Democrats to the same general election. Eight of its districts do.</p>
+  </section>
+
+  <section>
+    <div class="sec-head">
+      <div class="eyebrow">Limits</div>
+      <h2>What this cannot tell you</h2>
+    </div>
+    <ul class="notes">
+      <li><strong>Twenty seats are not in the field yet.</strong> Massachusetts, New Hampshire, Rhode Island and Delaware had not voted when this was collected. Louisiana holds no nominating primary at all in 2026 — its all-party ballot <em>is</em> the November election, after House races were postponed following <em>Louisiana v. Callais</em>.</li>
+      <li><strong>The 105 unreadable candidates are the largest source of error</strong>, and they are not random: sites built on modern page builders render only in a browser, so a whole class of newer, better-funded campaigns is underrepresented.</li>
+      <li><strong>A campaign website is not a voting record.</strong> This measures what candidates choose to publish. A sitting member may co-sponsor the Medicare for All Act and never mention it on their homepage, and would be scored here on the homepage.</li>
+      <li><strong>No incumbency breakdown.</strong> That field comes from the FEC, which was skipped for want of an API key, so incumbents and challengers cannot be compared.</li>
+      <li><strong>49 classified rows are flagged for review</strong> — cases the rules could not settle confidently. They are listed separately rather than folded silently into the totals.</li>
+    </ul>
+  </section>
+
+  <footer>
+    Compiled 26 August 2026 from candidates’ own campaign websites, with the ballot roster drawn from state election articles and the primary calendar generated from the Federal Election Commission’s official 2026 dates. Per-candidate data, evidence quotes and the review queue accompany this page as <code>candidates.csv</code> and <code>needs_review.csv</code>.
+  </footer>
+
+</div>
