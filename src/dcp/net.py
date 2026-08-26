@@ -20,6 +20,8 @@ from __future__ import annotations
 import hashlib
 import json
 import logging
+import os
+import threading
 import time
 import urllib.robotparser
 from dataclasses import dataclass
@@ -114,6 +116,13 @@ class Fetcher:
         self._last_hit: dict[str, float] = {}
         self._robots: dict[str, Optional[urllib.robotparser.RobotFileParser]] = {}
 
+        # Per-host locks let several hosts be fetched at once while keeping
+        # requests to any single host strictly serialised and rate-limited.
+        # Politeness is a per-host obligation, so concurrency across the few
+        # hundred distinct campaign domains costs no site anything.
+        self._registry_lock = threading.Lock()
+        self._host_locks: dict[str, threading.Lock] = {}
+
         self.session = requests.Session()
         self.session.headers["User-Agent"] = USER_AGENT
         retry = Retry(
@@ -152,17 +161,31 @@ class Fetcher:
     def _write_cache(self, resp: Response) -> None:
         p = self._cache_path(resp.url)
         p.parent.mkdir(parents=True, exist_ok=True)
-        p.write_text(
-            json.dumps({
-                "url": resp.url, "status": resp.status, "text": resp.text,
-                "fetched_at": resp.fetched_at.isoformat(),
-            }),
-            encoding="utf-8",
-        )
+        payload = json.dumps({
+            "url": resp.url, "status": resp.status, "text": resp.text,
+            "fetched_at": resp.fetched_at.isoformat(),
+        })
+        # Write-then-rename: a reader never sees a half-written cache entry,
+        # even if two threads race on the same URL.
+        tmp = p.with_suffix(f".{os.getpid()}.{threading.get_ident()}.tmp")
+        tmp.write_text(payload, encoding="utf-8")
+        os.replace(tmp, p)
 
     # -- politeness ----------------------------------------------------------
 
+    def _host_lock(self, host: str) -> threading.Lock:
+        with self._registry_lock:
+            lock = self._host_locks.get(host)
+            if lock is None:
+                lock = self._host_locks[host] = threading.Lock()
+            return lock
+
     def _throttle(self, host: str) -> None:
+        """Sleep so this host is not hit more often than ``min_interval``.
+
+        Callers must hold the host's lock, so the read-sleep-write sequence
+        cannot interleave with another thread targeting the same host.
+        """
         last = self._last_hit.get(host)
         if last is not None:
             wait = self.min_interval - (time.monotonic() - last)
@@ -179,8 +202,9 @@ class Fetcher:
             rp = urllib.robotparser.RobotFileParser()
             robots_url = f"{parts.scheme}://{host}/robots.txt"
             try:
-                self._throttle(host)
-                r = self.session.get(robots_url, timeout=self.timeout)
+                with self._host_lock(host):
+                    self._throttle(host)
+                    r = self.session.get(robots_url, timeout=self.timeout)
                 if r.status_code == 200:
                     rp.parse(r.text.splitlines())
                 else:
@@ -206,9 +230,10 @@ class Fetcher:
             raise RobotsDisallowed(f"robots.txt disallows {url}")
 
         host = urlparse(url).netloc
-        self._throttle(host)
         try:
-            r = self.session.get(url, timeout=self.timeout, allow_redirects=True)
+            with self._host_lock(host):
+                self._throttle(host)
+                r = self.session.get(url, timeout=self.timeout, allow_redirects=True)
         except requests.RequestException as exc:
             if _is_egress_block(exc):
                 raise EgressBlocked(f"egress blocked fetching {url}: {exc}") from exc

@@ -28,6 +28,16 @@ ISSUE_LINK = re.compile(
 #: Strong signal - fetch these first and always.
 HEALTH_LINK = re.compile(r"health|medicare|medicaid|insur", re.IGNORECASE)
 
+#: Pages that match ISSUE_LINK by accident. "Privacy policy" hits on "policy",
+#: and every wasted fetch can crowd a real issues page out of the page budget.
+NOT_AN_ISSUES_PAGE = re.compile(
+    r"privacy|terms|cookie|refund|disclaimer|accessibility|sitemap|"
+    r"unsubscribe|donate|contribut|shop|store|merch|press[\s\-_]?release|"
+    r"careers?|jobs?|internship|volunteer|event|calendar|"
+    r"login|sign[\s\-_]?in|account",
+    re.IGNORECASE,
+)
+
 FALLBACK_PATHS = (
     "/issues", "/priorities", "/platform", "/on-the-issues",
     "/issues/health-care", "/issues/healthcare", "/meet", "/about",
@@ -55,7 +65,7 @@ def find_issue_links(homepage_html: str, base_url: str) -> list[str]:
             continue
         label = a.get_text(" ", strip=True)
         haystack = f"{label} {urlparse(href).path}"
-        if not ISSUE_LINK.search(haystack):
+        if not ISSUE_LINK.search(haystack) or NOT_AN_ISSUES_PAGE.search(haystack):
             continue
         weight = 2 if HEALTH_LINK.search(haystack) else 1
         scored[href] = max(scored.get(href, 0), weight)

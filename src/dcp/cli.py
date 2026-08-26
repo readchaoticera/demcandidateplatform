@@ -18,6 +18,7 @@ from __future__ import annotations
 import argparse
 import json
 import os
+from concurrent.futures import ThreadPoolExecutor, as_completed
 import logging
 import sys
 from datetime import date, datetime
@@ -172,6 +173,36 @@ def cmd_roster(args: argparse.Namespace) -> int:
     return 0
 
 
+def _resolve_one(fetcher: Fetcher, cand: Candidate, hints: list[str]) -> bool:
+    """Attach a verified campaign URL to one candidate. Never raises."""
+    if not hints:
+        cand.conflicts.append("no campaign URL listed on the state's Wikipedia article")
+        return False
+    try:
+        score = resolve_campaign_url(fetcher, cand, hints)
+    except Exception as exc:
+        cand.conflicts.append(f"campaign site lookup failed: {type(exc).__name__}")
+        return False
+
+    if score.accepted:
+        cand.campaign_url = score.url
+        cand.campaign_url_confidence = score.score
+        cand.add_provenance("campaign_site", score.url, "; ".join(score.reasons))
+        return True
+
+    # Keep the URL even when scoring is weak: it came from a curated,
+    # party-tagged list, so a low score usually means an unusual homepage
+    # rather than the wrong candidate. The score travels with it so the
+    # caveat stays visible in the output.
+    cand.campaign_url = score.url or hints[0]
+    cand.campaign_url_confidence = score.score
+    cand.conflicts.append(
+        f"campaign site verification scored {score.score:.2f}: "
+        f"{'; '.join(score.reasons) or 'no signal'}"
+    )
+    return bool(cand.campaign_url)
+
+
 def cmd_websites(args: argparse.Namespace) -> int:
     """Attach campaign URLs, sourced from Wikipedia and verified by fetching.
 
@@ -183,86 +214,96 @@ def cmd_websites(args: argparse.Namespace) -> int:
     _require_egress()
     roster = _load_roster()
     fetcher = Fetcher(ttl=_ttl(args))
+    targets = [c for c in roster.on_ballot() if not c.campaign_url]
 
+    # Gather per-state hints serially: one article fetch per state, all cached.
     hints_by_state: dict[str, dict[str, str]] = {}
-    resolved = unmatched = 0
+    for state in sorted({c.district.state for c in targets}):
+        html = wikipedia.fetch_state_html(fetcher, state)
+        hints_by_state[state] = wikipedia.democratic_campaign_urls(html) if html else {}
 
-    for cand in roster.on_ballot():
-        if cand.campaign_url:
-            continue
-        state = cand.district.state
-        if state not in hints_by_state:
-            html = wikipedia.fetch_state_html(fetcher, state)
-            hints_by_state[state] = (
-                wikipedia.democratic_campaign_urls(html) if html else {}
-            )
-        hints = [
-            url for name, url in hints_by_state[state].items()
+    def hints_for(cand: Candidate) -> list[str]:
+        return [
+            url for name, url in hints_by_state[cand.district.state].items()
             if _name_matches(name, cand.full_name)
         ]
-        if not hints:
-            unmatched += 1
-            cand.conflicts.append("no campaign URL listed on the state's Wikipedia article")
-            continue
 
-        score = resolve_campaign_url(fetcher, cand, hints)
-        if score.accepted:
-            cand.campaign_url = score.url
-            cand.campaign_url_confidence = score.score
-            cand.add_provenance("campaign_site", score.url, "; ".join(score.reasons))
-            resolved += 1
-        else:
-            # Keep the URL even when scoring is weak: it came from a curated,
-            # party-tagged list, so a low score usually means an unusual
-            # homepage rather than the wrong candidate. The score travels with
-            # it so the caveat stays visible in the output.
-            cand.campaign_url = score.url or (hints[0] if hints else None)
-            cand.campaign_url_confidence = score.score
-            cand.conflicts.append(
-                f"campaign site verification scored {score.score:.2f}: "
-                f"{'; '.join(score.reasons) or 'no signal'}"
-            )
-            if cand.campaign_url:
+    resolved = 0
+    with ThreadPoolExecutor(max_workers=args.workers) as pool:
+        futures = [
+            pool.submit(_resolve_one, fetcher, cand, hints_for(cand))
+            for cand in targets
+        ]
+        for i, future in enumerate(as_completed(futures), 1):
+            if future.result():
                 resolved += 1
+            if i % 50 == 0:
+                log.info("campaign sites: %d/%d processed", i, len(targets))
 
     _write(OUT / "roster.json", json.dumps(roster.to_dict(), indent=2))
     log.info(
-        "campaign sites: %d resolved, %d with no listed URL, of %d on-ballot",
-        resolved, unmatched, len(roster.on_ballot()),
+        "campaign sites: %d resolved of %d on-ballot candidates",
+        sum(1 for c in roster.on_ballot() if c.campaign_url), len(roster.on_ballot()),
     )
     return 0
 
 
+def _classify_one(fetcher: Fetcher, cand: Candidate, max_pages: int) -> None:
+    """Crawl one candidate's site and set their tier. Never raises."""
+    if not cand.campaign_url:
+        cand.m4a_tier = M4ATier.UNKNOWN
+        cand.m4a_notes = "no campaign website resolved"
+        return
+    try:
+        pages = collect_position_pages(fetcher, cand.campaign_url, max_pages)
+    except Exception as exc:  # one bad site must not end the run
+        cand.m4a_tier = M4ATier.UNKNOWN
+        cand.m4a_notes = f"crawl failed: {type(exc).__name__}"
+        return
+    if not pages:
+        cand.m4a_tier = M4ATier.UNKNOWN
+        cand.m4a_notes = "campaign site unreachable"
+        return
+
+    result = classify_pages(pages)
+    cand.m4a_tier = result.tier
+    cand.m4a_evidence = result.evidence
+    cand.issues_urls = sorted(pages)
+    notes = [result.notes] if result.notes else []
+    if result.needs_review:
+        notes.append(f"REVIEW: {result.review_reason}")
+    if result.explicitly_rejects_m4a:
+        notes.append("explicitly rejects Medicare for All")
+    cand.m4a_notes = " | ".join(n for n in notes if n)
+
+
 def cmd_classify(args: argparse.Namespace) -> int:
+    """Crawl each campaign site and assign a tier.
+
+    Runs candidates concurrently. Politeness is a per-host obligation and each
+    campaign is its own host, so parallelism across candidates costs no site
+    anything; Fetcher still serialises and rate-limits per host.
+    """
     _require_egress()
     roster = _load_roster()
     fetcher = Fetcher(ttl=_ttl(args))
+    targets = roster.on_ballot()
 
     done = 0
-    for cand in roster.on_ballot():
-        if not cand.campaign_url:
-            cand.m4a_tier = M4ATier.UNKNOWN
-            cand.m4a_notes = "no campaign website resolved"
-            continue
-        pages = collect_position_pages(fetcher, cand.campaign_url, args.max_pages)
-        if not pages:
-            cand.m4a_tier = M4ATier.UNKNOWN
-            cand.m4a_notes = "campaign site unreachable"
-            continue
-        result = classify_pages(pages)
-        cand.m4a_tier = result.tier
-        cand.m4a_evidence = result.evidence
-        cand.issues_urls = sorted(pages)
-        notes = [result.notes] if result.notes else []
-        if result.needs_review:
-            notes.append(f"REVIEW: {result.review_reason}")
-        if result.explicitly_rejects_m4a:
-            notes.append("explicitly rejects Medicare for All")
-        cand.m4a_notes = " | ".join(n for n in notes if n)
-        done += 1
+    with ThreadPoolExecutor(max_workers=args.workers) as pool:
+        futures = {
+            pool.submit(_classify_one, fetcher, cand, args.max_pages): cand
+            for cand in targets
+        }
+        for future in as_completed(futures):
+            future.result()  # _classify_one swallows its own errors
+            done += 1
+            if done % 25 == 0:
+                log.info("classified %d/%d", done, len(targets))
 
     _write(OUT / "roster.json", json.dumps(roster.to_dict(), indent=2))
-    log.info("classified %d candidates", done)
+    classified = sum(1 for c in targets if c.m4a_tier is not M4ATier.UNKNOWN)
+    log.info("classified %d of %d on-ballot candidates", classified, len(targets))
     return 0
 
 
@@ -361,6 +402,8 @@ def main(argv: Optional[list[str]] = None) -> int:
     common.add_argument("--year", type=int, default=2026)
     common.add_argument("--states", nargs="*", help="limit to these state codes")
     common.add_argument("--max-pages", type=int, default=8)
+    common.add_argument("--workers", type=int, default=8,
+                        help="concurrent candidates during crawl/classify")
     common.add_argument("--no-fec", action="store_true",
                         help="skip the FEC source (implied when FEC_API_KEY is unset)")
 
