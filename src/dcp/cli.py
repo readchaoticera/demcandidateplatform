@@ -9,6 +9,7 @@ one. ``run`` chains them for convenience.
     dcp roster                  # who is on the ballot -> data/out/roster.json
     dcp websites                # attach campaign URLs
     dcp classify                # crawl sites, assign M4A tiers
+    dcp cosponsors              # mark Medicare for All Act cosponsors
     dcp report                  # markdown + CSV + JSON output
     dcp run                     # all of the above
 """
@@ -33,7 +34,7 @@ from .models import Candidate, District, M4ATier, NominationStatus, Roster
 from .net import EgressBlocked, Fetcher, REQUIRED_HOSTS, doctor
 from .report import analyze, to_csv, to_json, to_markdown
 from .resolve import build_roster, merge
-from .sources import ballotpedia, fec, wikipedia
+from .sources import ballotpedia, congress, fec, wikipedia
 from .websites import resolve_campaign_url
 
 log = logging.getLogger("dcp")
@@ -307,6 +308,32 @@ def cmd_classify(args: argparse.Namespace) -> int:
     return 0
 
 
+def cmd_cosponsors(args: argparse.Namespace) -> int:
+    """Mark candidates who cosponsor the current Medicare for All Act.
+
+    Kept in its own field rather than folded into the tier, because a
+    legislative act and a campaign-website statement are different kinds of
+    evidence. Where they disagree - a member who cosponsors but never mentions
+    it to voters - that gap is a finding.
+    """
+    _require_egress()
+    roster = _load_roster()
+    cosponsors = congress.fetch_cosponsors(Fetcher(ttl=_ttl(args)))
+    if not cosponsors:
+        print("Could not retrieve the cosponsor roll; nothing changed.", file=sys.stderr)
+        return 1
+
+    congress.annotate(roster.candidates, cosponsors)
+    _write(OUT / "roster.json", json.dumps(roster.to_dict(), indent=2))
+    # Count over on-ballot candidates only: annotate() also marks candidates
+    # whose primary has not happened, and mixing them into this ratio would
+    # not match its denominator.
+    on_ballot = [c for c in roster.on_ballot() if c.cosponsored_m4a_bill]
+    log.info("%d of %d on-ballot candidates cosponsor %s",
+             len(on_ballot), len(roster.on_ballot()), congress.BILL.upper())
+    return 0
+
+
 def cmd_report(args: argparse.Namespace) -> int:
     roster = _load_roster()
     as_of = _as_of(args.as_of)
@@ -324,7 +351,7 @@ def cmd_report(args: argparse.Namespace) -> int:
 
 
 def cmd_run(args: argparse.Namespace) -> int:
-    for step in (cmd_roster, cmd_websites, cmd_classify, cmd_report):
+    for step in (cmd_roster, cmd_websites, cmd_classify, cmd_cosponsors, cmd_report):
         rc = step(args)
         if rc != 0:
             return rc
@@ -402,6 +429,7 @@ def _load_roster() -> Roster:
             issues_urls=row.get("issues_urls", []),
             m4a_tier=_parse_tier(row.get("m4a_tier", "unknown")),
             m4a_notes=row.get("m4a_notes", ""),
+            cosponsored_m4a_bill=row.get("cosponsored_m4a_bill"),
             conflicts=row.get("conflicts", []),
         )
         roster.candidates.append(cand)
@@ -432,6 +460,7 @@ def main(argv: Optional[list[str]] = None) -> int:
         ("roster", cmd_roster, "build the candidate roster"),
         ("websites", cmd_websites, "resolve campaign websites"),
         ("classify", cmd_classify, "crawl sites and classify positions"),
+        ("cosponsors", cmd_cosponsors, "mark Medicare for All Act cosponsors"),
         ("report", cmd_report, "write the analysis"),
         ("run", cmd_run, "run every stage"),
     ):

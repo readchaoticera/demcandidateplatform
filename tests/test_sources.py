@@ -146,3 +146,60 @@ def test_parse_campaign_links_ignores_internal_links():
     html = '<div><h3><a href="/Jane_Smith">Jane Smith</a></h3>' \
            '<a href="https://ballotpedia.org/x">Campaign website</a></div>'
     assert parse_campaign_links(html) == []
+
+
+# --- Congress (Medicare for All Act cosponsors) ------------------------------
+
+def test_cosponsor_name_keys_include_quoted_nicknames():
+    from dcp.sources.congress import name_keys
+    # Rolls list members formally; rosters use the familiar name.
+    assert "bobby" in name_keys('Robert "Bobby" Scott')
+    assert "hank" in name_keys('Henry C. "Hank" Johnson')
+    assert name_keys('Robert "Bobby" Scott') & name_keys("Bobby Scott")
+
+
+def test_annotate_requires_district_and_name_to_match():
+    from dcp.models import Candidate, District, NominationStatus
+    from dcp.sources.congress import Cosponsor, annotate
+    roll = [Cosponsor(name="Ted Lieu", district="CA-36", role="Cosponsor")]
+
+    incumbent = Candidate("Ted Lieu", District("CA", 36), NominationStatus.ON_BALLOT)
+    assert annotate([incumbent], roll) == 1
+    assert incumbent.cosponsored_m4a_bill is True
+    assert incumbent.incumbent
+
+    # A challenger in the same seat must NOT inherit the incumbent's record.
+    challenger = Candidate("Jane Doe", District("CA", 36), NominationStatus.ON_BALLOT)
+    assert annotate([challenger], roll) == 0
+    assert challenger.cosponsored_m4a_bill is None
+
+
+def test_annotate_leaves_non_cosponsor_districts_unset():
+    from dcp.models import Candidate, District, NominationStatus
+    from dcp.sources.congress import Cosponsor, annotate
+    roll = [Cosponsor(name="Ted Lieu", district="CA-36", role="Cosponsor")]
+    other = Candidate("Someone Else", District("TX", 33), NominationStatus.ON_BALLOT)
+    assert annotate([other], roll) == 0
+    assert other.cosponsored_m4a_bill is None
+
+
+def test_redistricted_member_still_matches_within_their_state():
+    # Mid-decade maps moved several members: the roll lists the district they
+    # were elected in, the roster the one they now run in.
+    from dcp.models import Candidate, District, NominationStatus
+    from dcp.sources.congress import Cosponsor, annotate
+    roll = [Cosponsor(name="Lois Frankel", district="FL-22", role="Cosponsor")]
+    cand = Candidate("Lois Frankel", District("FL", 23), NominationStatus.ON_BALLOT)
+    assert annotate([cand], roll) == 1
+    assert cand.cosponsored_m4a_bill is True
+    assert any("redistricting" in p.note for p in cand.provenance)
+
+
+def test_state_fallback_does_not_match_a_different_person():
+    from dcp.models import Candidate, District, NominationStatus
+    from dcp.sources.congress import Cosponsor, annotate
+    roll = [Cosponsor(name="Lois Frankel", district="FL-22", role="Cosponsor")]
+    # Shares a surname only - one token is not a strong match.
+    other = Candidate("Marcus Frankel", District("FL", 25), NominationStatus.ON_BALLOT)
+    assert annotate([other], roll) == 0
+    assert other.cosponsored_m4a_bill is None
