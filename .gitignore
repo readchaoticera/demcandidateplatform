@@ -10,3 +10,6 @@ venv/
 # Fetched pages and generated outputs are reproducible; keep them out of git.
 data/cache/
 data/out/
+
+# Published collection runs are kept; only the working cache is ignored.
+!results/

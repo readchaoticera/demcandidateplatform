@@ -1,0 +1,440 @@
+candidate_id,full_name,state,district,ballot_rule,status,incumbent,campaign_url,campaign_url_confidence,m4a_tier,m4a_evidence_quote,m4a_evidence_rule,m4a_notes,conflicts
+X01FA7FDE0,Matt Schultz,AK,AK-AL,top_four_rcv,on_ballot,False,https://www.mattschultzforalaska.com/,0.6,unknown,,,REVIEW: only 1152 characters retrieved across 8 page(s); site is likely Javascript-rendered,
+X736A4EC0D,Clyde Jones,AL,AL-01,party_nominee,on_ballot,False,https://clydeforcongress.com/,0.75,aca_strengthen,,,,
+X58FEC43DF,Shomari Figures,AL,AL-02,party_nominee,on_ballot,False,https://www.figuresforcongress.com/,0.85,aca_strengthen,,,,
+X964E742F3,Lee McInnis,AL,AL-03,party_nominee,on_ballot,False,https://leemcinnis4alabama.com/,0.25,unknown,,,REVIEW: only 0 characters retrieved across 8 page(s); site is likely Javascript-rendered,campaign site verification scored 0.25: surname in domain
+X6F95FE403,Amanda Pusczek,AL,AL-04,party_nominee,on_ballot,False,https://www.amandaforalabama.com,0.75,aca_strengthen,,,,
+X3D54A6421,Andrew Sneed,AL,AL-05,party_nominee,on_ballot,False,https://www.sneedforcongress.com/,0.9,no_coverage_position,,,,
+XD7EA80989,Maurice Mercer,AL,AL-06,party_nominee,on_ballot,False,https://www.mauricemercer.com/,1.0,no_coverage_position,,,,
+X9694F54D7,Terri Sewell,AL,AL-07,party_nominee,on_ballot,False,https://sewellforcongress.com/,1.0,unknown,,,REVIEW: only 1471 characters retrieved across 2 page(s); site is likely Javascript-rendered,
+X9BF3DE991,Terri Yarbrough Green,AR,AR-01,party_nominee,on_ballot,False,https://www.terrigreenforarkansas.com/,0.85,no_coverage_position,,,,
+X1F4B95B86,Chris Jones,AR,AR-02,party_nominee,on_ballot,False,https://chrisjonesforcongress.com/,1.0,no_coverage_position,,,,
+X7EF870F37,Robb Ryerse,AR,AR-03,party_nominee,on_ballot,False,https://www.robbforcongress.com/,0.4,no_coverage_position,,,,campaign site verification scored 0.40: campaign apparatus (donate/volunteer/disclaimer); 'for Congress' framing
+X750CCD6CB,James Russell,AR,AR-04,party_nominee,on_ballot,False,https://russellforar.com/,1.0,no_coverage_position,,,,
+XC78C54AD4,Amish Shah,AZ,AZ-01,party_nominee,on_ballot,False,https://www.amishforarizona.com/,0.4,aca_strengthen,,,REVIEW: weak evidence,campaign site verification scored 0.40: campaign apparatus (donate/volunteer/disclaimer); 'for Congress' framing
+X655973E08,Jonathan Nez,AZ,AZ-02,party_nominee,on_ballot,False,https://www.jonathannezforaz.com/,1.0,no_coverage_position,,,,
+X501983E5F,Yassamin Ansari,AZ,AZ-03,party_nominee,on_ballot,False,https://yassaminforcongress.com/,0.0,unknown,,,REVIEW: only 608 characters retrieved across 8 page(s); site is likely Javascript-rendered,campaign site verification scored 0.00: no signal
+X60B75A8F5,Greg Stanton,AZ,AZ-04,party_nominee,on_ballot,False,https://www.stantonforarizona.com/,0.85,unknown,,,REVIEW: only 1045 characters retrieved across 4 page(s); site is likely Javascript-rendered,
+X003A68A89,Elizabeth Lee,AZ,AZ-05,party_nominee,on_ballot,False,https://www.nurselee4az.com/,0.85,no_coverage_position,,,,
+X9D6DC83EF,JoAnna Mendoza,AZ,AZ-06,party_nominee,on_ballot,False,https://www.joannamendoza.com/,1.0,aca_strengthen,,,,
+X29C62A23C,Adelita Grijalva,AZ,AZ-07,party_nominee,on_ballot,False,https://www.adelitaforcongress.com/,0.75,unknown,,,REVIEW: only 734 characters retrieved across 1 page(s); site is likely Javascript-rendered,
+XE450524A7,Bernadette Greene-Placentia,AZ,AZ-08,party_nominee,on_ballot,False,https://bgp4az.com/,0.4,aca_strengthen,,,,campaign site verification scored 0.40: campaign apparatus (donate/volunteer/disclaimer); 'for Congress' framing
+XF3EB38C1B,Danielle Sterbinsky,AZ,AZ-09,party_nominee,on_ballot,False,https://www.sterbinskyforcongress.com/,0.65,no_coverage_position,,,https://www.sterbinskyforcongress.com/: healthcare phrases present but none in the candidate's own voice,
+X73827C1E4,Mike McGuire,CA,CA-01,top_two,on_ballot,False,https://www.votemikemcguire.com/,1.0,explicit_m4a,,,,
+X20EDB9E09,Jared Huffman,CA,CA-02,top_two,on_ballot,False,https://www.jaredhuffman.com/,1.0,no_coverage_position,,,,
+X86B154C0D,Ami Bera,CA,CA-03,top_two,on_ballot,False,https://www.beraforcongress.com/,1.0,aca_strengthen,,,REVIEW: weak evidence,
+X234175D22,Eric Jones,CA,CA-04,top_two,on_ballot,False,https://www.ericjones.us/,1.0,aca_strengthen,,,REVIEW: weak evidence,
+XB4C3C77A9,Mike Thompson,CA,CA-04,top_two,on_ballot,False,https://www.mikethompsonforcongress.com/,0.8,aca_strengthen,,,,
+X837FC8995,Michael Masuda,CA,CA-05,top_two,on_ballot,False,https://www.votemasuda.com/,0.9,aca_strengthen,,,REVIEW: weak evidence,
+X843A95CE5,Richard Pan,CA,CA-06,top_two,on_ballot,False,https://drpanforcongress.com/,0.85,no_coverage_position,,,REVIEW: healthcare phrases present but none in the candidate's own voice,
+X1094314A5,Doris Matsui,CA,CA-07,top_two,on_ballot,False,https://matsuiforcongress.com/,1.0,aca_strengthen,,,https://matsuiforcongress.com/issues/healthcare: page had too little text to classify,
+XACA43AC98,Mai Vang,CA,CA-07,top_two,on_ballot,False,https://www.maiforus.com/,0.85,explicit_m4a,,,,
+XC6EEF8A60,John Garamendi,CA,CA-08,top_two,on_ballot,False,https://www.garamendi.org/,1.0,aca_strengthen,,,,
+X4DA9217EF,Josh Harder,CA,CA-09,top_two,on_ballot,False,https://harderforcongress.com/,1.0,aca_strengthen,,,,
+XAB77300A9,Mark DeSaulnier,CA,CA-10,top_two,on_ballot,False,https://desaulnierforcongress.com/,1.0,no_coverage_position,,,,
+XD25113D01,Connie Chan,CA,CA-11,top_two,on_ballot,False,https://www.conniechansf.com/,0.9,no_coverage_position,,,,
+XB37BB8595,Scott Wiener,CA,CA-11,top_two,on_ballot,False,https://www.scottwiener.com/,1.0,explicit_m4a,,,,
+XBE01FF915,Jamie Joyce,CA,CA-12,top_two,on_ballot,False,https://www.jamiejoyce.com/,1.0,no_coverage_position,,,,
+X4257AE56D,Lateefah Simon,CA,CA-12,top_two,on_ballot,False,https://www.lateefahsimon.com/,1.0,no_coverage_position,,,,
+X703D54A57,Adam Gray,CA,CA-13,top_two,on_ballot,False,https://www.adamgrayforcongress.com/,1.0,aca_strengthen,,,,
+XAF044884C,Aisha Wahab,CA,CA-14,top_two,on_ballot,False,https://www.aishawahab.com/,1.0,aca_strengthen,,,,
+XEB409A1F8,Melissa Hernandez,CA,CA-14,top_two,on_ballot,False,https://melissahernandez2026.com/,0.8,aca_strengthen,,,REVIEW: weak evidence,
+X0B27CF0EC,Kevin Mullin,CA,CA-15,top_two,on_ballot,False,https://www.kevinmullinforcongress.com/,1.0,no_coverage_position,,,,
+X3F37329EE,Sam Liccardo,CA,CA-16,top_two,on_ballot,False,https://www.samliccardo.com/,0.85,no_coverage_position,,,,
+XA71FD5F17,Ro Khanna,CA,CA-17,top_two,on_ballot,False,https://www.rokhanna.com/,1.0,no_coverage_position,,,,
+X7D9D215DF,Zoe Lofgren,CA,CA-18,top_two,on_ballot,False,https://www.zoelofgren.com/,1.0,no_coverage_position,,,,
+X96CFD4239,Jimmy Panetta,CA,CA-19,top_two,on_ballot,False,https://www.jimmypanetta.com/,1.0,no_coverage_position,,,,
+X1827AEFC1,Sandra Van Scotter,CA,CA-20,top_two,on_ballot,False,https://www.electsandravanscotter.com/,1.0,explicit_m4a,,,,
+X1362E8DCC,Jim Costa,CA,CA-21,top_two,on_ballot,False,https://www.jimcosta.com/,0.0,unknown,,,campaign site unreachable,campaign site verification scored 0.00: HTTP 403
+XE1D7588FB,Randy Villegas,CA,CA-22,top_two,on_ballot,False,https://www.villegasforcongress.com/,1.0,no_coverage_position,,,,
+XBB1312216,Tessa Lynn Hodge,CA,CA-23,top_two,on_ballot,False,https://www.tessaforca.com/,0.75,unknown,,,REVIEW: only 1605 characters retrieved across 2 page(s); site is likely Javascript-rendered,
+X12185FB1B,Salud Carbajal,CA,CA-24,top_two,on_ballot,False,https://saludcarbajal.com/,1.0,no_coverage_position,,,,
+X34D5D226C,Raul Ruiz,CA,CA-25,top_two,on_ballot,False,https://drraulruiz.com/,1.0,aca_strengthen,,,REVIEW: weak evidence,
+XFD581C80B,Jacqui Irwin,CA,CA-26,top_two,on_ballot,False,https://jacquiirwin.com/,1.0,no_coverage_position,,,,
+XD6D5D63A6,George Whitesides,CA,CA-27,top_two,on_ballot,False,https://www.georgewhitesides.com/,1.0,aca_strengthen,,,REVIEW: weak evidence,
+X7D8627A8D,Judy Chu,CA,CA-28,top_two,on_ballot,False,https://www.judychu.org/,1.0,no_coverage_position,,,,
+X6E5276880,Angélica María Dueñas,CA,CA-29,top_two,on_ballot,False,https://angelica4congress.com/,0.2,unknown,,,REVIEW: only 608 characters retrieved across 8 page(s); site is likely Javascript-rendered,campaign site verification scored 0.20: surname in <title>
+X06B634668,Luz Rivas,CA,CA-29,top_two,on_ballot,False,https://www.luzforcongress.com/,0.75,aca_strengthen,,,REVIEW: weak evidence,
+X4F7414CC3,Laura Friedman,CA,CA-30,top_two,on_ballot,False,https://www.lauraforcongress.org/,0.5,no_coverage_position,,,,campaign site verification scored 0.50: campaign apparatus (donate/volunteer/disclaimer); 'for Congress' framing; district referenced
+X45CF7D1D7,Gil Cisneros,CA,CA-31,top_two,on_ballot,False,https://www.gilonthehill.com/,0.0,unknown,,,campaign site unreachable,campaign site verification scored 0.00: HTTP 403
+X7932C7043,Brad Sherman,CA,CA-32,top_two,on_ballot,False,https://www.bradsherman.com/,1.0,no_coverage_position,,,,
+X9C499925A,Pete Aguilar,CA,CA-33,top_two,on_ballot,False,https://peteaguilar.com/,1.0,unknown,,,REVIEW: only 1484 characters retrieved across 1 page(s); site is likely Javascript-rendered,
+X0DDD4F25B,Angela Gonzales-Torres,CA,CA-34,top_two,on_ballot,False,https://www.angela4congress.com/,0.85,explicit_m4a,,,,
+X37AEC708F,Jimmy Gomez,CA,CA-34,top_two,on_ballot,False,https://jimmygomezforcongress.com/,1.0,explicit_m4a,,,,
+X9A2E3B8C5,Norma Torres,CA,CA-35,top_two,on_ballot,False,https://www.normatorres.com/,1.0,unknown,,,REVIEW: only 1252 characters retrieved across 2 page(s); site is likely Javascript-rendered,
+XF4B5B63F9,Ted Lieu,CA,CA-36,top_two,on_ballot,False,https://www.lieuforcongress.com/,1.0,unknown,,,REVIEW: only 703 characters retrieved across 1 page(s); site is likely Javascript-rendered,
+XA5905D0E7,Samantha Mota,CA,CA-37,top_two,on_ballot,False,https://www.motaforcongress.com/,1.0,no_coverage_position,,,,
+XEDCA6AE2E,Sydney Kamlager-Dove,CA,CA-37,top_two,on_ballot,False,https://sydneykamlager.com/,0.4,explicit_m4a,,,,campaign site verification scored 0.40: campaign apparatus (donate/volunteer/disclaimer); 'for Congress' framing
+X044833E92,Hilda Solis,CA,CA-38,top_two,on_ballot,False,https://www.hildasolis.com/,1.0,no_coverage_position,,,,
+XEA517C686,Mark Takano,CA,CA-39,top_two,on_ballot,False,https://www.marktakano.com/,1.0,no_coverage_position,,,,
+XFA888CFBC,Esther Kim-Varet,CA,CA-40,top_two,on_ballot,False,,0.0,unknown,,,no campaign website resolved,no campaign URL listed on the state's Wikipedia article
+X1C9CC81C5,Linda Sánchez,CA,CA-41,top_two,on_ballot,False,,0.0,unknown,,,no campaign website resolved,no campaign URL listed on the state's Wikipedia article
+X1A277E3B6,Robert Garcia,CA,CA-42,top_two,on_ballot,False,https://robertgarcia.com/,1.0,explicit_m4a,,,,
+X405678E52,Maxine Waters,CA,CA-43,top_two,on_ballot,False,,0.0,unknown,,,no campaign website resolved,no campaign URL listed on the state's Wikipedia article
+X0366C2DE1,Nanette Barragán,CA,CA-44,top_two,on_ballot,False,,0.0,unknown,,,no campaign website resolved,no campaign URL listed on the state's Wikipedia article
+X2787C7376,Derek Tran,CA,CA-45,top_two,on_ballot,False,https://www.derektranforcongress.com/,0.8,aca_strengthen,,,REVIEW: weak evidence,
+X4DE899120,Lou Correa,CA,CA-46,top_two,on_ballot,False,https://www.loucorrea.com/,1.0,unknown,,,REVIEW: only 1485 characters retrieved across 1 page(s); site is likely Javascript-rendered,
+XB6C1D5E14,Dave Min,CA,CA-47,top_two,on_ballot,False,https://www.davemin.com/,1.0,no_coverage_position,,,https://www.davemin.com/issues: healthcare phrases present but none in the candidate's own voice,
+X83C550CBF,Marni von Wilpert,CA,CA-48,top_two,on_ballot,False,https://www.marnivonwilpert.com/,1.0,aca_strengthen,,,,
+X6DB2D04B8,Mike Levin,CA,CA-49,top_two,on_ballot,False,https://www.mikelevin.org/,1.0,aca_strengthen,,,REVIEW: weak evidence,
+X13596A3E5,Scott Peters,CA,CA-50,top_two,on_ballot,False,https://scottpeters.com/,1.0,aca_strengthen,,,https://scottpeters.com/issues/medicare-social-security: weak evidence; https://scottpeters.com/issues/biden-administration: weak evidence,
+X527006069,Sara Jacobs,CA,CA-51,top_two,on_ballot,False,https://sarajacobsforca.com/,0.25,unknown,,,REVIEW: only 0 characters retrieved across 8 page(s); site is likely Javascript-rendered,campaign site verification scored 0.25: surname in domain
+X4C305B011,Juan Vargas,CA,CA-52,top_two,on_ballot,False,https://www.votevargas.com/,0.85,no_coverage_position,,,,
+X6836C41FE,Melat Kiros,CO,CO-01,party_nominee,on_ballot,False,https://www.kirosforco.com/,1.0,explicit_m4a,,,REVIEW: page both endorses and disclaims single-payer | explicitly rejects Medicare for All,
+X986B7741F,Joe Neguse,CO,CO-02,party_nominee,on_ballot,False,https://joeforcolorado.com/,0.75,no_coverage_position,,,,
+X09F25AA06,Dwayne Romero,CO,CO-03,party_nominee,on_ballot,False,https://www.romeroforcolorado.com/,0.85,aca_strengthen,,,REVIEW: weak evidence,
+XEE5E6D901,Eileen Laubacher,CO,CO-04,party_nominee,on_ballot,False,https://www.eileenforcolorado.com/,0.75,no_coverage_position,,,,
+XAB9562A5C,Jessica Killin,CO,CO-05,party_nominee,on_ballot,False,https://www.killinforcolorado.com/,1.0,aca_strengthen,,,,
+XDF5C6B52E,Jason Crow,CO,CO-06,party_nominee,on_ballot,False,https://jasoncrow.org/,0.65,no_coverage_position,,,,
+XDE9F1FE23,Brittany Pettersen,CO,CO-07,party_nominee,on_ballot,False,https://brittanypettersen.com/,1.0,aca_strengthen,,,,
+X88DE6466D,Manny Rutinel,CO,CO-08,party_nominee,on_ballot,False,https://www.mannyforcolorado.com/,0.75,aca_strengthen,,,,
+X3C352FE78,Luke Bronin,CT,CT-01,party_nominee,on_ballot,False,https://www.broninforcongress.com/,1.0,aca_strengthen,,,,
+XDD7D9556C,Joe Courtney,CT,CT-02,party_nominee,on_ballot,False,https://joecourtney.com/,1.0,unknown,,,REVIEW: only 202 characters retrieved across 2 page(s); site is likely Javascript-rendered,
+XBCBA0206C,Rosa DeLauro,CT,CT-03,party_nominee,on_ballot,False,https://rosadelauro.com/,1.0,aca_strengthen,,,,
+XE4C19D17B,Jim Himes,CT,CT-04,party_nominee,on_ballot,False,https://www.himesforcongress.com/,0.25,unknown,,,REVIEW: only 0 characters retrieved across 8 page(s); site is likely Javascript-rendered,campaign site verification scored 0.25: surname in domain
+X8272EE920,Jahana Hayes,CT,CT-05,party_nominee,on_ballot,False,https://jahanahayes.com/,1.0,explicit_m4a,,,,
+X32B880299,Sarah McBride,DE,DE-AL,party_nominee,pending_primary,False,,0.0,unknown,,,,
+X1C5FB19D1,Gay Valimont,FL,FL-01,party_nominee,on_ballot,False,https://www.gayforcongress.com/,0.75,aca_strengthen,,,,
+XB4554DCF6,Amanda Green,FL,FL-02,party_nominee,on_ballot,False,https://www.amgforcongress.com/,0.6,aca_strengthen,,,REVIEW: weak evidence,
+X72E861915,Seth Harp,FL,FL-03,party_nominee,on_ballot,False,https://www.sethharpforcongress.com/,1.0,no_coverage_position,,,,
+X6A28FC270,LaShonda Holloway,FL,FL-04,party_nominee,on_ballot,False,https://www.hollowayforcongress.com/,0.85,no_coverage_position,,,,
+X20E1DB25D,Rachel Grage,FL,FL-05,party_nominee,on_ballot,False,https://rachelgrage.com/,1.0,aca_strengthen,,,REVIEW: weak evidence,
+X168FFBBB4,Eric Yonce,FL,FL-06,party_nominee,on_ballot,False,https://www.yonceforcongress.com/,0.75,unknown,,,REVIEW: only 352 characters retrieved across 8 page(s); site is likely Javascript-rendered,
+X0D4BAC402,Bale Dalton,FL,FL-07,party_nominee,on_ballot,False,https://baledalton.com/,1.0,aca_strengthen,,,https://baledalton.com/bale-dalton-slams-washington-plan-to-spike-prescription-drug-costs: weak evidence,
+X776C998F7,Jennifer Jenkins,FL,FL-08,party_nominee,on_ballot,False,https://jenkinsforfl.com/,0.25,unknown,,,REVIEW: only 0 characters retrieved across 8 page(s); site is likely Javascript-rendered,campaign site verification scored 0.25: surname in domain
+XB077A34CB,Darren Soto,FL,FL-09,party_nominee,on_ballot,False,https://www.darrensoto.com/,1.0,aca_strengthen,,,REVIEW: weak evidence,
+X3F5C40214,Maxwell Frost,FL,FL-10,party_nominee,on_ballot,False,https://www.frostforcongress.com/,1.0,explicit_m4a,,,,
+X477288F08,James Pericola,FL,FL-11,party_nominee,on_ballot,False,https://jamespericola.com/,0.25,unknown,,,REVIEW: only 0 characters retrieved across 8 page(s); site is likely Javascript-rendered,campaign site verification scored 0.25: surname in domain
+X54FD09EAB,Kimberly Overman,FL,FL-12,party_nominee,on_ballot,False,https://kimberlyoverman.com/,0.9,no_coverage_position,,,,
+XD2CA62158,Leela Gray,FL,FL-13,party_nominee,on_ballot,False,https://www.leelagray.com/,1.0,no_coverage_position,,,,
+X2C63D5448,Kathy Castor,FL,FL-14,party_nominee,on_ballot,False,https://castorforcongress.com/,0.95,no_coverage_position,,,,
+X9F1F8F3C0,Robert People,FL,FL-15,party_nominee,on_ballot,False,https://www.peopleforcongress.com/,0.85,explicit_m4a,,,,
+XFD21F321A,Kelly Kirschner,FL,FL-16,party_nominee,on_ballot,False,https://kellykirschner.com/,1.0,aca_strengthen,,,,
+X5F86CA29A,Matthew Montavon,FL,FL-17,party_nominee,on_ballot,False,https://www.montavonforcongress.com/,0.85,aca_strengthen,,,REVIEW: weak evidence,
+X1C70E53F5,Curtis Gibson,FL,FL-18,party_nominee,on_ballot,False,https://votecurtisgibson.com/,1.0,no_coverage_position,,,,
+X19DF9B930,Victor Arias,FL,FL-19,party_nominee,on_ballot,False,https://votearias.us/,0.0,unknown,,,campaign site unreachable,"campaign site verification scored 0.00: fetch failed: failed fetching https://votearias.us/: HTTPSConnectionPool(host='votearias.us', port=443): Max retries exceeded with url: / (Caused by ResponseError('too many 503 error responses'))"
+XE2E9CB61D,Debbie Wasserman Schultz,FL,FL-20,party_nominee,on_ballot,False,https://debbiewassermanschultz.com/,1.0,aca_strengthen,,,REVIEW: weak evidence,
+X666237FDC,James Martin,FL,FL-21,party_nominee,on_ballot,False,https://www.jamesmartinforflorida.com/,1.0,public_option,,,,
+XCB51EB80F,Pia Dandiya,FL,FL-22,party_nominee,on_ballot,False,https://piaforcongress.com/,0.0,unknown,,,REVIEW: only 0 characters retrieved across 8 page(s); site is likely Javascript-rendered,campaign site verification scored 0.00: no signal
+X3653CECAA,Lois Frankel,FL,FL-23,party_nominee,on_ballot,False,https://loisfrankelforcongress.com/,0.25,unknown,,,REVIEW: only 0 characters retrieved across 8 page(s); site is likely Javascript-rendered,campaign site verification scored 0.25: surname in domain
+XDBA18D755,Oliver Gilbert,FL,FL-24,party_nominee,on_ballot,False,https://olivergilbert.vote/,0.25,unknown,,,REVIEW: only 0 characters retrieved across 8 page(s); site is likely Javascript-rendered,campaign site verification scored 0.25: surname in domain
+XA7318E375,Jared Moskowitz,FL,FL-25,party_nominee,on_ballot,False,https://jaredforflorida.com/,0.0,unknown,,,REVIEW: only 0 characters retrieved across 8 page(s); site is likely Javascript-rendered,campaign site verification scored 0.00: no signal
+X3E6BE3746,Nicole Locklin,FL,FL-26,party_nominee,on_ballot,False,https://locklinforcongress.com/,1.0,explicit_m4a,,,,
+X4AAABF817,Eliott Rodriguez,FL,FL-27,party_nominee,on_ballot,False,https://eliottrodriguez.com/,0.25,unknown,,,REVIEW: only 608 characters retrieved across 8 page(s); site is likely Javascript-rendered,campaign site verification scored 0.25: surname in domain
+X9B6E49244,Phil Ehr,FL,FL-28,party_nominee,on_ballot,False,https://ehrforcongress.us/,1.0,aca_strengthen,,,REVIEW: weak evidence,
+XAE3ACCF5F,Amanda Hollowell,GA,GA-01,party_nominee,on_ballot,False,https://www.amandaforga.com/,0.75,no_coverage_position,,,,
+XA5C07F360,Sanford Bishop,GA,GA-02,party_nominee,on_ballot,False,https://sanfordbishop.com/,1.0,aca_strengthen,,,REVIEW: weak evidence,
+X2D4B8C998,Maura Keller,GA,GA-03,party_nominee,on_ballot,False,https://maurakeller.com/,1.0,no_coverage_position,,,,
+XD18A837E2,Hank Johnson,GA,GA-04,party_nominee,on_ballot,False,https://hankforcongress.com/,0.75,public_option,,,,
+X610C74A76,Nikema Williams,GA,GA-05,party_nominee,on_ballot,False,https://www.nikemaforcongress.com/,0.4,no_coverage_position,,,,campaign site verification scored 0.40: campaign apparatus (donate/volunteer/disclaimer); 'for Congress' framing
+XF7C10D771,Lucy McBath,GA,GA-06,party_nominee,on_ballot,False,https://lucyforcongress.com/,0.75,aca_strengthen,,,,
+X6FA7987D6,Anthony Kozycki,GA,GA-07,party_nominee,on_ballot,False,,0.0,unknown,,,no campaign website resolved,no campaign URL listed on the state's Wikipedia article
+XE4EA264D5,Kelly Etsi,GA,GA-08,party_nominee,on_ballot,False,,0.0,unknown,,,no campaign website resolved,no campaign URL listed on the state's Wikipedia article
+XA74289A4B,Caitlyn Gegen,GA,GA-09,party_nominee,on_ballot,False,https://www.caitlynforgeorgia.com/pages/index.html,0.5,unknown,,,REVIEW: only 75 characters retrieved across 1 page(s); site is likely Javascript-rendered,campaign site verification scored 0.50: full name in <title>; 'for Congress' framing
+XD8CA811B5,Pamela DeLancy,GA,GA-10,party_nominee,on_ballot,False,https://www.votepamdelancy.com/,1.0,no_coverage_position,,,,
+X9CB55C8D5,Chris Harden,GA,GA-11,party_nominee,on_ballot,False,https://www.electharden.com/,1.0,aca_strengthen,,,,
+X4996052FC,Ceretta Smith,GA,GA-12,party_nominee,on_ballot,False,https://cerettaforgeorgia.com/,0.0,unknown,,,campaign site unreachable,campaign site verification scored 0.00: HTTP 403
+X5372A5054,Jasmine Clark,GA,GA-13,party_nominee,on_ballot,False,https://www.jasmine4ga.com/,0.75,no_coverage_position,,,,
+X24E9246E0,Shawn Harris,GA,GA-14,party_nominee,on_ballot,False,https://www.shawnforgeorgia.com/,0.85,aca_strengthen,,,REVIEW: weak evidence,
+XC9E16524B,Ed Case,HI,HI-01,party_nominee,on_ballot,False,https://edcase.com/,0.25,unknown,,,REVIEW: only 608 characters retrieved across 8 page(s); site is likely Javascript-rendered,campaign site verification scored 0.25: surname in domain
+XB9F3D5E33,Jill Tokuda,HI,HI-02,party_nominee,on_ballot,False,https://www.tokudaforhawaii.com/,0.85,explicit_m4a,,,,
+XFF60D9960,Christina Bohannan,IA,IA-01,party_nominee,on_ballot,False,https://bohannanforcongress.com/,1.0,public_option,,,supports a public option while explicitly rejecting Medicare for All | explicitly rejects Medicare for All,
+XAA258093B,Lindsay James,IA,IA-02,party_nominee,on_ballot,False,https://www.lindsayforiowa.com/,0.75,no_coverage_position,,,,
+X29804D13B,Sarah Trone Garriott,IA,IA-03,party_nominee,on_ballot,False,https://sarahforiowa.com/,0.4,no_coverage_position,,,,campaign site verification scored 0.40: campaign apparatus (donate/volunteer/disclaimer); 'for Congress' framing
+X1710DFE2B,Dave Dawson,IA,IA-04,party_nominee,on_ballot,False,https://davedawsonforiowa.com/,0.25,unknown,,,REVIEW: only 0 characters retrieved across 8 page(s); site is likely Javascript-rendered,campaign site verification scored 0.25: surname in domain
+XE4AFDCA11,Kaylee Peterson,ID,ID-01,party_nominee,on_ballot,False,https://www.kayleeforcongress.com/,0.75,explicit_m4a,,,,
+X2F106DD2C,Elinor Gilbreath,ID,ID-02,party_nominee,on_ballot,False,https://ellieforidaho.com/,0.0,unknown,,,campaign site unreachable,campaign site verification scored 0.00: HTTP 403
+X4587BF5F9,Jonathan Jackson,IL,IL-01,party_nominee,on_ballot,False,https://jonathanjacksonforcongress.com/,0.25,unknown,,,REVIEW: only 608 characters retrieved across 8 page(s); site is likely Javascript-rendered,campaign site verification scored 0.25: surname in domain
+X3AAE489A0,Donna Miller,IL,IL-02,party_nominee,on_ballot,False,https://donnaforcongress.com/,0.75,explicit_m4a,,,,
+XF40B0FCDF,Delia Ramirez,IL,IL-03,party_nominee,on_ballot,False,https://www.deliaforcongress.com/,0.85,explicit_m4a,,,,
+X2874D2035,Patty Garcia,IL,IL-04,party_nominee,on_ballot,False,,0.0,unknown,,,no campaign website resolved,no campaign URL listed on the state's Wikipedia article
+XA12170CAD,Mike Quigley,IL,IL-05,party_nominee,on_ballot,False,https://quigleyforcongress.com/,0.25,unknown,,,REVIEW: only 608 characters retrieved across 8 page(s); site is likely Javascript-rendered,campaign site verification scored 0.25: surname in domain
+X34069D528,Sean Casten,IL,IL-06,party_nominee,on_ballot,False,https://www.castenforcongress.com/,1.0,no_coverage_position,,,,
+XEC2D00832,La Shawn Ford,IL,IL-07,party_nominee,on_ballot,False,https://fordforcongress.com/,1.0,no_coverage_position,,,,
+X9D8854D60,Melissa Bean,IL,IL-08,party_nominee,on_ballot,False,https://www.melissabeanforcongress.com,1.0,aca_strengthen,,,,
+X1863DBCB4,Daniel Biss,IL,IL-09,party_nominee,on_ballot,False,https://www.danielbiss.com/,1.0,aca_strengthen,,,REVIEW: weak evidence,
+XA6923B042,Brad Schneider,IL,IL-10,party_nominee,on_ballot,False,https://www.schneiderforcongress.com/,0.85,aca_strengthen,,,https://www.schneiderforcongress.com/: weak evidence; https://www.schneiderforcongress.com/issues: weak evidence,
+X6790F45C6,Bill Foster,IL,IL-11,party_nominee,on_ballot,False,https://www.billfoster.com/,1.0,public_option,,,,
+X91EA2CD61,Julie Fortier,IL,IL-12,party_nominee,on_ballot,False,https://www.juliefortier.org/,1.0,aca_strengthen,,,,
+XBEA02C69B,Nikki Budzinski,IL,IL-13,party_nominee,on_ballot,False,https://nikkiforcongress.com/,0.4,aca_strengthen,,,REVIEW: weak evidence,campaign site verification scored 0.40: campaign apparatus (donate/volunteer/disclaimer); 'for Congress' framing
+XF4AC1912B,Lauren Underwood,IL,IL-14,party_nominee,on_ballot,False,https://underwoodforcongress.com/,0.85,no_coverage_position,,,,
+X317017070,Jennifer Todd,IL,IL-15,party_nominee,on_ballot,False,https://www.jentodd2026.us/,1.0,aca_strengthen,,,REVIEW: weak evidence,
+XEB5BB8821,Paul Nolley,IL,IL-16,party_nominee,on_ballot,False,https://www.nolleyforcongress.com/,1.0,aca_strengthen,,,REVIEW: weak evidence,
+X8CBB1C256,Eric Sorensen,IL,IL-17,party_nominee,on_ballot,False,https://www.ericforillinois.com/,0.25,no_coverage_position,,,,campaign site verification scored 0.25: campaign apparatus (donate/volunteer/disclaimer)
+XC8F19F5ED,Frank Mrvan,IN,IN-01,party_nominee,on_ballot,False,https://mrvanforcongress.com/,1.0,aca_strengthen,,,REVIEW: weak evidence,
+XB6A209F9B,Jamee Decio,IN,IN-02,party_nominee,on_ballot,False,https://decioforcongress.com/,0.25,unknown,,,REVIEW: only 0 characters retrieved across 8 page(s); site is likely Javascript-rendered,campaign site verification scored 0.25: surname in domain
+X578096044,Kelly Thompson,IN,IN-03,party_nominee,on_ballot,False,https://www.kellythompsonforcongress.com/,1.0,no_coverage_position,,,,
+XB0B9E3CF3,Drew Cox,IN,IN-04,party_nominee,on_ballot,False,https://www.drewcox.org/,0.5,explicit_m4a,,,,campaign site verification scored 0.50: surname in domain; campaign apparatus (donate/volunteer/disclaimer)
+X911085DCD,J. D. Ford,IN,IN-05,party_nominee,on_ballot,False,https://www.electjdford.com/,1.0,aca_strengthen,,,,
+X76CF0170D,Cynthia Wirth,IN,IN-06,party_nominee,on_ballot,False,https://wirth4congress.com/,0.85,explicit_m4a,,,,
+XA50B70665,André Carson,IN,IN-07,party_nominee,on_ballot,False,https://andrecarson.com/,0.85,aca_strengthen,,,,
+XFB9FFAAB5,Mary Allen,IN,IN-08,party_nominee,on_ballot,False,https://www.maryallenforcongress.com/,1.0,no_coverage_position,,,,
+XF9C54DDF7,Brad Meyer,IN,IN-09,party_nominee,on_ballot,False,https://www.bradmeyer.org/,0.25,unknown,,,REVIEW: only 0 characters retrieved across 8 page(s); site is likely Javascript-rendered,campaign site verification scored 0.25: surname in domain
+XCC7CC4D06,Lauren Reinhold,KS,KS-01,party_nominee,on_ballot,False,https://www.laurenforkansas.com/,0.75,no_coverage_position,,,,
+X3B16EE9AC,Don Coover,KS,KS-02,party_nominee,on_ballot,False,https://doncooverforcongress.com/,1.0,no_coverage_position,,,,
+X11DD08967,Sharice Davids,KS,KS-03,party_nominee,on_ballot,False,https://shariceforcongress.com/,0.75,aca_strengthen,,,,
+X6EDF68DFE,Katy Tyndell,KS,KS-04,party_nominee,on_ballot,False,https://katyforkansas.com/,0.0,unknown,,,REVIEW: only 608 characters retrieved across 8 page(s); site is likely Javascript-rendered,campaign site verification scored 0.00: no signal
+XD59E6E9F2,Drew Williams,KY,KY-01,party_nominee,on_ballot,False,,0.0,unknown,,,no campaign website resolved,no campaign URL listed on the state's Wikipedia article
+X6DB9BE600,Megan Wingfield,KY,KY-02,party_nominee,on_ballot,False,https://meganwingfieldforcongress.com/,0.0,unknown,,,campaign site unreachable,campaign site verification scored 0.00: HTTP 403
+X8F342F7EE,Morgan McGarvey,KY,KY-03,party_nominee,on_ballot,False,https://www.morganmcgarvey.com/,1.0,explicit_m4a,,,,
+X109A2A73F,Melissa Strange,KY,KY-04,party_nominee,on_ballot,False,https://strangeforky.com/,0.85,no_coverage_position,,,,
+XB94C5BFDF,Ned Pillersdorf,KY,KY-05,party_nominee,on_ballot,False,https://nedforcongress.com/,0.75,no_coverage_position,,,,
+X1EF296CF9,Zach Dembo,KY,KY-06,party_nominee,on_ballot,False,https://zachdembo.com/,0.8,no_coverage_position,,,,
+XB00B93497,Lauren Jewett,LA,LA-01,jungle_nov,all_party_november,False,https://www.laurenjewett.com/,1.0,no_coverage_position,,,,
+X8BD7C2604,Troy Carter,LA,LA-02,jungle_nov,all_party_november,False,https://www.congressmantroycarter.com/,1.0,no_coverage_position,,,,
+XD16E4706F,John Day,LA,LA-03,jungle_nov,all_party_november,False,https://johndayforcongress.com/,0.8,aca_strengthen,,,REVIEW: weak evidence,
+X2926800C2,Tia LeBrun,LA,LA-03,jungle_nov,all_party_november,False,https://lebrun4la.com/,0.5,no_coverage_position,,,,campaign site verification scored 0.50: surname in domain; campaign apparatus (donate/volunteer/disclaimer)
+X1DF268CA3,Conrad Cable,LA,LA-04,jungle_nov,all_party_november,False,https://www.conrad4congress2026.com/,0.75,explicit_m4a,,,,
+X93906FEE8,Matt Gromlich,LA,LA-04,jungle_nov,all_party_november,False,https://www.mattgromlichforcongress.com/,1.0,no_coverage_position,,,,
+XB068B6C3B,Dan McKay,LA,LA-05,jungle_nov,all_party_november,False,https://www.mckayforcongress.com/,0.85,unknown,,,REVIEW: only 89 characters retrieved across 1 page(s); site is likely Javascript-rendered,
+XC8DE7DFF6,Tania Nyman,LA,LA-05,jungle_nov,all_party_november,False,,0.0,unknown,,,no campaign website resolved,no campaign URL listed on the state's Wikipedia article
+XB98D7281D,Cleo Fields,LA,LA-06,jungle_nov,all_party_november,False,,0.0,unknown,,,no campaign website resolved,no campaign URL listed on the state's Wikipedia article
+X3EFF6B902,Lindsay Garcia,LA,LA-06,jungle_nov,all_party_november,False,,0.0,unknown,,,no campaign website resolved,no campaign URL listed on the state's Wikipedia article
+XE018AC25B,Jim McGovern,MA,MA-02,party_nominee,pending_primary,False,,0.0,unknown,,,,
+XC3C050E5C,Lori Trahan,MA,MA-03,party_nominee,pending_primary,False,,0.0,unknown,,,,
+XE76073541,Ayanna Pressley,MA,MA-07,party_nominee,pending_primary,False,,0.0,unknown,,,,
+XA05E9CE81,Dan Schwartz,MD,MD-01,party_nominee,on_ballot,False,https://schwartzforcongress.com/,0.9,aca_strengthen,,,,
+XDC6041375,Johnny Olszewski,MD,MD-02,party_nominee,on_ballot,False,https://gojohnnyo.com/,0.4,aca_strengthen,,,REVIEW: weak evidence,campaign site verification scored 0.40: campaign apparatus (donate/volunteer/disclaimer); 'for Congress' framing
+XFAB4732E4,Sarah Elfreth,MD,MD-03,party_nominee,on_ballot,False,https://elfrethformaryland.com/,1.0,explicit_m4a,,,,
+XF52FA103D,Glenn Ivey,MD,MD-04,party_nominee,on_ballot,False,https://www.glennivey.com/,1.0,no_coverage_position,,,,
+X242B63480,Adrian Boafo,MD,MD-05,party_nominee,on_ballot,False,https://www.adrianboafo.com/,1.0,unknown,,,REVIEW: only 1130 characters retrieved across 2 page(s); site is likely Javascript-rendered,
+X57A6928C8,April McClain Delaney,MD,MD-06,party_nominee,on_ballot,False,https://www.aprilmcclaindelaneyforcongress.com/,1.0,no_coverage_position,,,,
+X958EFB446,Kweisi Mfume,MD,MD-07,party_nominee,on_ballot,False,https://mfumeforcongress.com/,0.25,unknown,,,REVIEW: only 608 characters retrieved across 8 page(s); site is likely Javascript-rendered,campaign site verification scored 0.25: surname in domain
+X9A2A5C9BC,Jamie Raskin,MD,MD-08,party_nominee,on_ballot,False,https://jamieraskin.com/,1.0,no_coverage_position,,,,
+X190D8AD90,Chellie Pingree,ME,ME-01,party_nominee,on_ballot,False,https://www.chelliepingree.com/,1.0,explicit_m4a,,,,
+X023A2B728,Matthew Dunlap,ME,ME-02,party_nominee,on_ballot,False,https://www.mattdunlapforuscongress.com/,0.85,explicit_m4a,,,,
+XCDBE82943,Callie Barr,MI,MI-01,party_nominee,on_ballot,False,https://callieforcongress.com/,0.75,public_option,,,,
+X9F42A32F4,Benjamin Ambrose,MI,MI-02,party_nominee,on_ballot,False,https://ambrose4congress.com/,0.6,unknown,,,REVIEW: only 448 characters retrieved across 8 page(s); site is likely Javascript-rendered,
+X2A62F9A1B,Hillary Scholten,MI,MI-03,party_nominee,on_ballot,False,https://hillaryscholten.com/,1.0,aca_strengthen,,,,
+XCF3D7A712,Sean McCann,MI,MI-04,party_nominee,on_ballot,False,https://seanmccannforcongress.com/,0.8,no_coverage_position,,,,
+XCD3181A37,Christian Vukasovich,MI,MI-05,party_nominee,on_ballot,False,https://christian4michigan.com/,0.5,unknown,,,REVIEW: only 512 characters retrieved across 8 page(s); site is likely Javascript-rendered,campaign site verification scored 0.50: full name in <title>; 'for Congress' framing
+XCAA9E0D15,Debbie Dingell,MI,MI-06,party_nominee,on_ballot,False,https://debbiedingellforcongress.com/,1.0,explicit_m4a,,,,
+X7DB663EAE,William Lawrence,MI,MI-07,party_nominee,on_ballot,False,https://wewill2026.com/,0.75,explicit_m4a,,,,
+XEF044186F,Kristen McDonald Rivet,MI,MI-08,party_nominee,on_ballot,False,https://kristenmcdonaldrivet.com/,1.0,no_coverage_position,,,,
+XCF166FC0C,Ray Pooley,MI,MI-09,party_nominee,on_ballot,False,https://www.pooley4congress.com/,0.7,explicit_m4a,,,,
+X317500908,Christina Hines,MI,MI-10,party_nominee,on_ballot,False,https://www.christinahinesforcongress.com/,1.0,no_coverage_position,,,,
+X6DCDECD08,Jeremy Moss,MI,MI-11,party_nominee,on_ballot,False,https://votejeremymoss.com/,1.0,public_option,,,,
+XEB299FCA8,Rashida Tlaib,MI,MI-12,party_nominee,on_ballot,False,https://rashidaforcongress.com/,0.75,explicit_m4a,,,,
+X22EEC9903,Donavan McKinney,MI,MI-13,party_nominee,on_ballot,False,https://www.donavanforcongress.com/,0.75,explicit_m4a,,,,
+X046BCE7F2,Jake Johnson,MN,MN-01,party_nominee,on_ballot,False,https://www.jakejohnsonforcongress.com/,0.8,aca_strengthen,,,REVIEW: weak evidence,
+XCF33557D1,Matt Little,MN,MN-02,party_nominee,on_ballot,False,https://littleforcongress.com/,1.0,explicit_m4a,,,,
+XD8C47995C,Kelly Morrison,MN,MN-03,party_nominee,on_ballot,False,https://www.kellyforcongress.org/,0.75,no_coverage_position,,,,
+X89DD7E063,Betty McCollum,MN,MN-04,party_nominee,on_ballot,False,https://www.mccollumforcongress.com/,1.0,no_coverage_position,,,,
+XAA83899D9,Ilhan Omar,MN,MN-05,party_nominee,on_ballot,False,https://ilhanomar.com/,0.45,no_coverage_position,,,,campaign site verification scored 0.45: surname in domain; campaign apparatus (donate/volunteer/disclaimer); 'for Congress' framing; looks like a multi-candidate roundup
+X79A01D4F9,Doug Chapin,MN,MN-06,party_nominee,on_ballot,False,https://www.chapinforcongress.com/,1.0,explicit_m4a,,,,
+XF36E766B6,Erik Osberg,MN,MN-07,party_nominee,on_ballot,False,https://www.erikosberg4congress.com/,0.8,explicit_m4a,,,,
+XB32844135,Trina Swanson,MN,MN-08,party_nominee,on_ballot,False,https://trinaforcongress.com/,0.65,no_coverage_position,,,,
+XE4C8B740B,Wesley Bell,MO,MO-01,party_nominee,on_ballot,False,https://www.bell4mo.com/,1.0,no_coverage_position,,,,
+X71C273DF3,Fred Wellman,MO,MO-02,party_nominee,on_ballot,False,https://www.wellmanformo.com/,1.0,public_option,,,,
+X10C98E3C1,Bethany Mann,MO,MO-03,party_nominee,on_ballot,False,https://www.bethanymannforcongress.com/,1.0,explicit_m4a,,,,
+XA1B79F89D,Jordan Herrera,MO,MO-04,party_nominee,on_ballot,False,https://jordanjherrera.com/,0.25,unknown,,,REVIEW: only 608 characters retrieved across 8 page(s); site is likely Javascript-rendered,campaign site verification scored 0.25: surname in domain
+XD4F9E9030,Emanuel Cleaver,MO,MO-05,party_nominee,on_ballot,False,http://www.cleaverforcongress.com/,0.0,unknown,,,campaign site unreachable,campaign site verification scored 0.00: HTTP 403
+X5509A0088,Josh Smead,MO,MO-06,party_nominee,on_ballot,False,https://votesmead.com/,1.0,no_coverage_position,,,,
+XE4A494A09,Missi Hesketh,MO,MO-07,party_nominee,on_ballot,False,https://www.missiformo.com/,0.4,explicit_m4a,,,,campaign site verification scored 0.40: campaign apparatus (donate/volunteer/disclaimer); 'for Congress' framing
+X0E9E489F9,Christopher Riechard,MO,MO-08,party_nominee,on_ballot,False,,0.0,unknown,,,no campaign website resolved,no campaign URL listed on the state's Wikipedia article
+XC97DE6CC6,Cliff Johnson,MS,MS-01,party_nominee,on_ballot,False,https://www.cliffjohnsonforcongress.com/,1.0,no_coverage_position,,,,
+XEF1983CE8,Bennie Thompson,MS,MS-02,party_nominee,on_ballot,False,https://benniethompson.com/,1.0,aca_strengthen,,,,
+X09955DA42,Michael Chiaradio,MS,MS-03,party_nominee,on_ballot,False,https://michaelachiaradio.com/,1.0,no_coverage_position,,,,
+X671E9D5AC,Jeffrey Hulum III,MS,MS-04,party_nominee,on_ballot,False,https://www.jeffreyhulumiiiforcongress.com/,0.8,no_coverage_position,,,,
+X048EC1EF5,Sam Forstag,MT,MT-01,party_nominee,on_ballot,False,https://samformontana.com/,0.75,aca_strengthen,,,,
+X8E8B6E190,Brian Miller,MT,MT-02,party_nominee,on_ballot,False,https://www.miller4congress.com/,0.85,no_coverage_position,,,,
+X23EBD447F,Don Davis,NC,NC-01,party_nominee,on_ballot,False,https://www.votedondavis.com/,1.0,no_coverage_position,,,,
+XCCB10F3D5,Deborah Ross,NC,NC-02,party_nominee,on_ballot,False,https://deborahross.com/,1.0,no_coverage_position,,,,
+X6F03163D3,Raymond Smith Jr.,NC,NC-03,party_nominee,on_ballot,False,https://raymondsmithfornc.com/,1.0,no_coverage_position,,,,
+X6B6540C55,Valerie Foushee,NC,NC-04,party_nominee,on_ballot,False,https://valeriefoushee.com/,1.0,no_coverage_position,,,explicitly rejects Medicare for All,
+X2F8B4CF86,Chuck Hubbard,NC,NC-05,party_nominee,on_ballot,False,https://hubbardforcongress.com/,1.0,aca_strengthen,,,REVIEW: weak evidence,
+X1A1A5A1E4,Cyril Jefferson,NC,NC-06,party_nominee,on_ballot,False,https://www.cyrilforcongress.com/,0.75,aca_strengthen,,,REVIEW: weak evidence,
+X1BBCBF17D,Kim Hardy,NC,NC-07,party_nominee,on_ballot,False,https://www.kimberlyhardyforcongress.com/,0.85,aca_strengthen,,,REVIEW: weak evidence,
+X3CF6BE18D,Colby Watson,NC,NC-08,party_nominee,on_ballot,False,https://www.colbyforcongress.com/,0.75,no_coverage_position,,,,
+XCCA3782BA,Richard Ojeda,NC,NC-09,party_nominee,on_ballot,False,https://ojedafornc.com/,0.25,unknown,,,REVIEW: only 0 characters retrieved across 8 page(s); site is likely Javascript-rendered,campaign site verification scored 0.25: surname in domain
+X2AC110C8E,Ashley Bell,NC,NC-10,party_nominee,on_ballot,False,https://www.ashleybellforcongress.com/,1.0,no_coverage_position,,,,
+X71C4CA914,Jamie Ager,NC,NC-11,party_nominee,on_ballot,False,https://agerforcongress.com/,1.0,aca_strengthen,,,,
+XD424DA07F,Alma Adams,NC,NC-12,party_nominee,on_ballot,False,https://almaadamsforcongress.com/,0.25,unknown,,,REVIEW: only 608 characters retrieved across 8 page(s); site is likely Javascript-rendered,campaign site verification scored 0.25: surname in domain
+XF15CBE5B9,Paul Barringer,NC,NC-13,party_nominee,on_ballot,False,https://paulbarringer.com/,1.0,no_coverage_position,,,,
+X11AF04870,LaKesha Womack,NC,NC-14,party_nominee,on_ballot,False,https://www.womack4nc14.com/,1.0,aca_strengthen,,,,
+X483A52BC0,Trygve Hammer,ND,ND-AL,party_nominee,on_ballot,False,,0.0,unknown,,,no campaign website resolved,no campaign URL listed on the state's Wikipedia article
+X14BBD0BED,Chris Backemeyer,NE,NE-01,party_nominee,on_ballot,False,https://backnebraska.com/,0.75,no_coverage_position,,,,
+XD0DE0D53D,Denise Powell,NE,NE-02,party_nominee,on_ballot,False,https://deniseforcongress.org/,0.55,aca_strengthen,,,,
+X65A0DA819,Becky Stille,NE,NE-03,party_nominee,on_ballot,False,https://www.beckystille2026.com/,1.0,no_coverage_position,,,,
+X7DEA8185C,Donald Norcross,NJ,NJ-01,party_nominee,on_ballot,False,https://www.donaldnorcrossforcongress.com/,1.0,aca_strengthen,,,https://www.donaldnorcrossforcongress.com/issue/caring-for-seniors: weak evidence,
+X3606D1426,Zack Mullock,NJ,NJ-02,party_nominee,on_ballot,False,https://mullockforcongress.com/,0.75,unknown,,,REVIEW: only 416 characters retrieved across 8 page(s); site is likely Javascript-rendered,
+XC4DA83537,Herb Conaway,NJ,NJ-03,party_nominee,on_ballot,False,https://www.herbforcongress.com/,0.75,no_coverage_position,,,,
+X591F3F334,Rachel Peace,NJ,NJ-04,party_nominee,on_ballot,False,https://www.peace4shore.com/,1.0,unknown,,,REVIEW: only 757 characters retrieved across 2 page(s); site is likely Javascript-rendered,
+X1002B486F,Josh Gottheimer,NJ,NJ-05,party_nominee,on_ballot,False,https://josh4jersey.com/,0.4,no_coverage_position,,,https://josh4jersey.com/about: healthcare phrases present but none in the candidate's own voice,campaign site verification scored 0.40: campaign apparatus (donate/volunteer/disclaimer); 'for Congress' framing
+XC32D143F5,Frank Pallone,NJ,NJ-06,party_nominee,on_ballot,False,https://www.pallonefornewjersey.com/,1.0,no_coverage_position,,,,
+X202E5B637,Rebecca Bennett,NJ,NJ-07,party_nominee,on_ballot,False,https://rebeccabennettforcongress.com/,0.9,aca_strengthen,,,,
+X147651EEA,Rob Menendez,NJ,NJ-08,party_nominee,on_ballot,False,https://www.robmenendez.com/,1.0,aca_strengthen,,,,
+XE87F633A2,Nellie Pou,NJ,NJ-09,party_nominee,on_ballot,False,https://www.nelliepoufornewjersey.com/,0.25,unknown,,,REVIEW: only 608 characters retrieved across 8 page(s); site is likely Javascript-rendered,campaign site verification scored 0.25: surname in domain
+X708EAC59E,LaMonica McIver,NJ,NJ-10,party_nominee,on_ballot,False,https://www.lamonicaforcongress.com/,0.85,unknown,,,REVIEW: only 1087 characters retrieved across 2 page(s); site is likely Javascript-rendered,
+XBE1FF1D3D,Analilia Mejia,NJ,NJ-11,party_nominee,on_ballot,False,https://www.analiliafornj.com/,0.5,explicit_m4a,,,,campaign site verification scored 0.50: campaign apparatus (donate/volunteer/disclaimer); 'for Congress' framing; district referenced
+X0CFCC98A0,Adam Hamawy,NJ,NJ-12,party_nominee,on_ballot,False,https://hamawyfornj.com/,1.0,explicit_m4a,,,,
+XCEC0C90A4,Melanie Stansbury,NM,NM-01,party_nominee,on_ballot,False,https://www.melaniefornewmexico.com/,0.6,explicit_m4a,,,,
+X11229890F,Gabe Vasquez,NM,NM-02,party_nominee,on_ballot,False,https://gabeforcongress.com/,0.0,unknown,,,REVIEW: only 608 characters retrieved across 8 page(s); site is likely Javascript-rendered,campaign site verification scored 0.00: no signal
+X913145A9B,Teresa Leger Fernández,NM,NM-03,party_nominee,on_ballot,False,,0.0,unknown,,,no campaign website resolved,no campaign URL listed on the state's Wikipedia article
+XC3BD2F017,Dina Titus,NV,NV-01,party_nominee,on_ballot,False,https://www.dinatitus.com/,1.0,unknown,,,REVIEW: only 79 characters retrieved across 1 page(s); site is likely Javascript-rendered,
+X129CF7237,Teresa Benitez-Thompson,NV,NV-02,party_nominee,on_ballot,False,https://electteresa.com/,0.0,unknown,,,REVIEW: only 0 characters retrieved across 8 page(s); site is likely Javascript-rendered,campaign site verification scored 0.00: no signal
+X15DDD9580,Susie Lee,NV,NV-03,party_nominee,on_ballot,False,https://www.susieleeforcongress.com/,1.0,no_coverage_position,,,,
+XE1DB7BFAF,Steven Horsford,NV,NV-04,party_nominee,on_ballot,False,https://stevenhorsford.com/,1.0,aca_strengthen,,,REVIEW: weak evidence,
+X82E272317,Chris Gallant,NY,NY-01,party_nominee,on_ballot,False,https://gallantny.com/,1.0,aca_strengthen,,,https://gallantny.com/the-mission-plan-2027: weak evidence,
+XF8680D853,Patrick Halpin,NY,NY-02,party_nominee,on_ballot,False,https://www.halpinforcongress.com/,0.85,no_coverage_position,,,,
+XB1FC65DA4,Tom Suozzi,NY,NY-03,party_nominee,on_ballot,False,https://suozziforcongress.com/,0.85,no_coverage_position,,,,
+X14649486A,Laura Gillen,NY,NY-04,party_nominee,on_ballot,False,https://lauragillen.com/,1.0,aca_strengthen,,,,
+XE854BCE78,Gregory Meeks,NY,NY-05,party_nominee,on_ballot,False,https://www.congressmangregorymeeks.com/,1.0,no_coverage_position,,,,
+X758B8548C,Grace Meng,NY,NY-06,party_nominee,on_ballot,False,https://www.gracefornewyork.com/,0.25,explicit_m4a,,,,campaign site verification scored 0.25: campaign apparatus (donate/volunteer/disclaimer)
+X7B8045868,Claire Valdez,NY,NY-07,party_nominee,on_ballot,False,https://clairevaldezforcongress.com/,0.9,explicit_m4a,,,,
+XA448F849F,Hakeem Jeffries,NY,NY-08,party_nominee,on_ballot,False,https://hakeemjeffries.com/,1.0,no_coverage_position,,,,
+X564AD46A2,Yvette Clarke,NY,NY-09,party_nominee,on_ballot,False,https://voteyvette.com/,0.6,no_coverage_position,,,explicitly rejects Medicare for All,
+X7D248C95E,Brad Lander,NY,NY-10,party_nominee,on_ballot,False,https://www.bradlanderforcongress.com/,1.0,no_coverage_position,,,,
+X7DBFCC8AC,Michael DeCillis,NY,NY-11,party_nominee,on_ballot,False,https://www.decillisforcongress.com/,0.95,explicit_m4a,,,,
+X3BA2433C9,Micah Lasher,NY,NY-12,party_nominee,on_ballot,False,https://micahlasher.com/,1.0,explicit_m4a,,,,
+X4B0D77DED,Darializa Avila Chevalier,NY,NY-13,party_nominee,on_ballot,False,https://www.darializaforcongress.com/,0.5,explicit_m4a,,,,campaign site verification scored 0.50: campaign apparatus (donate/volunteer/disclaimer); 'for Congress' framing; district referenced
+X8CF38E219,Alexandria Ocasio-Cortez,NY,NY-14,party_nominee,on_ballot,False,https://www.ocasiocortez.com/splash,0.75,explicit_m4a,,,https://www.ocasiocortez.com/splash: page had too little text to classify; https://www.ocasiocortez.com/priorities: page had too little text to classify,
+X03403038D,Ritchie Torres,NY,NY-15,party_nominee,on_ballot,False,https://torres.nyc/,1.0,no_coverage_position,,,https://torres.nyc/issues: page had too little text to classify; https://torres.nyc/on-the-issues: page had too little text to classify,
+X8085DE033,George Latimer,NY,NY-16,party_nominee,on_ballot,False,https://latimerforny.com/,1.0,aca_strengthen,,,,
+X785356110,Cait Conley,NY,NY-17,party_nominee,on_ballot,False,https://caitconley.com/,1.0,aca_strengthen,,,https://caitconley.com/: healthcare phrases present but none in the candidate's own voice,
+X65B20A954,Pat Ryan,NY,NY-18,party_nominee,on_ballot,False,https://www.patryanforcongress.com/,0.8,no_coverage_position,,,,
+XC578BE5F8,Josh Riley,NY,NY-19,party_nominee,on_ballot,False,https://www.joshrileyforcongress.com/,0.0,unknown,,,campaign site unreachable,campaign site verification scored 0.00: HTTP 403
+XD33635C07,Paul Tonko,NY,NY-20,party_nominee,on_ballot,False,https://paultonko.com/,1.0,no_coverage_position,,,,
+X0CAFC9A6A,Blake Gendebien,NY,NY-21,party_nominee,on_ballot,False,https://blakegendebienforcongress.com/,1.0,no_coverage_position,,,,
+X6FA795162,John Mannion,NY,NY-22,party_nominee,on_ballot,False,https://www.mannionforny.com/,1.0,aca_strengthen,,,,
+XBBC37A86E,Aaron Gies,NY,NY-23,party_nominee,on_ballot,False,https://aaronforny23.com/,0.0,unknown,,,REVIEW: only 0 characters retrieved across 8 page(s); site is likely Javascript-rendered,campaign site verification scored 0.00: no signal
+X3C7CFBE02,Alissa Ellman,NY,NY-24,party_nominee,on_ballot,False,https://www.ellmanforcongress.com/,0.95,no_coverage_position,,,,
+X60C187B6C,Joseph Morelle,NY,NY-25,party_nominee,on_ballot,False,https://www.votemorelle.com/,0.85,aca_strengthen,,,,
+X81350BDE8,Tim Kennedy,NY,NY-26,party_nominee,on_ballot,False,https://kennedyforuscongress.com/,0.85,aca_strengthen,,,REVIEW: weak evidence,
+X181FDD666,Greg Landsman,OH,OH-01,party_nominee,on_ballot,False,https://www.landsmanforcongress.com/,0.85,aca_strengthen,,,,
+XFE12F7B64,Jennifer Mazzuckelli,OH,OH-02,party_nominee,on_ballot,False,https://jen4oh2.com/,0.25,no_coverage_position,,,https://jen4oh2.com/: page had too little text to classify,campaign site verification scored 0.25: campaign apparatus (donate/volunteer/disclaimer)
+X255CBE9F3,Joyce Beatty,OH,OH-03,party_nominee,on_ballot,False,https://beattyforcongress.com/,0.8,aca_strengthen,,,,
+X86DA7559E,Joshua Kolasinski,OH,OH-04,party_nominee,on_ballot,False,https://www.joshuaforohio.com/,0.6,aca_strengthen,,,REVIEW: weak evidence,
+X97B99BDDC,Brian Shaver,OH,OH-05,party_nominee,on_ballot,False,https://www.brianshaverforcongress.com/,1.0,no_coverage_position,,,,
+X512AC264D,Elizabeth Kirtley,OH,OH-06,party_nominee,on_ballot,False,https://www.elizabethforus.com/,0.75,no_coverage_position,,,,
+X2F9C8193A,Brian Poindexter,OH,OH-07,party_nominee,on_ballot,False,https://poindexterforcongress.com/,0.8,no_coverage_position,,,,
+XE525A7351,Vanessa Enoch,OH,OH-08,party_nominee,on_ballot,False,https://enochforcongress.com/,0.25,unknown,,,REVIEW: only 608 characters retrieved across 8 page(s); site is likely Javascript-rendered,campaign site verification scored 0.25: surname in domain
+X1E682EE53,Marcy Kaptur,OH,OH-09,party_nominee,on_ballot,False,https://marcykaptur.com/,1.0,aca_strengthen,,,REVIEW: weak evidence,
+X89B7A989E,Kristina Knickerbocker,OH,OH-10,party_nominee,on_ballot,False,https://kristinaknickerbocker.com/,0.65,public_option,,,,
+X095FC3EA6,Shontel Brown,OH,OH-11,party_nominee,on_ballot,False,https://shontelbrown.com/,0.25,unknown,,,REVIEW: only 0 characters retrieved across 8 page(s); site is likely Javascript-rendered,campaign site verification scored 0.25: surname in domain
+X38C76B92E,Jerrad Christian,OH,OH-12,party_nominee,on_ballot,False,https://www.christianforohio.com/,1.0,no_coverage_position,,,,
+X1BA68EE36,Emilia Sykes,OH,OH-13,party_nominee,on_ballot,False,https://www.emiliasykesforcongress.com/,0.8,no_coverage_position,,,,
+X440C42FD2,Maria Jukic,OH,OH-14,party_nominee,on_ballot,False,https://mariajukicforcongress.com/,0.25,unknown,,,REVIEW: only 0 characters retrieved across 8 page(s); site is likely Javascript-rendered,campaign site verification scored 0.25: surname in domain
+X14BE808EE,Don Leonard,OH,OH-15,party_nominee,on_ballot,False,https://donforohio.com/,0.75,no_coverage_position,,,,
+XB62B566C1,John Croisant,OK,OK-01,party_nominee,on_ballot,False,https://www.croisantforcongress.com/,0.85,aca_strengthen,,,,
+X30D97FB5E,Brandon Wade,OK,OK-02,party_nominee,on_ballot,False,https://brandon4congress.com/,0.75,explicit_m4a,,,,
+X49280A451,Suzie Byrd,OK,OK-03,party_nominee,on_ballot,False,https://suziebyrd.com/,0.0,unknown,,,campaign site unreachable,"campaign site verification scored 0.00: fetch failed: egress blocked fetching https://suziebyrd.com/robots.txt: HTTPSConnectionPool(host='suziebyrd.com', port=443): Max retries exceeded with url: /robots.txt (Caused by ProxyError('Unable to connect to proxy', OSError('Tunnel connection failed: 502 Bad Gateway')))"
+X9118898F9,Mitchell Jacob,OK,OK-04,party_nominee,on_ballot,False,https://www.mitchelljacob.com/,0.85,no_coverage_position,,,,
+XAB17D1502,Jena Nelson,OK,OK-05,party_nominee,on_ballot,False,https://jenanelson.com/,0.25,unknown,,,REVIEW: only 0 characters retrieved across 8 page(s); site is likely Javascript-rendered,campaign site verification scored 0.25: surname in domain
+X27CD6A451,Suzanne Bonamici,OR,OR-01,party_nominee,on_ballot,False,https://www.bonamiciforcongress.com/,1.0,unknown,,,REVIEW: only 1499 characters retrieved across 1 page(s); site is likely Javascript-rendered,
+X53498914C,Chris Beck,OR,OR-02,party_nominee,on_ballot,False,https://chrisbeckforcongress.com/,1.0,no_coverage_position,,,,
+X5EB82774D,Maxine Dexter,OR,OR-03,party_nominee,on_ballot,False,https://maxinefororegon.com/,0.4,aca_strengthen,,,REVIEW: weak evidence,campaign site verification scored 0.40: campaign apparatus (donate/volunteer/disclaimer); 'for Congress' framing
+X3DBAAF1DA,Val Hoyle,OR,OR-04,party_nominee,on_ballot,False,https://www.valhoyle.com/,1.0,no_coverage_position,,,,
+X72D10786F,Janelle Bynum,OR,OR-05,party_nominee,on_ballot,False,https://www.janellebynum.com/,1.0,unknown,,,REVIEW: only 1761 characters retrieved across 2 page(s); site is likely Javascript-rendered,
+X13E641E90,Andrea Salinas,OR,OR-06,party_nominee,on_ballot,False,https://www.andreasalinasfororegon.com/,1.0,unknown,,,REVIEW: only 1313 characters retrieved across 1 page(s); site is likely Javascript-rendered,
+X967990143,Bob Harvie,PA,PA-01,party_nominee,on_ballot,False,https://bobharvieforcongress.com/,1.0,public_option,,,,
+X7EEFF2A3D,Brendan Boyle,PA,PA-02,party_nominee,on_ballot,False,https://voteboyle.com/,0.25,unknown,,,REVIEW: only 608 characters retrieved across 8 page(s); site is likely Javascript-rendered,campaign site verification scored 0.25: surname in domain
+XD39A79C65,Chris Rabb,PA,PA-03,party_nominee,on_ballot,False,https://www.chrisrabb.com/,1.0,explicit_m4a,,,,
+X814621C00,Madeleine Dean,PA,PA-04,party_nominee,on_ballot,False,https://mad4pa.com/,0.75,no_coverage_position,,,,
+XB8A7D4B39,Mary Gay Scanlon,PA,PA-05,party_nominee,on_ballot,False,https://www.scanlonforcongress.com/,0.85,no_coverage_position,,,,
+X4AA67028B,Chrissy Houlahan,PA,PA-06,party_nominee,on_ballot,False,https://chrissyhoulahanforcongress.com/,1.0,no_coverage_position,,,,
+XE0294389A,Bob Brooks,PA,PA-07,party_nominee,on_ballot,False,https://brooksforcongress.com/,0.25,unknown,,,REVIEW: only 0 characters retrieved across 8 page(s); site is likely Javascript-rendered,campaign site verification scored 0.25: surname in domain
+X504C5E107,Paige Cognetti,PA,PA-08,party_nominee,on_ballot,False,https://paigeforpa.com/,0.0,unknown,,,REVIEW: only 0 characters retrieved across 8 page(s); site is likely Javascript-rendered,campaign site verification scored 0.00: no signal
+X845145982,Rachel Wallace,PA,PA-09,party_nominee,on_ballot,False,https://www.wallaceforcongress.com/,1.0,unknown,,,REVIEW: only 1653 characters retrieved across 2 page(s); site is likely Javascript-rendered,
+XC98290C24,Janelle Stelson,PA,PA-10,party_nominee,on_ballot,False,https://janellestelson.com/,1.0,no_coverage_position,,,,
+X080F19FFA,Nancy Mannion,PA,PA-11,party_nominee,on_ballot,False,https://www.nancymannion.com/,1.0,no_coverage_position,,,,
+XA0109A988,Summer Lee,PA,PA-12,party_nominee,on_ballot,False,https://summerforpa.com/,0.85,explicit_m4a,,,REVIEW: page both endorses and disclaims single-payer | explicitly rejects Medicare for All,
+X904C6654A,Beth Farnham,PA,PA-13,party_nominee,on_ballot,False,https://bethfarnhamforcongress.com/,1.0,explicit_m4a,,,,
+XCBEC90952,Alan Bradstock,PA,PA-14,party_nominee,on_ballot,False,https://www.bradstockforcongress.com/,0.95,no_coverage_position,,,,
+X6AD378B32,Ray Bilger,PA,PA-15,party_nominee,on_ballot,False,https://bilgerforcongress.com/,1.0,aca_strengthen,,,REVIEW: weak evidence,
+XB93E1F5D9,Justin Wagner,PA,PA-16,party_nominee,on_ballot,False,https://www.justinwagnerforcongress.com/,1.0,explicit_m4a,,,REVIEW: page both endorses and disclaims single-payer | explicitly rejects Medicare for All,
+X3D29F01C8,Chris Deluzio,PA,PA-17,party_nominee,on_ballot,False,https://chrisforpa.com/,0.85,no_coverage_position,,,,
+X5E20EA151,Gabe Amo,RI,RI-01,party_nominee,pending_primary,False,,0.0,unknown,,,,
+X4BF90D77E,Seth Magaziner,RI,RI-02,party_nominee,pending_primary,False,,0.0,unknown,,,,
+X693D9E750,Nancy Lacore,SC,SC-01,party_nominee,on_ballot,False,https://www.nancylacore.com/,1.0,aca_strengthen,,,,
+X73AC00FC5,Zyon Khalifa,SC,SC-02,party_nominee,on_ballot,False,https://www.khalifaforcongress.com/,0.85,aca_strengthen,,,REVIEW: weak evidence,
+X3B4160D62,Eunice Lehmacher,SC,SC-03,party_nominee,on_ballot,False,https://www.euniceforsc.com/,0.75,no_coverage_position,,,,
+X54F8334D6,Courtney McClain,SC,SC-04,party_nominee,on_ballot,False,https://www.mcclainforsc.com/,0.85,no_coverage_position,,,,
+X3C244FA04,Mallory Dittmer,SC,SC-05,party_nominee,on_ballot,False,https://www.dittmerforcongress.com/,1.0,aca_strengthen,,,,
+X3F6326439,Jim Clyburn,SC,SC-06,party_nominee,on_ballot,False,https://clyburnforcongress.com/,0.25,unknown,,,REVIEW: only 608 characters retrieved across 8 page(s); site is likely Javascript-rendered,campaign site verification scored 0.25: surname in domain
+X0EFE78421,John Vincent,SC,SC-07,party_nominee,on_ballot,False,https://www.vincent4congress.org/,0.0,unknown,,,campaign site unreachable,campaign site verification scored 0.00: HTTP 403
+X147475DBF,Nikki Gronli,SD,SD-AL,party_nominee,on_ballot,False,https://www.nikkigforsd.com/,0.6,aca_strengthen,,,REVIEW: weak evidence,
+XCCE01AEB6,Kristi Burke,TN,TN-01,party_nominee,on_ballot,False,https://www.votekristiburke.com/,0.65,unknown,,,REVIEW: only 975 characters retrieved across 1 page(s); site is likely Javascript-rendered,
+XFCE7863B2,Michaela Barnett,TN,TN-02,party_nominee,on_ballot,False,https://www.michaelafortennessee.com/,0.6,aca_strengthen,,,,
+X9D00C5E55,Anna Golladay,TN,TN-03,party_nominee,on_ballot,False,https://annagolladay.com/,0.75,aca_strengthen,,,,
+X864E89C2A,Victoria Broderick,TN,TN-04,party_nominee,on_ballot,False,https://www.victoria4tennessee.org/,0.6,no_coverage_position,,,,
+X68BD05C52,Chaz Molder,TN,TN-05,party_nominee,on_ballot,False,https://chazmolder.com/,1.0,no_coverage_position,,,,
+X46D0AF033,Mike Croley,TN,TN-06,party_nominee,on_ballot,False,https://www.mikefortn6.com/,0.0,unknown,,,campaign site unreachable,"campaign site verification scored 0.00: fetch failed: failed fetching https://www.mikefortn6.com/: HTTPSConnectionPool(host='www.mikefortn6.com', port=443): Max retries exceeded with url: / (Caused by SSLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1016)')))"
+X011EF6441,Darden Copeland,TN,TN-07,party_nominee,on_ballot,False,,0.0,unknown,,,no campaign website resolved,no campaign URL listed on the state's Wikipedia article
+X502F20F92,Heidi Kuhn,TN,TN-08,party_nominee,on_ballot,False,https://kuhnforcongress.com/,0.85,aca_strengthen,,,REVIEW: weak evidence,
+X657395E17,Justin J. Pearson,TN,TN-09,party_nominee,on_ballot,False,https://www.votejustinj.com/,0.75,explicit_m4a,,,,
+XEC97EBD84,Yolanda Prince,TX,TX-01,party_nominee,on_ballot,False,https://yolandaprince.com/,1.0,explicit_m4a,,,,
+XC79E7E991,Shaun Finnie,TX,TX-02,party_nominee,on_ballot,False,https://shaunfinnieforcongress.com/,0.25,unknown,,,REVIEW: only 608 characters retrieved across 8 page(s); site is likely Javascript-rendered,campaign site verification scored 0.25: surname in domain
+X12D56D67E,Evan Hunt,TX,TX-03,party_nominee,on_ballot,False,https://www.electevanhunt.com/,1.0,no_coverage_position,,,,
+XEE0BD6B94,Jason Pearce,TX,TX-04,party_nominee,on_ballot,False,https://pearcefortexas.com/,0.45,unknown,,,REVIEW: only 1360 characters retrieved across 8 page(s); site is likely Javascript-rendered,campaign site verification scored 0.45: surname in <title>; surname in domain
+XB545BB226,Chelsey Hockett,TX,TX-05,party_nominee,on_ballot,False,https://chelseyhockettforcongress.com/,0.25,unknown,,,REVIEW: only 608 characters retrieved across 8 page(s); site is likely Javascript-rendered,campaign site verification scored 0.25: surname in domain
+X95202D5D9,Danny Minton,TX,TX-06,party_nominee,on_ballot,False,https://www.dannyfortexas.com/,0.75,no_coverage_position,,,,
+X7F43D75AD,Lizzie Fletcher,TX,TX-07,party_nominee,on_ballot,False,https://www.lizziefletcher.com/,0.85,unknown,,,REVIEW: only 1457 characters retrieved across 1 page(s); site is likely Javascript-rendered,
+X67BD2A4E4,Laura Jones,TX,TX-08,party_nominee,on_ballot,False,https://www.laura4tx.com/,0.75,explicit_m4a,,,,
+X400F1E698,Leticia Gutierrez,TX,TX-09,party_nominee,on_ballot,False,https://www.leticiaforcongress.com/,0.75,no_coverage_position,,,,
+X784794179,Caitlin Rourk,TX,TX-10,party_nominee,on_ballot,False,https://www.caitlinrourk.com/,1.0,unknown,,,REVIEW: only 1725 characters retrieved across 2 page(s); site is likely Javascript-rendered,
+X42D0D7409,Claire Reynolds,TX,TX-11,party_nominee,on_ballot,False,https://www.clairereynoldsforcongress.org/,0.9,explicit_m4a,,,,
+X5CA5B4B84,Angela Rodriguez Prilliman,TX,TX-12,party_nominee,on_ballot,False,,0.0,unknown,,,no campaign website resolved,no campaign URL listed on the state's Wikipedia article
+XE1FA787F1,Mark Nair,TX,TX-13,party_nominee,on_ballot,False,https://www.marknair.com/,1.0,explicit_m4a,,,,
+X3268339DE,Thurman Bartie,TX,TX-14,party_nominee,on_ballot,False,https://votebartie.org/,0.75,aca_strengthen,,,,
+X26CC300B4,Bobby Pulido,TX,TX-15,party_nominee,on_ballot,False,https://www.bobbypulidofortexas.com/,1.0,no_coverage_position,,,,
+X257C7C7FA,Veronica Escobar,TX,TX-16,party_nominee,on_ballot,False,https://veronicaescobar.com/,1.0,explicit_m4a,,,,
+XC272CA14F,Casey Shepard,TX,TX-17,party_nominee,on_ballot,False,https://caseyshepardforcongress.com/,1.0,no_coverage_position,,,,
+XE87FB1733,Christian Menefee,TX,TX-18,party_nominee,on_ballot,False,https://christianmenefee.com/,1.0,explicit_m4a,,,,
+XF3C20182B,Kyle Rable,TX,TX-19,party_nominee,on_ballot,False,https://www.rableforwesttexas.com/,1.0,aca_strengthen,,,REVIEW: weak evidence,
+X2AC8BB9D3,Joaquin Castro,TX,TX-20,party_nominee,on_ballot,False,https://castroforcongress.com/,1.0,unknown,,,REVIEW: only 361 characters retrieved across 1 page(s); site is likely Javascript-rendered,
+XA7D9F6A00,Kristin Hook,TX,TX-21,party_nominee,on_ballot,False,https://www.drkristinhook.org/,1.0,no_coverage_position,,,,
+XBFE72770E,Marquette Greene-Scott,TX,TX-22,party_nominee,on_ballot,False,https://marquettegreenescott.com/,0.0,unknown,,,REVIEW: only 608 characters retrieved across 8 page(s); site is likely Javascript-rendered,campaign site verification scored 0.00: no signal
+XED972ABC1,Katy Padilla Stout,TX,TX-23,party_nominee,on_ballot,False,https://www.katyforcongress.com/,0.85,aca_strengthen,,,,
+XE7B8BC513,Kevin Burge,TX,TX-24,party_nominee,on_ballot,False,https://www.burgeforcongress.com/,1.0,explicit_m4a,,,,
+X0A65577C6,Dione Sims,TX,TX-25,party_nominee,on_ballot,False,https://dionesimsforcongress.com/,0.85,unknown,,,REVIEW: only 520 characters retrieved across 8 page(s); site is likely Javascript-rendered,
+X17E501954,Steven Shook,TX,TX-26,party_nominee,on_ballot,False,https://shookforcongress2026.com/,0.65,aca_strengthen,,,,
+X8BF123B88,Tanya Lloyd,TX,TX-27,party_nominee,on_ballot,False,https://www.tanyafortexas.com/,0.0,unknown,,,campaign site unreachable,campaign site verification scored 0.00: fetch failed: robots.txt disallows https://www.tanyafortexas.com/
+XA9022CB8A,Henry Cuellar,TX,TX-28,party_nominee,on_ballot,False,https://www.henrycuellar.com/,0.75,unknown,,,REVIEW: only 384 characters retrieved across 8 page(s); site is likely Javascript-rendered,
+XE262429DF,Sylvia Garcia,TX,TX-29,party_nominee,on_ballot,False,https://www.sylviaforcongress.com/,0.75,no_coverage_position,,,,
+XDE8A53986,Frederick Haynes III,TX,TX-30,party_nominee,on_ballot,False,https://www.haynesforcongress.com/,0.65,no_coverage_position,,,,
+X136C4D82A,Justin Early,TX,TX-31,party_nominee,on_ballot,False,https://www.votejustinearly.com/,1.0,no_coverage_position,,,,
+XD73C16151,Dan Barrios,TX,TX-32,party_nominee,on_ballot,False,https://www.danbarriosforcongress.com/,1.0,no_coverage_position,,,,
+X3C5DD02F7,Colin Allred,TX,TX-33,party_nominee,on_ballot,False,https://colinallred.com/,0.85,no_coverage_position,,,,
+XC03EB4C11,Vicente Gonzalez,TX,TX-34,party_nominee,on_ballot,False,https://vicentegonzalez.com/,1.0,no_coverage_position,,,,
+XB3440B6B8,Johnny Garcia,TX,TX-35,party_nominee,on_ballot,False,https://www.votejohnnygarcia.com/,0.75,aca_strengthen,,,,
+X0804C3B35,Rhonda Hart,TX,TX-36,party_nominee,on_ballot,False,https://hart4congress.com/,0.75,unknown,,,REVIEW: only 1592 characters retrieved across 8 page(s); site is likely Javascript-rendered,
+XAEC11F760,Greg Casar,TX,TX-37,party_nominee,on_ballot,False,https://www.casarforcongress.com/,1.0,explicit_m4a,,,,
+X0E3ECD957,Melissa McDonough,TX,TX-38,party_nominee,on_ballot,False,https://melissaforcongress.com/,0.0,unknown,,,REVIEW: only 608 characters retrieved across 8 page(s); site is likely Javascript-rendered,campaign site verification scored 0.00: no signal
+X1BE76EE26,Ben McAdams,UT,UT-01,party_nominee,on_ballot,False,https://benmcadams.com/,1.0,no_coverage_position,,,,
+X6B4B78604,Peter Crosby,UT,UT-02,party_nominee,on_ballot,False,https://petercrosbyforcongress.org/,1.0,explicit_m4a,,,,
+X5BF086B8C,Kent Udell,UT,UT-03,party_nominee,on_ballot,False,https://www.kentudellforcongress.com/,1.0,no_coverage_position,,,,
+XFD4F2AC9F,Jonny Larsen,UT,UT-04,party_nominee,on_ballot,False,https://jonnyutah4congress.com/,0.5,unknown,,,REVIEW: only 376 characters retrieved across 8 page(s); site is likely Javascript-rendered,campaign site verification scored 0.50: full name in <title>; 'for Congress' framing
+X10680CE8F,Shannon Taylor,VA,VA-01,party_nominee,on_ballot,False,https://shannontaylorva.com/,1.0,aca_strengthen,,,,
+X0EFC5F9B9,Elaine Luria,VA,VA-02,party_nominee,on_ballot,False,https://elaineforcongress.com/,0.4,aca_strengthen,,,,campaign site verification scored 0.40: campaign apparatus (donate/volunteer/disclaimer); 'for Congress' framing
+X27D089F55,Bobby Scott,VA,VA-03,party_nominee,on_ballot,False,https://www.bobbyscottforcongress.com/,1.0,unknown,,,REVIEW: only 1268 characters retrieved across 1 page(s); site is likely Javascript-rendered,
+X8DC834B9D,Jennifer McClellan,VA,VA-04,party_nominee,on_ballot,False,https://jennifermcclellan.com/,1.0,aca_strengthen,,,https://jennifermcclellan.com/issue/economic-opportunity: healthcare phrases present but none in the candidate's own voice,
+X0FEA46468,Tom Perriello,VA,VA-05,party_nominee,on_ballot,False,https://www.tomperriello.com/,1.0,no_coverage_position,,,,
+XA3019C103,Beth Macy,VA,VA-06,party_nominee,on_ballot,False,https://bethmacyforcongress.com/,0.8,explicit_m4a,,,REVIEW: page both endorses and disclaims single-payer | explicitly rejects Medicare for All,
+X6CC0AA08C,Eugene Vindman,VA,VA-07,party_nominee,on_ballot,False,https://vindmanforcongress.com/,0.65,aca_strengthen,,,,
+X63EA3732A,Don Beyer,VA,VA-08,party_nominee,on_ballot,False,https://www.friendsofdonbeyer.com/,0.85,explicit_m4a,,,,
+XF87910398,Joy Powers,VA,VA-09,party_nominee,on_ballot,False,https://www.joyforva.com/,0.75,no_coverage_position,,,,
+X368035002,Suhas Subramanyam,VA,VA-10,party_nominee,on_ballot,False,https://www.suhasforvirginia.com/,0.25,aca_strengthen,,,,campaign site verification scored 0.25: campaign apparatus (donate/volunteer/disclaimer)
+X3F64E2665,James Walkinshaw,VA,VA-11,party_nominee,on_ballot,False,https://jameswalkinshaw.org/,1.0,aca_strengthen,,,,
+X28245B73B,Becca Balint,VT,VT-AL,party_nominee,on_ballot,False,https://beccabalint.com/,1.0,no_coverage_position,,,,
+X2AA259B3F,Suzan DelBene,WA,WA-01,top_two,on_ballot,False,https://delbeneforcongress.com/,0.85,aca_strengthen,,,,
+X269AB61E6,Rick Larsen,WA,WA-02,top_two,on_ballot,False,https://www.ricklarsen.org/,1.0,no_coverage_position,,,,
+XC3787F525,Marie Gluesenkamp Perez,WA,WA-03,top_two,on_ballot,False,https://marieforcongress.com/,0.75,aca_strengthen,,,REVIEW: weak evidence,
+X86DE21191,John Duresky,WA,WA-04,top_two,on_ballot,False,https://www.johnduresky4congress.com/,1.0,aca_strengthen,,,https://www.johnduresky4congress.com/: weak evidence,
+X166220AFB,Carmela Conroy,WA,WA-05,top_two,on_ballot,False,https://conroy4congress.com/,1.0,no_coverage_position,,,,
+X6CAA5B6EF,Emily Randall,WA,WA-06,top_two,on_ballot,False,https://electemilyrandall.com/,1.0,no_coverage_position,,,,
+X2224C4F9C,Pramila Jayapal,WA,WA-07,top_two,on_ballot,False,https://www.pramilaforcongress.com/,0.4,unknown,,,REVIEW: only 679 characters retrieved across 2 page(s); site is likely Javascript-rendered,campaign site verification scored 0.40: campaign apparatus (donate/volunteer/disclaimer); 'for Congress' framing
+X493EF019C,Kim Schrier,WA,WA-08,top_two,on_ballot,False,https://www.drkimschrier.com/,1.0,aca_strengthen,,,REVIEW: weak evidence,
+X91BEBC279,Adam Smith,WA,WA-09,top_two,on_ballot,False,https://electadamsmith.com/,1.0,no_coverage_position,,,,
+X4A8170912,Marilyn Strickland,WA,WA-10,top_two,on_ballot,False,https://stricklandforwashington.com/,1.0,unknown,,,REVIEW: only 1269 characters retrieved across 1 page(s); site is likely Javascript-rendered,
+XE27B3B119,Mitchell Berman,WI,WI-01,party_nominee,on_ballot,False,https://www.bermanforcongress.com/,1.0,aca_strengthen,,,REVIEW: weak evidence,
+XAC619D4DA,Mark Pocan,WI,WI-02,party_nominee,on_ballot,False,https://pocanforcongress.com/,0.25,unknown,,,REVIEW: only 608 characters retrieved across 8 page(s); site is likely Javascript-rendered,campaign site verification scored 0.25: surname in domain
+X2D571CC20,Rebecca Cooke,WI,WI-03,party_nominee,on_ballot,False,https://cookeforwisconsin.com/endorsements/,1.0,no_coverage_position,,,,
+X7EF7EA140,Gwen Moore,WI,WI-04,party_nominee,on_ballot,False,https://gwenmooreforcongress.com/,0.25,unknown,,,REVIEW: only 608 characters retrieved across 8 page(s); site is likely Javascript-rendered,campaign site verification scored 0.25: surname in domain
+X8A6EFAB5B,Andrew Beck,WI,WI-05,party_nominee,on_ballot,False,https://www.beckforcongress.com/,0.85,aca_strengthen,,,REVIEW: weak evidence,
+XCD28729FB,Brad Smith,WI,WI-06,party_nominee,on_ballot,False,https://www.bradsmithforcongress.com/,1.0,public_option,,,,
+X2FE9A8B32,Fred Clark,WI,WI-07,party_nominee,on_ballot,False,https://www.clarkforwi.com/,0.7,aca_strengthen,,,,
+XE7000C44D,Rick Crosson,WI,WI-08,party_nominee,on_ballot,False,https://rickcrosson.com/,1.0,aca_strengthen,,,,
+XC26D81D2C,Vince George,WV,WV-01,party_nominee,on_ballot,False,https://www.vincegeorgeforcongress.com/,1.0,explicit_m4a,,,,
+XA8E5DA93E,Ace Parsi,WV,WV-02,party_nominee,on_ballot,False,https://www.aceforcongress.com/,0.4,explicit_m4a,,,,campaign site verification scored 0.40: campaign apparatus (donate/volunteer/disclaimer); 'for Congress' framing
+X2D01700C6,Lisa F. Kinney,WY,WY-AL,party_nominee,on_ballot,False,https://lisakinneyforcongress.com/,1.0,no_coverage_position,,,,
