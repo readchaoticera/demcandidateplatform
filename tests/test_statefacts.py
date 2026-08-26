@@ -2,6 +2,7 @@ from datetime import date
 
 import pytest
 
+from dcp import statefacts
 from dcp.models import BallotRule
 from dcp.statefacts import (
     SEAT_COUNTS, UnresolvedReason, all_districts, ballot_rule, districts,
@@ -42,9 +43,29 @@ def test_louisiana_primary_never_counts_as_held_before_election_day():
     assert primary_held("LA", date(2026, 10, 1)) is False
 
 
-def test_unknown_primary_date_is_none_not_false():
-    # None means "we don't know"; False would wrongly assert it is upcoming.
+def test_unknown_primary_date_is_none_not_false(monkeypatch):
+    # None means "we don't know"; False would wrongly assert it is upcoming,
+    # and True would assert nominees that may not exist.
+    monkeypatch.setitem(statefacts.VERIFIED_PRIMARY_DATES, "OH", None)
+    monkeypatch.delitem(statefacts.VERIFIED_PRIMARY_DATES, "OH")
     assert primary_held("OH", AS_OF) is None
+
+
+def test_calendar_is_populated_for_every_state_except_louisiana():
+    # Louisiana must stay absent: it has a ballot rule, not a primary date.
+    missing = set(SEAT_COUNTS) - set(statefacts.VERIFIED_PRIMARY_DATES)
+    assert missing == {"LA"}
+
+
+def test_settled_date_waits_for_a_scheduled_runoff(monkeypatch):
+    monkeypatch.setitem(statefacts.VERIFIED_PRIMARY_DATES, "ZZ", date(2026, 5, 19))
+    monkeypatch.setitem(statefacts.SEAT_COUNTS, "ZZ", 1)
+    assert statefacts.settled_date("ZZ") == date(2026, 5, 19)
+    monkeypatch.setitem(statefacts.RUNOFF_DATES, "ZZ", date(2026, 6, 16))
+    assert statefacts.settled_date("ZZ") == date(2026, 6, 16)
+    # Between primary and runoff the field is not yet settled.
+    assert primary_held("ZZ", date(2026, 6, 1)) is False
+    assert primary_held("ZZ", date(2026, 6, 20)) is True
 
 
 def test_september_primaries_are_upcoming_on_aug_26():

@@ -10,6 +10,7 @@ from dcp.models import (
 )
 from dcp.report import analyze, to_csv, to_markdown
 from dcp.resolve import apply_calendar, build_roster, merge
+from dcp import statefacts
 from dcp.statefacts import ballot_rule
 from dcp.websites import is_disqualified, score_candidate_url
 
@@ -68,10 +69,19 @@ def test_louisiana_filers_go_on_the_november_ballot_directly():
     assert c.on_general_ballot
 
 
-def test_unknown_primary_date_flags_rather_than_downgrades():
+def test_unknown_primary_date_flags_rather_than_downgrades(monkeypatch):
+    # A state we have no date for keeps its status but is flagged, so the gap
+    # is visible rather than being silently treated as settled.
+    monkeypatch.delitem(statefacts.VERIFIED_PRIMARY_DATES, "OH")
     c = apply_calendar([mk("Ann O", "OH", 5)], AS_OF)[0]
     assert c.status is NominationStatus.ON_BALLOT
     assert any("unknown" in x for x in c.conflicts)
+
+
+def test_settled_state_keeps_on_ballot_status():
+    c = apply_calendar([mk("Ann O", "OH", 5)], AS_OF)[0]
+    assert c.status is NominationStatus.ON_BALLOT
+    assert not c.conflicts
 
 
 # --- coverage gaps ---------------------------------------------------------

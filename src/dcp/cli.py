@@ -17,6 +17,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
 import logging
 import sys
 from datetime import date, datetime
@@ -135,8 +136,21 @@ def cmd_roster(args: argparse.Namespace) -> int:
     as_of = _as_of(args.as_of)
     fetcher = Fetcher(ttl=_ttl(args))
 
-    log.info("fetching FEC filing universe")
-    universe = fec.fetch_democratic_house_candidates(fetcher, args.year)
+    # FEC supplies canonical candidate IDs and the filing universe, but its
+    # rate limits make DEMO_KEY unusable for a 435-district run. Without a real
+    # key we skip it rather than half-populate IDs, and record that we did.
+    universe: list[Candidate] = []
+    fec_gap: list[str] = []
+    if args.no_fec or not os.environ.get("FEC_API_KEY"):
+        reason = "--no-fec" if args.no_fec else "FEC_API_KEY not set"
+        log.warning("skipping FEC source (%s): no canonical candidate IDs", reason)
+        fec_gap.append(
+            f"FEC source skipped ({reason}); candidate IDs are synthetic and the "
+            "roster is not cross-checked against the filing universe"
+        )
+    else:
+        log.info("fetching FEC filing universe")
+        universe = fec.fetch_democratic_house_candidates(fetcher, args.year)
 
     results: list[Candidate] = []
     gaps: list[str] = []
@@ -151,7 +165,7 @@ def cmd_roster(args: argparse.Namespace) -> int:
         results.extend(cands)
         gaps.extend(state_gaps)
 
-    roster = build_roster(merge(results, universe), as_of, extra_gaps=gaps)
+    roster = build_roster(merge(results, universe), as_of, extra_gaps=gaps + fec_gap)
     _write(OUT / "roster.json", json.dumps(roster.to_dict(), indent=2))
     log.info("roster: %d candidates, %d on ballot",
              len(roster.candidates), len(roster.on_ballot()))
@@ -159,24 +173,38 @@ def cmd_roster(args: argparse.Namespace) -> int:
 
 
 def cmd_websites(args: argparse.Namespace) -> int:
+    """Attach campaign URLs, sourced from Wikipedia and verified by fetching.
+
+    Ballotpedia was the intended source but serves an empty HTTP 202 to
+    automated clients, so it yields nothing. Wikipedia's per-state "External
+    links" section lists official campaign sites tagged by party, which turns
+    out to be both reachable and better structured.
+    """
     _require_egress()
     roster = _load_roster()
     fetcher = Fetcher(ttl=_ttl(args))
 
-    bp_cache: dict[str, dict[str, str]] = {}
-    resolved = 0
+    hints_by_state: dict[str, dict[str, str]] = {}
+    resolved = unmatched = 0
+
     for cand in roster.on_ballot():
         if cand.campaign_url:
             continue
-        code = cand.district.code
-        if code not in bp_cache:
-            urls, warnings = ballotpedia.campaign_urls_for_district(fetcher, cand.district)
-            bp_cache[code] = urls
-            roster.coverage_gaps.extend(warnings)
+        state = cand.district.state
+        if state not in hints_by_state:
+            html = wikipedia.fetch_state_html(fetcher, state)
+            hints_by_state[state] = (
+                wikipedia.democratic_campaign_urls(html) if html else {}
+            )
         hints = [
-            url for name, url in bp_cache[code].items()
+            url for name, url in hints_by_state[state].items()
             if _name_matches(name, cand.full_name)
         ]
+        if not hints:
+            unmatched += 1
+            cand.conflicts.append("no campaign URL listed on the state's Wikipedia article")
+            continue
+
         score = resolve_campaign_url(fetcher, cand, hints)
         if score.accepted:
             cand.campaign_url = score.url
@@ -184,14 +212,24 @@ def cmd_websites(args: argparse.Namespace) -> int:
             cand.add_provenance("campaign_site", score.url, "; ".join(score.reasons))
             resolved += 1
         else:
+            # Keep the URL even when scoring is weak: it came from a curated,
+            # party-tagged list, so a low score usually means an unusual
+            # homepage rather than the wrong candidate. The score travels with
+            # it so the caveat stays visible in the output.
+            cand.campaign_url = score.url or (hints[0] if hints else None)
+            cand.campaign_url_confidence = score.score
             cand.conflicts.append(
-                f"no campaign site accepted (best {score.score:.2f}: "
-                f"{score.url or 'none'} - {'; '.join(score.reasons)})"
+                f"campaign site verification scored {score.score:.2f}: "
+                f"{'; '.join(score.reasons) or 'no signal'}"
             )
+            if cand.campaign_url:
+                resolved += 1
 
     _write(OUT / "roster.json", json.dumps(roster.to_dict(), indent=2))
-    log.info("resolved campaign sites for %d/%d on-ballot candidates",
-             resolved, len(roster.on_ballot()))
+    log.info(
+        "campaign sites: %d resolved, %d with no listed URL, of %d on-ballot",
+        resolved, unmatched, len(roster.on_ballot()),
+    )
     return 0
 
 
@@ -323,6 +361,8 @@ def main(argv: Optional[list[str]] = None) -> int:
     common.add_argument("--year", type=int, default=2026)
     common.add_argument("--states", nargs="*", help="limit to these state codes")
     common.add_argument("--max-pages", type=int, default=8)
+    common.add_argument("--no-fec", action="store_true",
+                        help="skip the FEC source (implied when FEC_API_KEY is unset)")
 
     parser = argparse.ArgumentParser(prog="dcp", description=__doc__, parents=[common])
     sub = parser.add_subparsers(dest="command", required=True)

@@ -7,7 +7,9 @@ from dcp.sources.ballotpedia import (
     _looks_like_person, _ordinal, district_page_url, parse_campaign_links,
 )
 from dcp.sources.fec import _district_from_fec, _tidy_name
-from dcp.sources.wikipedia import parse_district_number, parse_rows
+from dcp.sources.wikipedia import (
+    article_title, clean_name, is_democratic_party, parse_rows,
+)
 
 FIXTURES = Path(__file__).parent / "fixtures"
 
@@ -33,31 +35,72 @@ def test_fec_district_00_in_multi_district_state_is_rejected():
 
 # --- Wikipedia -------------------------------------------------------------
 
-def test_parse_ordinal_district_numbers():
-    assert parse_district_number("1st", "OH") == (1, False)
-    assert parse_district_number("12th", "CA") == (12, False)
-    assert parse_district_number("At-large", "DE") == (1, True)
-    assert parse_district_number("Statewide summary", "OH") == (None, False)
+def test_democratic_party_labels_across_states():
+    for label in ("Democratic", "Democratic (DFL)", "Democratic\u2013Farmer\u2013Labor",
+                  "Democratic-NPL", "DFL", "Democratic / Working Families"):
+        assert is_democratic_party(label), label
+    for label in ("Republican", "Libertarian", "Independent", "Green", ""):
+        assert not is_democratic_party(label), label
 
 
-def test_parse_district_number_rejects_out_of_range():
-    assert parse_district_number("40th", "OH") == (None, False)  # OH has 15 seats
+def test_clean_name_strips_annotations_and_rejects_placeholders():
+    assert clean_name("Jim McGovern (presumptive)") == "Jim McGovern"
+    assert clean_name("Zach Nunn (incumbent)") == "Zach Nunn"
+    assert clean_name("Alice Nguyen [1]") == "Alice Nguyen"
+    for junk in ("TBD", "TBA", "To be determined", "Undecided", "Vacant", ""):
+        assert clean_name(junk) is None
 
 
-def test_wikipedia_rows_select_only_democrats():
+def test_article_title_has_singular_form_for_single_seat_states():
+    assert article_title("DE", plural=False).endswith("election in Delaware")
+    assert article_title("OH", plural=True).endswith("elections in Ohio")
+
+
+def test_infobox_nominee_is_extracted():
     html = (FIXTURES / "wiki_state_sample.html").read_text()
     rows = {r.district_number: r.democrats for r in parse_rows(html, "OH")}
-    assert rows[1] == ["Alice Nguyen"]      # Republican in the same cell excluded
-    assert rows[2] == ["Devon Park"]        # Democrat listed after the Republican
-    assert rows[3] == ["Elena Moss"]        # primary loser excluded
+    assert rows[1] == ["Alice Nguyen"]
 
 
-def test_wikipedia_primary_loser_does_not_suppress_the_winner():
-    # A per-cell "lost primary" annotation must not blank the whole district.
+def test_dfl_label_is_recognised_as_democratic():
     html = (FIXTURES / "wiki_state_sample.html").read_text()
     rows = {r.district_number: r.democrats for r in parse_rows(html, "OH")}
-    assert "Frank Toll" not in rows[3]
-    assert rows[3]
+    assert rows[2] == ["Devon Park"]
+
+
+def test_tbd_nominee_falls_back_to_the_primary_winner():
+    # District 3's infobox says TBD; the primary table's top vote-getter wins.
+    html = (FIXTURES / "wiki_state_sample.html").read_text()
+    rows = {r.district_number: r.democrats for r in parse_rows(html, "OH")}
+    assert rows[3] == ["Elena Moss"]
+
+
+def test_top_two_district_can_return_two_democrats():
+    # District 4 uses the "Candidate" label with two Democrats, as CA does.
+    html = (FIXTURES / "wiki_state_sample.html").read_text()
+    rows = {r.district_number: r.democrats for r in parse_rows(html, "OH")}
+    assert rows[4] == ["Ivy Chen", "Jack Ross"]
+
+
+def test_primary_losers_are_not_included():
+    html = (FIXTURES / "wiki_state_sample.html").read_text()
+    everyone = [n for r in parse_rows(html, "OH") for n in r.democrats]
+    assert "Frank Toll" not in everyone     # lost D1 primary
+    assert "Harold Kim" not in everyone     # lost D3 primary
+
+
+def test_finance_fallback_only_applies_to_jungle_states():
+    html = """<div class="mw-parser-output">
+      <div class="mw-heading mw-heading2"><h2>District 1</h2></div>
+      <table class="wikitable sortable">
+        <tr><th>Campaign finance reports as of June 30</th></tr>
+        <tr><th>Candidate</th><th>Raised</th></tr>
+        <tr><th>Lauren Jewett (D)</th><td>$1</td></tr>
+        <tr><th>Steve Scalise (R)</th><td>$2</td></tr>
+      </table></div>"""
+    assert parse_rows(html, "LA")[0].democrats == ["Lauren Jewett"]
+    # Ohio runs a nominating primary, so filers are not automatically on the ballot.
+    assert parse_rows(html, "OH")[0].democrats == []
 
 
 # --- Ballotpedia -----------------------------------------------------------

@@ -14,7 +14,6 @@ here looks identical to "this district has no Democrat running".
 
 from __future__ import annotations
 
-import json
 import logging
 import re
 from dataclasses import dataclass
@@ -22,13 +21,18 @@ from typing import Iterator, Optional
 
 from bs4 import BeautifulSoup, Tag
 
-from ..models import Candidate, District, NominationStatus
-from ..net import Fetcher
+from ..models import BallotRule, Candidate, District, NominationStatus
+from ..net import Fetcher, FetchError
 from ..statefacts import AT_LARGE_STATES, SEAT_COUNTS, ballot_rule
 
 log = logging.getLogger(__name__)
 
-API = "https://en.wikipedia.org/w/api.php"
+BASE = "https://en.wikipedia.org/wiki"
+
+# Wikipedia's robots.txt disallows /w/ and /api/ for generic user agents, which
+# rules out the MediaWiki parse API. The ordinary /wiki/<Article> path is
+# explicitly allowed, serves the same rendered content, and at ~50 fetches puts
+# negligible load on them. So we read articles the way a reader would.
 
 STATE_NAMES = {
     "AL": "Alabama", "AK": "Alaska", "AZ": "Arizona", "AR": "Arkansas",
@@ -59,185 +63,324 @@ LOST_MARKERS = re.compile(r"\b(lost|defeated|withdrew|eliminated|did\s+not\s+adv
 WON_MARKERS = re.compile(r"\b(won|nominee|advanced|nominated|unopposed)\b", re.IGNORECASE)
 
 
-def article_title(state: str) -> str:
-    return f"2026 United States House of Representatives elections in {STATE_NAMES[state.upper()]}"
+def article_title(state: str, plural: bool = True) -> str:
+    noun = "elections" if plural else "election"
+    return (
+        f"2026 United States House of Representatives {noun} in "
+        f"{STATE_NAMES[state.upper()]}"
+    )
+
+
+def article_url(state: str, plural: bool = True) -> str:
+    return f"{BASE}/{article_title(state, plural).replace(' ', '_')}"
 
 
 def fetch_state_html(fetcher: Fetcher, state: str) -> Optional[str]:
-    """Fetch the rendered HTML of a state's 2026 House elections article."""
-    title = article_title(state)
-    url = (
-        f"{API}?action=parse&format=json&prop=text&redirects=1"
-        f"&page={title.replace(' ', '%20')}"
-    )
-    resp = fetcher.get(url)
-    if not resp.ok:
-        log.warning("wikipedia: %s -> HTTP %s", title, resp.status)
-        return None
-    try:
-        blob = json.loads(resp.text)
-    except json.JSONDecodeError:
-        return None
-    if "error" in blob:
-        log.warning("wikipedia: %s -> %s", title, blob["error"].get("info"))
-        return None
-    return blob.get("parse", {}).get("text", {}).get("*")
+    """Fetch a state's 2026 House elections article.
+
+    Single-seat states title the article "...election in Delaware" (singular),
+    so both forms are tried before giving up.
+    """
+    for plural in (True, False):
+        url = article_url(state, plural)
+        try:
+            resp = fetcher.get(url)
+        except FetchError as exc:
+            log.warning("wikipedia: %s -> %s", url, exc)
+            continue
+        if resp.ok:
+            return resp.text
+        log.debug("wikipedia: %s -> HTTP %s", url, resp.status)
+    log.warning("wikipedia: no article found for %s", state)
+    return None
+
+
+# --- section splitting -----------------------------------------------------
+
+DISTRICT_HEADING = re.compile(r"^District\s+(\d{1,2})\b|^At[\s-]?large", re.IGNORECASE)
+
+#: Placeholder names that are not people. Wikipedia uses these before a primary.
+PLACEHOLDER = re.compile(
+    r"^(TBD|TBA|To be determined|To be decided|Undecided|Vacant|None|N/?A)$",
+    re.IGNORECASE,
+)
+
+#: Party labels vary far more than expected across states and templates:
+#: "Democratic", "Democratic (DFL)", "Democratic-Farmer-Labor", "Democratic-NPL",
+#: fusion tickets like "Democratic / Working Families". Rather than enumerate
+#: them, the label is normalised and matched on a token.
+_PAREN = re.compile(r"[()\[\]]")
+_DASHES = re.compile(r"[\u2010-\u2015]")
+_DEM_TOKEN = re.compile(r"\bDemocrat(ic)?\b|\bDFL\b", re.IGNORECASE)
+_REP_TOKEN = re.compile(r"\bRepublican\b", re.IGNORECASE)
+
+
+def is_democratic_party(label: str) -> bool:
+    """Whether a Wikipedia party label denotes the Democratic Party.
+
+    Unwraps parentheticals rather than discarding them, so "Democratic (DFL)"
+    still reads as Democratic. Guards against "Republican" so a fusion or
+    combined label cannot be misread.
+    """
+    text = _DASHES.sub("-", _PAREN.sub(" ", label or ""))
+    text = re.sub(r"\s+", " ", text).strip()
+    if not text:
+        return False
+    if _REP_TOKEN.search(text) and not _DEM_TOKEN.search(text):
+        return False
+    return bool(_DEM_TOKEN.search(text))
+
+
+#: Infobox row labels that introduce the list of general-election candidates.
+#: Top-two and jungle states say "Candidate" because no nomination occurs.
+NAME_ROW_LABELS = {"nominee", "candidate"}
 
 
 @dataclass
 class ParsedRow:
+    """One Democrat found in a district section."""
+
     district_number: Optional[int]
     at_large: bool
     democrats: list[str]
-    raw: str
+    raw: str = ""
 
 
-def _cell_text(cell: Tag) -> str:
-    return re.sub(r"\s+", " ", cell.get_text(" ", strip=True))
+def _section_nodes(heading: Tag) -> list[Tag]:
+    """Every element belonging to a heading's section, up to the next h2."""
+    parent = heading.parent
+    anchor = heading
+    if parent is not None and "mw-heading" in (parent.get("class") or []):
+        anchor = parent
+    nodes: list[Tag] = []
+    for sib in anchor.next_siblings:
+        if not isinstance(sib, Tag):
+            continue
+        if sib.name == "h2" or "mw-heading2" in (sib.get("class") or []):
+            break
+        nodes.append(sib)
+    return nodes
 
 
-def _split_lines(cell: Tag) -> list[Tag]:
-    """Split a table cell into per-candidate fragments on <br> boundaries.
+def _tables(nodes: list[Tag]):
+    for node in nodes:
+        if node.name == "table":
+            yield node
+        else:
+            yield from node.find_all("table")
 
-    Wikipedia packs every candidate for a district into one cell, one per
-    line. Treating the cell as a unit mixes parties together and lets a single
-    "lost primary" annotation suppress the whole district, so party and
-    elimination have to be decided per line.
+
+def clean_name(raw: str) -> Optional[str]:
+    """Strip annotations from an infobox name, or reject it as a placeholder."""
+    name = re.sub(r"\([^)]*\)", " ", raw)          # "(presumptive)", "(incumbent)"
+    name = re.sub(r"\[[^\]]*\]", " ", name)         # footnote markers
+    name = re.sub(r"\s+", " ", name).strip(" ,\u2013-")
+    if not name or PLACEHOLDER.match(name):
+        return None
+    if not 3 <= len(name) <= 60 or " " not in name:
+        return None
+    return name
+
+
+def infobox_candidates(nodes: list[Tag]) -> list[tuple[str, str]]:
+    """Zip a district infobox's name row with its party row.
+
+    Returns [(name, party)]. Wikipedia renders these as two parallel rows,
+    which is why they are read positionally rather than per-candidate.
     """
-    from bs4 import BeautifulSoup as _BS
-
-    groups: list[list] = [[]]
-    for child in cell.children:
-        if getattr(child, "name", None) == "br":
-            groups.append([])
-        else:
-            groups[-1].append(child)
-
-    lines: list[Tag] = []
-    for group in groups:
-        if not group:
+    for tbl in _tables(nodes):
+        if "infobox" not in " ".join(tbl.get("class") or []):
             continue
-        frag = _BS("<div></div>", "lxml").div
-        for node in group:
-            frag.append(node.__copy__() if hasattr(node, "__copy__") else str(node))
-        lines.append(frag)
-    return lines
+        names: Optional[list[str]] = None
+        parties: Optional[list[str]] = None
+        for tr in tbl.find_all("tr"):
+            cells = tr.find_all(["th", "td"])
+            if len(cells) < 2:
+                continue
+            label = cells[0].get_text(" ", strip=True).lower()
+            values = [c.get_text(" ", strip=True) for c in cells[1:]]
+            if not any(values):
+                continue
+            if label in NAME_ROW_LABELS and names is None:
+                names = values
+            elif label == "party" and parties is None:
+                parties = values
+        if names and parties:
+            return list(zip(names, parties))
+    return []
 
 
-def _name_from_line(line: Tag) -> Optional[str]:
-    """Pull the person's name out of a single candidate line."""
-    for a in line.find_all("a"):
-        text = a.get_text(" ", strip=True)
-        title = a.get("title", "")
-        if not text or len(text) < 4:
+def democratic_primary_candidates(nodes: list[Tag]) -> list[tuple[str, int]]:
+    """(name, votes) from `Party | Candidate | Votes | %` results tables.
+
+    Used where a district has no general-election infobox yet. Votes allow the
+    winner to be identified; -1 means the cell was not a number.
+    """
+    out: list[tuple[str, int]] = []
+    for tbl in _tables(nodes):
+        headers = [th.get_text(" ", strip=True) for th in tbl.find_all("th")[:4]]
+        if headers[:2] != ["Party", "Candidate"]:
             continue
-        if re.search(r"\b(election|primary|district|party|congress)\b", title, re.IGNORECASE):
-            continue
-        return text
-
-    text = _cell_text(line)
-    text = re.sub(r"\([^)]*\)", " ", text)          # (Democratic)
-    text = re.sub(r"\b\d[\d,.%]*\b", " ", text)      # vote counts
-    text = re.sub(r"[✔✓†*—–-]+", " ", text)
-    text = re.sub(r"\s+", " ", text).strip(" ,·")
-    if 4 <= len(text) <= 60 and " " in text:
-        return text
-    return None
-
-
-@dataclass
-class CandidateLine:
-    name: str
-    is_democrat: bool
-    eliminated: bool
-
-
-def _candidate_lines(cell: Tag) -> list[CandidateLine]:
-    """Every candidate named in a cell, with party and elimination flags."""
-    out: list[CandidateLine] = []
-    dem_coded_cell = _cell_is_dem_coded(cell)
-    for line in _split_lines(cell):
-        text = _cell_text(line)
-        if not text:
-            continue
-        has_dem = bool(DEM_MARKERS.search(text))
-        has_other = bool(OTHER_PARTY.search(text))
-        # An explicit other-party tag wins over an inherited cell colour.
-        if has_other and not has_dem:
-            is_dem = False
-        elif has_dem:
-            is_dem = True
-        else:
-            is_dem = dem_coded_cell
-        name = _name_from_line(line)
-        if not name:
-            continue
-        out.append(
-            CandidateLine(
-                name=name,
-                is_democrat=is_dem,
-                eliminated=bool(LOST_MARKERS.search(text)),
-            )
-        )
+        for tr in tbl.find_all("tr"):
+            cells = [c.get_text(" ", strip=True) for c in tr.find_all(["th", "td"])]
+            cells = [c for c in cells if c]
+            if len(cells) < 3 or not is_democratic_party(cells[0]):
+                continue
+            name = clean_name(cells[1])
+            if not name:
+                continue
+            digits = cells[2].replace(",", "")
+            out.append((name, int(digits) if digits.isdigit() else -1))
     return out
 
 
-def parse_district_number(text: str, state: str) -> tuple[Optional[int], bool]:
-    if re.search(r"at[\s\-]?large", text, re.IGNORECASE):
-        return 1, True
-    m = re.search(r"\b(\d{1,2})(?:st|nd|rd|th)?\b", text)
-    if not m:
-        return None, False
-    num = int(m.group(1))
-    if not 1 <= num <= SEAT_COUNTS.get(state.upper(), 53):
-        return None, False
-    return num, state.upper() in AT_LARGE_STATES
+#: "Lauren Jewett (D)" in a campaign-finance table.
+FINANCE_NAME = re.compile(r"^(?P<name>.+?)\s*\((?P<party>[A-Z]{1,3})\)\s*$")
+
+
+def finance_table_candidates(nodes: list[Tag]) -> list[str]:
+    """Democrats named in a district's campaign-finance table.
+
+    Only safe where every filer appears on the general-election ballot, i.e.
+    Louisiana's all-party November election. Everywhere else these tables also
+    list primary losers, so using them would inflate the roster.
+    """
+    out: list[str] = []
+    for tbl in _tables(nodes):
+        headers = [th.get_text(" ", strip=True) for th in tbl.find_all("th")[:6]]
+        if not any(h.startswith("Campaign finance") for h in headers):
+            continue
+        for th in tbl.find_all(["th", "td"]):
+            match = FINANCE_NAME.match(th.get_text(" ", strip=True))
+            if not match or match.group("party") != "D":
+                continue
+            name = clean_name(match.group("name"))
+            if name and name not in out:
+                out.append(name)
+    return out
 
 
 def parse_rows(html: str, state: str) -> list[ParsedRow]:
-    """Extract (district, Democratic candidates) pairs from every table."""
+    """Extract each district's Democratic general-election candidates."""
     soup = BeautifulSoup(html, "lxml")
+    st = state.upper()
+    seats = SEAT_COUNTS[st]
     rows: list[ParsedRow] = []
 
-    for table in soup.find_all("table"):
-        headers = [_cell_text(th).lower() for th in table.find_all("th")[:12]]
-        if not any("district" in h for h in headers):
+    headings = [
+        h for h in soup.find_all("h2")
+        if DISTRICT_HEADING.match(h.get_text(" ", strip=True))
+    ]
+
+    # Single-seat states have no per-district sections; the article is the district.
+    if not headings and seats == 1:
+        body = soup.find("div", class_="mw-parser-output") or soup
+        rows.append(_row_from_section(1, st, [body]))
+        return rows
+
+    for heading in headings:
+        text = heading.get_text(" ", strip=True)
+        match = DISTRICT_HEADING.match(text)
+        if not match:
             continue
-        for tr in table.find_all("tr"):
-            cells = tr.find_all(["td", "th"])
-            if len(cells) < 2:
+        if match.group(1):
+            number = int(match.group(1))
+            if not 1 <= number <= seats:
                 continue
-            row_text = _cell_text(tr)
-            num, at_large = parse_district_number(_cell_text(cells[0]), state)
-            if num is None:
-                continue
-
-            dems: list[str] = []
-            for cell in cells[1:]:
-                for entry in _candidate_lines(cell):
-                    if entry.is_democrat and not entry.eliminated:
-                        dems.append(entry.name)
-
-            rows.append(ParsedRow(num, at_large, _dedupe(dems), row_text[:300]))
+        else:
+            number = 1  # at-large
+        rows.append(_row_from_section(number, st, _section_nodes(heading), text))
     return rows
 
 
-def _cell_is_dem_coded(cell: Tag) -> bool:
-    """Wikipedia colours party cells; the class or style often encodes it."""
-    style = (cell.get("style") or "").lower()
-    classes = " ".join(cell.get("class") or []).lower()
-    return "democratic" in classes or "3333ff" in style or "0044c9" in style
+def _row_from_section(
+    number: int, state: str, nodes: list[Tag], raw: str = ""
+) -> ParsedRow:
+    at_large = state in AT_LARGE_STATES
+    dems: list[str] = []
+
+    for raw_name, party in infobox_candidates(nodes):
+        if not is_democratic_party(party):
+            continue
+        name = clean_name(raw_name)
+        if name and name not in dems:
+            dems.append(name)
+
+    # No infobox (or no Democrat in it): fall back to the primary results table
+    # and take the top vote-getter, which is the nominee.
+    if not dems:
+        primary = democratic_primary_candidates(nodes)
+        if primary:
+            winner = max(primary, key=lambda kv: kv[1])
+            if winner[1] >= 0:
+                dems.append(winner[0])
+
+    # Louisiana holds no nominating primary, so no district has a nominee
+    # infobox. Every filer goes on the November ballot, which makes the
+    # campaign-finance table a valid roster there and only there.
+    if not dems and ballot_rule(state) is BallotRule.JUNGLE_NOV:
+        dems.extend(finance_table_candidates(nodes))
+
+    return ParsedRow(number, at_large, dems, raw[:200])
 
 
-def _dedupe(names: list[str]) -> list[str]:
+# ---------------------------------------------------------------------------
+# Campaign websites
+# ---------------------------------------------------------------------------
+
+#: Wikipedia's per-state "External links" section lists official campaign sites
+#: as "Yolanda Prince (D)" or "Christina Bohannan (D) for Congress". This is a
+#: far better source of campaign URLs than Ballotpedia, which serves an empty
+#: HTTP 202 to automated clients.
+CAMPAIGN_LINK = re.compile(
+    r"^(?P<name>.+?)\s*\((?P<party>[A-Z]{1,3})\)"
+    r"(?:\s+for\s+(?:Congress|U\.?S\.?\s+House|the\s+U\.?S\.?\s+House))?$"
+)
+
+_NON_CAMPAIGN_HOST = re.compile(
+    r"(wikipedia\.org|wikimedia\.org|wikidata\.org|fec\.gov|ballotpedia\.org)",
+    re.IGNORECASE,
+)
+
+
+def campaign_links(html: str) -> list[tuple[str, str, str]]:
+    """Extract (name, party_letter, url) from the External links section.
+
+    The section is flat for the whole state rather than per district, so the
+    caller matches on name within the state.
+    """
+    soup = BeautifulSoup(html, "lxml")
+    out: list[tuple[str, str, str]] = []
     seen: set[str] = set()
-    out: list[str] = []
-    for n in names:
-        k = n.lower().strip()
-        if k and k not in seen:
-            seen.add(k)
-            out.append(n.strip())
+
+    for heading in soup.find_all("h2"):
+        if not heading.get_text(" ", strip=True).startswith("External links"):
+            continue
+        for node in _section_nodes(heading):
+            for a in node.find_all("a", href=True):
+                href = a["href"].strip()
+                if not href.startswith("http") or _NON_CAMPAIGN_HOST.search(href):
+                    continue
+                match = CAMPAIGN_LINK.match(a.get_text(" ", strip=True))
+                if not match:
+                    continue
+                name = clean_name(match.group("name"))
+                if not name:
+                    continue
+                key = f"{name.lower()}|{href}"
+                if key in seen:
+                    continue
+                seen.add(key)
+                out.append((name, match.group("party"), href))
+        break
     return out
+
+
+def democratic_campaign_urls(html: str) -> dict[str, str]:
+    """{candidate name: campaign URL} for Democrats only."""
+    return {
+        name: url for name, party, url in campaign_links(html) if party == "D"
+    }
 
 
 def candidates_for_state(
@@ -266,10 +409,7 @@ def candidates_for_state(
         district = District(st, num, ballot_rule=rule, at_large=at_large)
         for name in names:
             cand = Candidate(full_name=name, district=district, status=status)
-            cand.add_provenance(
-                "wikipedia",
-                f"https://en.wikipedia.org/wiki/{article_title(st).replace(' ', '_')}",
-            )
+            cand.add_provenance("wikipedia", article_url(st))
             out.append(cand)
 
     gaps: list[str] = []

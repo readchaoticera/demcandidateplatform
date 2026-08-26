@@ -73,8 +73,26 @@ def load_primary_calendar(path: Path | None = None) -> dict[str, date]:
     except Exception:  # malformed YAML
         return {}
 
+    return _read_section(blob, "primaries")
+
+
+def load_runoff_calendar(path: Path | None = None) -> dict[str, date]:
+    """Load scheduled congressional runoff dates from the same config."""
+    target = path or CALENDAR_PATH
+    try:
+        import yaml
+
+        blob = yaml.safe_load(target.read_text(encoding="utf-8")) or {}
+    except (OSError, ImportError):
+        return {}
+    except Exception:
+        return {}
+    return _read_section(blob, "runoffs")
+
+
+def _read_section(blob: dict, key: str) -> dict[str, date]:
     out: dict[str, date] = {}
-    for state, value in (blob.get("primaries") or {}).items():
+    for state, value in (blob.get(key) or {}).items():
         code = str(state).upper()
         if code not in SEAT_COUNTS:
             continue
@@ -90,6 +108,9 @@ def load_primary_calendar(path: Path | None = None) -> dict[str, date]:
 
 #: Congressional primary dates, loaded from config/primary_calendar.yaml.
 VERIFIED_PRIMARY_DATES: dict[str, date] = load_primary_calendar()
+
+#: Scheduled congressional runoff dates, where a state holds them.
+RUNOFF_DATES: dict[str, date] = load_runoff_calendar()
 
 #: 2026 general election day.
 GENERAL_ELECTION = date(2026, 11, 3)
@@ -111,12 +132,28 @@ def primary_date(state: str) -> Optional[date]:
     return VERIFIED_PRIMARY_DATES.get(state.upper())
 
 
+def settled_date(state: str) -> Optional[date]:
+    """When a state's nominees are certainly known: its primary, or its runoff.
+
+    A runoff only happens if necessary, so treating the runoff date as the
+    settled date can call a state unsettled for a few weeks longer than
+    reality. That error direction is safe. The reverse - declaring nominees
+    final before a scheduled runoff - would put losing candidates on the
+    roster.
+    """
+    primary = primary_date(state)
+    if primary is None:
+        return None
+    runoff = RUNOFF_DATES.get(state.upper())
+    return max(primary, runoff) if runoff else primary
+
+
 def primary_held(state: str, as_of: date) -> Optional[bool]:
     """Tri-state: True (held), False (upcoming), None (date unknown)."""
     if ballot_rule(state) is BallotRule.JUNGLE_NOV:
         # Louisiana's all-party primary IS the November election.
         return False
-    d = primary_date(state)
+    d = settled_date(state)
     if d is None:
         return None
     return d <= as_of
@@ -201,7 +238,7 @@ def unresolved_states(as_of: date) -> dict[str, Unresolved]:
             out[st] = Unresolved(
                 st,
                 UnresolvedReason.PRIMARY_UPCOMING,
-                f"primary not held until {primary_date(st):%b %d, %Y}",
+                f"nominees not settled until {settled_date(st):%b %d, %Y}",
             )
     return out
 
