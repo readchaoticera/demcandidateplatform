@@ -190,6 +190,7 @@ section { display: flex; flex-direction: column; gap: 1.4rem; }
 .tally { display: flex; width: 100%; height: 3.4rem; border-radius: 2px; overflow: hidden; border: 1px solid var(--rule); }
 .tally span { display: block; height: 100%; }
 .seg-1 { background: var(--t1); }
+.seg-2 { background: var(--t2); }
 .seg-3 { background: var(--t3); }
 .seg-4 { background: var(--t4); }
 .seg-5 { background: var(--t5); }
@@ -272,11 +273,11 @@ footer {
   <header class="masthead">
     <div class="eyebrow">U.S. House · General election · November 3, 2026</div>
     <h1>How many Democrats back Medicare for All?</h1>
-    <p class="dek">Every Democratic candidate on the November ballot, read against their own campaign website — and an honest account of how many we could not read at all.</p>
+    <p class="dek">Every Democratic candidate on the November ballot, measured three ways — what they publish, what they have signed, and what has been reported — and the large gap between the first two.</p>
     <div class="byline">
-      <span>433 candidates · 421 districts</span>
+      <span>432 candidates · 421 districts</span>
       <span>Field as of Aug 26, 2026</span>
-      <span>Source: candidates' own sites</span>
+      <span>Sources: campaign sites, the cosponsor roll, news coverage</span>
     </div>
   </header>
 
@@ -288,115 +289,119 @@ footer {
     </div>
     <div class="prose">
       <p>Any “share who support X” figure is only as good as the share of candidates you actually managed to read. So that comes first.</p>
+      <p>Reading campaign websites alone left 105 candidates unaccounted for — a quarter of the field, and not a random quarter. Two further sources closed almost all of it.</p>
     </div>
     <div class="card denom">
-      <div><span class="n">433</span><span class="lbl">Democrats on the November ballot</span></div>
-      <div><span class="n">328</span><span class="lbl">whose position we could read and classify</span></div>
-      <div><span class="n muted">105</span><span class="lbl">we could not read — no site, unreachable, or a page that renders only in a browser</span></div>
-      <div><span class="n">76%</span><span class="lbl">coverage</span></div>
+      <div><span class="n">432</span><span class="lbl">Democrats on the November ballot</span></div>
+      <div><span class="n">429</span><span class="lbl">with a position from some source</span></div>
+      <div><span class="n muted">3</span><span class="lbl">with no position we could find anywhere</span></div>
+      <div><span class="n">99%</span><span class="lbl">coverage</span></div>
     </div>
     <div class="caveat">
-      <p><strong>Coverage is below 80%.</strong> Those 105 are missing data, not evidence of absence. Treat every share below as describing the candidates we could read — which is why each one is given twice.</p>
+      <p><strong>Three kinds of evidence, not one.</strong> 89 candidates cosponsor the bill — a recorded legislative act. 263 stated a position on their own site. 77 more were resolved from news coverage. Where they conflict, the stronger evidence wins, and every row records which source decided it.</p>
     </div>
   </section>
 
   <section>
     <div class="sec-head">
       <div class="eyebrow">The answer</div>
-      <h2>62 candidates explicitly endorse it</h2>
+      <h2>153 candidates support Medicare for All</h2>
     </div>
     <div class="figs">
       <div class="card fig">
-        <span class="pct">18.9%</span>
-        <span class="of">of the 328 we could read</span>
-        <span class="what">explicitly name Medicare for All or single-payer as their own position.</span>
+        <span class="pct">35.7%</span>
+        <span class="of">of the 429 with a known position</span>
+        <span class="what">support Medicare for All, counting the bill's cosponsors alongside those who say so publicly.</span>
       </div>
       <div class="card fig">
-        <span class="pct">14.3%</span>
-        <span class="of">of all 433 on the ballot</span>
-        <span class="what">The same 62 candidates, measured against the whole field instead.</span>
+        <span class="pct">18.9%</span>
+        <span class="of">counting campaign websites only</span>
+        <span class="what">62 candidates. The measure of what they choose to tell voters, and less than half the real figure.</span>
       </div>
     </div>
     <div class="prose">
-      <p>Both readings of “supports Medicare for All” — the explicit endorsement alone, and explicit plus single-payer described without the brand name — come to the same 62, because <strong>no candidate described single-payer in substance while avoiding the term</strong>. Campaigns that hold the position say the words.</p>
+      <p>The distance between those two numbers is the most interesting thing in this dataset. It is almost entirely incumbents: <strong>69 of the 89 cosponsors of the Medicare for All Act never mention it on their own campaign site.</strong></p>
+      <p>Signing the bill and campaigning on it are close to disjoint activities. A reader who judged the House Democratic caucus by its campaign websites would conclude that support for Medicare for All is less than half what the congressional record shows.</p>
     </div>
   </section>
 
   <section>
     <div class="sec-head">
       <div class="eyebrow">Distribution</div>
-      <h2>Most say nothing about coverage at all</h2>
+      <h2>Where the field actually sits</h2>
     </div>
 
-    <div class="tally" role="img" aria-label="433 candidates by position: 62 explicit Medicare for All, 10 public option, 110 ACA strengthening, 146 no coverage position, 105 unknown.">
-      <span class="seg-1" style="width:14.32%"></span>
-      <span class="seg-3" style="width:2.31%"></span>
-      <span class="seg-4" style="width:25.40%"></span>
-      <span class="seg-5" style="width:33.72%"></span>
-      <span class="seg-u" style="width:24.25%"></span>
+    <div class="tally" role="img" aria-label="432 candidates by combined position: 153 explicit Medicare for All, 1 single-payer unbranded, 21 public option, 141 ACA strengthening, 113 no coverage position, 3 unknown.">
+      <span class="seg-1" style="width:35.42%"></span>
+      <span class="seg-2" style="width:0.23%"></span>
+      <span class="seg-3" style="width:4.86%"></span>
+      <span class="seg-4" style="width:32.64%"></span>
+      <span class="seg-5" style="width:26.16%"></span>
+      <span class="seg-u" style="width:0.69%"></span>
     </div>
     <div class="tally-key">
-      <span><i class="chip" style="background:var(--t1)"></i>Explicit M4A</span>
+      <span><i class="chip" style="background:var(--t1)"></i>Medicare for All</span>
       <span><i class="chip" style="background:var(--t3)"></i>Public option</span>
       <span><i class="chip" style="background:var(--t4)"></i>ACA strengthening</span>
       <span><i class="chip" style="background:var(--t5)"></i>No coverage position</span>
-      <span><i class="chip seg-u"></i>Not readable</span>
+      <span><i class="chip seg-u"></i>Not found</span>
     </div>
 
     <div class="card card-pad scroll">
       <table>
-        <caption>Shares are of the 328 classified candidates. “Not readable” has no share because it is not a finding.</caption>
+        <caption>Two measures side by side. “Site only” is what candidates publish; “combined” adds the cosponsor roll and news coverage. Shares are of candidates with a known position under each measure.</caption>
         <thead>
           <tr>
             <th>Position</th>
-            <th class="num">Candidates</th>
+            <th class="num">Site only</th>
             <th class="num">Share</th>
-            <th class="bar-cell"></th>
+            <th class="num">Combined</th>
+            <th class="num">Share</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td><span class="tier-name"><i class="chip" style="background:var(--t1)"></i>Explicit Medicare for All</span></td>
+            <td><span class="tier-name"><i class="chip" style="background:var(--t1)"></i>Medicare for All</span></td>
             <td class="num">62</td><td class="num">18.9%</td>
-            <td class="bar-cell"><i class="minibar" style="width:42.5%;background:var(--t1)"></i></td>
+            <td class="num">153</td><td class="num">35.7%</td>
           </tr>
-          <tr class="is-zero">
+          <tr>
             <td><span class="tier-name"><i class="chip" style="background:var(--t2)"></i>Single-payer, unbranded</span></td>
             <td class="num">0</td><td class="num">0.0%</td>
-            <td class="bar-cell"></td>
+            <td class="num">1</td><td class="num">0.2%</td>
           </tr>
           <tr>
             <td><span class="tier-name"><i class="chip" style="background:var(--t3)"></i>Public option / Medicare buy-in</span></td>
             <td class="num">10</td><td class="num">3.0%</td>
-            <td class="bar-cell"><i class="minibar" style="width:6.8%;background:var(--t3)"></i></td>
+            <td class="num">21</td><td class="num">4.9%</td>
           </tr>
           <tr>
             <td><span class="tier-name"><i class="chip" style="background:var(--t4)"></i>Strengthen the ACA</span></td>
             <td class="num">110</td><td class="num">33.5%</td>
-            <td class="bar-cell"><i class="minibar" style="width:75.3%;background:var(--t4)"></i></td>
+            <td class="num">141</td><td class="num">32.9%</td>
           </tr>
           <tr>
             <td><span class="tier-name"><i class="chip" style="background:var(--t5)"></i>No coverage position stated</span></td>
             <td class="num">146</td><td class="num">44.5%</td>
-            <td class="bar-cell"><i class="minibar" style="width:100%;background:var(--t5)"></i></td>
+            <td class="num">113</td><td class="num">26.3%</td>
           </tr>
           <tr class="is-zero">
             <td><span class="tier-name"><i class="chip" style="background:var(--t6)"></i>Opposed</span></td>
             <td class="num">0</td><td class="num">0.0%</td>
-            <td class="bar-cell"></td>
+            <td class="num">0</td><td class="num">0.0%</td>
           </tr>
           <tr class="is-missing">
-            <td><span class="tier-name"><i class="chip seg-u"></i>Not readable</span></td>
-            <td class="num">105</td><td class="num">—</td>
-            <td class="bar-cell"></td>
+            <td><span class="tier-name"><i class="chip seg-u"></i>Not found</span></td>
+            <td class="num">104</td><td class="num">—</td>
+            <td class="num">3</td><td class="num">—</td>
           </tr>
         </tbody>
       </table>
     </div>
 
     <div class="prose">
-      <p>The largest group is not a position at all. <strong>146 candidates publish a platform that never says how coverage should work.</strong> That is not the same as silence on health — many of them write at length about cancer research, mental health, reproductive care or veterans’ services. They simply take no position on the insurance question.</p>
-      <p>Not one candidate on a readable site argued against Medicare for All. Among Democrats the disagreement isn’t <em>for or against</em> — it’s between naming it and not raising the subject.</p>
+      <p>Even after adding every source, <strong>113 candidates have no position on how coverage should work.</strong> That is not silence on health — many write at length about cancer research, mental health, reproductive care or veterans’ services. They simply take no position on the insurance question.</p>
+      <p>Not one candidate, in any source, argued against Medicare for All. Among Democrats the disagreement isn’t <em>for or against</em> — it’s between naming it and not raising the subject.</p>
     </div>
   </section>
 
@@ -452,7 +457,7 @@ footer {
         </tbody>
       </table>
     </div>
-    <p class="prose">California fields 60 Democrats across 52 districts — more candidates than seats, because its top-two primary can send two Democrats to the same general election. Eight of its districts do.</p>
+    <p class="prose">California fields 60 Democrats across 52 districts — more candidates than seats, because its top-two primary can send two Democrats to the same general election. Eight of its districts do. It also has by far the most Medicare for All support in absolute terms: 34 candidates, more than twice any other state.</p>
   </section>
 
   <section>
