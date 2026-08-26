@@ -201,3 +201,20 @@ def test_extract_text_drops_nav_and_scripts():
     text = extract_text(html)
     assert "Medicare for All" not in text
     assert "public option" in text
+
+
+def test_quote_is_centred_on_the_match_not_the_sentence_start():
+    """Nav text must not crowd the claim out of the evidence quote.
+
+    Sites whose menus are not marked up as <nav> produce one long run of menu
+    labels with no sentence-ending punctuation, so the "sentence" containing a
+    match can begin with 200 characters of navigation.
+    """
+    nav = "Skip navigation menu Cost of living Healthcare Jobs Immigration Housing " * 3
+    text = nav + " I am a strong supporter of Medicare for All." + PAD
+    result = classify_text(text, "http://example.org")
+    assert result.tier is M4ATier.EXPLICIT_M4A
+    quote = result.evidence[0].quote
+    assert "Medicare for All" in quote
+    assert "strong supporter" in quote
+    assert quote.count("Skip navigation menu") <= 1

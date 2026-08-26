@@ -159,9 +159,52 @@ def find_matches(text: str, rules: Iterable[Rule] = ALL_RULES) -> list[Match]:
     return matches
 
 
+#: Characters of context kept either side of a match in the evidence quote.
+_QUOTE_BEFORE, _QUOTE_AFTER = 150, 220
+
+#: Sentence punctuation. Its absence over a long span means the text is a list
+#: of labels rather than prose.
+_PROSE = re.compile(r"[.!?;:]")
+
+#: How much unpunctuated lead-in to keep. Enough for the words immediately
+#: before the match, not enough for a navigation menu.
+_NON_PROSE_LEAD = 45
+
+def _quote_for(match: Match) -> str:
+    """A readable quote centred on the match, with navigation trimmed off.
+
+    Two problems, both from sites whose menus are not marked up as <nav>. The
+    menu survives text extraction, and because it carries no sentence-ending
+    punctuation it merges with the following prose into one very long
+    "sentence" - so quoting from the sentence start shows a list of menu
+    labels instead of the claim.
+
+    So the quote is centred on the match, and leading context that is not prose
+    is capped rather than kept in full. Prose has sentence punctuation; a run of
+    menu labels does not, which distinguishes them without needing to recognise
+    menus. The cap keeps the words immediately before the match - often the
+    subject of the claim, as in "I am a strong supporter of ..." - while
+    dropping the menu behind them.
+    """
+    text = match.sentence.strip()
+    offset = len(match.sentence) - len(match.sentence.lstrip())
+    m_start = max(0, match.start - offset)
+    m_end = max(m_start, match.end - offset)
+
+    start = max(0, m_start - _QUOTE_BEFORE)
+    end = min(len(text), m_end + _QUOTE_AFTER)
+
+    lead = text[start:m_start]
+    if len(lead) > _NON_PROSE_LEAD and not _PROSE.search(lead):
+        start = max(0, m_start - _NON_PROSE_LEAD)
+
+    quote = text[start:end].strip()
+    return ("\u2026" if start > 0 else "") + quote + ("\u2026" if end < len(text) else "")
+
+
 def _evidence_from(match: Match) -> Evidence:
     return Evidence(
-        quote=match.sentence.strip()[:400],
+        quote=_quote_for(match),
         url="",  # filled in by the caller, which knows the source page
         matched_rule=match.rule.rule_id,
         tier=match.rule.tier,

@@ -1,14 +1,14 @@
 # Medicare for All support among Democratic U.S. House candidates
 
-Generated 2026-08-26 16:47 UTC, reflecting the field as of August 26, 2026.
+Generated 2026-08-26 17:43 UTC, reflecting the field as of August 26, 2026.
 
 ## Coverage first
 
 - **432** Democratic candidates recorded as on the November ballot.
-- **328** (76%) had a position we could actually read and classify.
-- **104** could not be classified (no site, unreachable, or too little readable text).
+- **340** (79%) had a position we could actually read and classify.
+- **92** could not be classified (no site, unreachable, or too little readable text).
 - **20 seats** are in states whose field is not yet settled: primaries still to come, or no party nomination at all. No candidate list compiled today can cover them.
-- **49** of the classified rows are flagged for human review; see `needs_review.csv`.
+- **48** of the classified rows are flagged for human review; see `needs_review.csv`.
 
 > **Coverage is below 80%.** The shares below should be read as describing the
 > candidates we could read, not the full field.
@@ -17,8 +17,8 @@ Generated 2026-08-26 16:47 UTC, reflecting the field as of August 26, 2026.
 
 | Reading of "supports Medicare for All" | Count | Share of classified | Share of all on-ballot |
 |---|---|---|---|
-| Explicit endorsement only | 62 | 18.9% | 14.4% |
-| Explicit + single-payer in substance | 62 | 18.9% | 14.4% |
+| Explicit endorsement only | 74 | 21.8% | 17.1% |
+| Explicit + single-payer in substance | 74 | 21.8% | 17.1% |
 
 ## Adding the legislative record and news coverage
 
@@ -30,15 +30,15 @@ recorded legislative act.
 | Evidence | Candidates |
 |---|---|
 | Cosponsors H.R.3069, the Medicare for All Act | 89 |
-| Position read from their own campaign site | 263 |
-| Position from news coverage (site unreadable) | 77 |
+| Position read from their own campaign site | 270 |
+| Position from news coverage (site unreadable) | 70 |
 | No position from any source | 3 |
 
 Combined, **429 of 432** candidates (99%) now have a position from some source, leaving **3** with none.
 
-On the combined measure, **153** candidates (35.7% of those with a known position) support Medicare for All - against 62 on campaign sites alone.
+On the combined measure, **158** candidates (36.8% of those with a known position) support Medicare for All - against 74 on campaign sites alone.
 
-> **69 of the 89 cosponsors never mention it on their own campaign site.** Cosponsorship and campaign messaging are
+> **64 of the 89 cosponsors never mention it on their own campaign site.** Cosponsorship and campaign messaging are
 > close to disjoint, which is a finding in itself rather than a gap to be
 > averaged away.
 
@@ -46,20 +46,20 @@ On the combined measure, **153** candidates (35.7% of those with a known positio
 
 | Position tier | Campaign site | Share | Combined | Share |
 |---|---|---|---|---|
-| `explicit_m4a` | 62 | 18.9% | 153 | 35.7% |
+| `explicit_m4a` | 74 | 21.8% | 158 | 36.8% |
 | `single_payer_substance` | 0 | 0.0% | 1 | 0.2% |
-| `public_option` | 10 | 3.0% | 21 | 4.9% |
-| `aca_strengthen` | 110 | 33.5% | 141 | 32.9% |
-| `no_coverage_position` | 146 | 44.5% | 113 | 26.3% |
+| `public_option` | 15 | 4.4% | 23 | 5.4% |
+| `aca_strengthen` | 122 | 35.9% | 149 | 34.7% |
+| `no_coverage_position` | 129 | 37.9% | 98 | 22.8% |
 | `opposed` | 0 | 0.0% | 0 | 0.0% |
-| `unknown` | 104 | n/a | 3 | n/a |
+| `unknown` | 92 | n/a | 3 | n/a |
 
 ## By incumbency
 
 | Group | Explicit M4A | Classified | Share |
 |---|---|---|---|
-| incumbent | 20 | 65 | 30.8% |
-| non-incumbent | 42 | 263 | 16.0% |
+| incumbent | 25 | 70 | 35.7% |
+| non-incumbent | 49 | 270 | 18.1% |
 
 ## Known gaps
 

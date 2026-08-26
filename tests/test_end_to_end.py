@@ -135,3 +135,54 @@ def test_evidence_quote_survives_to_the_csv():
     row = next(csv.DictReader(io.StringIO(to_csv(roster))))
     assert row["m4a_evidence_rule"] == "m4a.phrase"
     assert cand.m4a_evidence[0].url == "https://aaa.example/issues/health"
+
+
+# --- crawl depth ------------------------------------------------------------
+
+INDEX_SITE = {
+    "https://x.example/": (
+        "<html><head><title>Pat Doe for Congress</title></head><body>"
+        "<nav><a href='/issues'>Issues</a></nav>"
+        "<p>Donate today. Paid for by Pat Doe for Congress.</p></body></html>"
+    ),
+    # A near-empty index whose links go one level deeper. This is the shape
+    # that silently produced "no coverage position" before crawling recursed.
+    "https://x.example/issues": (
+        "<html><body><nav>"
+        "<a href='/issues/housing'>Housing</a>"
+        "<a href='/issues/healthcare'>Healthcare</a>"
+        "<a href='/issues/environment'>Environment</a>"
+        "</nav></body></html>"
+    ),
+    "https://x.example/issues/housing":
+        f"<html><body><p>We need more homes.{FILLER}</p></body></html>",
+    "https://x.example/issues/healthcare": (
+        "<html><body><p>I believe healthcare is a human right, and am a strong "
+        f"supporter of Medicare for All.{FILLER}</p></body></html>"
+    ),
+    "https://x.example/issues/environment":
+        f"<html><body><p>Clean air and water.{FILLER}</p></body></html>",
+}
+
+
+def test_crawler_follows_an_index_page_to_its_children():
+    fetcher = StubFetcher(INDEX_SITE)
+    pages = collect_position_pages(fetcher, "https://x.example/")
+    assert "https://x.example/issues/healthcare" in pages
+    assert classify_pages(pages).tier is M4ATier.EXPLICIT_M4A
+
+
+def test_health_pages_are_fetched_before_other_issue_pages():
+    # The page budget is finite, so the health page must not be crowded out.
+    fetcher = StubFetcher(INDEX_SITE)
+    collect_position_pages(fetcher, "https://x.example/", max_pages=3)
+    health = fetcher.requested.index("https://x.example/issues/healthcare")
+    others = [fetcher.requested.index(u) for u in
+              ("https://x.example/issues/housing", "https://x.example/issues/environment")
+              if u in fetcher.requested]
+    assert all(health < o for o in others)
+
+
+def test_crawl_respects_the_page_budget():
+    fetcher = StubFetcher(INDEX_SITE)
+    assert len(collect_position_pages(fetcher, "https://x.example/", max_pages=3)) <= 3
