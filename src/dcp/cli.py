@@ -1,0 +1,352 @@
+"""Command-line entry point.
+
+Pipeline stages are separate commands rather than one monolith, because each
+stage is slow, network-bound, and worth inspecting before spending the next
+one. ``run`` chains them for convenience.
+
+    dcp doctor                  # can this environment reach the sources at all?
+    dcp calendar                # which primary dates are verified, which are missing
+    dcp roster                  # who is on the ballot -> data/out/roster.json
+    dcp websites                # attach campaign URLs
+    dcp classify                # crawl sites, assign M4A tiers
+    dcp report                  # markdown + CSV + JSON output
+    dcp run                     # all of the above
+"""
+
+from __future__ import annotations
+
+import argparse
+import json
+import logging
+import sys
+from datetime import date, datetime
+from pathlib import Path
+from typing import Optional
+
+from . import statefacts
+from .adjudicate import to_review_csv
+from .classify.classifier import classify_pages
+from .crawl import collect_position_pages
+from .models import Candidate, District, M4ATier, NominationStatus, Roster
+from .net import EgressBlocked, Fetcher, REQUIRED_HOSTS, doctor
+from .report import analyze, to_csv, to_json, to_markdown
+from .resolve import build_roster, merge
+from .sources import ballotpedia, fec, wikipedia
+from .websites import resolve_campaign_url
+
+log = logging.getLogger("dcp")
+
+OUT = Path("data/out")
+
+
+def _setup_logging(verbose: bool) -> None:
+    logging.basicConfig(
+        level=logging.DEBUG if verbose else logging.INFO,
+        format="%(levelname)-7s %(name)s: %(message)s",
+    )
+
+
+def _as_of(arg: Optional[str]) -> date:
+    return datetime.strptime(arg, "%Y-%m-%d").date() if arg else date.today()
+
+
+def _require_egress() -> None:
+    """Abort early if the sources are unreachable.
+
+    Without this the pipeline would run to completion and produce a roster of
+    zero candidates with 435 coverage gaps, which reads like a finding about
+    the election rather than a finding about the network.
+    """
+    results = doctor()
+    blocked = [h for h, s in results.items() if s != "ok" and "ok (" not in s]
+    if len(blocked) == len(results):
+        print("Cannot reach any required data source:\n", file=sys.stderr)
+        for host, status in results.items():
+            print(f"  {host:24} {status}", file=sys.stderr)
+        print(
+            "\nEvery source is blocked, so no run can produce real data.\n"
+            "Allowlist these hosts and retry:\n  " + "\n  ".join(REQUIRED_HOSTS),
+            file=sys.stderr,
+        )
+        raise SystemExit(2)
+    if blocked:
+        log.warning("some sources unreachable: %s", ", ".join(blocked))
+
+
+# --------------------------------------------------------------------------
+# commands
+# --------------------------------------------------------------------------
+
+def cmd_doctor(args: argparse.Namespace) -> int:
+    print("Source reachability:\n")
+    results = doctor()
+    for host, status in results.items():
+        mark = "OK  " if status.startswith("ok") else "FAIL"
+        print(f"  [{mark}] {host:24} {status}")
+
+    as_of = _as_of(args.as_of)
+    print(f"\nField status as of {as_of:%B %d, %Y}:")
+    print(f"  seats whose Democratic field is not yet settled: "
+          f"{statefacts.unsettled_field_seats(as_of)}")
+    for state, u in statefacts.unresolved_states(as_of).items():
+        if u.reason is not statefacts.UnresolvedReason.CALENDAR_UNSYNCED:
+            print(f"    {state} ({u.seats} seats): {u.detail}")
+
+    unsynced = [
+        u for u in statefacts.unresolved_states(as_of).values()
+        if u.reason is statefacts.UnresolvedReason.CALENDAR_UNSYNCED
+    ]
+    if unsynced:
+        print(f"  {len(unsynced)} state(s) have no synced primary date "
+              f"({sum(u.seats for u in unsynced)} seats)")
+    return 0
+
+
+def cmd_calendar(args: argparse.Namespace) -> int:
+    """Show the loaded primary calendar and what is still missing from it."""
+    as_of = _as_of(args.as_of)
+    known = statefacts.VERIFIED_PRIMARY_DATES
+    print(f"Primary calendar: {statefacts.CALENDAR_PATH}")
+    print(f"  {len(known)} of 50 states have a verified date.\n")
+
+    if known:
+        print("Known dates:")
+        for state, when in sorted(known.items(), key=lambda kv: (kv[1], kv[0])):
+            marker = "held" if when <= as_of else "upcoming"
+            print(f"  {state}  {when:%Y-%m-%d}  ({marker}, {statefacts.SEAT_COUNTS[state]} seats)")
+
+    missing = [
+        s for s in sorted(statefacts.SEAT_COUNTS)
+        if s not in known and statefacts.ballot_rule(s) is not statefacts.BallotRule.JUNGLE_NOV
+    ]
+    if missing:
+        seats = sum(statefacts.SEAT_COUNTS[s] for s in missing)
+        print(f"\nMissing ({len(missing)} states, {seats} seats):")
+        print("  " + " ".join(missing))
+        print(
+            "\nAdd verified dates to config/primary_calendar.yaml. Until then these\n"
+            "states' on-ballot status cannot be confirmed and rows are flagged."
+        )
+    return 0
+
+
+def cmd_roster(args: argparse.Namespace) -> int:
+    _require_egress()
+    as_of = _as_of(args.as_of)
+    fetcher = Fetcher(ttl=_ttl(args))
+
+    log.info("fetching FEC filing universe")
+    universe = fec.fetch_democratic_house_candidates(fetcher, args.year)
+
+    results: list[Candidate] = []
+    gaps: list[str] = []
+    states = args.states or sorted(statefacts.SEAT_COUNTS)
+    for state in states:
+        held = statefacts.primary_held(state, as_of)
+        status = (
+            NominationStatus.ON_BALLOT if held else NominationStatus.PENDING_PRIMARY
+        )
+        log.info("wikipedia: %s", state)
+        cands, state_gaps = wikipedia.candidates_for_state(fetcher, state, status)
+        results.extend(cands)
+        gaps.extend(state_gaps)
+
+    roster = build_roster(merge(results, universe), as_of, extra_gaps=gaps)
+    _write(OUT / "roster.json", json.dumps(roster.to_dict(), indent=2))
+    log.info("roster: %d candidates, %d on ballot",
+             len(roster.candidates), len(roster.on_ballot()))
+    return 0
+
+
+def cmd_websites(args: argparse.Namespace) -> int:
+    _require_egress()
+    roster = _load_roster()
+    fetcher = Fetcher(ttl=_ttl(args))
+
+    bp_cache: dict[str, dict[str, str]] = {}
+    resolved = 0
+    for cand in roster.on_ballot():
+        if cand.campaign_url:
+            continue
+        code = cand.district.code
+        if code not in bp_cache:
+            urls, warnings = ballotpedia.campaign_urls_for_district(fetcher, cand.district)
+            bp_cache[code] = urls
+            roster.coverage_gaps.extend(warnings)
+        hints = [
+            url for name, url in bp_cache[code].items()
+            if _name_matches(name, cand.full_name)
+        ]
+        score = resolve_campaign_url(fetcher, cand, hints)
+        if score.accepted:
+            cand.campaign_url = score.url
+            cand.campaign_url_confidence = score.score
+            cand.add_provenance("campaign_site", score.url, "; ".join(score.reasons))
+            resolved += 1
+        else:
+            cand.conflicts.append(
+                f"no campaign site accepted (best {score.score:.2f}: "
+                f"{score.url or 'none'} - {'; '.join(score.reasons)})"
+            )
+
+    _write(OUT / "roster.json", json.dumps(roster.to_dict(), indent=2))
+    log.info("resolved campaign sites for %d/%d on-ballot candidates",
+             resolved, len(roster.on_ballot()))
+    return 0
+
+
+def cmd_classify(args: argparse.Namespace) -> int:
+    _require_egress()
+    roster = _load_roster()
+    fetcher = Fetcher(ttl=_ttl(args))
+
+    done = 0
+    for cand in roster.on_ballot():
+        if not cand.campaign_url:
+            cand.m4a_tier = M4ATier.UNKNOWN
+            cand.m4a_notes = "no campaign website resolved"
+            continue
+        pages = collect_position_pages(fetcher, cand.campaign_url, args.max_pages)
+        if not pages:
+            cand.m4a_tier = M4ATier.UNKNOWN
+            cand.m4a_notes = "campaign site unreachable"
+            continue
+        result = classify_pages(pages)
+        cand.m4a_tier = result.tier
+        cand.m4a_evidence = result.evidence
+        cand.issues_urls = sorted(pages)
+        notes = [result.notes] if result.notes else []
+        if result.needs_review:
+            notes.append(f"REVIEW: {result.review_reason}")
+        if result.explicitly_rejects_m4a:
+            notes.append("explicitly rejects Medicare for All")
+        cand.m4a_notes = " | ".join(n for n in notes if n)
+        done += 1
+
+    _write(OUT / "roster.json", json.dumps(roster.to_dict(), indent=2))
+    log.info("classified %d candidates", done)
+    return 0
+
+
+def cmd_report(args: argparse.Namespace) -> int:
+    roster = _load_roster()
+    as_of = _as_of(args.as_of)
+    analysis = analyze(roster, as_of)
+
+    _write(OUT / "report.md", to_markdown(analysis, roster))
+    _write(OUT / "candidates.csv", to_csv(roster))
+    _write(OUT / "analysis.json", to_json(analysis, roster))
+    review = to_review_csv(roster.candidates)
+    if review.count("\n") > 1:
+        _write(OUT / "needs_review.csv", review)
+
+    print(to_markdown(analysis, roster))
+    return 0
+
+
+def cmd_run(args: argparse.Namespace) -> int:
+    for step in (cmd_roster, cmd_websites, cmd_classify, cmd_report):
+        rc = step(args)
+        if rc != 0:
+            return rc
+    return 0
+
+
+# --------------------------------------------------------------------------
+# helpers
+# --------------------------------------------------------------------------
+
+def _ttl(args: argparse.Namespace):
+    from datetime import timedelta
+    return timedelta(days=args.cache_days)
+
+
+def _name_matches(a: str, b: str) -> bool:
+    from .models import normalize_name
+    na, nb = normalize_name(a), normalize_name(b)
+    if not na or not nb:
+        return False
+    if na == nb:
+        return True
+    # Surname plus first initial is enough given we are already inside one district.
+    pa, pb = na.split(), nb.split()
+    return pa[-1] == pb[-1] and pa[0][:1] == pb[0][:1]
+
+
+def _write(path: Path, content: str) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(content, encoding="utf-8")
+    log.info("wrote %s (%d bytes)", path, len(content))
+
+
+def _load_roster() -> Roster:
+    path = OUT / "roster.json"
+    if not path.exists():
+        print(f"{path} not found - run `dcp roster` first.", file=sys.stderr)
+        raise SystemExit(1)
+    blob = json.loads(path.read_text(encoding="utf-8"))
+
+    roster = Roster(coverage_gaps=blob.get("coverage_gaps", []))
+    for row in blob.get("candidates", []):
+        state = row["state"]
+        code = row["district"]
+        at_large = code.endswith("-AL")
+        number = 1 if at_large else int(code.split("-")[1])
+        district = District(
+            state, number, ballot_rule=statefacts.ballot_rule(state), at_large=at_large
+        )
+        cand = Candidate(
+            full_name=row["full_name"],
+            district=district,
+            status=NominationStatus(row["status"]),
+            fec_candidate_id=row.get("fec_candidate_id"),
+            incumbent=row.get("incumbent", False),
+            campaign_url=row.get("campaign_url"),
+            campaign_url_confidence=row.get("campaign_url_confidence", 0.0),
+            issues_urls=row.get("issues_urls", []),
+            m4a_tier=M4ATier(row.get("m4a_tier", "unknown")),
+            m4a_notes=row.get("m4a_notes", ""),
+            conflicts=row.get("conflicts", []),
+        )
+        roster.candidates.append(cand)
+    return roster
+
+
+def main(argv: Optional[list[str]] = None) -> int:
+    # Shared options live on a parent parser so they are accepted either
+    # before or after the subcommand; argparse otherwise only allows the
+    # former, which is a constant source of confusion.
+    common = argparse.ArgumentParser(add_help=False)
+    common.add_argument("-v", "--verbose", action="store_true")
+    common.add_argument("--as-of", help="YYYY-MM-DD; defaults to today")
+    common.add_argument("--cache-days", type=int, default=7)
+    common.add_argument("--year", type=int, default=2026)
+    common.add_argument("--states", nargs="*", help="limit to these state codes")
+    common.add_argument("--max-pages", type=int, default=8)
+
+    parser = argparse.ArgumentParser(prog="dcp", description=__doc__, parents=[common])
+    sub = parser.add_subparsers(dest="command", required=True)
+    for name, fn, help_text in (
+        ("doctor", cmd_doctor, "check source reachability and field status"),
+        ("calendar", cmd_calendar, "show the primary calendar and its gaps"),
+        ("roster", cmd_roster, "build the candidate roster"),
+        ("websites", cmd_websites, "resolve campaign websites"),
+        ("classify", cmd_classify, "crawl sites and classify positions"),
+        ("report", cmd_report, "write the analysis"),
+        ("run", cmd_run, "run every stage"),
+    ):
+        p = sub.add_parser(name, help=help_text, parents=[common])
+        p.set_defaults(func=fn)
+
+    args = parser.parse_args(argv)
+    _setup_logging(args.verbose)
+    try:
+        return args.func(args)
+    except EgressBlocked as exc:
+        print(f"\nNetwork egress blocked: {exc}", file=sys.stderr)
+        print("Run `dcp doctor` for details.", file=sys.stderr)
+        return 2
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

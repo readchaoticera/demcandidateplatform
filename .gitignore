@@ -1,0 +1,12 @@
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+build/
+dist/
+.venv/
+venv/
+
+# Fetched pages and generated outputs are reproducible; keep them out of git.
+data/cache/
+data/out/

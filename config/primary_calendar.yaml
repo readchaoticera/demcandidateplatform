@@ -1,0 +1,25 @@
+# 2026 congressional primary dates, by USPS state code (ISO YYYY-MM-DD).
+#
+# Only dates verified against a primary source belong here. A state left out
+# is treated as UNKNOWN, which is safe: the pipeline refuses to assert that a
+# candidate is on the ballot in a state whose primary date it cannot confirm.
+# Guessing a date here is the one edit that can silently corrupt the roster.
+#
+# Authoritative sources:
+#   - FEC, "2026 Congressional Primary Dates and Candidate Filing Deadlines"
+#     https://www.fec.gov/resources/cms-content/documents/2026pdates.pdf
+#   - The relevant Secretary of State / state election board.
+#
+# Dates move by legislation and by litigation mid-cycle, so re-verify rather
+# than copying last cycle's calendar.
+#
+# Note: Louisiana is deliberately absent and must stay absent. It holds no
+# nominating primary in 2026 - its all-party primary IS the November 3
+# election, with a December 12 runoff. That is encoded as a ballot rule in
+# statefacts.py, not as a date.
+
+primaries:
+  MA: 2026-09-01
+  NH: 2026-09-08
+  RI: 2026-09-09
+  DE: 2026-09-15
