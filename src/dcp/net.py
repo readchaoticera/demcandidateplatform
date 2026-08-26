@@ -43,6 +43,10 @@ USER_AGENT = (
 
 DEFAULT_CACHE = Path("data/cache")
 DEFAULT_TTL = timedelta(days=7)
+DEFAULT_NEGATIVE_TTL = timedelta(days=1)
+"""Failures are remembered too, but for less time than successes: a site
+down today may be up tomorrow, and re-running the pipeline must not spend
+minutes re-attempting the same dead domains."""
 DEFAULT_MIN_INTERVAL = 1.5  # seconds between requests to the same host
 DEFAULT_TIMEOUT = 20
 
@@ -102,6 +106,7 @@ class Fetcher:
         self,
         cache_dir: Path | str = DEFAULT_CACHE,
         ttl: timedelta = DEFAULT_TTL,
+        negative_ttl: timedelta = DEFAULT_NEGATIVE_TTL,
         min_interval: float = DEFAULT_MIN_INTERVAL,
         respect_robots: bool = True,
         timeout: int = DEFAULT_TIMEOUT,
@@ -109,6 +114,7 @@ class Fetcher:
         self.cache_dir = Path(cache_dir)
         self.cache_dir.mkdir(parents=True, exist_ok=True)
         self.ttl = ttl
+        self.negative_ttl = negative_ttl
         self.min_interval = min_interval
         self.respect_robots = respect_robots
         self.timeout = timeout
@@ -125,12 +131,19 @@ class Fetcher:
 
         self.session = requests.Session()
         self.session.headers["User-Agent"] = USER_AGENT
+        # respect_retry_after_header is deliberately OFF. urllib3 honours a
+        # Retry-After header with no upper bound, so a single site answering
+        # 429 with a large value parks a worker for hours - observed stalling a
+        # whole run while every other thread sat idle. Backoff is capped
+        # instead, and retries kept low: across several hundred small sites,
+        # one that needs three retries is a site that is down.
         retry = Retry(
-            total=3,
-            backoff_factor=1.5,
-            status_forcelist=(429, 500, 502, 503, 504),
+            total=2,
+            backoff_factor=0.5,
+            backoff_max=8,
+            status_forcelist=(500, 502, 503, 504),
             allowed_methods=frozenset({"GET", "HEAD"}),
-            respect_retry_after_header=True,
+            respect_retry_after_header=False,
         )
         adapter = HTTPAdapter(max_retries=retry, pool_maxsize=16)
         self.session.mount("https://", adapter)
@@ -151,7 +164,9 @@ class Fetcher:
             fetched = datetime.fromisoformat(blob["fetched_at"])
         except (ValueError, KeyError, OSError):
             return None
-        if datetime.utcnow() - fetched > self.ttl:
+        status = blob.get("status", 0)
+        age = datetime.utcnow() - fetched
+        if age > (self.ttl if 200 <= status < 300 else self.negative_ttl):
             return None
         return Response(
             url=blob["url"], status=blob["status"], text=blob["text"],
@@ -237,14 +252,20 @@ class Fetcher:
         except requests.RequestException as exc:
             if _is_egress_block(exc):
                 raise EgressBlocked(f"egress blocked fetching {url}: {exc}") from exc
+            self._write_cache(
+                Response(url=url, status=0, text="", from_cache=False,
+                         fetched_at=datetime.utcnow())
+            )
             raise FetchError(f"failed fetching {url}: {exc}") from exc
 
         resp = Response(
             url=r.url, status=r.status_code, text=r.text,
             from_cache=False, fetched_at=datetime.utcnow(),
         )
-        if resp.ok:
-            self._write_cache(resp)
+        self._write_cache(resp)
+        if resp.url != url:
+            # Remember the redirect source too, so the next run short-circuits.
+            self._write_cache(Response(url, resp.status, resp.text, False, resp.fetched_at))
         return resp
 
 
