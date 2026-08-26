@@ -277,3 +277,68 @@ def test_review_csv_contains_only_flagged_rows():
     assert needs_review(flagged) and not needs_review(ok)
     csv_text = to_review_csv([ok, flagged])
     assert "Unclear" in csv_text and "Fine" not in csv_text
+
+
+def test_evidence_survives_the_roster_round_trip(tmp_path, monkeypatch):
+    """Loading and re-saving must not strip evidence quotes.
+
+    A real bug: the cosponsor and secondary stages each load, mutate and save
+    the roster. Because the loader dropped m4a_evidence, running them wiped
+    every verbatim quote from the dataset - the one thing that makes a
+    classification auditable.
+    """
+    import json
+    from dcp import cli
+    from dcp.models import Evidence
+
+    c = mk("Jane Smith", "OH", 5, M4ATier.EXPLICIT_M4A)
+    c.m4a_evidence = [
+        Evidence(quote="I support Medicare for All.", url="http://x/issues",
+                 matched_rule="m4a.phrase", tier=M4ATier.EXPLICIT_M4A)
+    ]
+    roster = Roster(candidates=[c])
+
+    monkeypatch.setattr(cli, "OUT", tmp_path)
+    (tmp_path / "roster.json").write_text(json.dumps(roster.to_dict()), encoding="utf-8")
+
+    loaded = cli._load_roster()
+    ev = loaded.candidates[0].m4a_evidence
+    assert len(ev) == 1
+    assert ev[0].quote == "I support Medicare for All."
+    assert ev[0].matched_rule == "m4a.phrase"
+    assert ev[0].tier is M4ATier.EXPLICIT_M4A
+
+
+# --- dashboard payload -----------------------------------------------------
+
+def test_site_payload_keeps_only_on_ballot_candidates_and_needed_fields():
+    import sys
+    from pathlib import Path
+    sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "scripts"))
+    from build_site import trim
+
+    c = mk("Jane Smith", "OH", 5, M4ATier.EXPLICIT_M4A)
+    c.campaign_url = "https://example.org"
+    c.cosponsored_m4a_bill = True
+    row = trim(c.to_dict())
+
+    assert row["n"] == "Jane Smith"
+    assert row["d"] == "OH-05"
+    assert row["t"] == "explicit_m4a"          # resolved
+    assert row["b"] == "cosponsorship"          # which source decided it
+    assert row["co"] is True
+    # Provenance chains and per-page URL lists are deliberately dropped.
+    assert "provenance" not in row
+    assert "issues_urls" not in row
+
+
+def test_site_payload_truncates_long_quotes():
+    import sys
+    from pathlib import Path
+    sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "scripts"))
+    from build_site import trim
+
+    c = mk("Jane Smith", "OH", 5, M4ATier.EXPLICIT_M4A)
+    c.m4a_evidence = [Evidence(quote="x" * 900, url="http://x", matched_rule="r",
+                               tier=M4ATier.EXPLICIT_M4A)]
+    assert len(trim(c.to_dict())["q"]) == 400

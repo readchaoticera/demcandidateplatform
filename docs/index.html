@@ -1,0 +1,581 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Medicare for All Tracker — Democratic U.S. House candidates, 2026</title>
+<meta name="description" content="Searchable dashboard of every Democratic U.S. House candidate on the November 2026 ballot and their position on Medicare for All, sourced from campaign sites, the cosponsor roll and news coverage.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🩺</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500&family=Public+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<style>
+/* Shares the palette and faces of the companion analysis page: cool ledger
+   paper, federal ink, and a sequential teal ramp because the position tiers
+   are ordinal. Public Sans is the US Web Design System face. */
+:root {
+  --paper:#EFF2F4; --surface:#FFFFFF; --surface-2:#F7F9FA; --surface-3:#EDF1F3;
+  --ink:#141E28; --ink-2:#3D4B57; --ink-3:#66757F;
+  --rule:#D2DAE0; --rule-2:#E3E9ED;
+  --t1:#0C5F5C; --t2:#1F847C; --t3:#4FA79B; --t4:#9AC5BD; --t5:#BFC9D0; --t6:#7A5C36;
+  --unk:#8D9AA4;
+  --t1-bg:#E2F0EE; --t2-bg:#E6F2F0; --t3-bg:#EAF4F2; --t4-bg:#EFF5F3;
+  --t5-bg:#EEF1F3; --t6-bg:#F3EEE6; --unk-bg:#EDEFF1;
+  --focus:#0C5F5C;
+  --shadow:0 1px 2px rgba(20,30,40,.06), 0 8px 24px -16px rgba(20,30,40,.28);
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper:#0E151B; --surface:#161F27; --surface-2:#1B252E; --surface-3:#202B35;
+    --ink:#E8EDF1; --ink-2:#B3C0CA; --ink-3:#8493A0;
+    --rule:#2C3A45; --rule-2:#223039;
+    --t1:#55C7BC; --t2:#3FA79D; --t3:#2F8378; --t4:#2A5F59; --t5:#45535E; --t6:#A9814A;
+    --unk:#6A7883;
+    --t1-bg:#123A38; --t2-bg:#12332F; --t3-bg:#122C29; --t4-bg:#122724;
+    --t5-bg:#1E262C; --t6-bg:#2A2114; --unk-bg:#1C242A;
+    --focus:#55C7BC;
+    --shadow:0 1px 2px rgba(0,0,0,.5), 0 8px 28px -18px rgba(0,0,0,.9);
+  }
+}
+:root[data-theme="dark"] {
+  --paper:#0E151B; --surface:#161F27; --surface-2:#1B252E; --surface-3:#202B35;
+  --ink:#E8EDF1; --ink-2:#B3C0CA; --ink-3:#8493A0;
+  --rule:#2C3A45; --rule-2:#223039;
+  --t1:#55C7BC; --t2:#3FA79D; --t3:#2F8378; --t4:#2A5F59; --t5:#45535E; --t6:#A9814A;
+  --unk:#6A7883;
+  --t1-bg:#123A38; --t2-bg:#12332F; --t3-bg:#122C29; --t4-bg:#122724;
+  --t5-bg:#1E262C; --t6-bg:#2A2114; --unk-bg:#1C242A;
+  --focus:#55C7BC;
+  --shadow:0 1px 2px rgba(0,0,0,.5), 0 8px 28px -18px rgba(0,0,0,.9);
+}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;background:var(--paper);color:var(--ink);
+  font-family:"Public Sans",ui-sans-serif,system-ui,-apple-system,sans-serif;
+  font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased;
+}
+a{color:var(--t1);text-underline-offset:2px}
+:focus-visible{outline:2px solid var(--focus);outline-offset:2px;border-radius:2px}
+
+.wrap{max-width:78rem;margin:0 auto;padding:clamp(1.25rem,3vw,2.5rem) clamp(1rem,3vw,2rem) 5rem}
+
+/* ---- masthead ---- */
+header.top{display:flex;flex-direction:column;gap:.7rem;margin-bottom:1.75rem}
+.eyebrow{
+  font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:.68rem;font-weight:500;
+  letter-spacing:.13em;text-transform:uppercase;color:var(--ink-3);
+}
+h1{
+  font-family:Newsreader,ui-serif,Georgia,serif;font-weight:500;margin:0;
+  font-size:clamp(1.8rem,4vw,2.6rem);line-height:1.1;letter-spacing:-.011em;
+}
+.sub{margin:0;color:var(--ink-2);max-width:46rem;font-size:.98rem}
+
+/* ---- stat rail ---- */
+.stats{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(9.5rem,1fr));
+  gap:1px;background:var(--rule);border:1px solid var(--rule);
+  border-radius:3px;overflow:hidden;margin-bottom:1.5rem;box-shadow:var(--shadow);
+}
+.stat{background:var(--surface);padding:.95rem 1.1rem;display:flex;flex-direction:column;gap:.15rem}
+.stat b{
+  font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:1.7rem;font-weight:500;
+  line-height:1.1;font-variant-numeric:tabular-nums;
+}
+.stat span{font-size:.78rem;color:var(--ink-3);line-height:1.35}
+.stat.accent b{color:var(--t1)}
+
+/* ---- controls ---- */
+.controls{
+  position:sticky;top:0;z-index:20;background:var(--paper);
+  padding:.85rem 0 .7rem;margin-bottom:.5rem;
+  border-bottom:1px solid var(--rule);
+  display:flex;flex-direction:column;gap:.7rem;
+}
+.row1{display:flex;gap:.6rem;flex-wrap:wrap;align-items:center}
+.search{position:relative;flex:1 1 17rem;min-width:0}
+.search input{
+  width:100%;padding:.6rem .75rem .6rem 2.1rem;font:inherit;font-size:.95rem;
+  background:var(--surface);color:var(--ink);
+  border:1px solid var(--rule);border-radius:3px;
+}
+.search input::placeholder{color:var(--ink-3)}
+.search svg{position:absolute;left:.65rem;top:50%;transform:translateY(-50%);color:var(--ink-3)}
+select{
+  font:inherit;font-size:.9rem;padding:.55rem .6rem;background:var(--surface);
+  color:var(--ink);border:1px solid var(--rule);border-radius:3px;
+}
+.btn{
+  font:inherit;font-size:.85rem;padding:.55rem .8rem;cursor:pointer;
+  background:var(--surface);color:var(--ink-2);
+  border:1px solid var(--rule);border-radius:3px;
+}
+.btn:hover{background:var(--surface-3);color:var(--ink)}
+
+.chips{display:flex;gap:.4rem;flex-wrap:wrap;align-items:center}
+.chips .lbl{
+  font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:.65rem;
+  letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3);margin-right:.15rem;
+}
+.chip{
+  display:inline-flex;align-items:center;gap:.4rem;cursor:pointer;
+  font:inherit;font-size:.82rem;padding:.32rem .6rem;
+  background:var(--surface);color:var(--ink-2);
+  border:1px solid var(--rule);border-radius:100px;
+}
+.chip:hover{background:var(--surface-3)}
+.chip[aria-pressed="true"]{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.chip .dot{width:.6rem;height:.6rem;border-radius:50%;flex:none}
+.chip .ct{font-variant-numeric:tabular-nums;opacity:.65;font-size:.75rem}
+
+.count{font-size:.85rem;color:var(--ink-3);display:flex;gap:.75rem;align-items:center;flex-wrap:wrap}
+.count b{color:var(--ink);font-variant-numeric:tabular-nums}
+
+/* ---- table ---- */
+.tablewrap{overflow-x:auto;border:1px solid var(--rule);border-radius:3px;background:var(--surface);box-shadow:var(--shadow)}
+table{width:100%;border-collapse:collapse;font-size:.9rem}
+thead th{
+  position:sticky;top:0;background:var(--surface-2);z-index:5;
+  font-family:"IBM Plex Mono",ui-monospace,monospace;
+  font-size:.66rem;font-weight:600;letter-spacing:.09em;text-transform:uppercase;
+  color:var(--ink-3);text-align:left;padding:.6rem .8rem;white-space:nowrap;
+  border-bottom:1px solid var(--rule);
+}
+thead th button{
+  all:unset;cursor:pointer;display:inline-flex;align-items:center;gap:.3rem;
+}
+thead th button:hover{color:var(--ink)}
+thead th .arrow{opacity:.35;font-size:.85em}
+thead th[aria-sort] .arrow{opacity:1;color:var(--t1)}
+tbody td{padding:.55rem .8rem;border-bottom:1px solid var(--rule-2);vertical-align:top}
+tbody tr.r{cursor:pointer}
+tbody tr.r:hover{background:var(--surface-2)}
+tbody tr.r[aria-expanded="true"]{background:var(--surface-2)}
+.nm{font-weight:600;color:var(--ink)}
+.dist{font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:.82rem;color:var(--ink-2);white-space:nowrap}
+.two-d{font-size:.7rem;color:var(--ink-3);display:block}
+
+.pill{
+  display:inline-flex;align-items:center;gap:.4rem;white-space:nowrap;
+  font-size:.78rem;font-weight:500;padding:.2rem .55rem;border-radius:100px;
+  border:1px solid transparent;
+}
+.pill .dot{width:.55rem;height:.55rem;border-radius:50%;flex:none}
+.p-explicit_m4a{background:var(--t1-bg);color:var(--t1);border-color:var(--t1)}
+.p-single_payer_substance{background:var(--t2-bg);color:var(--t2);border-color:var(--t2)}
+.p-public_option{background:var(--t3-bg);color:var(--t3);border-color:var(--t3)}
+.p-aca_strengthen{background:var(--t4-bg);color:var(--ink-2);border-color:var(--t4)}
+.p-no_coverage_position{background:var(--t5-bg);color:var(--ink-2);border-color:var(--t5)}
+.p-opposed{background:var(--t6-bg);color:var(--t6);border-color:var(--t6)}
+.p-unknown{background:var(--unk-bg);color:var(--ink-3);border-color:var(--unk);border-style:dashed}
+
+.basis{font-size:.76rem;color:var(--ink-3);white-space:nowrap}
+.co{font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:.78rem;color:var(--t1);font-weight:600}
+.co.no{color:var(--ink-3);font-weight:400}
+
+/* ---- detail ---- */
+tr.detail td{background:var(--surface-2);padding:0;border-bottom:1px solid var(--rule)}
+.dbody{padding:1rem 1.1rem;display:flex;flex-direction:column;gap:.85rem;max-width:62rem}
+.dgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(15rem,1fr));gap:.85rem}
+.dfield{display:flex;flex-direction:column;gap:.2rem}
+.dfield .k{
+  font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:.63rem;
+  letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3);
+}
+.dfield .v{font-size:.88rem;color:var(--ink-2);word-break:break-word}
+blockquote.q{
+  margin:0;padding:.75rem .9rem;background:var(--surface);
+  border-left:3px solid var(--t1);border-radius:0 3px 3px 0;
+  font-family:Newsreader,ui-serif,Georgia,serif;font-size:1rem;line-height:1.45;color:var(--ink);
+}
+.qmeta{font-size:.73rem;color:var(--ink-3);margin-top:.4rem;font-family:"IBM Plex Mono",ui-monospace,monospace}
+.warn{
+  font-size:.83rem;color:var(--ink-2);background:var(--t6-bg);
+  border-left:3px solid var(--t6);padding:.6rem .8rem;border-radius:0 3px 3px 0;
+}
+.srcs{display:flex;flex-direction:column;gap:.2rem;font-size:.83rem}
+
+.empty{padding:3rem 1rem;text-align:center;color:var(--ink-3)}
+.empty p{margin:0 0 .8rem}
+
+footer{margin-top:2rem;padding-top:1.2rem;border-top:1px solid var(--rule);font-size:.82rem;color:var(--ink-3)}
+footer p{margin:0 0 .5rem}
+code{font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:.86em;background:var(--surface-2);border:1px solid var(--rule-2);border-radius:2px;padding:.05em .3em}
+
+.show-s{display:none}
+@media (max-width:640px){
+  .hide-s{display:none}
+  .show-s{display:block}
+  .stat b{font-size:1.4rem}
+}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="top">
+    <div class="eyebrow">U.S. House · General election · November 3, 2026</div>
+    <h1>Medicare for All Tracker</h1>
+    <p class="sub">
+      Every Democratic candidate on the November ballot, and where each one stands on
+      Medicare for All — drawn from their own campaign site, the cosponsor roll of
+      H.R.3069, and news coverage where a site could not be read.
+      Search, filter, and open any row to see the evidence behind it.
+    </p>
+  </header>
+
+  <section class="stats" id="stats" aria-label="Summary"></section>
+
+  <div class="controls">
+    <div class="row1">
+      <label class="search">
+        <span class="sr-only" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)">Search candidates</span>
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true">
+          <circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/>
+        </svg>
+        <input id="q" type="search" placeholder="Search by name, district or state…" autocomplete="off" spellcheck="false">
+      </label>
+      <select id="state" aria-label="Filter by state"><option value="">All states</option></select>
+      <select id="basis" aria-label="Filter by evidence source"><option value="">Any source</option></select>
+      <button class="btn" id="clear" type="button">Clear</button>
+    </div>
+    <div class="chips" id="tiers" role="group" aria-label="Filter by position">
+      <span class="lbl">Position</span>
+    </div>
+    <div class="count" id="count" role="status" aria-live="polite"></div>
+  </div>
+
+  <div class="tablewrap">
+    <table>
+      <thead>
+        <tr>
+          <th data-k="n"><button type="button">Candidate <span class="arrow">↕</span></button></th>
+          <th data-k="d"><button type="button">District <span class="arrow">↕</span></button></th>
+          <th data-k="t"><button type="button">Position <span class="arrow">↕</span></button></th>
+          <th data-k="b" class="hide-s"><button type="button">Source <span class="arrow">↕</span></button></th>
+          <th data-k="co" class="hide-s"><button type="button">Cosponsor <span class="arrow">↕</span></button></th>
+        </tr>
+      </thead>
+      <tbody id="rows"></tbody>
+    </table>
+  </div>
+  <div class="empty" id="empty" hidden>
+    <p>No candidates match those filters.</p>
+    <button class="btn" type="button" onclick="document.getElementById('clear').click()">Clear filters</button>
+  </div>
+
+  <footer>
+    <p><a href="analysis.html"><strong>Read the written analysis &rarr;</strong></a>
+       &mdash; what the numbers mean, how positions are classified, and where the dataset stops.</p>
+    <p id="gen"></p>
+    <p>
+      <strong>Reading this well.</strong> “Position” combines three kinds of evidence by
+      precedence: cosponsoring the bill (a recorded legislative act) outranks a candidate’s
+      own campaign site, which outranks news coverage. Every row records which one decided
+      it. The campaign-site-only reading is shown inside each row for comparison — it is
+      a much lower number, because most cosponsors never mention the bill to voters.
+    </p>
+    <p>
+      Louisiana runs an all-party ballot with no nominating primary, and California,
+      Washington and Alaska can send more than one Democrat to the same general election —
+      so districts may carry several candidates here, and that is correct rather than a
+      duplicate.
+    </p>
+    <p>
+      Built from <code>results/2026-08-26/</code> in this repository. Full data, evidence
+      quotes and the review queue are in <code>candidates.csv</code>.
+    </p>
+  </footer>
+</div>
+
+<script>
+(function () {
+  "use strict";
+  var DATA = null, rows = [], sortKey = "d", sortAsc = true;
+  var state = { q: "", state: "", basis: "", tiers: new Set() };
+  var TIER_ORDER = ["explicit_m4a","single_payer_substance","public_option",
+                    "aca_strengthen","no_coverage_position","opposed","unknown"];
+  var TIER_VAR = { explicit_m4a:"--t1", single_payer_substance:"--t2", public_option:"--t3",
+                   aca_strengthen:"--t4", no_coverage_position:"--t5", opposed:"--t6",
+                   unknown:"--unk" };
+
+  var $ = function (id) { return document.getElementById(id); };
+  function esc(s) {
+    return String(s == null ? "" : s).replace(/[&<>"']/g, function (c) {
+      return { "&":"&amp;", "<":"&lt;", ">":"&gt;", '"':"&quot;", "'":"&#39;" }[c];
+    });
+  }
+
+  // ---- URL state, so a filtered view can be shared -------------------------
+  function readHash() {
+    var p = new URLSearchParams(location.hash.slice(1));
+    state.q = p.get("q") || "";
+    state.state = p.get("state") || "";
+    state.basis = p.get("basis") || "";
+    state.tiers = new Set((p.get("tier") || "").split(",").filter(Boolean));
+    if (p.get("sort")) { sortKey = p.get("sort"); sortAsc = p.get("dir") !== "desc"; }
+  }
+  function writeHash() {
+    var p = new URLSearchParams();
+    if (state.q) p.set("q", state.q);
+    if (state.state) p.set("state", state.state);
+    if (state.basis) p.set("basis", state.basis);
+    if (state.tiers.size) p.set("tier", Array.from(state.tiers).join(","));
+    if (sortKey !== "d" || !sortAsc) { p.set("sort", sortKey); p.set("dir", sortAsc ? "asc" : "desc"); }
+    var s = p.toString();
+    history.replaceState(null, "", s ? "#" + s : location.pathname);
+  }
+
+  // ---- filtering -----------------------------------------------------------
+  function matches(r) {
+    if (state.state && r.s !== state.state) return false;
+    if (state.basis && r.b !== state.basis) return false;
+    if (state.tiers.size && !state.tiers.has(r.t)) return false;
+    if (state.q) {
+      var q = state.q.toLowerCase();
+      if ((r.n + " " + r.d + " " + r.s).toLowerCase().indexOf(q) === -1) return false;
+    }
+    return true;
+  }
+  function sorted(list) {
+    var k = sortKey;
+    return list.slice().sort(function (a, b) {
+      var x = a[k], y = b[k];
+      if (k === "t") { x = TIER_ORDER.indexOf(a.t); y = TIER_ORDER.indexOf(b.t); }
+      if (k === "co") { x = a.co ? 0 : 1; y = b.co ? 0 : 1; }
+      if (x < y) return sortAsc ? -1 : 1;
+      if (x > y) return sortAsc ? 1 : -1;
+      return a.d < b.d ? -1 : a.d > b.d ? 1 : 0;
+    });
+  }
+
+  // ---- render --------------------------------------------------------------
+  function pill(tier) {
+    var lbl = DATA.tier_labels[tier] || tier;
+    return '<span class="pill p-' + tier + '"><i class="dot" style="background:var(' +
+           TIER_VAR[tier] + ')"></i>' + esc(lbl) + "</span>";
+  }
+
+  function detailHTML(r) {
+    var out = '<div class="dbody">';
+    if (r.q) {
+      out += "<div>" + '<blockquote class="q">' + esc(r.q) + "</blockquote>" +
+             '<div class="qmeta">rule ' + esc(r.qr) + " · " +
+             (r.qu ? '<a href="' + esc(r.qu) + '" target="_blank" rel="noopener">' + esc(r.qu) + "</a>" : "no page recorded") +
+             "</div></div>";
+    }
+    if (r.sn) {
+      out += '<div class="dfield"><span class="k">From news coverage' +
+             (r.sc ? " · confidence " + r.sc.toFixed(2) : "") + '</span>' +
+             '<span class="v">' + esc(r.sn) + "</span></div>";
+    }
+    if (r.ss && r.ss.length) {
+      out += '<div class="dfield"><span class="k">Sources</span><span class="srcs">';
+      r.ss.forEach(function (u) {
+        out += '<a href="' + esc(u) + '" target="_blank" rel="noopener">' + esc(u) + "</a>";
+      });
+      out += "</span></div>";
+    }
+    out += '<div class="dgrid">';
+    out += '<div class="dfield"><span class="k">Campaign site</span><span class="v">' +
+           (r.u ? '<a href="' + esc(r.u) + '" target="_blank" rel="noopener">' + esc(r.u) + "</a>" +
+                  (r.uc < 0.55 ? ' <em style="color:var(--ink-3)">(low match confidence ' + r.uc.toFixed(2) + ")</em>" : "")
+                : "none found") + "</span></div>";
+    out += '<div class="dfield"><span class="k">Campaign site alone says</span><span class="v">' +
+           pill(r.st) + "</span></div>";
+    out += '<div class="dfield"><span class="k">Cosponsors H.R.3069</span><span class="v">' +
+           (r.co ? "Yes" : "No") + "</span></div>";
+    if (r.rule && r.rule !== "party_nominee") {
+      out += '<div class="dfield"><span class="k">Ballot rule</span><span class="v">' +
+             esc(r.rule.replace(/_/g, " ")) + "</span></div>";
+    }
+    out += "</div>";
+    if (r.nt) {
+      out += '<div class="dfield"><span class="k">Classifier notes</span><span class="v">' + esc(r.nt) + "</span></div>";
+    }
+    (r.cf || []).forEach(function (c) { out += '<div class="warn">' + esc(c) + "</div>"; });
+    out += "</div>";
+    return out;
+  }
+
+  function render() {
+    var list = sorted(rows.filter(matches));
+    var tb = $("rows");
+    tb.innerHTML = "";
+    var frag = document.createDocumentFragment();
+
+    list.forEach(function (r, i) {
+      var tr = document.createElement("tr");
+      tr.className = "r";
+      tr.tabIndex = 0;
+      tr.setAttribute("aria-expanded", "false");
+      tr.innerHTML =
+        '<td><span class="nm">' + esc(r.n) + "</span></td>" +
+        '<td class="dist">' + esc(r.d) +
+          '<span class="two-d show-s">' + esc(DATA.basis_labels[r.b] || "") + "</span></td>" +
+        "<td>" + pill(r.t) + "</td>" +
+        '<td class="basis hide-s">' + esc(DATA.basis_labels[r.b] || r.b) + "</td>" +
+        '<td class="hide-s"><span class="co' + (r.co ? "" : " no") + '">' + (r.co ? "yes" : "—") + "</span></td>";
+
+      var det = document.createElement("tr");
+      det.className = "detail";
+      det.hidden = true;
+      det.innerHTML = '<td colspan="5">' + detailHTML(r) + "</td>";
+
+      function toggle() {
+        var open = tr.getAttribute("aria-expanded") === "true";
+        tr.setAttribute("aria-expanded", open ? "false" : "true");
+        det.hidden = open;
+      }
+      tr.addEventListener("click", toggle);
+      tr.addEventListener("keydown", function (e) {
+        if (e.key === "Enter" || e.key === " ") { e.preventDefault(); toggle(); }
+      });
+
+      frag.appendChild(tr);
+      frag.appendChild(det);
+    });
+
+    tb.appendChild(frag);
+    $("empty").hidden = list.length > 0;
+
+    var m4a = list.filter(function (r) { return r.t === "explicit_m4a"; }).length;
+    $("count").innerHTML =
+      "<span><b>" + list.length + "</b> of " + rows.length + " candidates</span>" +
+      "<span><b>" + m4a + "</b> support Medicare for All" +
+      (list.length ? " (" + Math.round((m4a / list.length) * 100) + "%)" : "") + "</span>";
+
+    // Chip counts reflect the other active filters, not the whole dataset.
+    Array.prototype.forEach.call(document.querySelectorAll("#tiers .chip"), function (btn) {
+      var t = btn.dataset.tier;
+      var n = rows.filter(function (r) {
+        if (state.state && r.s !== state.state) return false;
+        if (state.basis && r.b !== state.basis) return false;
+        if (state.q) {
+          var q = state.q.toLowerCase();
+          if ((r.n + " " + r.d + " " + r.s).toLowerCase().indexOf(q) === -1) return false;
+        }
+        return r.t === t;
+      }).length;
+      btn.querySelector(".ct").textContent = n;
+    });
+
+    document.querySelectorAll("thead th").forEach(function (th) {
+      if (th.dataset.k === sortKey) th.setAttribute("aria-sort", sortAsc ? "ascending" : "descending");
+      else th.removeAttribute("aria-sort");
+      var a = th.querySelector(".arrow");
+      if (a) a.textContent = th.dataset.k === sortKey ? (sortAsc ? "↑" : "↓") : "↕";
+    });
+    writeHash();
+  }
+
+  // ---- setup ---------------------------------------------------------------
+  function statTiles(s) {
+    var pct = s.total ? Math.round((s.resolved / s.total) * 100) : 0;
+    var tiles = [
+      ["", s.total, "Democrats on the November ballot"],
+      ["accent", s.explicit, "support Medicare for All"],
+      ["", s.cosponsors, "cosponsor H.R.3069"],
+      ["", s.cosponsor_silent, "cosponsor it but never say so on their site"],
+      ["", pct + "%", "have a position from some source"]
+    ];
+    $("stats").innerHTML = tiles.map(function (t) {
+      return '<div class="stat ' + t[0] + '"><b>' + t[1] + "</b><span>" + t[2] + "</span></div>";
+    }).join("");
+  }
+
+  function buildControls() {
+    var host = $("tiers");
+    TIER_ORDER.forEach(function (t) {
+      if (!rows.some(function (r) { return r.t === t; })) return;
+      var b = document.createElement("button");
+      b.type = "button";
+      b.className = "chip";
+      b.dataset.tier = t;
+      b.setAttribute("aria-pressed", state.tiers.has(t) ? "true" : "false");
+      b.innerHTML = '<i class="dot" style="background:var(' + TIER_VAR[t] + ')"></i>' +
+                    esc(DATA.tier_labels[t] || t) + ' <span class="ct"></span>';
+      b.addEventListener("click", function () {
+        if (state.tiers.has(t)) state.tiers.delete(t); else state.tiers.add(t);
+        b.setAttribute("aria-pressed", state.tiers.has(t) ? "true" : "false");
+        render();
+      });
+      host.appendChild(b);
+    });
+
+    var states = Array.from(new Set(rows.map(function (r) { return r.s; }))).sort();
+    states.forEach(function (s) {
+      var o = document.createElement("option");
+      o.value = s; o.textContent = s;
+      $("state").appendChild(o);
+    });
+    Object.keys(DATA.basis_labels).forEach(function (k) {
+      if (!rows.some(function (r) { return r.b === k; })) return;
+      var o = document.createElement("option");
+      o.value = k; o.textContent = DATA.basis_labels[k];
+      $("basis").appendChild(o);
+    });
+
+    $("state").value = state.state;
+    $("basis").value = state.basis;
+    $("q").value = state.q;
+
+    var timer;
+    $("q").addEventListener("input", function (e) {
+      clearTimeout(timer);
+      var v = e.target.value;
+      timer = setTimeout(function () { state.q = v.trim(); render(); }, 120);
+    });
+    $("q").addEventListener("keydown", function (e) {
+      if (e.key === "Escape") { e.target.value = ""; state.q = ""; render(); }
+    });
+    $("state").addEventListener("change", function (e) { state.state = e.target.value; render(); });
+    $("basis").addEventListener("change", function (e) { state.basis = e.target.value; render(); });
+    $("clear").addEventListener("click", function () {
+      state = { q: "", state: "", basis: "", tiers: new Set() };
+      $("q").value = ""; $("state").value = ""; $("basis").value = "";
+      document.querySelectorAll("#tiers .chip").forEach(function (c) { c.setAttribute("aria-pressed", "false"); });
+      render();
+    });
+    document.querySelectorAll("thead th").forEach(function (th) {
+      var btn = th.querySelector("button");
+      if (!btn) return;
+      btn.addEventListener("click", function () {
+        var k = th.dataset.k;
+        if (sortKey === k) sortAsc = !sortAsc; else { sortKey = k; sortAsc = true; }
+        render();
+      });
+    });
+  }
+
+  fetch("data.json")
+    .then(function (r) {
+      if (!r.ok) throw new Error("HTTP " + r.status);
+      return r.json();
+    })
+    .then(function (d) {
+      DATA = d;
+      rows = d.candidates;
+      readHash();
+      statTiles(d.summary);
+      buildControls();
+      var when = new Date(d.as_of + "T00:00:00Z");
+      $("gen").textContent =
+        "Field as of " + when.toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric", timeZone: "UTC" }) +
+        ". " + d.summary.unresolved_seats + " seats are excluded because their field was not yet settled: " +
+        "Massachusetts, New Hampshire, Rhode Island and Delaware had not voted, and Louisiana holds no nominating primary in 2026.";
+      render();
+    })
+    .catch(function (err) {
+      $("empty").hidden = false;
+      $("empty").innerHTML = "<p>Could not load <code>data.json</code> (" + esc(err.message) + ").</p>" +
+        "<p>This page reads its data over HTTP, so it needs to be served rather than opened from disk — " +
+        "try <code>python3 -m http.server</code> from the <code>docs/</code> directory.</p>";
+    });
+})();
+</script>
+</body>
+</html>

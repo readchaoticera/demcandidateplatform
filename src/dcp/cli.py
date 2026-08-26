@@ -31,7 +31,7 @@ from . import statefacts
 from .adjudicate import to_review_csv
 from .classify.classifier import classify_pages
 from .crawl import collect_position_pages
-from .models import Candidate, District, M4ATier, NominationStatus, Roster
+from .models import Candidate, District, Evidence, M4ATier, NominationStatus, Roster
 from .net import EgressBlocked, Fetcher, REQUIRED_HOSTS, doctor
 from .report import analyze, to_csv, to_json, to_markdown
 from .resolve import build_roster, merge
@@ -483,6 +483,20 @@ def _load_roster() -> Roster:
             secondary_confidence=row.get("secondary_confidence", 0.0),
             secondary_note=row.get("secondary_note", ""),
             secondary_sources=row.get("secondary_sources", []),
+            # Evidence must survive the round trip. Without this, any stage
+            # that loads, mutates and saves the roster silently strips every
+            # verbatim quote - which is the whole basis for auditing a row.
+            m4a_evidence=[
+                Evidence(
+                    quote=e.get("quote", ""),
+                    url=e.get("url", ""),
+                    matched_rule=e.get("matched_rule", ""),
+                    tier=_parse_tier(e.get("tier", "unknown")),
+                    negated=e.get("negated", False),
+                    context=e.get("context", ""),
+                )
+                for e in row.get("m4a_evidence", [])
+            ],
             conflicts=row.get("conflicts", []),
         )
         roster.candidates.append(cand)
