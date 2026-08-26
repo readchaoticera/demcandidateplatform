@@ -1,0 +1,701 @@
+{
+ "Terri Sewell": {
+  "tier": "aca_strengthen",
+  "confidence": 0.5,
+  "note": "Universal coverage framed as a civil right; ACA defense and Medicare residency expansion. No M4A position found.",
+  "sources": [
+   "https://sewell.house.gov/healthcare",
+   "https://sewell.house.gov/2019/6/rep-sewell-universal-health-care-coverage-civil-rights-issue-our-day"
+  ]
+ },
+ "Yassamin Ansari": {
+  "tier": "explicit_m4a",
+  "confidence": 0.8,
+  "note": "Campaigned on Medicare for All; chairs CPC Lowering Costs Task Force and names M4A among needed solutions.",
+  "sources": [
+   "https://yassaminforcongress.com/news/congressional-progressive-caucus-pac-endorses-yassamin-ansari-az-03/",
+   "https://cactuspolitics.com/2026/07/yassamin-ansari-convenes-healthcare-hearing-patients-over-profits/"
+  ]
+ },
+ "Adelita Grijalva": {
+  "tier": "explicit_m4a",
+  "confidence": 0.85,
+  "note": "Reported as cosponsor of the Medicare for All Act; campaigned on fighting for M4A.",
+  "sources": [
+   "https://ourrevolution.com/adelita-grijalva-for-u-s-congress-az-7/",
+   "https://www.congress.gov/member/adelita-grijalva/G000606"
+  ]
+ },
+ "Pramila Jayapal": {
+  "tier": "explicit_m4a",
+  "confidence": 0.95,
+  "note": "Lead sponsor of H.R.3069, the Medicare for All Act (119th Congress).",
+  "sources": [
+   "https://jayapal.house.gov/2025/04/29/jayapal-sanders-dingell-hundreds-of-health-care-workers-introduce-medicare-for-all/"
+  ]
+ },
+ "Mark Pocan": {
+  "tier": "explicit_m4a",
+  "confidence": 0.9,
+  "note": "Original cosponsor of Medicare for All since 2013; former CPC co-chair who grew cosponsorship.",
+  "sources": [
+   "https://pocan.house.gov/issues/health-care"
+  ]
+ },
+ "Ted Lieu": {
+  "tier": "explicit_m4a",
+  "confidence": 0.85,
+  "note": "Original cosponsor of H.R.676 in the 115th Congress; founding member of the Medicare for All Caucus.",
+  "sources": [
+   "https://www.congress.gov/bill/115th-congress/house-bill/676/cosponsors"
+  ]
+ },
+ "Maxine Waters": {
+  "tier": "explicit_m4a",
+  "confidence": 0.9,
+  "note": "Reported cosponsor of the Medicare for All Act across the 116th, 118th and 119th Congresses (H.R.3069).",
+  "sources": [
+   "https://www.congress.gov/bill/119th-congress/house-bill/3069/cosponsors"
+  ]
+ },
+ "Gwen Moore": {
+  "tier": "no_coverage_position",
+  "confidence": 0.4,
+  "note": "Declined to cosponsor the 2019 Medicare for All Act under advocacy pressure; no current position located.",
+  "sources": [
+   "https://www.ueunion.org/political-action/2019/ue-members-press-congresswoman-gwen-moore-to-support-medicare-for-all"
+  ]
+ },
+ "Jim Clyburn": {
+  "tier": "public_option",
+  "confidence": 0.8,
+  "note": "Explicitly rejects M4A ('not a single person who put us in the majority supports Medicare for All'); backs a public option and incremental ACA reform.",
+  "sources": [
+   "https://www.postandcourier.com/news/south-carolina-rep-jim-clyburn-calls-on-democrats-to-take/article_d4e7549c-1630-11e7-a07e-8728b3fc4778.html"
+  ]
+ },
+ "Henry Cuellar": {
+  "tier": "aca_strengthen",
+  "confidence": 0.7,
+  "note": "Centrist; says fix the current system before considering alternatives. ACA tweaks, CHIP. No M4A support.",
+  "sources": [
+   "https://cuellar.house.gov/issues/issue/?IssueID=3834"
+  ]
+ },
+ "Joaquin Castro": {
+  "tier": "aca_strengthen",
+  "confidence": 0.4,
+  "note": "Backs universal coverage in principle but declines to commit to M4A and is not a cosponsor of the 2025 Act. Genuinely ambiguous.",
+  "sources": [
+   "https://www.texasobserver.org/texas-democrats-stand-single-payer-health-care/"
+  ]
+ },
+ "Lizzie Fletcher": {
+  "tier": "public_option",
+  "confidence": 0.8,
+  "note": "Rejected M4A in favour of incremental ACA improvements plus a Medicare public option (PolitiFact).",
+  "sources": [
+   "https://www.politifact.com/factchecks/2018/oct/30/john-culberson/lizzie-fletcher-does-not-want-government-funded-un/"
+  ]
+ },
+ "Richard Ojeda": {
+  "tier": "aca_strengthen",
+  "confidence": 0.45,
+  "note": "CONFLICT: backed M4A as a 2018 WV candidate, but his 2026 NC-09 platform is Medicaid expansion, ACA protection and drug pricing. Scored on current platform.",
+  "sources": [
+   "https://ojedafornc.com/ensuring-quality-healthcare/"
+  ]
+ },
+ "Pete Aguilar": {
+  "tier": "aca_strengthen",
+  "confidence": 0.6,
+  "note": "ACA defence, ARP subsidies, IRA drug negotiation. No M4A position located.",
+  "sources": [
+   "https://aguilar.house.gov/issues/"
+  ]
+ },
+ "Norma Torres": {
+  "tier": "aca_strengthen",
+  "confidence": 0.55,
+  "note": "Opposes ACA repeal, works to improve it. No M4A position located.",
+  "sources": [
+   "https://torres.house.gov/issues/health-care"
+  ]
+ },
+ "Lou Correa": {
+  "tier": "aca_strengthen",
+  "confidence": 0.55,
+  "note": "Voted to protect and expand the ACA; opposed Medicaid cuts. No M4A position located.",
+  "sources": [
+   "https://correa.house.gov/news/press-releases/rep-lou-correa-votes-to-protect-and-expand-affordable-care-act-"
+  ]
+ },
+ "Jim Himes": {
+  "tier": "aca_strengthen",
+  "confidence": 0.6,
+  "note": "Improve the ACA, sustain Medicare. No M4A position located.",
+  "sources": [
+   "https://www.himesforcongress.com/priorities/healthcare/"
+  ]
+ },
+ "Joe Courtney": {
+  "tier": "public_option",
+  "confidence": 0.8,
+  "note": "Cosponsored the Medicare Buy-In and Health Care Stabilization Act; backs Medicare at 55 plus a public option. Reported as viewing M4A as a step too far.",
+  "sources": [
+   "https://courtney.house.gov/issues/medicare-buy-and-health-care-stabilization-act"
+  ]
+ },
+ "Ed Case": {
+  "tier": "aca_strengthen",
+  "confidence": 0.4,
+  "note": "Agenda is Hawaii-specific health needs, community health centres, telemedicine. No M4A position located.",
+  "sources": [
+   "https://edcase.com/agenda/"
+  ]
+ },
+ "Greg Stanton": {
+  "tier": "aca_strengthen",
+  "confidence": 0.75,
+  "note": "Says M4A 'may not be the right path'; repeatedly declined to cosponsor despite constituent lobbying. ACA and drug-price focus.",
+  "sources": [
+   "https://azmirror.com/2019/08/29/like-presidential-hopefuls-arizona-dems-split-on-medicare-for-all/"
+  ]
+ },
+ "Jim Costa": {
+  "tier": "aca_strengthen",
+  "confidence": 0.55,
+  "note": "Blue Dog; defends ACA, Medicare and Medi-Cal. No M4A position located.",
+  "sources": [
+   "https://costa.house.gov/issues/healthcare"
+  ]
+ },
+ "Gil Cisneros": {
+  "tier": "public_option",
+  "confidence": 0.65,
+  "note": "Backs a public option / Medicare buy-in. Endorsed M4A as a 2018 candidate; current framing is the public option.",
+  "sources": [
+   "https://www.gilonthehill.com/on-the-issues/"
+  ]
+ },
+ "Gabe Vasquez": {
+  "tier": "public_option",
+  "confidence": 0.8,
+  "note": "Public option, Medicare eligibility to 55, drug-price negotiation. No M4A endorsement.",
+  "sources": [
+   "https://gabeforcongress.com/issues/"
+  ]
+ },
+ "Josh Riley": {
+  "tier": "aca_strengthen",
+  "confidence": 0.5,
+  "note": "Medicare Advantage oversight, rural hospitals, opposed Medicaid cuts. No M4A position located.",
+  "sources": [
+   "https://riley.house.gov/media/press-releases"
+  ]
+ },
+ "Janelle Bynum": {
+  "tier": "aca_strengthen",
+  "confidence": 0.55,
+  "note": "'Healthcare is a right'; protect Medicare/Medicaid, lower drug costs. No M4A position located.",
+  "sources": [
+   "https://bynum.house.gov/issues/healthcare"
+  ]
+ },
+ "Marilyn Strickland": {
+  "tier": "public_option",
+  "confidence": 0.85,
+  "note": "Explicitly backs a public option and Medicare at 55 rather than M4A; ran against an M4A opponent on that contrast.",
+  "sources": [
+   "https://stricklandforwashington.com/priorities/universal-health-care/"
+  ]
+ },
+ "Matt Schultz": {
+  "tier": "withdrew",
+  "confidence": 0.9,
+  "note": "ROSTER ERROR: ended his campaign in July 2026 and endorsed an independent, though he remained on the Aug 18 primary ballot. Should not be counted as on-ballot.",
+  "sources": [
+   "https://www.adn.com/politics/2026/07/17/democrat-matt-schultz-drops-out-of-alaskas-us-house-race/"
+  ]
+ },
+ "Angélica María Dueñas": {
+  "tier": "explicit_m4a",
+  "confidence": 0.85,
+  "note": "Campaigns explicitly on Medicare for All; pledges to cosponsor the Medicare for All Act, describes single-payer 'Expanded & Improved Medicare for All'.",
+  "sources": [
+   "https://angelica4congress.com/healthcare/"
+  ]
+ },
+ "Esther Kim-Varet": {
+  "tier": "aca_strengthen",
+  "confidence": 0.6,
+  "note": "Protect Medicare and Medicaid, Medicare drug-price negotiation, take on insurers. No M4A position located.",
+  "sources": [
+   "https://www.estherkimvaret.com/priorities"
+  ]
+ },
+ "Jennifer Jenkins": {
+  "tier": "aca_strengthen",
+  "confidence": 0.65,
+  "note": "Expand Medicaid, restore ACA subsidies, protect pre-existing conditions. No M4A position located.",
+  "sources": [
+   "https://jenkinsforfl.com/priorities/"
+  ]
+ },
+ "Oliver Gilbert": {
+  "tier": "explicit_m4a",
+  "confidence": 0.85,
+  "note": "Pledges to cosponsor House Medicare for All legislation; backs zero-cost care with no copays, premiums or deductibles.",
+  "sources": [
+   "https://www.oliverforcongress.com/issues/healthcare"
+  ]
+ },
+ "Cleo Fields": {
+  "tier": "aca_strengthen",
+  "confidence": 0.5,
+  "note": "Voted to extend ACA subsidies; healthcare-affordability framing. No M4A position located.",
+  "sources": [
+   "https://fields.house.gov/media/press-releases/congressman-cleo-fields-votes-support-extension-aca-subsidies"
+  ]
+ },
+ "Nellie Pou": {
+  "tier": "explicit_m4a",
+  "confidence": 0.45,
+  "note": "WEAK: a single secondary profile says she has 'endorsed Medicare-for-All'; her own congressional material is ACA/Medicaid defence. Not corroborated.",
+  "sources": [
+   "https://meetthefreshmen.marathonstrategies.com/meet-the-freshmen/846/nellie-pou/"
+  ]
+ },
+ "Trygve Hammer": {
+  "tier": "single_payer_substance",
+  "confidence": 0.4,
+  "note": "WEAK: a voter-guide inference places him at government-guaranteed healthcare with no private option. Not a direct quote; his own platform is cost-of-care framing.",
+  "sources": [
+   "https://www.hammerfornd.com/priorities"
+  ]
+ },
+ "Tessa Lynn Hodge": {
+  "tier": "explicit_m4a",
+  "confidence": 0.75,
+  "note": "Says she will fight for Medicare for All while expanding rural health services.",
+  "sources": [
+   "https://bakersfieldnow.com/news/local/california-congressional-candidate-tessa-lynn-hodge-aims-to-flip-23rd-district"
+  ]
+ },
+ "Dave Dawson": {
+  "tier": "aca_strengthen",
+  "confidence": 0.6,
+  "note": "Medicare drug-price negotiation, insulin cap, protect the ACA. No M4A position located.",
+  "sources": [
+   "https://davedawsonforiowa.com/"
+  ]
+ },
+ "Patty Garcia": {
+  "tier": "explicit_m4a",
+  "confidence": 0.9,
+  "note": "Campaigns explicitly on Medicare for All; endorsed by National Nurses United and the CPC PAC.",
+  "sources": [
+   "https://www.nationalnursesunited.org/press/national-nurses-united-endorses-patty-garcia-for-illinois-4th-district"
+  ]
+ },
+ "Adrian Boafo": {
+  "tier": "explicit_m4a",
+  "confidence": 0.7,
+  "note": "Platform states 'passing Medicare for All with a public option'; also Medicaid restoration.",
+  "sources": [
+   "https://www.adrianboafo.com/issues"
+  ]
+ },
+ "Teresa Benitez-Thompson": {
+  "tier": "explicit_m4a",
+  "confidence": 0.5,
+  "note": "HEDGED: reported as running on Medicare for All, but says her goal is maximum access at lowest cost and she is 'not committed to how we get there'.",
+  "sources": [
+   "https://www.kunr.org/local-stories/2026-03-24/meet-teresa-benitez-thompson-democratic-candidate-for-nevadas-cd2"
+  ]
+ },
+ "Vanessa Enoch": {
+  "tier": "public_option",
+  "confidence": 0.5,
+  "note": "CONFLICT: uses the Medicare for All label and proposes funding it, but also backs 'a public Medicare option that leaves private insurance intact'. Substance is a public option.",
+  "sources": [
+   "https://justfacts.votesmart.org/candidate/political-courage-test/178848/vanessa-enoch"
+  ]
+ },
+ "Jena Nelson": {
+  "tier": "aca_strengthen",
+  "confidence": 0.6,
+  "note": "Protect Social Security/Medicare/Medicaid, expand Medicare negotiation. Her primary opponent backed M4A; she did not.",
+  "sources": [
+   "https://jenanelson.com/issues/"
+  ]
+ },
+ "Paige Cognetti": {
+  "tier": "aca_strengthen",
+  "confidence": 0.6,
+  "note": "Defend Medicaid, protect marketplaces, behavioral health. No M4A position located.",
+  "sources": [
+   "https://paigeforpa.com/"
+  ]
+ },
+ "Lee McInnis": {
+  "tier": "aca_strengthen",
+  "confidence": 0.5,
+  "note": "'We can have healthcare for all' as rhetoric; platform is reversing federal healthcare cuts, mental health, EMS funding. M4A not named.",
+  "sources": [
+   "https://www.alreporter.com/2025/12/01/democratic-congressional-aspirant-lee-mcinnis-explains-his-candidacy/"
+  ]
+ },
+ "Eric Yonce": {
+  "tier": "aca_strengthen",
+  "confidence": 0.5,
+  "note": "'Guaranteeing healthcare for all' as framing; platform is drug costs, telehealth, preserving Medicare. M4A not named.",
+  "sources": [
+   "https://www.yonceforcongress.com/"
+  ]
+ },
+ "James Pericola": {
+  "tier": "aca_strengthen",
+  "confidence": 0.65,
+  "note": "Restore Medicaid funding, protect the ACA, Medicare drug negotiation. No M4A position located.",
+  "sources": [
+   "https://jamespericola.com/"
+  ]
+ },
+ "Pia Dandiya": {
+  "tier": "aca_strengthen",
+  "confidence": 0.55,
+  "note": "Protect Social Security and Medicare, lower costs. No M4A position located.",
+  "sources": [
+   "https://piaforcongress.com/priorities"
+  ]
+ },
+ "Eliott Rodriguez": {
+  "tier": "aca_strengthen",
+  "confidence": 0.6,
+  "note": "Lower drug costs, strengthen Medicare, extend ACA subsidies. No M4A position located.",
+  "sources": [
+   "https://www.cbsnews.com/miami/news/2026-florida-primary-district-27-eliott-rodriguez/"
+  ]
+ },
+ "Anthony Kozycki": {
+  "tier": "aca_strengthen",
+  "confidence": 0.65,
+  "note": "Medicare drug-price negotiation, restore ACA subsidies, close insurer loopholes. No M4A position located.",
+  "sources": [
+   "https://kozyckiforcongress.com/issues.html"
+  ]
+ },
+ "Ceretta Smith": {
+  "tier": "aca_strengthen",
+  "confidence": 0.55,
+  "note": "Healthcare as a right; Medicaid expansion and reproductive care. No M4A position located.",
+  "sources": [
+   "https://cerettaforga.com/"
+  ]
+ },
+ "Elinor Gilbreath": {
+  "tier": "aca_strengthen",
+  "confidence": 0.5,
+  "note": "Rural health systems, provider access, drug-price transparency. No M4A position located.",
+  "sources": [
+   "https://ellieforidaho.com/"
+  ]
+ },
+ "Kelly Etsi": {
+  "tier": "aca_strengthen",
+  "confidence": 0.45,
+  "note": "NAME: sources spell this 'Kelly Esti' - possible roster transcription error. Platform is federal health programs and rural clinics. No M4A position located.",
+  "sources": [
+   "https://www.kellyesti4congress.com/"
+  ]
+ },
+ "Caitlyn Gegen": {
+  "tier": "explicit_m4a",
+  "confidence": 0.8,
+  "note": "Calls for restoring ACA subsidies and moving toward Medicare for All with mental, dental and vision coverage.",
+  "sources": [
+   "https://nowgeorgia.com/gegen-pitches-progressive-platform-systemic-change-in-9th-district-race/"
+  ]
+ },
+ "Jamee Decio": {
+  "tier": "public_option",
+  "confidence": 0.6,
+  "note": "Guaranteed affordable access 'without having to give up the private insurance you have' - explicitly preserves private coverage.",
+  "sources": [
+   "https://decioforcongress.com/"
+  ]
+ },
+ "Brad Meyer": {
+  "tier": "explicit_m4a",
+  "confidence": 0.9,
+  "note": "Campaigns on Medicare for All; proposes universal nonprofit healthcare and a constitutional amendment making healthcare a right.",
+  "sources": [
+   "https://bradmeyer.org/Healthcare.html"
+  ]
+ },
+ "Katy Tyndell": {
+  "tier": "aca_strengthen",
+  "confidence": 0.5,
+  "note": "Healthcare access and cost relief. No M4A position located.",
+  "sources": [
+   "https://katyforkansas.com/issues/"
+  ]
+ },
+ "Drew Williams": {
+  "tier": "aca_strengthen",
+  "confidence": 0.4,
+  "note": "HEDGED: discusses M4A within a broader universal-healthcare goal but stresses step-by-step bills over broad policy statements.",
+  "sources": [
+   "https://www.williamsforky.com/"
+  ]
+ },
+ "Megan Wingfield": {
+  "tier": "explicit_m4a",
+  "confidence": 0.85,
+  "note": "Supports Medicare for All to eliminate medical debt; frames healthcare as a human right.",
+  "sources": [
+   "https://www.wingfieldforcongress.com/"
+  ]
+ },
+ "Tania Nyman": {
+  "tier": "explicit_m4a",
+  "confidence": 0.7,
+  "note": "Supports achieving Medicare for All by incrementally lowering the eligibility age.",
+  "sources": [
+   "https://www.tanianymanforcongress.com/"
+  ]
+ },
+ "Dan McKay": {
+  "tier": "unknown",
+  "confidence": 0.0,
+  "note": "No healthcare position located in any source; presents as a conservative Louisiana Democrat.",
+  "sources": [
+   "https://www.mckayforcongress.com/"
+  ]
+ },
+ "Lindsay Garcia": {
+  "tier": "aca_strengthen",
+  "confidence": 0.4,
+  "note": "'Healthcare is a human right' as a top-three priority, but no mechanism stated. No M4A position located.",
+  "sources": [
+   "https://www.rubiagarcia.com/issues"
+  ]
+ },
+ "Benjamin Ambrose": {
+  "tier": "explicit_m4a",
+  "confidence": 0.85,
+  "note": "'Proudly supports Medicare for All'; names single-payer as a pillar of the campaign.",
+  "sources": [
+   "https://ambrose4congress.com/priorities"
+  ]
+ },
+ "Christian Vukasovich": {
+  "tier": "explicit_m4a",
+  "confidence": 0.6,
+  "note": "Endorser (Lenawee Indivisible) states he supports Medicare for All; his own platform is drug costs and rural access.",
+  "sources": [
+   "https://www.lenaweeindivisible.org/lenawee-indivisible-endorses-christian-vukasovich-for-mi-05/"
+  ]
+ },
+ "Jordan Herrera": {
+  "tier": "public_option",
+  "confidence": 0.65,
+  "note": "Names Medicare for All as a long-term goal but campaigns on ACA expansion plus a public option as the practical path.",
+  "sources": [
+   "https://jordanjherrera.com/issues/"
+  ]
+ },
+ "Zack Mullock": {
+  "tier": "explicit_m4a",
+  "confidence": 0.8,
+  "note": "Advocates Medicare for All, funded by corporate tax fairness and a tax on the top 5%.",
+  "sources": [
+   "https://mullockforcongress.com/"
+  ]
+ },
+ "Rachel Peace": {
+  "tier": "aca_strengthen",
+  "confidence": 0.45,
+  "note": "Supports 'guaranteed healthcare for all' and fights Medicaid cuts; no mechanism stated, no M4A position located.",
+  "sources": [
+   "https://www.njcitizenaction.org/njca_pac_endorses_rachel_peace_for_cd4"
+  ]
+ },
+ "Aaron Gies": {
+  "tier": "explicit_m4a",
+  "confidence": 0.7,
+  "note": "Says he wants to move toward single-payer healthcare covering everybody in NY-23; universal access framing.",
+  "sources": [
+   "https://aaronforny23.com/"
+  ]
+ },
+ "Maria Jukic": {
+  "tier": "public_option",
+  "confidence": 0.7,
+  "note": "Center-left; would lower the Medicare eligibility age to 62 and expand negotiation. Her primary opponent ran on M4A; she did not.",
+  "sources": [
+   "https://www.mariajukicforcongress.com/healthcare-the-road-to-universal-coverage/"
+  ]
+ },
+ "Suzie Byrd": {
+  "tier": "aca_strengthen",
+  "confidence": 0.45,
+  "note": "Lists universal health care as a priority but no mechanism stated. No M4A position located.",
+  "sources": [
+   "https://www.ballotready.org/people/suzie-byrd"
+  ]
+ },
+ "Bob Brooks": {
+  "tier": "explicit_m4a",
+  "confidence": 0.9,
+  "note": "Says his biggest priority is Medicare for All; campaigned on it with broad Democratic endorsements.",
+  "sources": [
+   "https://muhlenbergweekly.com/campus-voices/an-interview-with-bob-brooks-candidate-for-pa-07/"
+  ]
+ },
+ "Rachel Wallace": {
+  "tier": "aca_strengthen",
+  "confidence": 0.55,
+  "note": "Lower costs, ban prior authorization, reverse 2025 cuts, insurer accountability. No M4A position located.",
+  "sources": [
+   "https://www.wallaceforcongress.com/"
+  ]
+ },
+ "John Vincent": {
+  "tier": "aca_strengthen",
+  "confidence": 0.55,
+  "note": "Protect Medicare, Medicaid, Social Security and ACA benefits; veterans' care. No M4A position located.",
+  "sources": [
+   "https://horrydemocrats.org/about-us/democratic-candidates/john-vincent/"
+  ]
+ },
+ "Kristi Burke": {
+  "tier": "explicit_m4a",
+  "confidence": 0.85,
+  "note": "Supports the Medicare for All Act explicitly; frames healthcare as a human right.",
+  "sources": [
+   "https://www.votekristiburke.com/non-negotiables"
+  ]
+ },
+ "Mike Croley": {
+  "tier": "aca_strengthen",
+  "confidence": 0.5,
+  "note": "'Universal Basic Healthcare' framing and healthcare as a right, but the concrete asks are ACA subsidies and claim-denial reform. M4A not named.",
+  "sources": [
+   "https://croleyforcongress.com/what-i-will-fight-for/"
+  ]
+ },
+ "Darden Copeland": {
+  "tier": "aca_strengthen",
+  "confidence": 0.6,
+  "note": "Protect Medicaid/Medicare, extend ACA subsidies, drug negotiation. NOTE: lost the Oct 2025 TN-07 special primary; verify he is the 2026 nominee.",
+  "sources": [
+   "https://nashvillebanner.com/2026/07/16/darden-copeland-congress-tennessee-district-7/"
+  ]
+ },
+ "Shaun Finnie": {
+  "tier": "public_option",
+  "confidence": 0.7,
+  "note": "Restore enhanced ACA assistance and establish a public insurance option to compete with private insurers.",
+  "sources": [
+   "https://shaunfinnieforcongress.com/"
+  ]
+ },
+ "Chelsey Hockett": {
+  "tier": "explicit_m4a",
+  "confidence": 0.85,
+  "note": "Platform states she will fight for Medicare for All; healthcare framed as a human right.",
+  "sources": [
+   "https://www.lonestarleft.com/p/meet-the-candidates-chelsey-hockett"
+  ]
+ },
+ "Caitlin Rourk": {
+  "tier": "aca_strengthen",
+  "confidence": 0.65,
+  "note": "Strengthen the ACA, Medicaid expansion, drug costs, surprise billing. No M4A position located.",
+  "sources": [
+   "https://www.caitlinrourk.com/issues"
+  ]
+ },
+ "Marquette Greene-Scott": {
+  "tier": "explicit_m4a",
+  "confidence": 0.8,
+  "note": "Answered 'Yes, I do' to supporting universal publicly funded healthcare (Medicare for All or similar single-payer).",
+  "sources": [
+   "https://www.lonestarleft.com/p/which-texas-democratic-congressional"
+  ]
+ },
+ "Rhonda Hart": {
+  "tier": "unknown",
+  "confidence": 0.0,
+  "note": "No healthcare-coverage position located; Vote Smart also records none. Campaign focus is gun safety, veterans and reproductive rights.",
+  "sources": [
+   "https://justfacts.votesmart.org/candidate/political-courage-test/213252/rhonda-hart"
+  ]
+ },
+ "Jonny Larsen": {
+  "tier": "unknown",
+  "confidence": 0.0,
+  "note": "No healthcare position located in any source.",
+  "sources": [
+   "https://jonnyutah4congress.com/"
+  ]
+ },
+ "Christopher Riechard": {
+  "tier": "aca_strengthen",
+  "confidence": 0.45,
+  "note": "NAME: sources spell this 'Chris Reichard' - likely roster transcription error. Open to 'Medicare-For-All or Medicaid support' to keep rural facilities open; no firm commitment.",
+  "sources": [
+   "https://reichardforrep.com/"
+  ]
+ },
+ "Victor Arias": {
+  "tier": "aca_strengthen",
+  "confidence": 0.6,
+  "note": "Expand Medicare drug negotiation, cap out-of-pocket costs, end surprise billing. No M4A position located.",
+  "sources": [
+   "https://votearias.us/"
+  ]
+ },
+ "Jason Pearce": {
+  "tier": "public_option",
+  "confidence": 0.5,
+  "note": "Affordable healthcare for all via expanding Medicare and cutting drug costs; M4A not named.",
+  "sources": [
+   "https://www.pearcefortexas.com/platform"
+  ]
+ },
+ "Angela Rodriguez Prilliman": {
+  "tier": "explicit_m4a",
+  "confidence": 0.9,
+  "note": "Proudly supports and pledges to cosponsor Medicare for All, described as comprehensive single-payer. (Goes by 'Heli'.)",
+  "sources": [
+   "https://www.helifortexas.com/"
+  ]
+ },
+ "Dione Sims": {
+  "tier": "aca_strengthen",
+  "confidence": 0.45,
+  "note": "Affordable healthcare access and mental health without bankruptcy. No M4A position located.",
+  "sources": [
+   "https://dionesimsforcongress.com/"
+  ]
+ },
+ "Tanya Lloyd": {
+  "tier": "explicit_m4a",
+  "confidence": 0.85,
+  "note": "Supports a fully government-funded single-payer system covering everyone, moving toward Medicare for All.",
+  "sources": [
+   "https://www.lonestarleft.com/p/meet-the-candidates-tanya-lloyd-for"
+  ]
+ },
+ "Melissa McDonough": {
+  "tier": "explicit_m4a",
+  "confidence": 0.5,
+  "note": "CONFLICT: her platform is described as supporting universal healthcare/M4A, but coverage contrasts her moderate positioning against a primary opponent running on M4A.",
+  "sources": [
+   "https://www.houstonchronicle.com/opinion/endorsements/article/melissa-mcdonough-congress-democrat-primary-hunt-18651628.php"
+  ]
+ }
+}

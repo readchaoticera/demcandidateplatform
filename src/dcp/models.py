@@ -231,10 +231,60 @@ class Candidate:
 
     endorsements: list[str] = field(default_factory=list)
 
+    # --- secondary (news-sourced) assessment --------------------------------
+    secondary_tier: "M4ATier" = None  # set in __post_init__
+    """Position derived from news coverage and third-party profiles, for
+    candidates whose own site could not be read. Weaker evidence than either
+    the campaign site or the cosponsor roll, so it is kept separate and never
+    overwrites them."""
+
+    secondary_confidence: float = 0.0
+    secondary_note: str = ""
+    secondary_sources: list[str] = field(default_factory=list)
+
     # --- bookkeeping --------------------------------------------------------
     provenance: list[Provenance] = field(default_factory=list)
     conflicts: list[str] = field(default_factory=list)
     """Human-readable notes where sources disagreed. Never silently resolved."""
+
+    def __post_init__(self) -> None:
+        if self.secondary_tier is None:
+            self.secondary_tier = M4ATier.UNKNOWN
+
+    @property
+    def resolved_tier(self) -> "M4ATier":
+        """Best available position, combining all three evidence types.
+
+        Precedence reflects evidential strength, not convenience:
+
+        1. **Cosponsorship** of the Medicare for All Act - a recorded
+           legislative act, and the least deniable evidence there is.
+        2. **The candidate's own campaign site** - what they choose to tell
+           voters, which is the measure the primary analysis reports.
+        3. **News coverage** - third-party reporting, used only where the site
+           could not be read at all.
+
+        ``m4a_tier`` remains the site-only measure so the two can be compared;
+        this property is what the combined figures use.
+        """
+        if self.cosponsored_m4a_bill:
+            return M4ATier.EXPLICIT_M4A
+        if self.m4a_tier.is_finding:
+            return self.m4a_tier
+        if self.secondary_tier.is_finding:
+            return self.secondary_tier
+        return M4ATier.UNKNOWN
+
+    @property
+    def evidence_basis(self) -> str:
+        """Which evidence type set ``resolved_tier``."""
+        if self.cosponsored_m4a_bill:
+            return "cosponsorship"
+        if self.m4a_tier.is_finding:
+            return "campaign_site"
+        if self.secondary_tier.is_finding:
+            return "news"
+        return "none"
 
     @property
     def candidate_id(self) -> str:
@@ -270,6 +320,12 @@ class Candidate:
             "m4a_tier": self.m4a_tier.value,
             "m4a_evidence": [e.to_dict() for e in self.m4a_evidence],
             "m4a_notes": self.m4a_notes,
+            "resolved_tier": self.resolved_tier.value,
+            "evidence_basis": self.evidence_basis,
+            "secondary_tier": self.secondary_tier.value,
+            "secondary_confidence": round(self.secondary_confidence, 3),
+            "secondary_note": self.secondary_note,
+            "secondary_sources": list(self.secondary_sources),
             "cosponsored_m4a_bill": self.cosponsored_m4a_bill,
             "endorsements": list(self.endorsements),
             "wikipedia_url": self.wikipedia_url,

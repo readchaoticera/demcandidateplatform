@@ -44,6 +44,16 @@ class Analysis:
     by_state: dict[str, dict[str, int]] = field(default_factory=dict)
     by_incumbency: dict[str, dict[str, int]] = field(default_factory=dict)
     needs_review: int = 0
+
+    # --- combined picture across all three evidence types -------------------
+    resolved_counts: dict[str, int] = field(default_factory=dict)
+    resolved_classified: int = 0
+    resolved_explicit: int = 0
+    by_evidence: dict[str, int] = field(default_factory=dict)
+    cosponsors: int = 0
+    cosponsor_silent: int = 0
+    """Cosponsors of the bill whose own campaign site never mentions it."""
+
     has_incumbency_data: bool = False
     """False when no source marked incumbents, which makes the incumbency
     breakdown meaningless rather than merely empty."""
@@ -74,6 +84,10 @@ def analyze(roster: Roster, as_of: date) -> Analysis:
     for c in on_ballot:
         by_inc["incumbent" if c.incumbent else "non-incumbent"][c.m4a_tier.value] += 1
 
+    resolved = Counter(c.resolved_tier for c in on_ballot)
+    basis = Counter(c.evidence_basis for c in on_ballot)
+    cosponsors = [c for c in on_ballot if c.cosponsored_m4a_bill]
+
     return Analysis(
         generated_at=datetime.utcnow(),
         as_of=as_of,
@@ -95,6 +109,14 @@ def analyze(roster: Roster, as_of: date) -> Analysis:
             if c.m4a_tier.is_finding and "review" in c.m4a_notes.lower()
         ),
         has_incumbency_data=any(c.incumbent for c in on_ballot),
+        resolved_counts={t.value: resolved.get(t, 0) for t in TIER_ORDER},
+        resolved_classified=sum(n for t, n in resolved.items() if t.is_finding),
+        resolved_explicit=resolved.get(M4ATier.EXPLICIT_M4A, 0),
+        by_evidence=dict(basis),
+        cosponsors=len(cosponsors),
+        cosponsor_silent=sum(
+            1 for c in cosponsors if c.m4a_tier is not M4ATier.EXPLICIT_M4A
+        ),
     )
 
 
@@ -130,12 +152,48 @@ def to_markdown(analysis: Analysis, roster: Optional[Roster] = None) -> str:
     w(f"| Explicit + single-payer in substance | {a.single_payer_any} | "
       f"{a.share(a.single_payer_any):.1%} | {a.share(a.single_payer_any, False):.1%} |\n\n")
 
+    if not a.total_on_ballot:
+        w("## Method\n\nNo candidates on the ballot; nothing to report.\n")
+        return out.getvalue()
+
+    w("## Adding the legislative record and news coverage\n\n")
+    w("The campaign-site measure above is what candidates choose to tell voters.\n"
+      "Two other evidence types fill in candidates whose sites could not be read,\n"
+      "and one of them is stronger than a website: cosponsoring the bill is a\n"
+      "recorded legislative act.\n\n")
+    w(f"| Evidence | Candidates |\n|---|---|\n")
+    labels = {"cosponsorship": "Cosponsors H.R.3069, the Medicare for All Act",
+              "campaign_site": "Position read from their own campaign site",
+              "news": "Position from news coverage (site unreadable)",
+              "none": "No position from any source"}
+    for key in ("cosponsorship", "campaign_site", "news", "none"):
+        if a.by_evidence.get(key):
+            w(f"| {labels[key]} | {a.by_evidence[key]} |\n")
+    w("\n")
+    unresolved = a.total_on_ballot - a.resolved_classified
+    w(f"Combined, **{a.resolved_classified} of {a.total_on_ballot}** candidates "
+      f"({a.resolved_classified / a.total_on_ballot:.0%}) now have a position from "
+      f"some source, leaving **{unresolved}** with none.\n\n")
+    w(f"On the combined measure, **{a.resolved_explicit}** candidates "
+      f"({(a.resolved_explicit / a.resolved_classified if a.resolved_classified else 0):.1%} of those with a known "
+      f"position) support Medicare for All - against "
+      f"{a.explicit_m4a} on campaign sites alone.\n\n")
+    if a.cosponsors:
+        w(f"> **{a.cosponsor_silent} of the {a.cosponsors} cosponsors never mention it "
+          f"on their own campaign site.** Cosponsorship and campaign messaging are\n"
+          "> close to disjoint, which is a finding in itself rather than a gap to be\n"
+          "> averaged away.\n\n")
+
     w("## Full distribution\n\n")
-    w("| Position tier | Count | Share of classified |\n|---|---|---|\n")
+    w("| Position tier | Campaign site | Share | Combined | Share |\n"
+      "|---|---|---|---|---|\n")
     for tier in TIER_ORDER:
         n = a.tier_counts.get(tier.value, 0)
+        rn = a.resolved_counts.get(tier.value, 0)
         share = "n/a" if tier is M4ATier.UNKNOWN else f"{a.share(n):.1%}"
-        w(f"| `{tier.value}` | {n} | {share} |\n")
+        rshare = ("n/a" if tier is M4ATier.UNKNOWN
+                  else f"{(rn / a.resolved_classified if a.resolved_classified else 0):.1%}")
+        w(f"| `{tier.value}` | {n} | {share} | {rn} | {rshare} |\n")
     w("\n")
 
     if a.by_incumbency and a.has_incumbency_data:
@@ -173,6 +231,8 @@ def to_markdown(analysis: Analysis, roster: Optional[Roster] = None) -> str:
 CSV_COLUMNS = (
     "candidate_id", "full_name", "state", "district", "ballot_rule", "status",
     "incumbent", "campaign_url", "campaign_url_confidence", "m4a_tier",
+    "resolved_tier", "evidence_basis", "cosponsored_m4a_bill",
+    "secondary_tier", "secondary_confidence", "secondary_note", "secondary_sources",
     "m4a_evidence_quote", "m4a_evidence_rule", "m4a_notes", "conflicts",
 )
 
@@ -194,6 +254,13 @@ def to_csv(roster: Roster) -> str:
             "campaign_url": c.campaign_url or "",
             "campaign_url_confidence": round(c.campaign_url_confidence, 3),
             "m4a_tier": c.m4a_tier.value,
+            "resolved_tier": c.resolved_tier.value,
+            "evidence_basis": c.evidence_basis,
+            "cosponsored_m4a_bill": c.cosponsored_m4a_bill,
+            "secondary_tier": c.secondary_tier.value,
+            "secondary_confidence": round(c.secondary_confidence, 3),
+            "secondary_note": c.secondary_note,
+            "secondary_sources": " | ".join(c.secondary_sources),
             "m4a_evidence_quote": ev.quote if ev else "",
             "m4a_evidence_rule": ev.matched_rule if ev else "",
             "m4a_notes": c.m4a_notes,
@@ -215,6 +282,12 @@ def to_json(analysis: Analysis, roster: Roster) -> str:
                 "explicit_m4a": analysis.explicit_m4a,
                 "single_payer_any": analysis.single_payer_any,
                 "tier_counts": analysis.tier_counts,
+            "resolved_counts": analysis.resolved_counts,
+            "resolved_classified": analysis.resolved_classified,
+            "resolved_explicit": analysis.resolved_explicit,
+            "by_evidence": analysis.by_evidence,
+            "cosponsors": analysis.cosponsors,
+            "cosponsor_silent": analysis.cosponsor_silent,
                 "by_state": analysis.by_state,
                 "by_incumbency": analysis.by_incumbency,
                 "unresolved_seats": analysis.unresolved_seats,

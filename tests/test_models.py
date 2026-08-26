@@ -49,3 +49,49 @@ def test_supports_universal_single_payer_excludes_public_option():
     assert M4ATier.SINGLE_PAYER_SUBSTANCE.supports_universal_single_payer
     assert not M4ATier.PUBLIC_OPTION.supports_universal_single_payer
     assert not M4ATier.ACA_STRENGTHEN.supports_universal_single_payer
+
+
+# --- combining evidence types ----------------------------------------------
+
+def _cand():
+    return Candidate("Jane Doe", District("OH", 5), NominationStatus.ON_BALLOT)
+
+
+def test_resolved_tier_prefers_cosponsorship_over_everything():
+    # A recorded legislative act outranks what a candidate puts on a website.
+    c = _cand()
+    c.m4a_tier = M4ATier.ACA_STRENGTHEN
+    c.secondary_tier = M4ATier.PUBLIC_OPTION
+    c.cosponsored_m4a_bill = True
+    assert c.resolved_tier is M4ATier.EXPLICIT_M4A
+    assert c.evidence_basis == "cosponsorship"
+
+
+def test_campaign_site_outranks_news():
+    c = _cand()
+    c.m4a_tier = M4ATier.ACA_STRENGTHEN
+    c.secondary_tier = M4ATier.EXPLICIT_M4A
+    assert c.resolved_tier is M4ATier.ACA_STRENGTHEN
+    assert c.evidence_basis == "campaign_site"
+
+
+def test_news_fills_in_only_when_the_site_could_not_be_read():
+    c = _cand()
+    c.m4a_tier = M4ATier.UNKNOWN
+    c.secondary_tier = M4ATier.EXPLICIT_M4A
+    assert c.resolved_tier is M4ATier.EXPLICIT_M4A
+    assert c.evidence_basis == "news"
+
+
+def test_no_evidence_resolves_to_unknown():
+    c = _cand()
+    assert c.resolved_tier is M4ATier.UNKNOWN
+    assert c.evidence_basis == "none"
+
+
+def test_secondary_never_overwrites_the_site_only_measure():
+    # The site-only figure must stay comparable across runs.
+    c = _cand()
+    c.m4a_tier = M4ATier.NO_COVERAGE_POSITION
+    c.secondary_tier = M4ATier.EXPLICIT_M4A
+    assert c.m4a_tier is M4ATier.NO_COVERAGE_POSITION

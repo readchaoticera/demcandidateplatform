@@ -10,6 +10,7 @@ one. ``run`` chains them for convenience.
     dcp websites                # attach campaign URLs
     dcp classify                # crawl sites, assign M4A tiers
     dcp cosponsors              # mark Medicare for All Act cosponsors
+    dcp secondary               # apply news-sourced assessments for unreadable sites
     dcp report                  # markdown + CSV + JSON output
     dcp run                     # all of the above
 """
@@ -334,6 +335,54 @@ def cmd_cosponsors(args: argparse.Namespace) -> int:
     return 0
 
 
+#: Sentinel used in the secondary file for a candidate found to have left the
+#: race. Not a position - it corrects the roster instead.
+_WITHDREW = "withdrew"
+
+
+def cmd_secondary(args: argparse.Namespace) -> int:
+    """Apply news-sourced assessments for candidates whose site was unreadable.
+
+    Reads ``data/out/secondary.json``: {name: {tier, confidence, note, sources}}.
+    These are recorded in their own fields and never overwrite the campaign-site
+    tier, so the site-only measure stays comparable. Research that turns up a
+    candidate who has left the race corrects their status instead.
+    """
+    path = OUT / "secondary.json"
+    if not path.exists():
+        print(f"{path} not found; nothing to apply.", file=sys.stderr)
+        return 1
+    blob = json.loads(path.read_text(encoding="utf-8"))
+    roster = _load_roster()
+
+    by_name = {c.full_name: c for c in roster.candidates}
+    applied = withdrawn = missed = 0
+    for name, rec in blob.items():
+        cand = by_name.get(name)
+        if cand is None:
+            log.warning("secondary: no roster match for %r", name)
+            missed += 1
+            continue
+        if rec.get("tier") == _WITHDREW:
+            cand.status = NominationStatus.WITHDREW
+            cand.conflicts.append(f"withdrew from the race: {rec.get('note','')}")
+            cand.add_provenance("news", (rec.get("sources") or [""])[0], rec.get("note", ""))
+            withdrawn += 1
+            continue
+        cand.secondary_tier = _parse_tier(rec.get("tier", "unknown"))
+        cand.secondary_confidence = float(rec.get("confidence", 0.0))
+        cand.secondary_note = rec.get("note", "")
+        cand.secondary_sources = list(rec.get("sources") or [])
+        for url in cand.secondary_sources[:1]:
+            cand.add_provenance("news", url, rec.get("note", "")[:120])
+        applied += 1
+
+    _write(OUT / "roster.json", json.dumps(roster.to_dict(), indent=2))
+    log.info("secondary: %d assessments applied, %d withdrawals, %d unmatched",
+             applied, withdrawn, missed)
+    return 0
+
+
 def cmd_report(args: argparse.Namespace) -> int:
     roster = _load_roster()
     as_of = _as_of(args.as_of)
@@ -430,6 +479,10 @@ def _load_roster() -> Roster:
             m4a_tier=_parse_tier(row.get("m4a_tier", "unknown")),
             m4a_notes=row.get("m4a_notes", ""),
             cosponsored_m4a_bill=row.get("cosponsored_m4a_bill"),
+            secondary_tier=_parse_tier(row.get("secondary_tier", "unknown")),
+            secondary_confidence=row.get("secondary_confidence", 0.0),
+            secondary_note=row.get("secondary_note", ""),
+            secondary_sources=row.get("secondary_sources", []),
             conflicts=row.get("conflicts", []),
         )
         roster.candidates.append(cand)
@@ -461,6 +514,7 @@ def main(argv: Optional[list[str]] = None) -> int:
         ("websites", cmd_websites, "resolve campaign websites"),
         ("classify", cmd_classify, "crawl sites and classify positions"),
         ("cosponsors", cmd_cosponsors, "mark Medicare for All Act cosponsors"),
+        ("secondary", cmd_secondary, "apply news-sourced assessments"),
         ("report", cmd_report, "write the analysis"),
         ("run", cmd_run, "run every stage"),
     ):
