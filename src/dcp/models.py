@@ -381,9 +381,21 @@ class Candidate:
         return self.status.on_general_ballot
 
     def add_provenance(self, source: str, url: str, note: str = "") -> None:
-        self.provenance.append(
-            Provenance(source=source, url=url, retrieved_at=datetime.utcnow(), note=note)
+        """Record where a fact came from, refreshing rather than duplicating.
+
+        Now that provenance survives a roster round trip, re-running a stage
+        would otherwise append a second identical entry every time. The same
+        source reporting the same finding from the same URL is one fact whose
+        retrieval time has moved, not two facts.
+        """
+        entry = Provenance(
+            source=source, url=url, retrieved_at=datetime.utcnow(), note=note
         )
+        for i, existing in enumerate(self.provenance):
+            if (existing.source, existing.url, existing.note) == (source, url, note):
+                self.provenance[i] = entry
+                return
+        self.provenance.append(entry)
 
     def to_dict(self) -> dict[str, Any]:
         return {
@@ -457,8 +469,14 @@ def normalize_name(name: str) -> str:
     two different people.
     """
     import re
+    import unicodedata
 
-    s = name.strip().lower()
+    # Fold accents rather than dropping them: the ASCII-only filter below turns
+    # "Barragán" into "barrag n", which fails to match any source that spells it
+    # either way. Decompose, drop the combining marks, keep the base letters.
+    s = unicodedata.normalize("NFKD", name)
+    s = "".join(ch for ch in s if not unicodedata.combining(ch))
+    s = s.strip().lower()
     s = re.sub(r'"[^"]*"', " ", s)          # drop "Nickname"
     s = re.sub(r"\([^)]*\)", " ", s)         # drop (Nickname)
     s = s.replace(".", " ").replace(",", " ")

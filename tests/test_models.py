@@ -120,3 +120,18 @@ def test_unset_override_does_not_affect_resolution():
     assert c.override_tier is M4ATier.UNKNOWN
     assert c.resolved_tier is M4ATier.PUBLIC_OPTION
     assert c.evidence_basis == "campaign_site"
+
+
+def test_add_provenance_refreshes_rather_than_duplicating():
+    # Provenance now round-trips through roster.json, so a re-run of any stage
+    # would otherwise append a second identical entry each time.
+    from dcp.models import Candidate, District, NominationStatus
+    cand = Candidate("Jane Doe", District("TX", 18), NominationStatus.ON_BALLOT)
+    cand.add_provenance("fec_bulk", "https://fec.gov/x", "H2TX18456")
+    first = cand.provenance[0].retrieved_at
+    cand.add_provenance("fec_bulk", "https://fec.gov/x", "H2TX18456")
+    assert len(cand.provenance) == 1
+    assert cand.provenance[0].retrieved_at >= first
+    # A different finding from the same source is a separate fact.
+    cand.add_provenance("fec_bulk", "https://fec.gov/x", "incumbent")
+    assert len(cand.provenance) == 2

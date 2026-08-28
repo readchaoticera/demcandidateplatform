@@ -59,7 +59,11 @@ OTHER_PARTY = re.compile(
 )
 
 #: Row annotations that mean this person is NOT the general-election candidate.
-LOST_MARKERS = re.compile(r"\b(lost|defeated|withdrew|eliminated|did\s+not\s+advance)\b", re.IGNORECASE)
+LOST_MARKERS = re.compile(
+    r"\b(lost|defeated|withdrew|withdrawn|eliminated|disqualified|"
+    r"did\s+not\s+(?:advance|file|qualify))\b",
+    re.IGNORECASE,
+)
 WON_MARKERS = re.compile(r"\b(won|nominee|advanced|nominated|unopposed)\b", re.IGNORECASE)
 
 
@@ -226,11 +230,52 @@ def democratic_primary_candidates(nodes: list[Tag]) -> list[tuple[str, int]]:
             cells = [c for c in cells if c]
             if len(cells) < 3 or not is_democratic_party(cells[0]):
                 continue
+            # clean_name() strips parentheticals, which is where Wikipedia
+            # puts "(withdrawn)". Test the raw cell first, or a candidate who
+            # topped the poll and then quit reads as the nominee.
+            if LOST_MARKERS.search(cells[1]):
+                continue
             name = clean_name(cells[1])
             if not name:
                 continue
             digits = cells[2].replace(",", "")
             out.append((name, int(digits) if digits.isdigit() else -1))
+    return out
+
+
+#: Caption text that identifies a general-election results table rather than a
+#: primary one. Both use the same `Party | Candidate | ...` shape.
+_GENERAL_CAPTION = re.compile(
+    r"congressional\s+district\s+election|general\s+election", re.IGNORECASE
+)
+
+
+def general_election_candidates(nodes: list[Tag]) -> list[str]:
+    """Democrats listed in a district's *general election* results table.
+
+    Needed for Alaska, whose top-four primary sends several candidates of the
+    same party forward. There the top Democratic primary vote-getter is not
+    "the nominee" - there is no nominee - so the primary table cannot answer
+    who is on the November ballot. The general-election table lists exactly
+    the people who are, with vote columns still empty before the election.
+    """
+    out: list[str] = []
+    for tbl in _tables(nodes):
+        caption = tbl.find("caption")
+        headers = [th.get_text(" ", strip=True) for th in tbl.find_all("th")[:4]]
+        label = caption.get_text(" ", strip=True) if caption else " ".join(headers)
+        if not _GENERAL_CAPTION.search(label):
+            continue
+        for tr in tbl.find_all("tr"):
+            cells = [c.get_text(" ", strip=True) for c in tr.find_all(["th", "td"])]
+            cells = [c for c in cells if c]
+            if len(cells) < 2 or not is_democratic_party(cells[0]):
+                continue
+            if LOST_MARKERS.search(cells[1]):
+                continue
+            name = clean_name(cells[1])
+            if name and name not in out:
+                out.append(name)
     return out
 
 
@@ -305,6 +350,12 @@ def _row_from_section(
         name = clean_name(raw_name)
         if name and name not in dems:
             dems.append(name)
+
+    # Top-four states run a blanket primary: several Democrats can advance and
+    # none of them is a "nominee", so the primary table's leader is the wrong
+    # answer. Read who actually appears on the November ballot instead.
+    if not dems and ballot_rule(state) is BallotRule.TOP_FOUR_RCV:
+        dems.extend(general_election_candidates(nodes))
 
     # No infobox (or no Democrat in it): fall back to the primary results table
     # and take the top vote-getter, which is the nominee.

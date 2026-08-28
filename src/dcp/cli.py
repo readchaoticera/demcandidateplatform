@@ -10,6 +10,7 @@ one. ``run`` chains them for convenience.
     dcp websites                # attach campaign URLs
     dcp classify                # crawl sites, assign M4A tiers
     dcp cosponsors              # mark Medicare for All Act cosponsors
+    dcp fec                     # cross-check the roster against FEC filings
     dcp secondary               # apply news-sourced assessments for unreadable sites
     dcp overrides               # apply human-reviewed corrections
     dcp report                  # markdown + CSV + JSON output
@@ -32,11 +33,12 @@ from . import statefacts
 from .adjudicate import to_review_csv
 from .classify.classifier import classify_pages
 from .crawl import collect_position_pages
-from .models import Candidate, District, Evidence, M4ATier, NominationStatus, Roster
+from .models import (Candidate, District, Evidence, M4ATier, NominationStatus,
+                     Provenance, Roster)
 from .net import EgressBlocked, Fetcher, REQUIRED_HOSTS, doctor
 from .report import analyze, to_csv, to_json, to_markdown
 from .resolve import build_roster, merge
-from .sources import ballotpedia, congress, fec, wikipedia
+from .sources import ballotpedia, congress, fec, fec_bulk, wikipedia
 from .websites import resolve_campaign_url
 
 log = logging.getLogger("dcp")
@@ -149,8 +151,8 @@ def cmd_roster(args: argparse.Namespace) -> int:
         reason = "--no-fec" if args.no_fec else "FEC_API_KEY not set"
         log.warning("skipping FEC source (%s): no canonical candidate IDs", reason)
         fec_gap.append(
-            f"FEC source skipped ({reason}); candidate IDs are synthetic and the "
-            "roster is not cross-checked against the filing universe"
+            f"FEC API skipped ({reason}); candidate IDs are synthetic until "
+            "`dcp fec` cross-checks the roster against the bulk filing universe"
         )
     else:
         log.info("fetching FEC filing universe")
@@ -459,9 +461,81 @@ def cmd_report(args: argparse.Namespace) -> int:
     return 0
 
 
+def cmd_fec(args: argparse.Namespace) -> int:
+    """Cross-check the roster against the FEC candidate master file.
+
+    Two independent things come out of one file. The roster gains what only the
+    FEC has - canonical candidate IDs and incumbency - and, more usefully, it
+    gets audited: every on-ballot name is looked for among the filers for that
+    seat, and every seat with active Democratic filers is looked for in the
+    roster. A name with no filing is probably misspelled; a seat with filers
+    and no nominee is either a missed nominee or a primary that has not
+    happened yet, and the coverage gaps say which.
+
+    No API key is needed. The bulk file is the same data the OpenFEC API
+    serves, without the ten-requests-an-hour ceiling that makes DEMO_KEY
+    useless for a 435-seat sweep.
+    """
+    roster = _load_roster()
+    raw = fec_bulk.load(args.year, max_age_days=args.cache_days)
+    filers = fec_bulk.parse(raw, args.year)
+    if not filers:
+        print(f"No Democratic House filers found for {args.year}.", file=sys.stderr)
+        return 1
+
+    on_ballot = roster.on_ballot()
+    stats = fec_bulk.annotate(on_ballot, filers)
+    missing = fec_bulk.districts_with_filers_but_no_candidate(on_ballot, filers)
+    # Coverage gaps are recorded as prose keyed by state ("MA (9 seats): ..."),
+    # so a seat is explained when its state is already known to be unsettled.
+    explained_states = {g[:2] for g in roster.coverage_gaps if g[2:3] == " "}
+
+    # The roster stage records that no API key was available and the IDs are
+    # therefore synthetic. That note is now out of date - this stage has just
+    # done the cross-check the note says is missing - so replace it rather than
+    # leaving the roster claiming it was never checked.
+    roster.coverage_gaps = [
+        g for g in roster.coverage_gaps
+        if not g.startswith(("FEC API skipped", "FEC source skipped"))
+        and "no matching FEC filing" not in g
+    ]
+    _write(OUT / "roster.json", json.dumps(roster.to_dict(), indent=2))
+
+    total = len(on_ballot)
+    rate = 100.0 * stats["matched"] / total if total else 0.0
+    log.info("FEC: %d Democratic House filers for %d (%d active)",
+             len(filers), args.year, sum(1 for f in filers if f.active))
+    log.info("FEC: matched %d/%d on-ballot candidates (%.1f%%), %d incumbents",
+             stats["matched"], total, rate, stats["incumbents"])
+    if stats["statewide"]:
+        log.info("FEC: %d matched statewide rather than in-district (%d of them "
+                 "across a redistricting boundary)",
+                 stats["statewide"], stats["redistricted"])
+    for cand in on_ballot:
+        if not cand.fec_candidate_id:
+            log.warning("FEC: no filing for %s (%s) - check the spelling",
+                        cand.full_name, cand.district.code)
+    if stats["unmatched"]:
+        roster.coverage_gaps.append(
+            f"{stats['unmatched']} of {total} on-ballot candidates have no matching "
+            "FEC filing; their names may be transcribed incorrectly"
+        )
+        _write(OUT / "roster.json", json.dumps(roster.to_dict(), indent=2))
+
+    unexplained = [d for d in missing if d[:2] not in explained_states]
+    if unexplained:
+        log.warning("FEC: %d seats have active Democratic filers but no nominee "
+                    "in the roster, and are not known coverage gaps: %s",
+                    len(unexplained), ", ".join(unexplained))
+    elif missing:
+        log.info("FEC: %d seats with filers but no nominee, all of them known "
+                 "coverage gaps", len(missing))
+    return 0
+
+
 def cmd_run(args: argparse.Namespace) -> int:
     for step in (cmd_roster, cmd_websites, cmd_classify, cmd_cosponsors,
-                 cmd_secondary, cmd_overrides, cmd_report):
+                 cmd_fec, cmd_secondary, cmd_overrides, cmd_report):
         rc = step(args)
         if rc != 0:
             return rc
@@ -510,6 +584,17 @@ def _parse_tier(value: str) -> M4ATier:
             return tier
         log.warning("unrecognised tier %r in roster; treating as unknown", value)
         return M4ATier.UNKNOWN
+
+
+def _parse_ts(raw: Optional[str]) -> datetime:
+    """Parse a stored provenance timestamp, tolerating a missing or bad one.
+
+    A malformed timestamp should cost the record its date, not the whole run.
+    """
+    try:
+        return datetime.fromisoformat(raw) if raw else datetime.utcnow()
+    except ValueError:
+        return datetime.utcnow()
 
 
 def _load_roster() -> Roster:
@@ -562,6 +647,19 @@ def _load_roster() -> Roster:
                 )
                 for e in row.get("m4a_evidence", [])
             ],
+            # Provenance is the audit trail for every field above it. Like the
+            # evidence quotes, it is written on save but was not read back, so
+            # each stage that loaded and re-saved the roster erased the record
+            # of where the previous stage's facts came from.
+            provenance=[
+                Provenance(
+                    source=p.get("source", ""),
+                    url=p.get("url", ""),
+                    retrieved_at=_parse_ts(p.get("retrieved_at")),
+                    note=p.get("note", ""),
+                )
+                for p in row.get("provenance", [])
+            ],
             conflicts=row.get("conflicts", []),
         )
         roster.candidates.append(cand)
@@ -593,6 +691,7 @@ def main(argv: Optional[list[str]] = None) -> int:
         ("websites", cmd_websites, "resolve campaign websites"),
         ("classify", cmd_classify, "crawl sites and classify positions"),
         ("cosponsors", cmd_cosponsors, "mark Medicare for All Act cosponsors"),
+        ("fec", cmd_fec, "cross-check the roster against FEC filings"),
         ("secondary", cmd_secondary, "apply news-sourced assessments"),
         ("overrides", cmd_overrides, "apply human-reviewed corrections"),
         ("report", cmd_report, "write the analysis"),

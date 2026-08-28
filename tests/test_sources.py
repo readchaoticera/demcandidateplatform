@@ -203,3 +203,157 @@ def test_state_fallback_does_not_match_a_different_person():
     other = Candidate("Marcus Frankel", District("FL", 25), NominationStatus.ON_BALLOT)
     assert annotate([other], roll) == 0
     assert other.cosponsored_m4a_bill is None
+
+
+# --- FEC bulk candidate master file ----------------------------------------
+
+#: Shape of cn.txt: pipe-delimited, headerless, "LAST, FIRST" names.
+_CN = "\n".join([
+    "H6CA40123|KIM-VARET, ESTHER|DEM|2026|CA|H|40|C|C|C001",
+    "H6CA40999|NGUYEN, LONG|DEM|2026|CA|H|40|C|C|C002",
+    "H2TX18456|GREEN, ALEXANDER N|DEM|2026|TX|H|18|I|C|C003",
+    "H8NM03111|LEGER FERNANDEZ, TERESA|DEM|2026|NM|H|03|I|C|C004",
+    "H0VA03222|SCOTT, ROBERT C|DEM|2026|VA|H|03|I|C|C005",
+    "H4AK00164|HAFNER, ERIC|DEM|2026|AK|H|00|C|N|C006",
+    "H6TX18777|SMITH, JOHN|REP|2026|TX|H|18|C|C|C007",
+    "H6TX18888|OLD, CANDIDATE|DEM|2024|TX|H|18|C|P|C008",
+    "S6TX00999|SENATE, PERSON|DEM|2026|TX|S|00|C|C|C009",
+])
+
+
+def _bulk():
+    from dcp.sources import fec_bulk
+    return fec_bulk, fec_bulk.parse(_CN, 2026)
+
+
+def test_fec_bulk_keeps_only_democratic_house_filers_for_the_year():
+    _, filers = _bulk()
+    names = {f.name for f in filers}
+    assert "John Smith" not in names          # Republican
+    assert "Candidate Old" not in names       # 2024 cycle
+    assert "Person Senate" not in names       # Senate, not House
+    assert len(filers) == 6
+
+
+def test_fec_bulk_at_large_district_00_becomes_AL():
+    _, filers = _bulk()
+    hafner = next(f for f in filers if f.name == "Eric Hafner")
+    assert hafner.district_code == "AK-AL"
+    assert hafner.active is False             # status N, not yet a candidate
+
+
+def test_fec_bulk_marks_incumbents_and_active_status():
+    _, filers = _bulk()
+    green = next(f for f in filers if f.district_code == "TX-18")
+    assert green.incumbent and green.active
+
+
+def test_fec_bulk_matches_on_surname_plus_first_initial():
+    from dcp.models import Candidate, District, NominationStatus
+    fec_bulk, filers = _bulk()
+    by_district = fec_bulk.index_by_district(filers)
+    cand = Candidate("Al Green", District("TX", 18), NominationStatus.ON_BALLOT)
+    assert fec_bulk.match(cand, by_district["TX-18"]).candidate_id == "H2TX18456"
+
+
+def test_fec_bulk_matches_a_nickname_when_the_surname_is_unique_in_district():
+    # The FEC files legal names, so "Bobby Scott" never matches "Robert C Scott"
+    # on first initial. Inside one district a lone surname is unambiguous.
+    from dcp.models import Candidate, District, NominationStatus
+    fec_bulk, filers = _bulk()
+    by_district = fec_bulk.index_by_district(filers)
+    cand = Candidate("Bobby Scott", District("VA", 3), NominationStatus.ON_BALLOT)
+    assert fec_bulk.match(cand, by_district["VA-03"]).candidate_id == "H0VA03222"
+
+
+def test_fec_bulk_matches_a_compound_surname_split_differently():
+    from dcp.models import Candidate, District, NominationStatus
+    fec_bulk, filers = _bulk()
+    by_district = fec_bulk.index_by_district(filers)
+    cand = Candidate("Teresa Leger Fernandez", District("NM", 3), NominationStatus.ON_BALLOT)
+    assert fec_bulk.match(cand, by_district["NM-03"]).candidate_id == "H8NM03111"
+
+
+def test_fec_bulk_returns_none_rather_than_guessing_between_two_filers():
+    from dcp.models import Candidate, District, NominationStatus
+    fec_bulk, filers = _bulk()
+    by_district = fec_bulk.index_by_district(filers)
+    cand = Candidate("Maria Torres", District("CA", 40), NominationStatus.ON_BALLOT)
+    assert fec_bulk.match(cand, by_district["CA-40"]) is None
+
+
+def test_fec_bulk_statewide_fallback_needs_two_shared_name_tokens():
+    # A member whose district was redrawn: the FEC still files the old seat.
+    from dcp.models import Candidate, District, NominationStatus
+    fec_bulk, filers = _bulk()
+    by_district = fec_bulk.index_by_district(filers)
+    moved = Candidate("Teresa Leger Fernandez", District("NM", 1), NominationStatus.ON_BALLOT)
+    assert fec_bulk.match_statewide(moved, by_district).candidate_id == "H8NM03111"
+    # One shared token is not enough to claim a match: "Al Green" and the FEC's
+    # "Alexander N Green" overlap only on the surname.
+    other = Candidate("Al Green", District("TX", 9), NominationStatus.ON_BALLOT)
+    assert fec_bulk.match_statewide(other, by_district) is None
+
+
+def test_fec_bulk_annotate_attaches_ids_and_flags_the_unmatched():
+    from dcp.models import Candidate, District, NominationStatus
+    fec_bulk, filers = _bulk()
+    matched = Candidate("Al Green", District("TX", 18), NominationStatus.ON_BALLOT)
+    missing = Candidate("Nobody Here", District("TX", 18), NominationStatus.ON_BALLOT)
+    stats = fec_bulk.annotate([matched, missing], filers)
+    assert stats == {"matched": 1, "unmatched": 1, "incumbents": 1,
+                     "statewide": 0, "redistricted": 0}
+    assert matched.fec_candidate_id == "H2TX18456" and matched.incumbent
+    assert missing.fec_candidate_id is None and missing.conflicts
+
+
+def test_fec_bulk_reports_seats_with_filers_but_no_candidate():
+    from dcp.models import Candidate, District, NominationStatus
+    fec_bulk, filers = _bulk()
+    roster = [Candidate("Al Green", District("TX", 18), NominationStatus.ON_BALLOT)]
+    gaps = fec_bulk.districts_with_filers_but_no_candidate(roster, filers)
+    assert "CA-40" in gaps and "TX-18" not in gaps
+    # Hafner's filing is status N, so AK-AL raises no flag from an inactive filer.
+    assert "AK-AL" not in gaps
+
+
+# --- Wikipedia: blanket-primary states -------------------------------------
+
+#: Alaska's article shape. The top-four primary sends several Democrats
+#: forward, one of whom has withdrawn, so the primary table's leading Democrat
+#: is not on the November ballot.
+_AK_HTML = """
+<div class="mw-parser-output">
+<table class="wikitable">
+  <caption>Blanket primary results</caption>
+  <tr><th>Party</th><th>Candidate</th><th>Votes</th><th>%</th></tr>
+  <tr><td>Republican</td><td>Nick Begich III</td><td>69,201</td><td>45.2</td></tr>
+  <tr><td>Democratic</td><td>Matt Schultz (withdrawn)</td><td>12,268</td><td>8.0</td></tr>
+  <tr><td>Democratic</td><td>Eric Hafner</td><td>5,774</td><td>3.8</td></tr>
+  <tr><td>Democratic</td><td>John B. Williams</td><td>4,084</td><td>2.7</td></tr>
+</table>
+<table class="wikitable">
+  <caption>2026 Alaska's at-large congressional district election</caption>
+  <tr><th>Party</th><th>Candidate</th><th>First choice</th></tr>
+  <tr><td>Republican</td><td>Nick Begich III</td><td>TBD</td></tr>
+  <tr><td>Independent</td><td>Bill Hill</td><td>TBD</td></tr>
+  <tr><td>Democratic</td><td>Eric Hafner</td><td>TBD</td></tr>
+</table>
+</div>
+"""
+
+
+def test_top_four_state_reads_the_general_ballot_not_the_primary_leader():
+    # Under a blanket primary there is no nominee, so "most Democratic votes"
+    # is the wrong question. Schultz led the Democrats and then withdrew.
+    rows = parse_rows(_AK_HTML, "AK")
+    assert [r.democrats for r in rows] == [["Eric Hafner"]]
+
+
+def test_withdrawn_candidates_are_not_read_as_nominees():
+    from dcp.sources.wikipedia import democratic_primary_candidates
+    from bs4 import BeautifulSoup
+    nodes = [BeautifulSoup(_AK_HTML, "lxml")]
+    names = [n for n, _ in democratic_primary_candidates(nodes)]
+    assert "Matt Schultz" not in names
+    assert "Eric Hafner" in names

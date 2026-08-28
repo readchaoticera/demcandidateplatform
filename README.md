@@ -95,6 +95,7 @@ dcp calendar    # which primary dates are verified, which are missing
 dcp roster      # FEC filing universe x Wikipedia primary results -> roster.json
 dcp websites    # attach campaign URLs (Ballotpedia hints, then verify by fetching)
 dcp classify    # crawl each site's issues pages, assign a tier with evidence
+dcp fec         # cross-check the roster against the FEC bulk filing universe
 dcp report      # report.md + candidates.csv + analysis.json + needs_review.csv
 dcp run         # all of the above
 ```
@@ -107,7 +108,8 @@ inspecting before paying for the next one.
 | `models.py` | Schema. `BallotRule`, `NominationStatus`, `M4ATier`, provenance, evidence |
 | `statefacts.py` | Apportionment, ballot rules, primary calendar, what is unsettled |
 | `net.py` | Cached, rate-limited, robots-aware fetching; egress diagnostics |
-| `sources/fec.py` | Candidate universe and canonical IDs (**filers, not winners**) |
+| `sources/fec.py` | Candidate universe via the OpenFEC API (**filers, not winners**) |
+| `sources/fec_bulk.py` | The same universe from the bulk candidate master file, no API key |
 | `sources/wikipedia.py` | Primary *results* — who actually won |
 | `sources/ballotpedia.py` | Campaign website URLs |
 | `resolve.py` | Merge sources; record conflicts rather than resolving them |
@@ -168,7 +170,22 @@ dcp run --as-of 2026-09-16
 ```
 
 Set `FEC_API_KEY` for the OpenFEC API. `DEMO_KEY` works but is rate-limited too
-hard to finish a 435-district run.
+hard to finish a 435-district run: ten requests an hour against the thirteen
+pages the 2026 Democratic House field alone needs.
+
+`dcp fec` sidesteps that entirely. The [bulk candidate master
+file](https://www.fec.gov/campaign-finance-data/candidate-master-file-description/)
+carries the same records, needs no key, and arrives in one request. The stage
+runs the cross-check in both directions:
+
+* every on-ballot name is looked for among that seat's filers, so a name with
+  no filing is flagged as a probable transcription error;
+* every seat with active Democratic filers is looked for in the roster, so a
+  seat with filers and no candidate is flagged as a probable missed nominee.
+
+It also attaches what only the FEC has: canonical candidate IDs and incumbency.
+What it cannot supply is who *won* a primary — the file lists every filer — so
+nomination status still comes from Wikipedia.
 
 ---
 
