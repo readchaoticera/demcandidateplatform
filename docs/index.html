@@ -29,6 +29,10 @@
   .pill .sw{width:8px; height:8px; border-radius:2px; background:var(--c); flex:none;}
   .pill.t-unknown{border-style:dashed; color:var(--ink-3);}
 
+  /* House .stats is auto-fit for four or five tiles; with two it would stretch
+     each to half the page width. Cap the track so the rail keeps its proportions. */
+  .stats{grid-template-columns:repeat(auto-fit,minmax(180px,280px)); justify-content:start;}
+
   .search{flex:1 1 240px;}
   .search input{width:100%;}
   .tablewrap{background:var(--surface); border:1px solid var(--rule); border-radius:10px; overflow:hidden;}
@@ -328,12 +332,8 @@
   }
 
   function statTiles(s){
-    var pct = s.total ? Math.round(s.resolved / s.total * 100) : 0;
     [["On the ballot", s.total, "Democratic candidates, 3 November"],
-     ["Back Medicare for All", s.explicit, "across all three evidence sources"],
-     ["Cosponsors H.R.3069", s.cosponsors, "the Medicare for All Act, 119th Congress"],
-     ["Silent cosponsors", s.cosponsor_silent, "cosponsor it but never say so on their site"],
-     ["Coverage", pct + "%", "have a position from some source"]
+     ["Back Medicare for All", s.explicit, "across all three evidence sources"]
     ].forEach(function(t){
       var d = document.createElement("div");
       d.className = "stat";
