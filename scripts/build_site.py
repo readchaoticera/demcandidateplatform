@@ -33,9 +33,9 @@ TIER_LABELS = {
 #: The three-way public grouping. Tiers stay in the payload for the row detail;
 #: these are what the table and filters show.
 BUCKET_LABELS = {
-    "m4a_or_single_payer": "Medicare for All or single-payer",
-    "aca_or_public_option": "Strengthen ACA or add public option",
-    "none_or_not_found": "No coverage position / not found",
+    "supports_m4a": "Supports Medicare for All or single-payer",
+    "does_not_support_m4a": "Does not support Medicare for All",
+    "no_position_found": "No position found",
 }
 
 BASIS_LABELS = {

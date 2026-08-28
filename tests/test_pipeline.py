@@ -366,3 +366,24 @@ def test_overrides_file_entries_are_well_formed():
         assert str(e.get("source", "")).startswith("http"), e
         assert "@" in str(e.get("reviewed_by", "")), e
         assert e.get("note"), e
+
+
+def test_sub_page_hint_tries_the_site_root_first():
+    """A curated link can point at /endorsements or /splash.
+
+    Crawling from there loses the homepage navigation, so the root is tried
+    first and the sub-page kept as a fallback.
+    """
+    from dcp import websites
+
+    seen = []
+
+    class Rec:
+        def get(self, url, *, force=False):
+            seen.append(url)
+            raise __import__("dcp.net", fromlist=["FetchError"]).FetchError("stop")
+
+    websites.resolve_campaign_url(Rec(), mk("Jane Smith", "OH", 5),
+                                  ["https://example.org/endorsements/"])
+    assert seen[0] == "https://example.org/"
+    assert "https://example.org/endorsements/" in seen

@@ -139,3 +139,24 @@ overrides:
       position a crawler can read.
     reviewed_by: kyle@kyletharp.com
     reviewed_on: 2026-08-28
+
+  - name: Colin Allred
+    district: TX-33
+    tier: aca_strengthen
+    source: https://colinallred.com/
+    note: >-
+      Does not support Medicare for All or single-payer, and is not a cosponsor
+      of H.R.3069. His site is a single-page app that returns an identical shell
+      for every route, so no policy text is reachable by a crawler.
+    reviewed_by: kyle@kyletharp.com
+    reviewed_on: 2026-08-28
+
+  - name: Brian Poindexter
+    district: OH-07
+    tier: aca_strengthen
+    source: https://poindexterforcongress.com/
+    note: >-
+      Does not support Medicare for All, and is not a cosponsor of H.R.3069.
+      Site states no coverage-structure position a crawler can read.
+    reviewed_by: kyle@kyletharp.com
+    reviewed_on: 2026-08-28

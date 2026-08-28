@@ -13,9 +13,9 @@
      detail. Green and neutral carry the meanings the house style already
      assigns them, and "no position / not found" is dashed because it is mostly
      absent data rather than a measured category. */
-  .b-m4a_or_single_payer  { --c: var(--s2); }
-  .b-aca_or_public_option { --c: var(--s3); }
-  .b-none_or_not_found    { --c: var(--ink-3); }
+  .b-supports_m4a         { --c: var(--s2); }
+  .b-does_not_support_m4a { --c: var(--s3); }
+  .b-no_position_found    { --c: var(--ink-3); }
 
   /* Tier colours, used only inside an expanded row. */
   .t-explicit_m4a           { --c: var(--s2); }
@@ -31,7 +31,7 @@
         color:var(--ink-2); background:var(--surface-2); border:1px solid var(--c);}
   .pill .sw{width:8px; height:8px; border-radius:2px; background:var(--c); flex:none;}
   .pill.t-unknown,
-  .pill.b-none_or_not_found{border-style:dashed; color:var(--ink-3);}
+  .pill.b-no_position_found{border-style:dashed; color:var(--ink-3);}
 
   /* House .stats is auto-fit for four or five tiles; with two it would stretch
      each to half the page width. Cap the track so the rail keeps its proportions. */
@@ -169,7 +169,7 @@
   "use strict";
   var DATA = null, rows = [], sortKey = "d", sortAsc = true;
   var state = { q: "", state: "", basis: "", tiers: new Set() };
-  var BUCKET_ORDER = ["m4a_or_single_payer","aca_or_public_option","none_or_not_found"];
+  var BUCKET_ORDER = ["supports_m4a","does_not_support_m4a","no_position_found"];
   var TIER_ORDER = ["explicit_m4a","single_payer_substance","public_option",
                     "aca_strengthen","no_coverage_position","opposed","unknown"];
 
@@ -319,7 +319,7 @@
     $("empty").hidden = !none;
     if (none) $("empty").textContent = "No candidates match those filters.";
 
-    var m4a = list.filter(function(r){ return r.bk === "m4a_or_single_payer"; }).length;
+    var m4a = list.filter(function(r){ return r.bk === "supports_m4a"; }).length;
     $("count").innerHTML = "<b>" + list.length + "</b> of " + rows.length + " candidates · <b>" +
                            m4a + "</b> back Medicare for All" +
                            (list.length ? " (" + Math.round(m4a / list.length * 100) + "%)" : "");
@@ -345,7 +345,7 @@
 
   function statTiles(s){
     [["On the ballot", s.total, "Democratic candidates, 3 November"],
-     ["Medicare for All or single-payer", s.buckets.m4a_or_single_payer,
+     ["Supports Medicare for All", s.buckets.supports_m4a,
       "across all evidence sources"]
     ].forEach(function(t){
       var d = document.createElement("div");

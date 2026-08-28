@@ -170,7 +170,20 @@ def resolve_campaign_url(
     tried: list[UrlScore] = []
     seen: set[str] = set()
 
-    queue = [h for h in hints if h]
+    # A curated link may point at a sub-page ("/endorsements", "/splash").
+    # Crawling from there loses the homepage's navigation, so try the site root
+    # first and keep the sub-page as a fallback.
+    queue: list[str] = []
+    for hint in hints:
+        if not hint:
+            continue
+        parts = urlparse(hint)
+        if parts.path.strip("/") not in ("", "home", "index.html"):
+            root = f"{parts.scheme}://{parts.netloc}/"
+            if root not in queue:
+                queue.append(root)
+        if hint not in queue:
+            queue.append(hint)
     if search is not None:
         state_name = candidate.district.state
         query = f'"{candidate.full_name}" for Congress {state_name} campaign'

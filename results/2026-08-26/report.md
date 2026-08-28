@@ -1,6 +1,6 @@
 # Medicare for All support among Democratic U.S. House candidates
 
-Generated 2026-08-28 13:41 UTC, reflecting the field as of August 26, 2026.
+Generated 2026-08-28 13:58 UTC, reflecting the field as of August 26, 2026.
 
 ## Coverage first
 
@@ -8,7 +8,7 @@ Generated 2026-08-28 13:41 UTC, reflecting the field as of August 26, 2026.
 - **340** (79%) had a position we could actually read and classify.
 - **92** could not be classified (no site, unreachable, or too little readable text).
 - **20 seats** are in states whose field is not yet settled: primaries still to come, or no party nomination at all. No candidate list compiled today can cover them.
-- **68** of the classified rows are flagged for human review; see `needs_review.csv`.
+- **62** of the classified rows are flagged for human review; see `needs_review.csv`.
 
 > **Coverage is below 80%.** The shares below should be read as describing the
 > candidates we could read, not the full field.
@@ -30,7 +30,7 @@ recorded legislative act.
 | Evidence | Candidates |
 |---|---|
 | Cosponsors H.R.3069, the Medicare for All Act | 89 |
-| Position read from their own campaign site | 259 |
+| Position read from their own campaign site | 257 |
 | Position from news coverage (site unreadable) | 70 |
 | No position from any source | 3 |
 
@@ -48,9 +48,9 @@ On the combined measure, **161** candidates (37.5% of those with a known positio
 |---|---|---|---|---|
 | `explicit_m4a` | 75 | 22.1% | 161 | 37.5% |
 | `single_payer_substance` | 0 | 0.0% | 1 | 0.2% |
-| `public_option` | 16 | 4.7% | 25 | 5.8% |
-| `aca_strengthen` | 160 | 47.1% | 191 | 44.5% |
-| `no_coverage_position` | 89 | 26.2% | 51 | 11.9% |
+| `public_option` | 15 | 4.4% | 24 | 5.6% |
+| `aca_strengthen` | 167 | 49.1% | 198 | 46.2% |
+| `no_coverage_position` | 83 | 24.4% | 45 | 10.5% |
 | `opposed` | 0 | 0.0% | 0 | 0.0% |
 | `unknown` | 92 | n/a | 3 | n/a |
 

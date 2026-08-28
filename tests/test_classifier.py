@@ -243,3 +243,24 @@ def test_widened_aca_rules_do_not_reach_the_m4a_tier():
     text = ("Expand Medicaid availability. Negotiate prescription drug costs. "
             "Regulate for-profit insurance companies. Keep rural hospitals open.")
     assert tier(text) is M4ATier.ACA_STRENGTHEN
+
+
+@pytest.mark.parametrize("text,expected", [
+    # Word order and synonym variants that previously matched nothing at all.
+    ("I will work to improve the Affordable Care Act and the healthcare exchange.",
+     M4ATier.ACA_STRENGTHEN),
+    ("Seniors should get the drugs they need at prices negotiated through Medicare.",
+     M4ATier.ACA_STRENGTHEN),
+    ("We must increase Medicare and Medicaid reimbursement rates for rural hospitals.",
+     M4ATier.ACA_STRENGTHEN),
+    ("I will annually lower the age that seniors can start receiving Medicare benefits.",
+     M4ATier.PUBLIC_OPTION),
+])
+def test_word_order_and_synonym_variants(text, expected):
+    """Rules must not depend on one phrasing of a common policy.
+
+    A candidate with a detailed healthcare platform read as stating no position
+    because she wrote "improve the ACA" rather than "protect", and "prices
+    negotiated through Medicare" rather than "negotiate drug prices".
+    """
+    assert tier(text) is expected

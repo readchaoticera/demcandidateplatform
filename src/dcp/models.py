@@ -132,34 +132,40 @@ class Bucket(str, Enum):
     rules that fired - but they are finer than most readers need. These buckets
     are the reporting view.
 
-    Note that ``NONE_OR_NOT_FOUND`` deliberately merges "we read the material
-    and it states no coverage position" with "we could not read the material".
-    Those are different facts, and the tier is still recorded per candidate, so
-    the distinction remains available in the data even though the headline
-    grouping sets it aside.
+    ``DOES_NOT_SUPPORT_M4A`` means the candidate states a coverage position and
+    it is not Medicare for All - a public option, ACA measures, or explicit
+    opposition. It is not an inference from silence: a candidate with no stated
+    position lands in ``NO_POSITION_FOUND`` instead. Because Medicare for All is
+    the higher tier and wins wherever it is found, nothing in this bucket has an
+    M4A finding against it in any source.
+
+    ``NO_POSITION_FOUND`` deliberately merges "we read the material and it
+    states no coverage position" with "we could not read the material". Those
+    are different facts, and the tier is still recorded per candidate, so the
+    distinction remains available in the data even though the grouping sets it
+    aside.
     """
 
-    M4A_OR_SINGLE_PAYER = "m4a_or_single_payer"
-    ACA_OR_PUBLIC_OPTION = "aca_or_public_option"
-    NONE_OR_NOT_FOUND = "none_or_not_found"
+    SUPPORTS_M4A = "supports_m4a"
+    DOES_NOT_SUPPORT_M4A = "does_not_support_m4a"
+    NO_POSITION_FOUND = "no_position_found"
 
 
-#: Tier -> bucket. ``OPPOSED`` groups with the incremental bucket: in this field
-#: it means opposing Medicare for All while backing the existing system, which
-#: is a stated position rather than an absence of one.
+#: Tier -> bucket. ``OPPOSED`` groups with the "does not support" bucket, which
+#: is exactly what it is.
 TIER_BUCKET: dict["M4ATier", Bucket] = {}
 
 BUCKET_LABELS: dict[Bucket, str] = {
-    Bucket.M4A_OR_SINGLE_PAYER: "Medicare for All or single-payer",
-    Bucket.ACA_OR_PUBLIC_OPTION: "Strengthen ACA or add public option",
-    Bucket.NONE_OR_NOT_FOUND: "No coverage position / not found",
+    Bucket.SUPPORTS_M4A: "Supports Medicare for All or single-payer",
+    Bucket.DOES_NOT_SUPPORT_M4A: "Does not support Medicare for All",
+    Bucket.NO_POSITION_FOUND: "No position found",
 }
 
 #: Display order, most to least transformative.
 BUCKET_ORDER: tuple[Bucket, ...] = (
-    Bucket.M4A_OR_SINGLE_PAYER,
-    Bucket.ACA_OR_PUBLIC_OPTION,
-    Bucket.NONE_OR_NOT_FOUND,
+    Bucket.SUPPORTS_M4A,
+    Bucket.DOES_NOT_SUPPORT_M4A,
+    Bucket.NO_POSITION_FOUND,
 )
 
 
@@ -176,13 +182,13 @@ TIER_ORDER: tuple[M4ATier, ...] = (
 
 
 TIER_BUCKET.update({
-    M4ATier.EXPLICIT_M4A: Bucket.M4A_OR_SINGLE_PAYER,
-    M4ATier.SINGLE_PAYER_SUBSTANCE: Bucket.M4A_OR_SINGLE_PAYER,
-    M4ATier.PUBLIC_OPTION: Bucket.ACA_OR_PUBLIC_OPTION,
-    M4ATier.ACA_STRENGTHEN: Bucket.ACA_OR_PUBLIC_OPTION,
-    M4ATier.OPPOSED: Bucket.ACA_OR_PUBLIC_OPTION,
-    M4ATier.NO_COVERAGE_POSITION: Bucket.NONE_OR_NOT_FOUND,
-    M4ATier.UNKNOWN: Bucket.NONE_OR_NOT_FOUND,
+    M4ATier.EXPLICIT_M4A: Bucket.SUPPORTS_M4A,
+    M4ATier.SINGLE_PAYER_SUBSTANCE: Bucket.SUPPORTS_M4A,
+    M4ATier.PUBLIC_OPTION: Bucket.DOES_NOT_SUPPORT_M4A,
+    M4ATier.ACA_STRENGTHEN: Bucket.DOES_NOT_SUPPORT_M4A,
+    M4ATier.OPPOSED: Bucket.DOES_NOT_SUPPORT_M4A,
+    M4ATier.NO_COVERAGE_POSITION: Bucket.NO_POSITION_FOUND,
+    M4ATier.UNKNOWN: Bucket.NO_POSITION_FOUND,
 })
 
 

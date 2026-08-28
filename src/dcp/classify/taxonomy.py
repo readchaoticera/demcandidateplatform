@@ -115,7 +115,10 @@ PUBLIC_OPTION_RULES: tuple[Rule, ...] = (
     Rule("po.buy_in", M4ATier.PUBLIC_OPTION,
          r"\b(medicare|medicaid)\s+buy[\s\-]?in\b|\bbuy\s+into\s+medicare\b", weight=2.5),
     Rule("po.lower_age", M4ATier.PUBLIC_OPTION,
-         r"\blower\w*\s+the\s+medicare\s+(eligibility\s+)?age\b|"
+         # Either order: "lower the Medicare age", but also "lower the age that
+         # seniors can start receiving Medicare".
+         r"\b(lower\w*|reduc\w*|drop\w*)\b[^.]{0,70}\bage\b[^.]{0,60}\bmedicare\b|"
+         r"\bmedicare\b[^.]{0,50}\b(eligibility\s+)?age\b[^.]{0,30}\b(to|down)\b|"
          r"\bmedicare\s+(eligibility\s+)?age\s+to\s+\d{2}\b", weight=2.5),
     Rule("po.medicare_x", M4ATier.PUBLIC_OPTION, r"\bmedicare\s+x\b", weight=2.0),
     Rule("po.choice_frame", M4ATier.PUBLIC_OPTION,
@@ -127,18 +130,29 @@ PUBLIC_OPTION_RULES: tuple[Rule, ...] = (
 # ---------------------------------------------------------------------------
 ACA_RULES: tuple[Rule, ...] = (
     Rule("aca.protect", M4ATier.ACA_STRENGTHEN,
-         r"\b(protect\w*|defend\w*|strengthen\w*|expand\w*|build\s+on)\b[^.]{0,40}"
+         # "improve" and "fix" are as common as "protect" and were missing.
+         r"\b(protect\w*|defend\w*|strengthen\w*|expand\w*|improv\w*|fix\w*|"
+         r"bolster\w*|shore\s+up|save|build\s+on)\b[^.]{0,40}"
          r"\b(affordable\s+care\s+act|obamacare|\bACA\b)", weight=2.5,
          requires_affirm=False),
+    Rule("aca.reimbursement", M4ATier.ACA_STRENGTHEN,
+         r"\breimbursement\s+rates?\b", weight=1.0, requires_affirm=False),
+    Rule("aca.exchange", M4ATier.ACA_STRENGTHEN,
+         r"\b(health\s?care\s+)?(exchange|marketplace)\b[^.]{0,40}"
+         r"\b(premium|tax\s+credit|coverage|option)s?\b|"
+         r"\b(premium|tax\s+credit)s?\b[^.]{0,40}\b(exchange|marketplace)\b",
+         weight=1.2, requires_affirm=False),
     Rule("aca.preexisting", M4ATier.ACA_STRENGTHEN,
          r"\bpre[\s\-]?existing\s+conditions?\b", weight=2.0, requires_affirm=False),
     Rule("aca.subsidies", M4ATier.ACA_STRENGTHEN,
          r"\b(premium\s+tax\s+credits?|enhanced\s+subsidies|marketplace\s+subsidies)\b",
          weight=2.0, requires_affirm=False),
     Rule("aca.drug_negotiation", M4ATier.ACA_STRENGTHEN,
-         # "costs" as often as "prices"; "medication" as well as "drug".
-         r"\bnegotiat\w+\b[^.]{0,40}\b(drug|prescription|medication)\s*"
-         r"(drug\s*)?(price|cost)s?\b", weight=1.5, requires_affirm=False),
+         # Either order, and "costs" as often as "prices": campaigns write both
+         # "negotiate drug prices" and "prices negotiated through Medicare".
+         r"\bnegotiat\w+\b[^.]{0,60}\b(drug|prescription|medication|price|cost)s?\b|"
+         r"\b(drug|prescription|medication|price|cost)s?\b[^.]{0,60}\bnegotiat\w+\b",
+         weight=1.5, requires_affirm=False),
     Rule("aca.insulin", M4ATier.ACA_STRENGTHEN,
          r"\b(cap\w*|\$?35)\b[^.]{0,30}\binsulin\b", weight=1.5, requires_affirm=False),
     Rule("aca.medicaid_gap", M4ATier.ACA_STRENGTHEN,
@@ -190,7 +204,10 @@ ALL_RULES: tuple[Rule, ...] = (
 AFFIRM_CUES = re.compile(
     r"\b(i\s+(strongly\s+)?(support|back|endorse|believe|champion|co[\s\-]?sponsor\w*)|"
     r"i(\s+a|')m\s+(a\s+)?(proud\s+)?(supporter|co[\s\-]?sponsor|advocate)|"
-    r"i\s+will\s+(fight|vote|push|work|introduce|co[\s\-]?sponsor)\b|"
+    # "I will <anything>" is a first-person commitment. Safe to take broadly:
+    # detect_stance checks negation first, so "I will not support X" still
+    # resolves to NEGATE rather than reaching this cue.
+    r"i\s+will\b|"
     r"we\s+(must|need(\s+to)?|should|deserve|have\s+to|can|will)\b|"
     r"my\s+plan|that(\s+i|')s\s+why\s+i\s+support|"
     r"stands?\s+for|is\s+fighting\s+for|has\s+championed|fight(ing)?\s+for|"
