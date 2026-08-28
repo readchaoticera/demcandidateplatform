@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-28T13:58:42.770810",
+  "generated_at": "2026-08-28T14:28:23.755696",
   "candidate_count": 439,
   "on_ballot_count": 432,
   "coverage_gaps": [
@@ -730,7 +730,7 @@
         {
           "source": "human_review",
           "url": "https://www.jonathannezforaz.com/issues",
-          "retrieved_at": "2026-08-28T13:58:42.774475",
+          "retrieved_at": "2026-08-28T14:28:23.759213",
           "note": "reviewed by kyle@kyletharp.com on 2026-08-28"
         }
       ],
@@ -1479,7 +1479,7 @@
         {
           "source": "human_review",
           "url": "https://pro.stateaffairs.com/ca/news/richard-pan-congressional-candidate-ambigious-on-universal-healthcare",
-          "retrieved_at": "2026-08-28T13:58:42.774482",
+          "retrieved_at": "2026-08-28T14:28:23.759221",
           "note": "reviewed by kyle@kyletharp.com on 2026-08-28"
         }
       ],
@@ -1798,7 +1798,7 @@
         {
           "source": "human_review",
           "url": "https://ballotpedia.org/Connie_Chan",
-          "retrieved_at": "2026-08-28T13:58:42.774491",
+          "retrieved_at": "2026-08-28T14:28:23.759230",
           "note": "reviewed by kyle@kyletharp.com on 2026-08-28"
         }
       ],
@@ -2737,7 +2737,7 @@
         {
           "source": "human_review",
           "url": "https://irwin.asmdc.org/covered-california",
-          "retrieved_at": "2026-08-28T13:58:42.774500",
+          "retrieved_at": "2026-08-28T14:28:23.759240",
           "note": "reviewed by kyle@kyletharp.com on 2026-08-28"
         }
       ],
@@ -8022,7 +8022,7 @@
         {
           "source": "human_review",
           "url": "https://www.cbsnews.com/news/the-youngest-black-woman-in-congress-has-an-alternative-to-medicare-for-all",
-          "retrieved_at": "2026-08-28T13:58:42.774496",
+          "retrieved_at": "2026-08-28T14:28:23.759235",
           "note": "reviewed by kyle@kyletharp.com on 2026-08-28"
         }
       ],
@@ -10538,7 +10538,7 @@
         {
           "source": "human_review",
           "url": "https://kristenmcdonaldrivet.com/",
-          "retrieved_at": "2026-08-28T13:58:42.774487",
+          "retrieved_at": "2026-08-28T14:28:23.759226",
           "note": "reviewed by kyle@kyletharp.com on 2026-08-28"
         }
       ],
@@ -13669,7 +13669,7 @@
         {
           "source": "human_review",
           "url": "https://susieleeforcongress.com/",
-          "retrieved_at": "2026-08-28T13:58:42.774508",
+          "retrieved_at": "2026-08-28T14:28:23.759246",
           "note": "reviewed by kyle@kyletharp.com on 2026-08-28"
         }
       ],
@@ -13881,7 +13881,7 @@
         {
           "source": "human_review",
           "url": "https://www.tomsuozzi.com/",
-          "retrieved_at": "2026-08-28T13:58:42.774518",
+          "retrieved_at": "2026-08-28T14:28:23.759255",
           "note": "reviewed by kyle@kyletharp.com on 2026-08-28"
         }
       ],
@@ -14149,7 +14149,7 @@
         {
           "source": "human_review",
           "url": "https://jeffriesforcongress.com/",
-          "retrieved_at": "2026-08-28T13:58:42.774513",
+          "retrieved_at": "2026-08-28T14:28:23.759251",
           "note": "reviewed by kyle@kyletharp.com on 2026-08-28"
         }
       ],
@@ -14230,7 +14230,7 @@
         {
           "source": "human_review",
           "url": "https://www.bradlanderforcongress.com/issues",
-          "retrieved_at": "2026-08-28T13:58:42.774454",
+          "retrieved_at": "2026-08-28T14:28:23.759171",
           "note": "reviewed by kyle@kyletharp.com on 2026-08-28"
         }
       ],
@@ -14685,7 +14685,7 @@
         {
           "source": "human_review",
           "url": "https://patryanforcongress.com/",
-          "retrieved_at": "2026-08-28T13:58:42.774522",
+          "retrieved_at": "2026-08-28T14:28:23.759259",
           "note": "reviewed by kyle@kyletharp.com on 2026-08-28"
         }
       ],
@@ -15449,7 +15449,7 @@
         {
           "source": "human_review",
           "url": "https://poindexterforcongress.com/",
-          "retrieved_at": "2026-08-28T13:58:42.774533",
+          "retrieved_at": "2026-08-28T14:28:23.759269",
           "note": "reviewed by kyle@kyletharp.com on 2026-08-28"
         }
       ],
@@ -19630,7 +19630,7 @@
         {
           "source": "human_review",
           "url": "https://colinallred.com/",
-          "retrieved_at": "2026-08-28T13:58:42.774529",
+          "retrieved_at": "2026-08-28T14:28:23.759265",
           "note": "reviewed by kyle@kyletharp.com on 2026-08-28"
         }
       ],
@@ -21421,13 +21421,13 @@
       "m4a_tier": "unknown",
       "m4a_evidence": [],
       "m4a_notes": "REVIEW: only 608 characters retrieved across 8 page(s); site is likely Javascript-rendered",
-      "resolved_tier": "no_coverage_position",
-      "bucket": "no_position_found",
-      "evidence_basis": "news",
-      "override_tier": "unknown",
-      "override_note": "",
-      "override_source": "",
-      "override_reviewer": "",
+      "resolved_tier": "aca_strengthen",
+      "bucket": "does_not_support_m4a",
+      "evidence_basis": "human_review",
+      "override_tier": "aca_strengthen",
+      "override_note": "Does not support Medicare for All. Declined to cosponsor the Medicare for All Act in 2019 under sustained constituent lobbying, and is not a cosponsor of H.R.3069 in the current Congress.",
+      "override_source": "https://www.ueunion.org/political-action/2019/ue-members-press-congresswoman-gwen-moore-to-support-medicare-for-all",
+      "override_reviewer": "kyle@kyletharp.com",
       "secondary_tier": "no_coverage_position",
       "secondary_confidence": 0.4,
       "secondary_note": "Declined to cosponsor the 2019 Medicare for All Act under advocacy pressure; no current position located.",
@@ -21438,7 +21438,14 @@
       "endorsements": [],
       "wikipedia_url": null,
       "ballotpedia_url": null,
-      "provenance": [],
+      "provenance": [
+        {
+          "source": "human_review",
+          "url": "https://www.ueunion.org/political-action/2019/ue-members-press-congresswoman-gwen-moore-to-support-medicare-for-all",
+          "retrieved_at": "2026-08-28T14:28:23.759275",
+          "note": "reviewed by kyle@kyletharp.com on 2026-08-28"
+        }
+      ],
       "conflicts": [
         "campaign site verification scored 0.25: surname in domain"
       ]
