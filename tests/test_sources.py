@@ -477,3 +477,77 @@ def test_party_nominee_state_still_uses_the_primary_leader():
     # the leading Democrat really is the nominee, and must not be lost.
     rows = parse_rows(_TOP_TWO_HTML.replace("Ken Calvert", "Some Republican"), "OH")
     assert [r.democrats for r in rows] == [["Esther Kim-Varet"]]
+
+
+# --- Louisiana certified qualifying list ------------------------------------
+
+def _la():
+    from dcp.sources import louisiana
+    html = (FIXTURES / "la_candidate_list.html").read_text(encoding="utf-8")
+    return louisiana, louisiana.parse(html)
+
+
+def test_louisiana_parses_every_qualified_candidate_of_any_party():
+    _, q = _la()
+    assert len(q) == 15
+    assert {x.district for x in q} == {1, 2, 3}
+
+
+def test_louisiana_reads_the_party_a_candidate_qualified_under():
+    # Wikipedia lists Renada Collins and Tia LeBrun as Democratic declared
+    # candidates. The certified list is what the ballot says: neither qualified
+    # as a Democrat, and counting them as such overstated the field.
+    la, q = _la()
+    by_name = {x.name: x for x in q}
+    assert by_name['Renada "Honey" Collins'].party == "No Party"
+    assert by_name["Tia LeBrun"].party == "No Party"
+    assert not by_name["Tia LeBrun"].is_democrat
+    assert by_name["Lauren Jewett"].is_democrat
+
+
+def test_louisiana_democrats_are_grouped_by_district_code():
+    la, q = _la()
+    assert la.democrats_by_district(q) == {
+        "LA-01": ["Lauren Jewett"],
+        "LA-02": ["Troy A. Carter Sr."],
+        "LA-03": ["John Day", "Priscilla Gonzalez", "Caleb Walker"],
+    }
+
+
+def test_louisiana_ballot_nicknames_become_readable_names():
+    la, _ = _la()
+    # A quoted first token is the name they go by and stands in for the given name.
+    assert la.display_name('"Matt" Gromlich') == "Matt Gromlich"
+    assert la.display_name('"Clay" Higgins') == "Clay Higgins"
+    # A quoted token in the middle is a ballot nickname and is dropped.
+    assert la.display_name('Caleb "With a C" Walker') == "Caleb Walker"
+    assert la.display_name('Patricia "Pat" Moore') == "Patricia Moore"
+    assert la.display_name("Troy A. Carter Sr.") == "Troy A. Carter Sr."
+
+
+def test_louisiana_free_mail_is_not_treated_as_a_campaign_domain():
+    # A candidate filing from gmail has no campaign site to find; treating the
+    # provider as one would send the crawler to gmail.com.
+    la, q = _la()
+    by_name = {x.name: x for x in q}
+    assert by_name["Priscilla Gonzalez"].campaign_domain == ""
+    assert by_name["Lauren Jewett"].campaign_domain == "laurenjewett.com"
+
+
+def test_louisiana_office_ids_read_both_comma_spellings():
+    la, _ = _la()
+    # The office picker and the candidate listing punctuate the office
+    # differently, and only one of them has the comma.
+    picker = '<label for="cb_70195"><input type="checkbox" id="cb_70195" /> '\
+             'U. S. Representative, 1st Congressional District</label>'
+    assert la.house_office_ids(picker) == ["70195"]
+    assert la.OFFICE_DISTRICT.search("U. S. Representative 6th Congressional District")
+
+
+def test_louisiana_election_id_is_read_from_the_page_not_hardcoded():
+    la, _ = _la()
+    page = '<option value="345">12/12/2026</option>' \
+           '<option selected="selected" value="344">11/03/2026</option>'
+    assert la.election_id(page, "11/03/2026") == "344"
+    assert la.election_id(page, "12/12/2026") == "345"
+    assert la.election_id(page, "01/01/2030") is None

@@ -12,6 +12,7 @@ one. ``run`` chains them for convenience.
     dcp cosponsors              # mark Medicare for All Act cosponsors
     dcp fec                     # cross-check the roster against FEC filings
     dcp ratings                 # attach Cook Political Report race ratings
+    dcp louisiana               # apply Louisiana's certified qualifying list
     dcp secondary               # apply news-sourced assessments for unreadable sites
     dcp overrides               # apply human-reviewed corrections
     dcp report                  # markdown + CSV + JSON output
@@ -34,12 +35,13 @@ from . import statefacts
 from .adjudicate import to_review_csv
 from .classify.classifier import classify_pages
 from .crawl import collect_position_pages
-from .models import (Candidate, District, Evidence, M4ATier, NominationStatus,
-                     Provenance, Roster)
+from .models import (BallotRule, Candidate, District, Evidence, M4ATier,
+                     NominationStatus, Provenance, Roster)
 from .net import EgressBlocked, Fetcher, REQUIRED_HOSTS, doctor
 from .report import analyze, to_csv, to_json, to_markdown
 from .resolve import build_roster, merge
-from .sources import ballotpedia, congress, fec, fec_bulk, ratings, wikipedia
+from .sources import (ballotpedia, congress, fec, fec_bulk, louisiana, ratings,
+                      wikipedia)
 from .websites import resolve_campaign_url
 
 log = logging.getLogger("dcp")
@@ -501,6 +503,111 @@ def cmd_ratings(args: argparse.Namespace) -> int:
     return 0
 
 
+def cmd_louisiana(args: argparse.Namespace) -> int:
+    """Replace Louisiana's roster with the Secretary of State's certified list.
+
+    Louisiana has no nominating primary in 2026: the all-party ballot is the
+    November election, so whoever qualified is on it and nobody else is. That
+    makes the qualifying list the roster, and it is the only state where a
+    primary-results source cannot answer the question.
+
+    Both sources the pipeline had were wrong in opposite directions. Wikipedia
+    lists everyone who *declared*, which over-counts and mislabels party.
+    The campaign-finance table under-counts, catching only candidates who
+    raised enough to appear in it - and it kept Cleo Fields, who has money and
+    withdrew.
+    """
+    roster = _load_roster()
+    qualified = louisiana.fetch()
+    if not qualified:
+        print("Could not retrieve the Louisiana certified list; nothing changed.",
+              file=sys.stderr)
+        return 1
+
+    certified = louisiana.democrats_by_district(qualified)
+    existing = [c for c in roster.candidates if c.district.state == "LA"]
+    kept, dropped, added = [], [], []
+
+    for cand in existing:
+        names = certified.get(cand.district.code, [])
+        if any(_name_matches(n, cand.full_name) for n in names):
+            kept.append(cand)
+        else:
+            # Two different facts, and saying the wrong one is its own error: a
+            # candidate who qualified under another party is on the November
+            # ballot, just not as a Democrat.
+            other = next(
+                (q for q in qualified
+                 if q.district == cand.district.number
+                 and _name_matches(louisiana.display_name(q.name), cand.full_name)),
+                None,
+            )
+            if other is not None:
+                reason = (f"qualified with the Louisiana Secretary of State as "
+                          f"{other.party}, not as a Democrat")
+            else:
+                reason = ("did not appear on the Louisiana Secretary of State's "
+                          "certified list of candidates who qualified for the "
+                          "November 3, 2026 ballot")
+            # Not deleted: an on-ballot candidate who turns out not to belong
+            # there is a correction worth keeping the reason for.
+            cand.status = NominationStatus.LOST_PRIMARY
+            # Re-running the stage must not stack another copy of the reason.
+            cand.conflicts = [c for c in cand.conflicts
+                              if "Louisiana Secretary of State" not in c]
+            cand.conflicts.append(reason)
+            dropped.append((cand, reason))
+
+    for code, names in certified.items():
+        for name in names:
+            if any(_name_matches(name, c.full_name) for c in existing
+                   if c.district.code == code):
+                continue
+            number = int(code.split("-")[1])
+            cand = Candidate(
+                full_name=name,
+                district=District("LA", number, ballot_rule=statefacts.ballot_rule("LA")),
+                status=NominationStatus.ALL_PARTY_NOVEMBER,
+            )
+            cand.add_provenance("louisiana_sos", louisiana.INQUIRY_URL,
+                                "qualified for the November 3, 2026 all-party ballot")
+            roster.candidates.append(cand)
+            added.append(cand)
+
+    # Wikipedia links campaign sites for the candidates it covers, which for
+    # Louisiana is a minority of the field. The qualifying record's contact
+    # domain is the only lead for the rest, so verify it the same way any
+    # other hint is verified rather than trusting it.
+    fetcher = Fetcher(ttl=_ttl(args))
+    hinted = 0
+    for cand in [c for c in roster.on_ballot()
+                 if c.district.state == "LA" and not c.campaign_url]:
+        hint = next(
+            (q.campaign_domain for q in qualified
+             if q.district == cand.district.number
+             and _name_matches(louisiana.display_name(q.name), cand.full_name)
+             and q.campaign_domain),
+            "",
+        )
+        if hint and _resolve_one(fetcher, cand, [f"https://{hint}/"]):
+            hinted += 1
+
+    roster.candidates.sort(key=lambda c: (c.district.state, c.district.number, c.full_name))
+    _write(OUT / "roster.json", json.dumps(roster.to_dict(), indent=2))
+
+    log.info("louisiana: %d qualified candidates of all parties, %d Democrats",
+             len(qualified), sum(len(v) for v in certified.values()))
+    log.info("louisiana: %d kept, %d added, %d marked not-qualified; "
+             "%d campaign site(s) found from the qualifying record",
+             len(kept), len(added), len(dropped), hinted)
+    for cand, reason in dropped:
+        log.warning("louisiana: %s (%s) removed - %s",
+                    cand.full_name, cand.district.code, reason)
+    for cand in added:
+        log.info("louisiana: added %s (%s)", cand.full_name, cand.district.code)
+    return 0
+
+
 def cmd_fec(args: argparse.Namespace) -> int:
     """Cross-check the roster against the FEC candidate master file.
 
@@ -553,7 +660,11 @@ def cmd_fec(args: argparse.Namespace) -> int:
                  stats["statewide"], stats["redistricted"])
     for cand in on_ballot:
         if not cand.fec_candidate_id:
-            log.warning("FEC: no filing for %s (%s) - check the spelling",
+            # Not necessarily an error: a candidate only has to register with
+            # the FEC once they raise or spend $5,000, so a low-budget entrant
+            # in an all-party race legitimately has no filing to match.
+            log.warning("FEC: no filing for %s (%s) - a misspelling, or under "
+                        "the $5,000 registration threshold",
                         cand.full_name, cand.district.code)
     if stats["unmatched"]:
         roster.coverage_gaps.append(
@@ -562,7 +673,21 @@ def cmd_fec(args: argparse.Namespace) -> int:
         )
         _write(OUT / "roster.json", json.dumps(roster.to_dict(), indent=2))
 
-    unexplained = [d for d in missing if d[:2] not in explained_states]
+    # A district whose all-party primary has been held can legitimately send no
+    # Democrat: in CA-40 two Republicans took both slots. Its losing Democrats
+    # are still active FEC filers, so that seat is not a roster gap.
+    settled_all_party = {
+        d for d in missing
+        if statefacts.ballot_rule(d[:2]) in (BallotRule.TOP_TWO, BallotRule.TOP_FOUR_RCV)
+    }
+    unexplained = [
+        d for d in missing
+        if d[:2] not in explained_states and d not in settled_all_party
+    ]
+    if settled_all_party:
+        log.info("FEC: %s had Democratic filers but advanced none out of an "
+                 "all-party primary, which is a result rather than a gap",
+                 ", ".join(sorted(settled_all_party)))
     if unexplained:
         log.warning("FEC: %d seats have active Democratic filers but no nominee "
                     "in the roster, and are not known coverage gaps: %s",
@@ -574,7 +699,7 @@ def cmd_fec(args: argparse.Namespace) -> int:
 
 
 def cmd_run(args: argparse.Namespace) -> int:
-    for step in (cmd_roster, cmd_websites, cmd_classify, cmd_cosponsors,
+    for step in (cmd_roster, cmd_louisiana, cmd_websites, cmd_classify, cmd_cosponsors,
                  cmd_fec, cmd_ratings, cmd_secondary, cmd_overrides,
                  cmd_report):
         rc = step(args)
@@ -736,6 +861,7 @@ def main(argv: Optional[list[str]] = None) -> int:
         ("cosponsors", cmd_cosponsors, "mark Medicare for All Act cosponsors"),
         ("fec", cmd_fec, "cross-check the roster against FEC filings"),
         ("ratings", cmd_ratings, "attach Cook Political Report race ratings"),
+        ("louisiana", cmd_louisiana, "apply Louisiana's certified qualifying list"),
         ("secondary", cmd_secondary, "apply news-sourced assessments"),
         ("overrides", cmd_overrides, "apply human-reviewed corrections"),
         ("report", cmd_report, "write the analysis"),

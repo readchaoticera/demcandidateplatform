@@ -97,6 +97,7 @@ dcp websites    # attach campaign URLs (Ballotpedia hints, then verify by fetchi
 dcp classify    # crawl each site's issues pages, assign a tier with evidence
 dcp fec         # cross-check the roster against the FEC bulk filing universe
 dcp ratings     # attach Cook Political Report race ratings, via Wikipedia
+dcp louisiana   # replace LA's roster with the Secretary of State's certified list
 dcp report      # report.md + candidates.csv + analysis.json + needs_review.csv
 dcp run         # all of the above
 ```
@@ -113,6 +114,7 @@ inspecting before paying for the next one.
 | `sources/fec_bulk.py` | The same universe from the bulk candidate master file, no API key |
 | `sources/wikipedia.py` | Primary *results* — who actually won |
 | `sources/ratings.py` | Cook Political Report race ratings, read from Wikipedia |
+| `sources/louisiana.py` | LA's certified qualifying list from the Secretary of State |
 | `sources/ballotpedia.py` | Campaign website URLs |
 | `resolve.py` | Merge sources; record conflicts rather than resolving them |
 | `websites.py` | Verify a URL really is that candidate's campaign site |
@@ -208,6 +210,38 @@ The rating describes the **seat**, not the candidate, and it is Cook's
 editorial judgement rather than this project's. It is carried for context,
 displayed with attribution, and never feeds a classification. A district in
 neither source is left unrated rather than assumed safe.
+
+### Louisiana
+
+Louisiana is the one state a primary-results source cannot answer. It holds no
+nominating primary in 2026: after *Louisiana v. Callais* forced a mid-cycle
+redraw, the governor postponed the party primaries and the state reverted to an
+all-party ballot held **on** election day. Whoever qualified is on the November
+ballot and nobody else is, so the roster there is the qualifying list.
+
+`dcp louisiana` takes it from the Secretary of State. The two sources it
+replaced were wrong in opposite directions:
+
+* Wikipedia's per-district "Declared" sections over-count and mislabel party.
+  Of the four Democrats listed for LA-01, one qualified; the candidate given as
+  Democratic in LA-02 qualified No Party.
+* The campaign-finance fallback under-counts, catching only candidates who
+  raised enough to appear in a finance table — and it kept Cleo Fields, the
+  LA-06 incumbent, who has money and withdrew to run for state senate.
+
+Access differs sharply between the state's two hosts. `www.sos.la.gov` serves
+`Disallow: /` to every agent but a handful of named search engines, so nothing
+there is fetchable. The Voter Portal disallows `/CandidateInquiry/Parish/` and
+`/CandidateInquiry/Statewide/`, legacy paths its own robots.txt comment says
+generate error reports, while the endpoints the page actually calls
+(`/CandidateInquiry/StatewideCandidate/*`) are covered by neither prefix. A run
+costs two requests.
+
+The filing is a public record carrying each candidate's home address, phone
+number and email. Only name, party, district and filing date are read into the
+roster. The contact *domain* is used as a lead when looking for a campaign
+site — it is often the campaign's own — but the address itself is never stored,
+and the test fixture is scrubbed.
 
 ---
 
