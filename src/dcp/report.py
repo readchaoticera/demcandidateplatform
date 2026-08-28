@@ -25,7 +25,9 @@ from dataclasses import dataclass, field
 from datetime import date, datetime
 from typing import Iterable, Optional
 
-from .models import TIER_ORDER, Candidate, M4ATier, Roster
+from .models import (
+    BUCKET_LABELS, BUCKET_ORDER, TIER_ORDER, Candidate, M4ATier, Roster, bucket_for,
+)
 from .statefacts import SEAT_COUNTS, unsettled_field_seats
 
 
@@ -51,6 +53,7 @@ class Analysis:
     resolved_explicit: int = 0
     by_evidence: dict[str, int] = field(default_factory=dict)
     cosponsors: int = 0
+    bucket_counts: dict[str, int] = field(default_factory=dict)
     cosponsor_silent: int = 0
     """Cosponsors of the bill whose own campaign site never mentions it."""
 
@@ -85,6 +88,7 @@ def analyze(roster: Roster, as_of: date) -> Analysis:
         by_inc["incumbent" if c.incumbent else "non-incumbent"][c.m4a_tier.value] += 1
 
     resolved = Counter(c.resolved_tier for c in on_ballot)
+    buckets = Counter(c.bucket for c in on_ballot)
     basis = Counter(c.evidence_basis for c in on_ballot)
     cosponsors = [c for c in on_ballot if c.cosponsored_m4a_bill]
 
@@ -113,6 +117,7 @@ def analyze(roster: Roster, as_of: date) -> Analysis:
         resolved_classified=sum(n for t, n in resolved.items() if t.is_finding),
         resolved_explicit=resolved.get(M4ATier.EXPLICIT_M4A, 0),
         by_evidence=dict(basis),
+        bucket_counts={b.value: buckets.get(b, 0) for b in BUCKET_ORDER},
         cosponsors=len(cosponsors),
         cosponsor_silent=sum(
             1 for c in cosponsors if c.m4a_tier is not M4ATier.EXPLICIT_M4A
@@ -231,7 +236,7 @@ def to_markdown(analysis: Analysis, roster: Optional[Roster] = None) -> str:
 CSV_COLUMNS = (
     "candidate_id", "full_name", "state", "district", "ballot_rule", "status",
     "incumbent", "campaign_url", "campaign_url_confidence", "m4a_tier",
-    "resolved_tier", "evidence_basis", "cosponsored_m4a_bill",
+    "resolved_tier", "bucket", "evidence_basis", "cosponsored_m4a_bill",
     "secondary_tier", "secondary_confidence", "secondary_note", "secondary_sources",
     "m4a_evidence_quote", "m4a_evidence_rule", "m4a_notes", "conflicts",
 )
@@ -255,6 +260,7 @@ def to_csv(roster: Roster) -> str:
             "campaign_url_confidence": round(c.campaign_url_confidence, 3),
             "m4a_tier": c.m4a_tier.value,
             "resolved_tier": c.resolved_tier.value,
+            "bucket": c.bucket.value,
             "evidence_basis": c.evidence_basis,
             "cosponsored_m4a_bill": c.cosponsored_m4a_bill,
             "secondary_tier": c.secondary_tier.value,
@@ -286,6 +292,7 @@ def to_json(analysis: Analysis, roster: Roster) -> str:
             "resolved_classified": analysis.resolved_classified,
             "resolved_explicit": analysis.resolved_explicit,
             "by_evidence": analysis.by_evidence,
+            "bucket_counts": analysis.bucket_counts,
             "cosponsors": analysis.cosponsors,
             "cosponsor_silent": analysis.cosponsor_silent,
                 "by_state": analysis.by_state,

@@ -54,3 +54,88 @@ overrides:
       but states no coverage-structure position.
     reviewed_by: kyle@kyletharp.com
     reviewed_on: 2026-08-28
+
+  - name: Kristen McDonald Rivet
+    district: MI-08
+    tier: aca_strengthen
+    source: https://kristenmcdonaldrivet.com/
+    note: >-
+      Does not support Medicare for All; runs on expanding the Affordable Care
+      Act. Her site states no coverage-structure position a crawler can read.
+    reviewed_by: kyle@kyletharp.com
+    reviewed_on: 2026-08-28
+
+  - name: Connie Chan
+    district: CA-11
+    tier: explicit_m4a
+    source: https://ballotpedia.org/Connie_Chan
+    note: >-
+      Supports Medicare for All. Her campaign site states no coverage-structure
+      position that a crawler can read.
+    reviewed_by: kyle@kyletharp.com
+    reviewed_on: 2026-08-28
+
+  - name: Lauren Underwood
+    district: IL-14
+    tier: public_option
+    source: https://www.cbsnews.com/news/the-youngest-black-woman-in-congress-has-an-alternative-to-medicare-for-all
+    note: >-
+      Backs a public option rather than Medicare for All - "reform the system,
+      not replace it". Author of the Health Care Affordability Act, which
+      extends and enlarges ACA premium tax credits.
+    reviewed_by: kyle@kyletharp.com
+    reviewed_on: 2026-08-28
+
+  - name: Jacqui Irwin
+    district: CA-26
+    tier: aca_strengthen
+    source: https://irwin.asmdc.org/covered-california
+    note: >-
+      Does not support Medicare for All; works to strengthen the ACA, including
+      promoting Covered California enrolment as a state legislator.
+    reviewed_by: kyle@kyletharp.com
+    reviewed_on: 2026-08-28
+
+  - name: Susie Lee
+    district: NV-03
+    tier: aca_strengthen
+    source: https://susieleeforcongress.com/
+    note: >-
+      Does not support Medicare for All; is not a cosponsor of H.R.3069 and
+      runs on strengthening existing coverage. Site states no coverage-structure
+      position a crawler can read.
+    reviewed_by: kyle@kyletharp.com
+    reviewed_on: 2026-08-28
+
+  - name: Hakeem Jeffries
+    district: NY-08
+    tier: aca_strengthen
+    source: https://jeffriesforcongress.com/
+    note: >-
+      Does not support Medicare for All; is not a cosponsor of H.R.3069 and
+      runs on strengthening existing coverage. Site states no coverage-structure
+      position a crawler can read.
+    reviewed_by: kyle@kyletharp.com
+    reviewed_on: 2026-08-28
+
+  - name: Tom Suozzi
+    district: NY-03
+    tier: aca_strengthen
+    source: https://www.tomsuozzi.com/
+    note: >-
+      Does not support Medicare for All; is not a cosponsor of H.R.3069 and
+      runs on strengthening existing coverage. Site states no coverage-structure
+      position a crawler can read.
+    reviewed_by: kyle@kyletharp.com
+    reviewed_on: 2026-08-28
+
+  - name: Pat Ryan
+    district: NY-18
+    tier: aca_strengthen
+    source: https://patryanforcongress.com/
+    note: >-
+      Does not support Medicare for All; is not a cosponsor of H.R.3069 and
+      runs on strengthening existing coverage. Site states no coverage-structure
+      position a crawler can read.
+    reviewed_by: kyle@kyletharp.com
+    reviewed_on: 2026-08-28

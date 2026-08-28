@@ -1,6 +1,6 @@
 # Medicare for All support among Democratic U.S. House candidates
 
-Generated 2026-08-28 12:55 UTC, reflecting the field as of August 26, 2026.
+Generated 2026-08-28 13:41 UTC, reflecting the field as of August 26, 2026.
 
 ## Coverage first
 
@@ -17,8 +17,8 @@ Generated 2026-08-28 12:55 UTC, reflecting the field as of August 26, 2026.
 
 | Reading of "supports Medicare for All" | Count | Share of classified | Share of all on-ballot |
 |---|---|---|---|
-| Explicit endorsement only | 74 | 21.8% | 17.1% |
-| Explicit + single-payer in substance | 74 | 21.8% | 17.1% |
+| Explicit endorsement only | 75 | 22.1% | 17.4% |
+| Explicit + single-payer in substance | 75 | 22.1% | 17.4% |
 
 ## Adding the legislative record and news coverage
 
@@ -30,13 +30,13 @@ recorded legislative act.
 | Evidence | Candidates |
 |---|---|
 | Cosponsors H.R.3069, the Medicare for All Act | 89 |
-| Position read from their own campaign site | 267 |
+| Position read from their own campaign site | 259 |
 | Position from news coverage (site unreadable) | 70 |
 | No position from any source | 3 |
 
 Combined, **429 of 432** candidates (99%) now have a position from some source, leaving **3** with none.
 
-On the combined measure, **159** candidates (37.1% of those with a known position) support Medicare for All - against 74 on campaign sites alone.
+On the combined measure, **161** candidates (37.5% of those with a known position) support Medicare for All - against 75 on campaign sites alone.
 
 > **64 of the 89 cosponsors never mention it on their own campaign site.** Cosponsorship and campaign messaging are
 > close to disjoint, which is a finding in itself rather than a gap to be
@@ -46,11 +46,11 @@ On the combined measure, **159** candidates (37.1% of those with a known positio
 
 | Position tier | Campaign site | Share | Combined | Share |
 |---|---|---|---|---|
-| `explicit_m4a` | 74 | 21.8% | 159 | 37.1% |
+| `explicit_m4a` | 75 | 22.1% | 161 | 37.5% |
 | `single_payer_substance` | 0 | 0.0% | 1 | 0.2% |
-| `public_option` | 15 | 4.4% | 23 | 5.4% |
-| `aca_strengthen` | 158 | 46.5% | 183 | 42.7% |
-| `no_coverage_position` | 93 | 27.4% | 63 | 14.7% |
+| `public_option` | 16 | 4.7% | 25 | 5.8% |
+| `aca_strengthen` | 160 | 47.1% | 191 | 44.5% |
+| `no_coverage_position` | 89 | 26.2% | 51 | 11.9% |
 | `opposed` | 0 | 0.0% | 0 | 0.0% |
 | `unknown` | 92 | n/a | 3 | n/a |
 
@@ -59,7 +59,7 @@ On the combined measure, **159** candidates (37.1% of those with a known positio
 | Group | Explicit M4A | Classified | Share |
 |---|---|---|---|
 | incumbent | 25 | 70 | 35.7% |
-| non-incumbent | 49 | 270 | 18.1% |
+| non-incumbent | 50 | 270 | 18.5% |
 
 ## Known gaps
 

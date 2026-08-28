@@ -8,13 +8,16 @@
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#129658;</text></svg>">
 <link rel="stylesheet" href="house.css">
 <style>
-  /* --- project-specific: the position scale -------------------------------
-     Tiers are ordinal, but they are also genuinely distinct categories, so
-     they take the house series colours rather than a bespoke ramp. Green and
-     red carry the meanings the house style already assigns them via .up/.dn:
-     support at one end, opposition at the other. Neutral grey is reserved for
-     "no position", and "not found" is dashed because it is absent data rather
-     than a measured category. */
+  /* --- the position scale -------------------------------------------------
+     Three buckets in the table and filters; the finer tier is kept in the row
+     detail. Green and neutral carry the meanings the house style already
+     assigns them, and "no position / not found" is dashed because it is mostly
+     absent data rather than a measured category. */
+  .b-m4a_or_single_payer  { --c: var(--s2); }
+  .b-aca_or_public_option { --c: var(--s3); }
+  .b-none_or_not_found    { --c: var(--ink-3); }
+
+  /* Tier colours, used only inside an expanded row. */
   .t-explicit_m4a           { --c: var(--s2); }
   .t-single_payer_substance { --c: var(--s1); }
   .t-public_option          { --c: var(--s3); }
@@ -27,7 +30,8 @@
         font-size:12px; padding:3px 9px; border-radius:999px;
         color:var(--ink-2); background:var(--surface-2); border:1px solid var(--c);}
   .pill .sw{width:8px; height:8px; border-radius:2px; background:var(--c); flex:none;}
-  .pill.t-unknown{border-style:dashed; color:var(--ink-3);}
+  .pill.t-unknown,
+  .pill.b-none_or_not_found{border-style:dashed; color:var(--ink-3);}
 
   /* House .stats is auto-fit for four or five tiles; with two it would stretch
      each to half the page width. Cap the track so the rail keeps its proportions. */
@@ -165,6 +169,7 @@
   "use strict";
   var DATA = null, rows = [], sortKey = "d", sortAsc = true;
   var state = { q: "", state: "", basis: "", tiers: new Set() };
+  var BUCKET_ORDER = ["m4a_or_single_payer","aca_or_public_option","none_or_not_found"];
   var TIER_ORDER = ["explicit_m4a","single_payer_substance","public_option",
                     "aca_strengthen","no_coverage_position","opposed","unknown"];
 
@@ -201,14 +206,14 @@
   function matches(r){
     if (state.state && r.s !== state.state) return false;
     if (state.basis && r.b !== state.basis) return false;
-    if (state.tiers.size && !state.tiers.has(r.t)) return false;
+    if (state.tiers.size && !state.tiers.has(r.bk)) return false;
     return textMatch(r);
   }
   function sorted(list){
     var k = sortKey;
     return list.slice().sort(function(a,b){
       var x = a[k], y = b[k];
-      if (k === "t") { x = TIER_ORDER.indexOf(a.t); y = TIER_ORDER.indexOf(b.t); }
+      if (k === "t") { x = BUCKET_ORDER.indexOf(a.bk); y = BUCKET_ORDER.indexOf(b.bk); }
       if (k === "co") { x = a.co ? 0 : 1; y = b.co ? 0 : 1; }
       if (x < y) return sortAsc ? -1 : 1;
       if (x > y) return sortAsc ? 1 : -1;
@@ -219,6 +224,11 @@
   function pill(t){
     return '<span class="pill t-' + t + '"><i class="sw"></i>' +
            esc(DATA.tier_labels[t] || t) + "</span>";
+  }
+
+  function bucketPill(bk){
+    return '<span class="pill b-' + bk + '"><i class="sw"></i>' +
+           esc(DATA.bucket_labels[bk] || bk) + "</span>";
   }
 
   function detailHTML(r){
@@ -250,6 +260,8 @@
            (r.u ? '<a href="' + esc(r.u) + '" target="_blank" rel="noopener">' + esc(r.u) + "</a>" +
                   (r.uc < 0.55 ? " (low match confidence " + r.uc.toFixed(2) + ")" : "")
                 : "none found") + "</span></div>" +
+         '<div class="dfield"><span class="k">Detailed position</span><span class="v">' +
+           pill(r.t) + "</span></div>" +
          '<div class="dfield"><span class="k">Campaign site alone says</span><span class="v">' +
            pill(r.st) + "</span></div>" +
          '<div class="dfield"><span class="k">Cosponsors H.R.3069</span><span class="v">' +
@@ -279,7 +291,7 @@
         '<td><span class="nm">' + esc(r.n) + "</span></td>" +
         '<td class="dist">' + esc(r.d) +
           '<span class="sub-s">' + esc(DATA.basis_labels[r.b] || "") + "</span></td>" +
-        "<td>" + pill(r.t) + "</td>" +
+        "<td>" + bucketPill(r.bk) + "</td>" +
         '<td class="src hide-s">' + esc(DATA.basis_labels[r.b] || r.b) + "</td>" +
         '<td class="hide-s"><span class="' + (r.co ? "co-y" : "co-n") + '">' +
           (r.co ? "yes" : "—") + "</span></td>";
@@ -307,7 +319,7 @@
     $("empty").hidden = !none;
     if (none) $("empty").textContent = "No candidates match those filters.";
 
-    var m4a = list.filter(function(r){ return r.t === "explicit_m4a"; }).length;
+    var m4a = list.filter(function(r){ return r.bk === "m4a_or_single_payer"; }).length;
     $("count").innerHTML = "<b>" + list.length + "</b> of " + rows.length + " candidates · <b>" +
                            m4a + "</b> back Medicare for All" +
                            (list.length ? " (" + Math.round(m4a / list.length * 100) + "%)" : "");
@@ -318,7 +330,7 @@
       btn.querySelector(".x").textContent = rows.filter(function(r){
         if (state.state && r.s !== state.state) return false;
         if (state.basis && r.b !== state.basis) return false;
-        return textMatch(r) && r.t === t;
+        return textMatch(r) && r.bk === t;
       }).length;
     });
 
@@ -333,7 +345,8 @@
 
   function statTiles(s){
     [["On the ballot", s.total, "Democratic candidates, 3 November"],
-     ["Back Medicare for All", s.explicit, "across all three evidence sources"]
+     ["Medicare for All or single-payer", s.buckets.m4a_or_single_payer,
+      "across all evidence sources"]
     ].forEach(function(t){
       var d = document.createElement("div");
       d.className = "stat";
@@ -345,15 +358,15 @@
 
   function buildControls(){
     var host = $("tiers");
-    TIER_ORDER.forEach(function(t){
-      if (!rows.some(function(r){ return r.t === t; })) return;
+    BUCKET_ORDER.forEach(function(t){
+      if (!rows.some(function(r){ return r.bk === t; })) return;
       var b = document.createElement("button");
       b.type = "button";
-      b.className = "chip t-" + t;
+      b.className = "chip b-" + t;
       b.dataset.tier = t;
       b.setAttribute("aria-pressed", state.tiers.has(t) ? "true" : "false");
       b.innerHTML = '<i class="sw" style="background:var(--c)"></i>' +
-                    esc(DATA.tier_labels[t] || t) + ' <span class="x"></span>';
+                    esc(DATA.bucket_labels[t] || t) + ' <span class="x"></span>';
       b.addEventListener("click", function(){
         if (state.tiers.has(t)) state.tiers.delete(t); else state.tiers.add(t);
         b.setAttribute("aria-pressed", state.tiers.has(t) ? "true" : "false");

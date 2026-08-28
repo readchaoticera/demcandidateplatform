@@ -30,6 +30,14 @@ TIER_LABELS = {
     "unknown": "Not found",
 }
 
+#: The three-way public grouping. Tiers stay in the payload for the row detail;
+#: these are what the table and filters show.
+BUCKET_LABELS = {
+    "m4a_or_single_payer": "Medicare for All or single-payer",
+    "aca_or_public_option": "Strengthen ACA or add public option",
+    "none_or_not_found": "No coverage position / not found",
+}
+
 BASIS_LABELS = {
     "cosponsorship": "Cosponsors the bill",
     "campaign_site": "Campaign site",
@@ -47,6 +55,7 @@ def trim(candidate: dict) -> dict:
         "d": candidate["district"],
         "s": candidate["state"],
         "t": candidate["resolved_tier"],
+        "bk": candidate["bucket"],
         "st": candidate["m4a_tier"],
         "b": candidate["evidence_basis"],
         "co": bool(candidate.get("cosponsored_m4a_bill")),
@@ -82,11 +91,13 @@ def build(roster_path: Path, analysis_path: Path) -> dict:
             "cosponsors": analysis["cosponsors"],
             "cosponsor_silent": analysis["cosponsor_silent"],
             "by_evidence": analysis["by_evidence"],
+            "buckets": analysis["bucket_counts"],
             "resolved_counts": analysis["resolved_counts"],
             "tier_counts": analysis["tier_counts"],
             "unresolved_seats": analysis["unresolved_seats"],
         },
         "tier_labels": TIER_LABELS,
+        "bucket_labels": BUCKET_LABELS,
         "basis_labels": BASIS_LABELS,
         "coverage_gaps": analysis["coverage_gaps"],
         "candidates": rows,

@@ -6,6 +6,7 @@ a classifier that works but is never actually reached from the crawler.
 """
 
 import csv
+import pytest
 import io
 from datetime import date, datetime
 
@@ -186,3 +187,31 @@ def test_health_pages_are_fetched_before_other_issue_pages():
 def test_crawl_respects_the_page_budget():
     fetcher = StubFetcher(INDEX_SITE)
     assert len(collect_position_pages(fetcher, "https://x.example/", max_pages=3)) <= 3
+
+
+@pytest.mark.parametrize("path,label", [
+    ("/values", "Values"),
+    ("/my-beliefs", "My Beliefs"),
+    ("/priorities", "Priorities"),
+    ("/what-i-stand-for", "What I Stand For"),
+    ("/solutions", "Solutions"),
+    ("/issues", "Issues"),
+])
+def test_positions_pages_are_found_under_their_many_names(path, label):
+    """A label missing from ISSUE_LINK is not a near miss.
+
+    The page is never fetched, so the candidate reads as stating no position at
+    all — which is how Jason Crow's public-option stance on /values was lost.
+    """
+    home = (f"<html><body><nav><a href='{path}'>{label}</a></nav>"
+            "<p>Donate today.</p></body></html>")
+    site = {
+        "https://y.example/": home,
+        f"https://y.example{path}": (
+            "<html><body><p>I will fight for a public option that reduces costs "
+            f"and increases choices for consumers.{FILLER}</p></body></html>"
+        ),
+    }
+    pages = collect_position_pages(StubFetcher(site), "https://y.example/")
+    assert f"https://y.example{path}" in pages
+    assert classify_pages(pages).tier is M4ATier.PUBLIC_OPTION

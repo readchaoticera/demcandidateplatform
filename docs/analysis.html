@@ -19,7 +19,12 @@
   strong{color:var(--ink); font-weight:600;}
   .lede{font-family:var(--display); font-size:17px; font-style:italic; color:var(--ink-2); max-width:60ch;}
 
-  /* Tier colours match the Explorer table exactly. */
+  /* Bucket and tier colours match the Explorer exactly. */
+  .b-m4a_or_single_payer  { --c: var(--s2); }
+  .b-aca_or_public_option { --c: var(--s3); }
+  .b-none_or_not_found    { --c: var(--ink-3); }
+
+  /* Tier colours, for the worked examples. */
   .t-explicit_m4a           { --c: var(--s2); }
   .t-single_payer_substance { --c: var(--s1); }
   .t-public_option          { --c: var(--s3); }
@@ -94,9 +99,9 @@
 
     <div class="caveats">
       <h2>Three kinds of evidence, not one</h2>
-      <p><b>89</b> candidates cosponsor the bill — a recorded legislative act. <b>267</b>
+      <p><b>89</b> candidates cosponsor the bill — a recorded legislative act. <b>259</b>
         stated a position on their own campaign site. <b>70</b> more were resolved from news
-        coverage, and <b>3</b> by hand where the site serves a crawler almost nothing.
+        coverage, and <b>11</b> by hand where the site serves a crawler almost nothing.
         Where they conflict, the stronger evidence wins, and every row in the Explorer
         records which source decided it.</p>
     </div>
@@ -104,19 +109,19 @@
 
   <section>
     <div class="eyebrow">The answer</div>
-    <h2>159 candidates support Medicare for All</h2>
+    <h2>162 candidates back Medicare for All or single-payer</h2>
     <div class="figs">
       <div class="fig">
-        <span class="big">37.1%</span>
-        <span class="of">of the 429 with a known position</span>
-        <span class="what">support Medicare for All, counting the bill’s cosponsors alongside
-          those who say so publicly.</span>
+        <span class="big">37.5%</span>
+        <span class="of">of all 432 on the ballot</span>
+        <span class="what">back Medicare for All or single-payer, counting the bill’s cosponsors
+          alongside those who say so publicly.</span>
       </div>
       <div class="fig">
-        <span class="big muted">21.8%</span>
+        <span class="big muted">17.4%</span>
         <span class="of">counting campaign websites only</span>
-        <span class="what">74 candidates. The measure of what they choose to tell voters, and
-          barely half the real figure.</span>
+        <span class="what">75 candidates. The measure of what they choose to tell voters, and
+          under half the real figure.</span>
       </div>
     </div>
     <p>The distance between those two numbers is the most interesting thing in this dataset,
@@ -131,26 +136,21 @@
     <div class="eyebrow">Distribution</div>
     <h2>Where the field actually sits</h2>
 
-    <div class="tally" role="img" aria-label="432 candidates by combined position: 159 Medicare for All, 1 single-payer unbranded, 23 public option, 183 ACA strengthening, 63 no coverage position, 3 not found.">
-      <span class="t-explicit_m4a" style="width:36.81%"></span>
-      <span class="t-single_payer_substance" style="width:0.23%"></span>
-      <span class="t-public_option" style="width:5.32%"></span>
-      <span class="t-aca_strengthen" style="width:42.36%"></span>
-      <span class="t-no_coverage_position" style="width:14.58%"></span>
-      <span class="t-unknown" style="width:0.69%"></span>
+    <div class="tally" role="img" aria-label="432 candidates by position: 162 Medicare for All or single-payer, 216 strengthen ACA or add public option, 54 no coverage position or not found.">
+      <span class="b-m4a_or_single_payer" style="width:37.50%"></span>
+      <span class="b-aca_or_public_option" style="width:50.00%"></span>
+      <span class="b-none_or_not_found" style="width:12.50%"></span>
     </div>
     <div class="key">
-      <span class="t-explicit_m4a"><i class="sw"></i>Medicare for All</span>
-      <span class="t-public_option"><i class="sw"></i>Public option</span>
-      <span class="t-aca_strengthen"><i class="sw"></i>Strengthen the ACA</span>
-      <span class="t-no_coverage_position"><i class="sw"></i>No coverage position</span>
-      <span class="t-unknown"><i class="sw"></i>Not found</span>
+      <span class="b-m4a_or_single_payer"><i class="sw"></i>Medicare for All or single-payer</span>
+      <span class="b-aca_or_public_option"><i class="sw"></i>Strengthen ACA or add public option</span>
+      <span class="b-none_or_not_found"><i class="sw"></i>No coverage position / not found</span>
     </div>
 
     <div class="tbl">
       <p class="cap">Two measures side by side. “Site only” is what candidates publish;
-        “combined” adds the cosponsor roll and news coverage. Shares are of candidates with a
-        known position under each measure.</p>
+        “combined” adds the cosponsor roll, news coverage and reviewed corrections. Shares are
+        of all 432 candidates on the ballot under both measures.</p>
       <div class="scroll">
         <table>
           <thead>
@@ -158,27 +158,18 @@
                 <th class="num">Combined</th><th class="num">Share</th></tr>
           </thead>
           <tbody>
-            <tr><td><span class="tname t-explicit_m4a"><i class="sw"></i>Medicare for All</span></td>
-                <td class="num">74</td><td class="num">21.8%</td><td class="num">159</td><td class="num">37.1%</td></tr>
-            <tr><td><span class="tname t-single_payer_substance"><i class="sw"></i>Single-payer, unbranded</span></td>
-                <td class="num">0</td><td class="num">0.0%</td><td class="num">1</td><td class="num">0.2%</td></tr>
-            <tr><td><span class="tname t-public_option"><i class="sw"></i>Public option / Medicare buy-in</span></td>
-                <td class="num">15</td><td class="num">4.4%</td><td class="num">23</td><td class="num">5.4%</td></tr>
-            <tr><td><span class="tname t-aca_strengthen"><i class="sw"></i>Strengthen the ACA</span></td>
-                <td class="num">158</td><td class="num">46.5%</td><td class="num">183</td><td class="num">42.7%</td></tr>
-            <tr><td><span class="tname t-no_coverage_position"><i class="sw"></i>No coverage position stated</span></td>
-                <td class="num">93</td><td class="num">27.4%</td><td class="num">63</td><td class="num">14.7%</td></tr>
-            <tr class="zero"><td><span class="tname t-opposed"><i class="sw"></i>Opposed</span></td>
-                <td class="num">0</td><td class="num">0.0%</td><td class="num">0</td><td class="num">0.0%</td></tr>
-            <tr class="miss"><td><span class="tname t-unknown"><i class="sw"></i>Not found</span></td>
-                <td class="num">92</td><td class="num">—</td><td class="num">3</td><td class="num">—</td></tr>
+            <tr><td><span class="tname b-m4a_or_single_payer"><i class="sw"></i>Medicare for All or single-payer</span></td>
+                <td class="num">75</td><td class="num">17.4%</td><td class="num">162</td><td class="num">37.5%</td></tr>
+            <tr><td><span class="tname b-aca_or_public_option"><i class="sw"></i>Strengthen ACA or add public option</span></td>
+                <td class="num">176</td><td class="num">40.7%</td><td class="num">216</td><td class="num">50.0%</td></tr>
+            <tr><td><span class="tname b-none_or_not_found"><i class="sw"></i>No coverage position / not found</span></td>
+                <td class="num">181</td><td class="num">41.9%</td><td class="num">54</td><td class="num">12.5%</td></tr>
           </tbody>
         </table>
       </div>
     </div>
 
-    <p>Even after adding every source, <strong>63 candidates have no position on how coverage
-      should work.</strong> That is not silence on health — many write at length about cancer
+    <p>Even after adding every source, <strong>54 candidates have no coverage position we could establish.</strong> That is not silence on health — many write at length about cancer
       research, mental health, reproductive care or veterans’ services. They simply take no
       position on the insurance question.</p>
     <p>Not one candidate, in any source, argued against Medicare for All. Among Democrats the
@@ -219,7 +210,7 @@
     <h2>Where explicit support concentrates</h2>
     <div class="tbl">
       <p class="cap">States with at least eight Democratic candidates on the ballot, ranked by the
-        share endorsing Medicare for All on the combined measure. Ohio is included as
+        share in the Medicare for All or single-payer bucket on the combined measure. Ohio is included as
         the low end of the range.</p>
       <div class="scroll">
         <table>
@@ -227,7 +218,7 @@
           <tbody>
             <tr><td>Maryland</td><td class="num">8</td><td class="num">6</td><td class="num">75%</td></tr>
             <tr><td>Minnesota</td><td class="num">8</td><td class="num">5</td><td class="num">62%</td></tr>
-            <tr><td>California</td><td class="num">60</td><td class="num">35</td><td class="num">58%</td></tr>
+            <tr><td>California</td><td class="num">60</td><td class="num">36</td><td class="num">60%</td></tr>
             <tr><td>Michigan</td><td class="num">13</td><td class="num">7</td><td class="num">54%</td></tr>
             <tr><td>Missouri</td><td class="num">8</td><td class="num">4</td><td class="num">50%</td></tr>
             <tr><td>New Jersey</td><td class="num">12</td><td class="num">6</td><td class="num">50%</td></tr>
@@ -243,7 +234,7 @@
     </div>
     <p>California fields 60 Democrats across 52 districts — more candidates than seats, because
       its top-two primary can send two Democrats to the same general election. Eight of its
-      districts do, and 35 of its 60 candidates back Medicare for All.</p>
+      districts do, and 36 of its 60 candidates back Medicare for All or single-payer.</p>
   </section>
 
   <section>
@@ -258,7 +249,12 @@
         <li><b>A campaign website is not a voting record, and a voting record is not a
           campaign.</b> The two measures answer different questions, which is why both are
           reported rather than blended.</li>
-        <li><b>Some sites serve a crawler almost nothing.</b> Where a campaign runs a
+        <li><b>The three buckets merge two different facts in the last one.</b>
+          “No coverage position” means the material was read and states none;
+          “not found” means it could not be read. Those are not the same, and the
+          finer seven-tier classification is kept per candidate in the Explorer
+          and the CSV.</li>
+      <li><b>Some sites serve a crawler almost nothing.</b> Where a campaign runs a
           Javascript-rendered site, the served HTML can carry no policy text at all. Those
           rows are corrected by hand, recorded in <code>config/overrides.yaml</code> with a
           source and a named reviewer, and marked “human review” in the Explorer.</li>

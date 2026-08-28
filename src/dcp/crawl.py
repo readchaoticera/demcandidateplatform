@@ -19,10 +19,19 @@ from .net import Fetcher, FetchError
 
 log = logging.getLogger(__name__)
 
-#: Link text / hrefs that indicate a positions page, most specific first.
+#: Link text / hrefs that indicate a positions page.
+#:
+#: Campaigns label this page many different ways, and a label not on this list
+#: is not a near miss - the page is never fetched at all, and the candidate
+#: reads as having no position. "Values" alone cost one candidate their
+#: correct classification, so the list errs wide; a wrongly-followed page
+#: costs one fetch, a missed one costs a row.
 ISSUE_LINK = re.compile(
     r"health|medicare|issues?|priorit|platform|policy|policies|"
-    r"where[\s\-_]?i[\s\-_]?stand|on[\s\-_]the[\s\-_]issues|agenda|vision|plan",
+    r"where[\s\-_]?i[\s\-_]?stand|on[\s\-_]the[\s\-_]issues|agenda|vision|plan|"
+    r"values|beliefs|principles|commitments|solutions|"
+    r"fight(ing)?[\s\-_]?for|stands?[\s\-_]?for|our[\s\-_]?work|"
+    r"the[\s\-_]?record|my[\s\-_]?record|accomplishments",
     re.IGNORECASE,
 )
 

@@ -125,6 +125,44 @@ class M4ATier(str, Enum):
         return self in {M4ATier.EXPLICIT_M4A, M4ATier.SINGLE_PAYER_SUBSTANCE}
 
 
+class Bucket(str, Enum):
+    """The three-way public grouping of the seven tiers.
+
+    The tiers stay the unit of classification - they carry the evidence and the
+    rules that fired - but they are finer than most readers need. These buckets
+    are the reporting view.
+
+    Note that ``NONE_OR_NOT_FOUND`` deliberately merges "we read the material
+    and it states no coverage position" with "we could not read the material".
+    Those are different facts, and the tier is still recorded per candidate, so
+    the distinction remains available in the data even though the headline
+    grouping sets it aside.
+    """
+
+    M4A_OR_SINGLE_PAYER = "m4a_or_single_payer"
+    ACA_OR_PUBLIC_OPTION = "aca_or_public_option"
+    NONE_OR_NOT_FOUND = "none_or_not_found"
+
+
+#: Tier -> bucket. ``OPPOSED`` groups with the incremental bucket: in this field
+#: it means opposing Medicare for All while backing the existing system, which
+#: is a stated position rather than an absence of one.
+TIER_BUCKET: dict["M4ATier", Bucket] = {}
+
+BUCKET_LABELS: dict[Bucket, str] = {
+    Bucket.M4A_OR_SINGLE_PAYER: "Medicare for All or single-payer",
+    Bucket.ACA_OR_PUBLIC_OPTION: "Strengthen ACA or add public option",
+    Bucket.NONE_OR_NOT_FOUND: "No coverage position / not found",
+}
+
+#: Display order, most to least transformative.
+BUCKET_ORDER: tuple[Bucket, ...] = (
+    Bucket.M4A_OR_SINGLE_PAYER,
+    Bucket.ACA_OR_PUBLIC_OPTION,
+    Bucket.NONE_OR_NOT_FOUND,
+)
+
+
 #: Display order for reports, most to least transformative.
 TIER_ORDER: tuple[M4ATier, ...] = (
     M4ATier.EXPLICIT_M4A,
@@ -135,6 +173,21 @@ TIER_ORDER: tuple[M4ATier, ...] = (
     M4ATier.OPPOSED,
     M4ATier.UNKNOWN,
 )
+
+
+TIER_BUCKET.update({
+    M4ATier.EXPLICIT_M4A: Bucket.M4A_OR_SINGLE_PAYER,
+    M4ATier.SINGLE_PAYER_SUBSTANCE: Bucket.M4A_OR_SINGLE_PAYER,
+    M4ATier.PUBLIC_OPTION: Bucket.ACA_OR_PUBLIC_OPTION,
+    M4ATier.ACA_STRENGTHEN: Bucket.ACA_OR_PUBLIC_OPTION,
+    M4ATier.OPPOSED: Bucket.ACA_OR_PUBLIC_OPTION,
+    M4ATier.NO_COVERAGE_POSITION: Bucket.NONE_OR_NOT_FOUND,
+    M4ATier.UNKNOWN: Bucket.NONE_OR_NOT_FOUND,
+})
+
+
+def bucket_for(tier: "M4ATier") -> Bucket:
+    return TIER_BUCKET[tier]
 
 
 @dataclass(frozen=True)
@@ -292,6 +345,11 @@ class Candidate:
         return M4ATier.UNKNOWN
 
     @property
+    def bucket(self) -> Bucket:
+        """The three-way grouping of ``resolved_tier``."""
+        return bucket_for(self.resolved_tier)
+
+    @property
     def evidence_basis(self) -> str:
         """Which evidence type set ``resolved_tier``."""
         if self.override_tier.is_finding:
@@ -339,6 +397,7 @@ class Candidate:
             "m4a_evidence": [e.to_dict() for e in self.m4a_evidence],
             "m4a_notes": self.m4a_notes,
             "resolved_tier": self.resolved_tier.value,
+            "bucket": self.bucket.value,
             "evidence_basis": self.evidence_basis,
             "override_tier": self.override_tier.value,
             "override_note": self.override_note,
