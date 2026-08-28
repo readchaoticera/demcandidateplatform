@@ -357,3 +357,86 @@ def test_withdrawn_candidates_are_not_read_as_nominees():
     names = [n for n, _ in democratic_primary_candidates(nodes)]
     assert "Matt Schultz" not in names
     assert "Eric Hafner" in names
+
+
+# --- Cook Political Report ratings, via Wikipedia ---------------------------
+
+_RATINGS_HTML = """
+<table class="wikitable">
+  <tr><th>Constituency</th><th>Incumbent</th><th>Ratings</th></tr>
+  <tr><th>District</th><th>CPVI</th><th>Incumbent</th><th>Last result</th>
+      <th>Sabato Aug. 26, 2026</th><th>Cook Aug. 25, 2026 [ 3 ]</th><th>IE Aug. 20, 2026</th></tr>
+  <tr><td>Alabama 2</td><td>R+7</td><td>Shomari Figures</td><td>54.6% D</td>
+      <td>Solid R</td><td>Likely R (flip)</td><td>Lean R</td></tr>
+  <tr><td>Alaska at-large</td><td>R+6</td><td>Nick Begich III</td><td>51.3% R</td>
+      <td>Safe R</td><td>Tossup</td><td>Lean R</td></tr>
+  <tr><td>Puerto Rico at-large</td><td></td><td>—</td><td>—</td>
+      <td>—</td><td>Solid D</td><td>—</td></tr>
+</table>
+"""
+
+
+def test_cook_column_is_found_by_header_not_by_position():
+    # The table carries a dozen raters and gains more through the cycle, so a
+    # fixed index would quietly start reporting Sabato's call as Cook's.
+    from dcp.sources.ratings import parse_national
+    got = parse_national(_RATINGS_HTML)
+    assert got["AL-02"] == ("Likely R", "Aug. 25, 2026")
+    assert got["AK-AL"][0] == "Toss Up"
+
+
+def test_ratings_drop_the_flip_annotation_but_keep_the_level():
+    from dcp.sources.ratings import normalise_rating
+    assert normalise_rating("Likely R (flip)") == "Likely R"
+    assert normalise_rating("Solid D (hold)") == "Solid D"
+    # Wikipedia uses "Safe" and "Tossup" where Cook says "Solid" and "Toss Up".
+    assert normalise_rating("Safe R") == "Solid R"
+    assert normalise_rating("Tossup") == "Toss Up"
+    assert normalise_rating("Toss-up") == "Toss Up"
+    assert normalise_rating("—") is None
+
+
+def test_district_labels_map_to_codes_and_reject_non_states():
+    from dcp.sources.ratings import district_code
+    assert district_code("Alabama 2") == "AL-02"
+    assert district_code("Alaska at-large") == "AK-AL"
+    assert district_code("New Hampshire 1") == "NH-01"
+    # Territories send delegates, not representatives, and are not in the roster.
+    assert district_code("Puerto Rico at-large") is None
+    # A seat number the state does not have is a parse error, not a district.
+    assert district_code("Delaware 4") is None
+    assert district_code("Wyoming 2") is None
+
+
+def test_ratings_skip_districts_the_source_does_not_carry():
+    # An unrated district must stay absent rather than defaulting to Solid:
+    # "nobody published a rating" and "every rater says safe" are different.
+    from dcp.sources.ratings import parse_national
+    got = parse_national(_RATINGS_HTML)
+    assert "PR-AL" not in got and "CA-12" not in got
+
+
+_STATE_HTML = """
+<div class="mw-parser-output">
+<div class="mw-heading mw-heading2"><h2>District 1</h2></div>
+<table class="wikitable">
+  <tr><th>Source</th><th>Ranking</th><th>As of</th></tr>
+  <tr><td>The Cook Political Report [ 26 ]</td><td>Lean D</td><td>April 7, 2026</td></tr>
+  <tr><td>Sabato's Crystal Ball [ 28 ]</td><td>Likely D</td><td>March 26, 2026</td></tr>
+</table>
+<div class="mw-heading mw-heading2"><h2>District 2</h2></div>
+<table class="wikitable">
+  <tr><th>Source</th><th>Ranking</th><th>As of</th></tr>
+  <tr><td>Sabato's Crystal Ball [ 28 ]</td><td>Safe R</td><td>April 10, 2025</td></tr>
+  <tr><td>The Cook Political Report [ 26 ]</td><td>Solid R</td><td>November 2, 2025</td></tr>
+</table>
+</div>
+"""
+
+
+def test_per_state_articles_supply_the_safe_seats():
+    from dcp.sources.ratings import parse_state
+    got = parse_state(_STATE_HTML, "OH")
+    assert got["OH-01"] == ("Lean D", "April 7, 2026")
+    # Cook's row is second here: the source column decides, not the row order.
+    assert got["OH-02"] == ("Solid R", "November 2, 2025")

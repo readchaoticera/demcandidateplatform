@@ -11,6 +11,7 @@ one. ``run`` chains them for convenience.
     dcp classify                # crawl sites, assign M4A tiers
     dcp cosponsors              # mark Medicare for All Act cosponsors
     dcp fec                     # cross-check the roster against FEC filings
+    dcp ratings                 # attach Cook Political Report race ratings
     dcp secondary               # apply news-sourced assessments for unreadable sites
     dcp overrides               # apply human-reviewed corrections
     dcp report                  # markdown + CSV + JSON output
@@ -38,7 +39,7 @@ from .models import (Candidate, District, Evidence, M4ATier, NominationStatus,
 from .net import EgressBlocked, Fetcher, REQUIRED_HOSTS, doctor
 from .report import analyze, to_csv, to_json, to_markdown
 from .resolve import build_roster, merge
-from .sources import ballotpedia, congress, fec, fec_bulk, wikipedia
+from .sources import ballotpedia, congress, fec, fec_bulk, ratings, wikipedia
 from .websites import resolve_campaign_url
 
 log = logging.getLogger("dcp")
@@ -461,6 +462,45 @@ def cmd_report(args: argparse.Namespace) -> int:
     return 0
 
 
+def cmd_ratings(args: argparse.Namespace) -> int:
+    """Attach The Cook Political Report's rating for each candidate's district.
+
+    Cook's own site cannot be read: its robots.txt names the ratings dataset as
+    proprietary and the pages sit behind a Cloudflare challenge that 403s any
+    automated client. Wikipedia republishes the ratings under CC BY-SA with
+    citations back to Cook, which is where these come from.
+
+    The rating describes the seat, not the candidate, and it is Cook's
+    judgement rather than this project's. It is carried for context only and
+    never feeds a classification.
+    """
+    _require_egress()
+    roster = _load_roster()
+    table = ratings.fetch_all(Fetcher(ttl=_ttl(args)), args.states)
+    if not table:
+        print("Could not retrieve any race ratings; nothing changed.", file=sys.stderr)
+        return 1
+
+    hit = 0
+    for cand in roster.candidates:
+        found = table.get(cand.district.code)
+        if not found:
+            continue
+        cand.cook_rating, cand.cook_rating_as_of = found
+        cand.add_provenance("cook_via_wikipedia", ratings.NATIONAL_URL,
+                            f"{found[0]} as of {found[1]}")
+        hit += 1
+
+    _write(OUT / "roster.json", json.dumps(roster.to_dict(), indent=2))
+    on_ballot = [c for c in roster.on_ballot() if c.cook_rating]
+    log.info("ratings: %d districts rated, covering %d of %d on-ballot candidates",
+             len(table), len(on_ballot), len(roster.on_ballot()))
+    unrated = [c.district.code for c in roster.on_ballot() if not c.cook_rating]
+    if unrated:
+        log.warning("ratings: no rating found for %s", ", ".join(sorted(set(unrated))))
+    return 0
+
+
 def cmd_fec(args: argparse.Namespace) -> int:
     """Cross-check the roster against the FEC candidate master file.
 
@@ -535,7 +575,8 @@ def cmd_fec(args: argparse.Namespace) -> int:
 
 def cmd_run(args: argparse.Namespace) -> int:
     for step in (cmd_roster, cmd_websites, cmd_classify, cmd_cosponsors,
-                 cmd_fec, cmd_secondary, cmd_overrides, cmd_report):
+                 cmd_fec, cmd_ratings, cmd_secondary, cmd_overrides,
+                 cmd_report):
         rc = step(args)
         if rc != 0:
             return rc
@@ -619,6 +660,8 @@ def _load_roster() -> Roster:
             status=NominationStatus(row["status"]),
             fec_candidate_id=row.get("fec_candidate_id"),
             incumbent=row.get("incumbent", False),
+            cook_rating=row.get("cook_rating"),
+            cook_rating_as_of=row.get("cook_rating_as_of", ""),
             campaign_url=row.get("campaign_url"),
             campaign_url_confidence=row.get("campaign_url_confidence", 0.0),
             issues_urls=row.get("issues_urls", []),
@@ -692,6 +735,7 @@ def main(argv: Optional[list[str]] = None) -> int:
         ("classify", cmd_classify, "crawl sites and classify positions"),
         ("cosponsors", cmd_cosponsors, "mark Medicare for All Act cosponsors"),
         ("fec", cmd_fec, "cross-check the roster against FEC filings"),
+        ("ratings", cmd_ratings, "attach Cook Political Report race ratings"),
         ("secondary", cmd_secondary, "apply news-sourced assessments"),
         ("overrides", cmd_overrides, "apply human-reviewed corrections"),
         ("report", cmd_report, "write the analysis"),

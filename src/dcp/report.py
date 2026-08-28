@@ -235,7 +235,7 @@ def to_markdown(analysis: Analysis, roster: Optional[Roster] = None) -> str:
 
 CSV_COLUMNS = (
     "candidate_id", "full_name", "state", "district", "ballot_rule", "status",
-    "incumbent", "campaign_url", "campaign_url_confidence", "m4a_tier",
+    "incumbent", "cook_rating", "campaign_url", "campaign_url_confidence", "m4a_tier",
     "resolved_tier", "bucket", "evidence_basis", "cosponsored_m4a_bill",
     "secondary_tier", "secondary_confidence", "secondary_note", "secondary_sources",
     "m4a_evidence_quote", "m4a_evidence_rule", "m4a_notes", "conflicts",
@@ -256,6 +256,7 @@ def to_csv(roster: Roster) -> str:
             "ballot_rule": c.district.ballot_rule.value,
             "status": c.status.value,
             "incumbent": c.incumbent,
+            "cook_rating": c.cook_rating or "",
             "campaign_url": c.campaign_url or "",
             "campaign_url_confidence": round(c.campaign_url_confidence, 3),
             "m4a_tier": c.m4a_tier.value,

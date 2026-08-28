@@ -51,6 +51,7 @@
           <input class="search" id="q" type="search" placeholder="Search name, district or state…" autocomplete="off" spellcheck="false" />
           <select id="state" aria-label="Filter by state"><option value="">All states</option></select>
           <select id="basis" aria-label="Filter by evidence source"><option value="">Any source</option></select>
+          <select id="rating" aria-label="Filter by Cook rating"><option value="">Any Cook rating</option></select>
           <button class="btn" id="clear" type="button">Reset</button>
           <span class="meta" id="count" role="status" aria-live="polite"></span>
         </div>
@@ -62,6 +63,7 @@
             <tr>
               <th class="sortable" data-k="n">Candidate</th>
               <th class="sortable" data-k="d">District</th>
+              <th class="sortable hide-s" data-k="cr" title="The Cook Political Report's rating for this district">Cook rating</th>
               <th class="sortable" data-k="t">Position</th>
               <th class="sortable hide-s" data-k="b">Source</th>
               <th class="sortable hide-s" data-k="co">Cosponsor</th>
@@ -101,6 +103,14 @@
             Javascript-rendered site, those rows are corrected by hand, recorded with a source and a
             named reviewer, and marked <em>human review</em>.
           </li>
+          <li>
+            <strong>The Cook rating describes the district, not the candidate.</strong> It is
+            <a href="https://www.cookpolitical.com/ratings/house-race-ratings" target="_blank" rel="noopener">The
+            Cook Political Report</a>’s judgement of how competitive the seat is, reproduced here for
+            context via Wikipedia’s ratings tables, which cite Cook for each one. It never feeds the
+            position classification, and a safe seat is not evidence of anything about what its
+            candidate believes.
+          </li>
           <li>Click any column header to re-sort. Filters are stored in the URL, so a filtered view can be shared.</li>
         </ul>
         <p class="footnote" id="gen"></p>
@@ -119,7 +129,7 @@
       (function () {
         "use strict";
         var DATA = null, rows = [], sortKey = "d", sortAsc = true;
-        var state = { q: "", state: "", basis: "", buckets: new Set() };
+        var state = { q: "", state: "", basis: "", rating: "", buckets: new Set() };
         var BUCKET_ORDER = ["supports_m4a", "does_not_support_m4a", "no_position_found"];
 
         function $(id) { return document.getElementById(id); }
@@ -134,6 +144,7 @@
           state.q = p.get("q") || "";
           state.state = p.get("state") || "";
           state.basis = p.get("basis") || "";
+          state.rating = p.get("rating") || "";
           state.buckets = new Set((p.get("pos") || "").split(",").filter(Boolean));
           if (p.get("sort")) { sortKey = p.get("sort"); sortAsc = p.get("dir") !== "desc"; }
         }
@@ -142,6 +153,7 @@
           if (state.q) p.set("q", state.q);
           if (state.state) p.set("state", state.state);
           if (state.basis) p.set("basis", state.basis);
+          if (state.rating) p.set("rating", state.rating);
           if (state.buckets.size) p.set("pos", Array.from(state.buckets).join(","));
           if (sortKey !== "d" || !sortAsc) { p.set("sort", sortKey); p.set("dir", sortAsc ? "asc" : "desc"); }
           var s = p.toString();
@@ -155,6 +167,7 @@
         function matches(r) {
           if (state.state && r.s !== state.state) return false;
           if (state.basis && r.b !== state.basis) return false;
+          if (state.rating && r.cr !== state.rating) return false;
           if (state.buckets.size && !state.buckets.has(r.bk)) return false;
           return textMatch(r);
         }
@@ -164,10 +177,24 @@
             var x = a[k], y = b[k];
             if (k === "t") { x = BUCKET_ORDER.indexOf(a.bk); y = BUCKET_ORDER.indexOf(b.bk); }
             if (k === "co") { x = a.co ? 0 : 1; y = b.co ? 0 : 1; }
+            // Alphabetical would read Lean D, Likely D, Solid D, Toss Up.
+            // Unrated sorts last either way rather than ahead of Solid D.
+            if (k === "cr") {
+              x = a.cr ? DATA.rating_order.indexOf(a.cr) : 99;
+              y = b.cr ? DATA.rating_order.indexOf(b.cr) : 99;
+            }
             if (x < y) return sortAsc ? -1 : 1;
             if (x > y) return sortAsc ? 1 : -1;
             return a.d < b.d ? -1 : a.d > b.d ? 1 : 0;
           });
+        }
+
+        // Cook's ratings are one ordered scale, so the class is derived from
+        // the label rather than enumerated: "Solid D" -> "cook-solid-d".
+        function ratingPill(cr) {
+          if (!cr) return '<span class="meta">—</span>';
+          var slug = cr.toLowerCase().replace(/\s+/g, "-");
+          return '<span class="cook cook-' + slug + '">' + esc(cr) + "</span>";
         }
 
         function posPill(bk) {
@@ -231,7 +258,9 @@
             tr.setAttribute("aria-expanded", "false");
             tr.innerHTML =
               '<td><span class="cand-name">' + esc(r.n) + "</span></td>" +
-              '<td class="dist">' + esc(r.d) + "</td>" +
+              '<td class="dist">' + esc(r.d) +
+                '<span class="show-s">' + ratingPill(r.cr) + "</span></td>" +
+              '<td class="hide-s">' + ratingPill(r.cr) + "</td>" +
               "<td>" + posPill(r.bk) + "</td>" +
               '<td class="hide-s meta">' + esc(DATA.basis_labels[r.b] || r.b) + "</td>" +
               '<td class="hide-s meta">' + (r.co ? "<b>yes</b>" : "—") + "</td>";
@@ -239,7 +268,7 @@
             var det = document.createElement("tr");
             det.className = "detail";
             det.hidden = true;
-            det.innerHTML = '<td colspan="5">' + detailHTML(r) + "</td>";
+            det.innerHTML = '<td colspan="6">' + detailHTML(r) + "</td>";
 
             function toggle() {
               var open = tr.getAttribute("aria-expanded") === "true";
@@ -317,6 +346,12 @@
             o.value = st; o.textContent = st;
             $("state").appendChild(o);
           });
+          DATA.rating_order.forEach(function (cr) {
+            if (!rows.some(function (r) { return r.cr === cr; })) return;
+            var o = document.createElement("option");
+            o.value = cr; o.textContent = cr;
+            $("rating").appendChild(o);
+          });
           Object.keys(DATA.basis_labels).forEach(function (k) {
             if (!rows.some(function (r) { return r.b === k; })) return;
             var o = document.createElement("option");
@@ -326,6 +361,7 @@
 
           $("state").value = state.state;
           $("basis").value = state.basis;
+          $("rating").value = state.rating;
           $("q").value = state.q;
 
           var timer;
@@ -338,10 +374,11 @@
             if (e.key === "Escape") { e.target.value = ""; state.q = ""; render(); }
           });
           $("state").addEventListener("change", function (e) { state.state = e.target.value; render(); });
+          $("rating").addEventListener("change", function (e) { state.rating = e.target.value; render(); });
           $("basis").addEventListener("change", function (e) { state.basis = e.target.value; render(); });
           $("clear").addEventListener("click", function () {
-            state = { q: "", state: "", basis: "", buckets: new Set() };
-            $("q").value = ""; $("state").value = ""; $("basis").value = "";
+            state = { q: "", state: "", basis: "", rating: "", buckets: new Set() };
+            $("q").value = ""; $("state").value = ""; $("basis").value = ""; $("rating").value = "";
             document.querySelectorAll("#tiers .tab").forEach(function (c) { c.setAttribute("aria-pressed", "false"); });
             render();
           });
@@ -366,7 +403,8 @@
             $("gen").textContent =
               "Field as of " + when.toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric", timeZone: "UTC" }) +
               ". " + d.summary.unresolved_seats + " seats are excluded because their field was not yet settled: " +
-              "Massachusetts, New Hampshire, Rhode Island and Delaware had not voted, and Louisiana holds no nominating primary in 2026.";
+              "Massachusetts, New Hampshire, Rhode Island and Delaware had not voted, and Louisiana holds no nominating primary in 2026." +
+              (d.rating_as_of ? " Cook Political Report ratings as of " + d.rating_as_of + "." : "");
             render();
           })
           .catch(function (err) {

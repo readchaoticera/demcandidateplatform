@@ -120,7 +120,10 @@ select:focus, button:focus-visible, .tab:focus-visible, tr:focus-visible {
 /* ---------- Table ---------- */
 .table-wrap {
   background: var(--paper-card); border: 1px solid var(--line); border-radius: 12px;
-  box-shadow: var(--shadow); overflow: hidden; max-height: 2100px; overflow-y: auto;
+  box-shadow: var(--shadow); max-height: 2100px; overflow-y: auto;
+  /* overflow-x must be auto, not hidden: the table is wider than a phone, and
+     hiding the overflow clipped the Position pill with no way to reach it. */
+  overflow-x: auto;
 }
 table { width: 100%; border-collapse: collapse; }
 thead th {
@@ -140,6 +143,7 @@ tbody tr.r { cursor: pointer; }
 tbody tr.r:hover { background: #f4f9ff; }
 .cand-name { font-weight: 600; }
 .dist { color: var(--ink-soft); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.show-s { display: none; }
 .pub-link { color: var(--accent-dark); text-decoration: none; word-break: break-word; }
 .pub-link:hover { text-decoration: underline; }
 
@@ -152,6 +156,28 @@ tbody tr.r:hover { background: #f4f9ff; }
 .pos-supports_m4a         { background: #dbe9ff; color: #1d4ed8; border-color: #b8d4ff; }
 .pos-does_not_support_m4a { background: #eef1f5; color: #5b6675; border-color: #dbe2ea; }
 .pos-no_position_found    { background: transparent; color: #9aa6b2; border-color: #e6ecf3; }
+
+/* ---------- Cook Political Report race ratings ----------
+   The Cook Political Report's rating for the district, not this project's, and
+   not a statement about the candidate. Same tinted-fill recipe as the position
+   pills, on the conventional partisan ramp: blue for Democratic-leaning seats,
+   red for Republican-leaning, neutral for a toss-up. Every step keeps dark text
+   on a light tint rather than reversing out of a saturated fill, so the two
+   ends of the scale stay legible at the same weight. */
+.cook {
+  display: inline-block; font-size: 0.74rem; font-weight: 700; padding: 2px 9px;
+  border-radius: 999px; border: 1px solid transparent; white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+.cook-solid-d  { background: #d3d5fb; color: #2b2f8f; border-color: #b4b8f4; }
+.cook-likely-d { background: #e2e4fd; color: #3a3fa8; border-color: #c9ccf7; }
+.cook-lean-d   { background: #eef0fe; color: #5257bd; border-color: #dcdefa; }
+.cook-tilt-d   { background: #f6f7ff; color: #6b70c9; border-color: #e8e9fc; }
+.cook-toss-up  { background: #f2efe6; color: #7a6a45; border-color: #e4dcc9; }
+.cook-tilt-r   { background: #fff3f3; color: #c4534f; border-color: #fbdcdc; }
+.cook-lean-r   { background: #ffe9e9; color: #c0392f; border-color: #fbcfcf; }
+.cook-likely-r { background: #ffdada; color: #ab2b22; border-color: #f8bcbc; }
+.cook-solid-r  { background: #ffc9c9; color: #8f1d17; border-color: #f5a9a9; }
 
 /* Finer tier pills, used only inside an expanded row. */
 .tier { display: inline-block; font-size: 0.76rem; font-weight: 600; padding: 2px 9px;
@@ -210,5 +236,9 @@ blockquote.q {
 @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
 @media (max-width: 760px) {
   .hide-s { display: none; }
+  .show-s { display: block; margin-top: 4px; }
   .controls { justify-content: flex-start; }
+  /* The rating loses its own column here and stacks under the district code,
+     so Position - the column this page exists for - keeps its width. */
+  .cook { font-size: 0.7rem; padding: 1px 7px; }
 }

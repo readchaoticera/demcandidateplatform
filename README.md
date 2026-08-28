@@ -96,6 +96,7 @@ dcp roster      # FEC filing universe x Wikipedia primary results -> roster.json
 dcp websites    # attach campaign URLs (Ballotpedia hints, then verify by fetching)
 dcp classify    # crawl each site's issues pages, assign a tier with evidence
 dcp fec         # cross-check the roster against the FEC bulk filing universe
+dcp ratings     # attach Cook Political Report race ratings, via Wikipedia
 dcp report      # report.md + candidates.csv + analysis.json + needs_review.csv
 dcp run         # all of the above
 ```
@@ -111,6 +112,7 @@ inspecting before paying for the next one.
 | `sources/fec.py` | Candidate universe via the OpenFEC API (**filers, not winners**) |
 | `sources/fec_bulk.py` | The same universe from the bulk candidate master file, no API key |
 | `sources/wikipedia.py` | Primary *results* — who actually won |
+| `sources/ratings.py` | Cook Political Report race ratings, read from Wikipedia |
 | `sources/ballotpedia.py` | Campaign website URLs |
 | `resolve.py` | Merge sources; record conflicts rather than resolving them |
 | `websites.py` | Verify a URL really is that candidate's campaign site |
@@ -186,6 +188,26 @@ runs the cross-check in both directions:
 It also attaches what only the FEC has: canonical candidate IDs and incumbency.
 What it cannot supply is who *won* a primary — the file lists every filer — so
 nomination status still comes from Wikipedia.
+
+### Race ratings
+
+`dcp ratings` attaches The Cook Political Report's competitiveness rating for
+each candidate's district. It does not read cookpolitical.com: that site's
+robots.txt names the ratings dataset as proprietary, and `/ratings/` sits
+behind a Cloudflare challenge returning 403 to any automated client. Getting
+past that challenge would be evasion, so the pipeline does not try.
+
+The ratings come instead from Wikipedia, which republishes them under CC BY-SA
+with a citation to Cook against each one. Two articles cover the whole House
+between them: the national ratings article carries the ~155 seats some rater
+calls competitive, refreshed within days, and each state's own article carries
+a per-district table where the safe seats are. The national table wins where
+both have a district, being the fresher of the two.
+
+The rating describes the **seat**, not the candidate, and it is Cook's
+editorial judgement rather than this project's. It is carried for context,
+displayed with attribution, and never feeds a classification. A district in
+neither source is left unrated rather than assumed safe.
 
 ---
 

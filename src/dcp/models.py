@@ -290,6 +290,15 @@ class Candidate:
 
     endorsements: list[str] = field(default_factory=list)
 
+    # --- district context ---------------------------------------------------
+    cook_rating: Optional[str] = None
+    """The Cook Political Report's competitiveness rating for this district,
+    e.g. "Solid D", "Toss Up". A property of the seat, not the candidate, and
+    Cook's editorial judgement rather than this project's - so it is displayed
+    with attribution and never feeds a classification."""
+
+    cook_rating_as_of: str = ""
+
     # --- human review -------------------------------------------------------
     override_tier: "M4ATier" = None  # set in __post_init__
     """A reviewed correction. Outranks every automated source, because a person
@@ -407,6 +416,8 @@ class Candidate:
             "status": self.status.value,
             "on_general_ballot": self.on_general_ballot,
             "incumbent": self.incumbent,
+            "cook_rating": self.cook_rating,
+            "cook_rating_as_of": self.cook_rating_as_of,
             "fec_candidate_id": self.fec_candidate_id,
             "campaign_url": self.campaign_url,
             "campaign_url_confidence": round(self.campaign_url_confidence, 3),

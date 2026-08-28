@@ -38,10 +38,19 @@ BUCKET_LABELS = {
     "no_position_found": "No position found",
 }
 
+#: Cook's scale, safe Democratic to safe Republican. Drives both the filter
+#: order and the colour ramp in the dashboard.
+RATING_ORDER = (
+    "Solid D", "Likely D", "Lean D", "Tilt D",
+    "Toss Up",
+    "Tilt R", "Lean R", "Likely R", "Solid R",
+)
+
 BASIS_LABELS = {
     "cosponsorship": "Cosponsors the bill",
     "campaign_site": "Campaign site",
     "news": "News coverage",
+    "human_review": "Reviewed by hand",
     "none": "No source",
 }
 
@@ -70,6 +79,7 @@ def trim(candidate: dict) -> dict:
         "nt": candidate.get("m4a_notes", ""),
         "cf": candidate.get("conflicts") or [],
         "rule": candidate.get("ballot_rule", "party_nominee"),
+        "cr": candidate.get("cook_rating") or "",
     }
 
 
@@ -99,6 +109,11 @@ def build(roster_path: Path, analysis_path: Path) -> dict:
         "tier_labels": TIER_LABELS,
         "bucket_labels": BUCKET_LABELS,
         "basis_labels": BASIS_LABELS,
+        "rating_order": list(RATING_ORDER),
+        "rating_as_of": next(
+            (c["cook_rating_as_of"] for c in roster["candidates"]
+             if c.get("cook_rating_as_of")), ""
+        ),
         "coverage_gaps": analysis["coverage_gaps"],
         "candidates": rows,
     }
