@@ -1,445 +1,380 @@
 <!doctype html>
 <html lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Medicare for All Positions — DCP Explorer</title>
-<meta name="description" content="Searchable dashboard of every Democratic U.S. House candidate on the November 2026 ballot and their position on Medicare for All, sourced from campaign sites, the cosponsor roll and news coverage.">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#129658;</text></svg>">
-<link rel="stylesheet" href="house.css">
-<style>
-  /* --- the position scale -------------------------------------------------
-     Three buckets in the table and filters; the finer tier is kept in the row
-     detail. Green and neutral carry the meanings the house style already
-     assigns them, and "no position / not found" is dashed because it is mostly
-     absent data rather than a measured category. */
-  .b-supports_m4a         { --c: var(--s2); }
-  .b-does_not_support_m4a { --c: var(--s3); }
-  .b-no_position_found    { --c: var(--ink-3); }
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Medicare for All Tracker · Chaotic Era</title>
+    <meta
+      name="description"
+      content="Every Democratic candidate on the November 2026 U.S. House ballot and where each stands on Medicare for All, from campaign sites, the cosponsor roll and news coverage."
+    />
+    <link rel="icon" href="assets/logo.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="masthead">
+      <div class="masthead-inner">
+        <a class="brand" href="https://chaoticera.news" target="_blank" rel="noopener">
+          <img class="brand-logo" src="assets/logo.png" alt="Chaotic Era logo" width="40" height="40" />
+          <span class="brand-name">Chaotic Era</span>
+        </a>
+        <a class="subscribe-btn" href="https://chaoticera.news/subscribe" target="_blank" rel="noopener">
+          Subscribe
+        </a>
+      </div>
+    </header>
 
-  /* Tier colours, used only inside an expanded row. */
-  .t-explicit_m4a           { --c: var(--s2); }
-  .t-single_payer_substance { --c: var(--s1); }
-  .t-public_option          { --c: var(--s3); }
-  .t-aca_strengthen         { --c: var(--s5); }
-  .t-no_coverage_position   { --c: var(--ink-3); }
-  .t-opposed                { --c: var(--s4); }
-  .t-unknown                { --c: var(--ink-3); }
+    <main>
+      <section class="hero">
+        <p class="kicker">The Chaotic Era Tracker</p>
+        <h1>Where Democrats Stand on Medicare for All</h1>
+        <p class="dek">
+          Every Democratic candidate on the <strong>November 2026</strong> ballot for the U.S. House,
+          and where each stands on Medicare for All — drawn from their own campaign site, the
+          cosponsor roll of H.R.3069, and news coverage where a site could not be read. Open any row
+          to see the evidence behind it. Created by Kyle Tharp.
+        </p>
+      </section>
 
-  .pill{display:inline-flex; align-items:center; gap:6px; white-space:nowrap;
-        font-size:12px; padding:3px 9px; border-radius:999px;
-        color:var(--ink-2); background:var(--surface-2); border:1px solid var(--c);}
-  .pill .sw{width:8px; height:8px; border-radius:2px; background:var(--c); flex:none;}
-  .pill.t-unknown,
-  .pill.b-no_position_found{border-style:dashed; color:var(--ink-3);}
+      <section class="stats" id="stats" aria-label="Summary"></section>
 
-  /* House .stats is auto-fit for four or five tiles; with two it would stretch
-     each to half the page width. Cap the track so the rail keeps its proportions. */
-  .stats{grid-template-columns:repeat(auto-fit,minmax(180px,280px)); justify-content:start;}
+      <div class="controls">
+        <div class="tabs" id="tiers" role="group" aria-label="Filter by position"></div>
+        <div class="tools">
+          <label class="sr-only" for="q" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)">Search candidates</label>
+          <input class="search" id="q" type="search" placeholder="Search name, district or state…" autocomplete="off" spellcheck="false" />
+          <select id="state" aria-label="Filter by state"><option value="">All states</option></select>
+          <select id="basis" aria-label="Filter by evidence source"><option value="">Any source</option></select>
+          <button class="btn" id="clear" type="button">Reset</button>
+          <span class="meta" id="count" role="status" aria-live="polite"></span>
+        </div>
+      </div>
 
-  .search{flex:1 1 240px;}
-  .search input{width:100%;}
-  .tablewrap{background:var(--surface); border:1px solid var(--rule); border-radius:10px; overflow:hidden;}
-  .scroll{overflow-x:auto;}
-  thead th{position:sticky; top:0; background:var(--surface-2); z-index:5; white-space:nowrap;}
-  thead th button{all:unset; cursor:pointer; display:inline-flex; align-items:center; gap:4px;}
-  thead th button:hover{color:var(--ink);}
-  thead th .ar{opacity:.35;}
-  thead th[aria-sort] .ar{opacity:1; color:var(--chrome);}
-  tbody td{vertical-align:top;}
-  .nm{font-weight:600; color:var(--ink); font-size:13px;}
-  .dist{font-family:var(--mono); color:var(--ink-2); white-space:nowrap;}
-  .sub-s{display:none; font-size:10.5px; color:var(--ink-3);}
-  .src{color:var(--ink-3); white-space:nowrap;}
-  .co-y{font-family:var(--mono); color:var(--s2); font-weight:600;}
-  .co-n{font-family:var(--mono); color:var(--ink-3);}
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th class="sortable" data-k="n">Candidate</th>
+              <th class="sortable" data-k="d">District</th>
+              <th class="sortable" data-k="t">Position</th>
+              <th class="sortable hide-s" data-k="b">Source</th>
+              <th class="sortable hide-s" data-k="co">Cosponsor</th>
+            </tr>
+          </thead>
+          <tbody id="rows"></tbody>
+        </table>
+      </div>
+      <div class="empty" id="empty" hidden></div>
 
-  tr.detail td{background:var(--surface-2); padding:0;}
-  .dbody{padding:14px 16px; display:flex; flex-direction:column; gap:12px; max-width:900px;}
-  .dgrid{display:grid; grid-template-columns:repeat(auto-fit,minmax(190px,1fr)); gap:12px;}
-  .dfield{display:flex; flex-direction:column; gap:3px; min-width:0;}
-  .dfield .k{font-family:var(--mono); font-size:10px; letter-spacing:.11em; text-transform:uppercase; color:var(--ink-3);}
-  .dfield .v{font-size:12.5px; color:var(--ink-2); word-break:break-word;}
-  blockquote.q{margin:0; padding:11px 13px; background:var(--surface); border:1px solid var(--rule);
-               border-left:3px solid var(--chrome); border-radius:0 8px 8px 0;
-               font-family:var(--display); font-size:14.5px; line-height:1.45; color:var(--ink);}
-  .qmeta{font-family:var(--mono); font-size:10.5px; color:var(--ink-3); margin-top:6px;}
-  .flag{font-size:12.2px; color:var(--ink-2); background:var(--chrome-soft);
-        border-left:3px solid var(--s3); border-radius:0 6px 6px 0; padding:8px 11px;}
-  .srcs{display:flex; flex-direction:column; gap:3px; font-size:12px;}
+      <section class="methodology">
+        <h2>How to read this</h2>
+        <ul>
+          <li>
+            <strong>Position combines three kinds of evidence, by precedence.</strong> Cosponsoring
+            H.R.3069 — a recorded legislative act — outranks a candidate’s own campaign site, which
+            outranks news coverage. Every row records which one decided it, and the
+            campaign-site-only reading is shown inside the row for comparison.
+          </li>
+          <li>
+            <strong>“Does not support” means a stated position that is not Medicare for All</strong>
+            — a public option, ACA measures, or explicit opposition. It is never inferred from
+            silence: a candidate with nothing stated is counted under <em>No position found</em>.
+          </li>
+          <li>
+            <strong>The gap between the two measures is the story.</strong> Most cosponsors never
+            mention the bill on their own campaign site, so the site-only count is under half the
+            combined one.
+          </li>
+          <li>
+            <strong>Districts may carry several candidates.</strong> Louisiana runs an all-party
+            ballot with no nominating primary, and California, Washington and Alaska can send more
+            than one Democrat to the same general election. Those are not duplicates.
+          </li>
+          <li>
+            <strong>Some sites serve a crawler almost nothing.</strong> Where a campaign runs a
+            Javascript-rendered site, those rows are corrected by hand, recorded with a source and a
+            named reviewer, and marked <em>human review</em>.
+          </li>
+          <li>Click any column header to re-sort. Filters are stored in the URL, so a filtered view can be shared.</li>
+        </ul>
+        <p class="footnote" id="gen"></p>
+      </section>
+    </main>
 
-  .empty{padding:44px 16px; text-align:center; color:var(--ink-3); font-size:13px;}
-  footer{border-top:1px solid var(--rule); padding-top:14px; font-size:12.5px; color:var(--ink-3);}
-  footer p{margin:0 0 7px; line-height:1.55; max-width:88ch;}
-  code{font-family:var(--mono); font-size:.9em; background:var(--surface-2); border:1px solid var(--rule-2); border-radius:3px; padding:1px 4px;}
+    <footer class="site-footer">
+      <p>
+        Built by <a href="https://chaoticera.news" target="_blank" rel="noopener">Chaotic Era</a> ·
+        Politics, media &amp; online influence by Kyle Tharp.
+        <a href="analysis.html">Read the full analysis →</a>
+      </p>
+    </footer>
 
-  @media(max-width:760px){
-    .sub-s{display:block;}
-    .hide-s{display:none;}
-    .count{margin-left:0; text-align:left;}
-  }
-</style>
-</head>
-<body>
-<div class="wrap">
+    <script>
+      (function () {
+        "use strict";
+        var DATA = null, rows = [], sortKey = "d", sortAsc = true;
+        var state = { q: "", state: "", basis: "", buckets: new Set() };
+        var BUCKET_ORDER = ["supports_m4a", "does_not_support_m4a", "no_position_found"];
 
-  <header class="masthead">
-    <div class="eyebrow">DCP Explorer · U.S. House · General election 3 Nov 2026</div>
-    <h1>Medicare for All Positions</h1>
-    <p class="sub">
-      Every Democratic candidate on the November ballot, and where each stands on Medicare
-      for All — drawn from their own campaign site, the cosponsor roll of H.R.3069, and news
-      coverage where a site could not be read. Open any row for the evidence behind it.
-    </p>
-  </header>
+        function $(id) { return document.getElementById(id); }
+        function esc(s) {
+          return String(s == null ? "" : s).replace(/[&<>"']/g, function (c) {
+            return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c];
+          });
+        }
 
-  <section class="stats" id="stats" aria-label="Summary"></section>
+        function readHash() {
+          var p = new URLSearchParams(location.hash.slice(1));
+          state.q = p.get("q") || "";
+          state.state = p.get("state") || "";
+          state.basis = p.get("basis") || "";
+          state.buckets = new Set((p.get("pos") || "").split(",").filter(Boolean));
+          if (p.get("sort")) { sortKey = p.get("sort"); sortAsc = p.get("dir") !== "desc"; }
+        }
+        function writeHash() {
+          var p = new URLSearchParams();
+          if (state.q) p.set("q", state.q);
+          if (state.state) p.set("state", state.state);
+          if (state.basis) p.set("basis", state.basis);
+          if (state.buckets.size) p.set("pos", Array.from(state.buckets).join(","));
+          if (sortKey !== "d" || !sortAsc) { p.set("sort", sortKey); p.set("dir", sortAsc ? "asc" : "desc"); }
+          var s = p.toString();
+          history.replaceState(null, "", s ? "#" + s : location.pathname);
+        }
 
-  <div class="filters">
-    <div class="fgroup search">
-      <label class="flabel" for="q">Search</label>
-      <input id="q" type="search" placeholder="Name, district or state…" autocomplete="off" spellcheck="false">
-    </div>
-    <div class="fgroup">
-      <label class="flabel" for="state">State</label>
-      <select id="state"><option value="">All</option></select>
-    </div>
-    <div class="fgroup">
-      <label class="flabel" for="basis">Evidence source</label>
-      <select id="basis"><option value="">Any</option></select>
-    </div>
-    <div class="fgroup">
-      <span class="flabel">&nbsp;</span>
-      <button class="reset" id="clear" type="button">Reset</button>
-    </div>
-    <div class="count" id="count" role="status" aria-live="polite"></div>
-  </div>
+        function textMatch(r) {
+          if (!state.q) return true;
+          return (r.n + " " + r.d + " " + r.s).toLowerCase().indexOf(state.q.toLowerCase()) !== -1;
+        }
+        function matches(r) {
+          if (state.state && r.s !== state.state) return false;
+          if (state.basis && r.b !== state.basis) return false;
+          if (state.buckets.size && !state.buckets.has(r.bk)) return false;
+          return textMatch(r);
+        }
+        function sorted(list) {
+          var k = sortKey;
+          return list.slice().sort(function (a, b) {
+            var x = a[k], y = b[k];
+            if (k === "t") { x = BUCKET_ORDER.indexOf(a.bk); y = BUCKET_ORDER.indexOf(b.bk); }
+            if (k === "co") { x = a.co ? 0 : 1; y = b.co ? 0 : 1; }
+            if (x < y) return sortAsc ? -1 : 1;
+            if (x > y) return sortAsc ? 1 : -1;
+            return a.d < b.d ? -1 : a.d > b.d ? 1 : 0;
+          });
+        }
 
-  <div class="fgroup">
-    <span class="flabel">Position</span>
-    <div class="chips" id="tiers" role="group" aria-label="Filter by position"></div>
-  </div>
+        function posPill(bk) {
+          return '<span class="pos pos-' + bk + '">' + esc(DATA.bucket_labels[bk] || bk) + "</span>";
+        }
+        function tierPill(t) {
+          return '<span class="tier">' + esc(DATA.tier_labels[t] || t) + "</span>";
+        }
 
-  <div class="tablewrap">
-    <div class="scroll">
-      <table>
-        <thead>
-          <tr>
-            <th data-k="n"><button type="button">Candidate <span class="ar">↕</span></button></th>
-            <th data-k="d"><button type="button">District <span class="ar">↕</span></button></th>
-            <th data-k="t"><button type="button">Position <span class="ar">↕</span></button></th>
-            <th data-k="b" class="hide-s"><button type="button">Source <span class="ar">↕</span></button></th>
-            <th data-k="co" class="hide-s"><button type="button">Cosponsor <span class="ar">↕</span></button></th>
-          </tr>
-        </thead>
-        <tbody id="rows"></tbody>
-      </table>
-    </div>
-    <div class="empty" id="empty" hidden></div>
-  </div>
+        function detailHTML(r) {
+          var o = '<div class="dbody">';
+          if (r.q) {
+            o += '<div><blockquote class="q">' + esc(r.q) + "</blockquote>" +
+                 '<div class="qmeta">rule ' + esc(r.qr) + " · " +
+                 (r.qu ? '<a class="pub-link" href="' + esc(r.qu) + '" target="_blank" rel="noopener">' + esc(r.qu) + "</a>"
+                       : "no page recorded") + "</div></div>";
+          }
+          if (r.sn) {
+            var weak = /WEAK|CONFLICT|HEDGED|NOTE|NAME|ROSTER/.test(r.sn);
+            o += weak
+              ? '<div class="flag">' + esc(r.sn) + "</div>"
+              : '<div class="dfield"><span class="k">From news coverage' +
+                (r.sc ? " · confidence " + r.sc.toFixed(2) : "") + '</span>' +
+                '<span class="v">' + esc(r.sn) + "</span></div>";
+          }
+          if (r.ss && r.ss.length) {
+            o += '<div class="dfield"><span class="k">Sources</span><span class="srcs">';
+            r.ss.forEach(function (u) {
+              o += '<a class="pub-link" href="' + esc(u) + '" target="_blank" rel="noopener">' + esc(u) + "</a>";
+            });
+            o += "</span></div>";
+          }
+          o += '<div class="dgrid">' +
+               '<div class="dfield"><span class="k">Campaign site</span><span class="v">' +
+                 (r.u ? '<a class="pub-link" href="' + esc(r.u) + '" target="_blank" rel="noopener">' + esc(r.u) + "</a>" +
+                        (r.uc < 0.55 ? " (low match confidence " + r.uc.toFixed(2) + ")" : "")
+                      : "none found") + "</span></div>" +
+               '<div class="dfield"><span class="k">Detailed position</span><span class="v">' + tierPill(r.t) + "</span></div>" +
+               '<div class="dfield"><span class="k">Campaign site alone says</span><span class="v">' + tierPill(r.st) + "</span></div>" +
+               '<div class="dfield"><span class="k">Cosponsors H.R.3069</span><span class="v">' + (r.co ? "Yes" : "No") + "</span></div>";
+          if (r.rule && r.rule !== "party_nominee") {
+            o += '<div class="dfield"><span class="k">Ballot rule</span><span class="v">' +
+                 esc(r.rule.replace(/_/g, " ")) + "</span></div>";
+          }
+          o += "</div>";
+          if (r.nt) o += '<div class="dfield"><span class="k">Classifier notes</span><span class="v">' + esc(r.nt) + "</span></div>";
+          (r.cf || []).forEach(function (c) { o += '<div class="flag">' + esc(c) + "</div>"; });
+          return o + "</div>";
+        }
 
-  <div class="caveats">
-    <h2>Reading this well</h2>
-    <ul>
-      <li><b>Position combines three kinds of evidence by precedence.</b> Cosponsoring the
-        bill — a recorded legislative act — outranks a candidate’s own campaign site, which
-        outranks news coverage. Every row records which one decided it, and the
-        campaign-site-only reading is shown inside the row for comparison.</li>
-      <li><b>That gap is the finding.</b> Most cosponsors never mention the bill to voters,
-        so the campaign-site number is less than half the combined one.</li>
-      <li><b>Districts may carry several candidates.</b> Louisiana runs an all-party ballot
-        with no nominating primary, and California, Washington and Alaska can send more than
-        one Democrat to the same general election. Those are not duplicates.</li>
-      <li><b>News-sourced rows are the weakest evidence</b> and are labelled in the row
-        detail, including where a source was thin or contradictory.</li>
-    </ul>
-  </div>
+        function render() {
+          var list = sorted(rows.filter(matches));
+          var tb = $("rows");
+          tb.innerHTML = "";
+          var frag = document.createDocumentFragment();
 
-  <footer>
-    <p><a href="analysis.html"><b>Read the written analysis →</b></a> — what the numbers mean,
-       how positions are classified, and where the dataset stops.</p>
-    <p id="gen"></p>
-    <p>Built from <code>results/2026-08-26/</code> in this repository. Full data, evidence
-       quotes and the review queue are in <code>candidates.csv</code>.</p>
-  </footer>
-</div>
+          list.forEach(function (r) {
+            var tr = document.createElement("tr");
+            tr.className = "r";
+            tr.tabIndex = 0;
+            tr.setAttribute("aria-expanded", "false");
+            tr.innerHTML =
+              '<td><span class="cand-name">' + esc(r.n) + "</span></td>" +
+              '<td class="dist">' + esc(r.d) + "</td>" +
+              "<td>" + posPill(r.bk) + "</td>" +
+              '<td class="hide-s meta">' + esc(DATA.basis_labels[r.b] || r.b) + "</td>" +
+              '<td class="hide-s meta">' + (r.co ? "<b>yes</b>" : "—") + "</td>";
 
-<script>
-(function () {
-  "use strict";
-  var DATA = null, rows = [], sortKey = "d", sortAsc = true;
-  var state = { q: "", state: "", basis: "", tiers: new Set() };
-  var BUCKET_ORDER = ["supports_m4a","does_not_support_m4a","no_position_found"];
-  var TIER_ORDER = ["explicit_m4a","single_payer_substance","public_option",
-                    "aca_strengthen","no_coverage_position","opposed","unknown"];
+            var det = document.createElement("tr");
+            det.className = "detail";
+            det.hidden = true;
+            det.innerHTML = '<td colspan="5">' + detailHTML(r) + "</td>";
 
-  function $(id){ return document.getElementById(id); }
-  function esc(s){
-    return String(s == null ? "" : s).replace(/[&<>"']/g, function(c){
-      return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c];
-    });
-  }
+            function toggle() {
+              var open = tr.getAttribute("aria-expanded") === "true";
+              tr.setAttribute("aria-expanded", open ? "false" : "true");
+              det.hidden = open;
+            }
+            tr.addEventListener("click", toggle);
+            tr.addEventListener("keydown", function (e) {
+              if (e.key === "Enter" || e.key === " ") { e.preventDefault(); toggle(); }
+            });
+            frag.appendChild(tr);
+            frag.appendChild(det);
+          });
 
-  function readHash(){
-    var p = new URLSearchParams(location.hash.slice(1));
-    state.q = p.get("q") || "";
-    state.state = p.get("state") || "";
-    state.basis = p.get("basis") || "";
-    state.tiers = new Set((p.get("tier") || "").split(",").filter(Boolean));
-    if (p.get("sort")) { sortKey = p.get("sort"); sortAsc = p.get("dir") !== "desc"; }
-  }
-  function writeHash(){
-    var p = new URLSearchParams();
-    if (state.q) p.set("q", state.q);
-    if (state.state) p.set("state", state.state);
-    if (state.basis) p.set("basis", state.basis);
-    if (state.tiers.size) p.set("tier", Array.from(state.tiers).join(","));
-    if (sortKey !== "d" || !sortAsc) { p.set("sort", sortKey); p.set("dir", sortAsc ? "asc" : "desc"); }
-    var s = p.toString();
-    history.replaceState(null, "", s ? "#" + s : location.pathname);
-  }
+          tb.appendChild(frag);
+          var none = list.length === 0;
+          $("empty").hidden = !none;
+          if (none) $("empty").textContent = "No candidates match those filters.";
 
-  function textMatch(r){
-    if (!state.q) return true;
-    return (r.n + " " + r.d + " " + r.s).toLowerCase().indexOf(state.q.toLowerCase()) !== -1;
-  }
-  function matches(r){
-    if (state.state && r.s !== state.state) return false;
-    if (state.basis && r.b !== state.basis) return false;
-    if (state.tiers.size && !state.tiers.has(r.bk)) return false;
-    return textMatch(r);
-  }
-  function sorted(list){
-    var k = sortKey;
-    return list.slice().sort(function(a,b){
-      var x = a[k], y = b[k];
-      if (k === "t") { x = BUCKET_ORDER.indexOf(a.bk); y = BUCKET_ORDER.indexOf(b.bk); }
-      if (k === "co") { x = a.co ? 0 : 1; y = b.co ? 0 : 1; }
-      if (x < y) return sortAsc ? -1 : 1;
-      if (x > y) return sortAsc ? 1 : -1;
-      return a.d < b.d ? -1 : a.d > b.d ? 1 : 0;
-    });
-  }
+          var m4a = list.filter(function (r) { return r.bk === "supports_m4a"; }).length;
+          $("count").innerHTML = "<b>" + list.length + "</b> of " + rows.length + " · <b>" + m4a +
+                                 "</b> support Medicare for All" +
+                                 (list.length ? " (" + Math.round((m4a / list.length) * 100) + "%)" : "");
 
-  function pill(t){
-    return '<span class="pill t-' + t + '"><i class="sw"></i>' +
-           esc(DATA.tier_labels[t] || t) + "</span>";
-  }
+          // Counts respect the other active filters, not the whole dataset.
+          Array.prototype.forEach.call(document.querySelectorAll("#tiers .tab"), function (btn) {
+            var bk = btn.dataset.bucket;
+            btn.querySelector(".ct").textContent = rows.filter(function (r) {
+              if (state.state && r.s !== state.state) return false;
+              if (state.basis && r.b !== state.basis) return false;
+              return textMatch(r) && r.bk === bk;
+            }).length;
+          });
 
-  function bucketPill(bk){
-    return '<span class="pill b-' + bk + '"><i class="sw"></i>' +
-           esc(DATA.bucket_labels[bk] || bk) + "</span>";
-  }
+          document.querySelectorAll("thead th").forEach(function (th) {
+            if (th.dataset.k === sortKey) th.setAttribute("aria-sort", sortAsc ? "ascending" : "descending");
+            else th.removeAttribute("aria-sort");
+          });
+          writeHash();
+        }
 
-  function detailHTML(r){
-    var o = '<div class="dbody">';
-    if (r.q) {
-      o += "<div><blockquote class=\"q\">" + esc(r.q) + "</blockquote>" +
-           '<div class="qmeta">rule ' + esc(r.qr) + " · " +
-           (r.qu ? '<a href="' + esc(r.qu) + '" target="_blank" rel="noopener">' + esc(r.qu) + "</a>"
-                 : "no page recorded") + "</div></div>";
-    }
-    if (r.sn) {
-      var weak = /WEAK|CONFLICT|HEDGED|NOTE|NAME|ROSTER/.test(r.sn);
-      o += '<div class="' + (weak ? "flag" : "dfield") + '">' +
-           (weak ? esc(r.sn)
-                 : '<span class="k">From news coverage' +
-                   (r.sc ? " · confidence " + r.sc.toFixed(2) : "") + '</span>' +
-                   '<span class="v">' + esc(r.sn) + "</span>") +
-           "</div>";
-    }
-    if (r.ss && r.ss.length) {
-      o += '<div class="dfield"><span class="k">Sources</span><span class="srcs">';
-      r.ss.forEach(function(u){
-        o += '<a href="' + esc(u) + '" target="_blank" rel="noopener">' + esc(u) + "</a>";
-      });
-      o += "</span></div>";
-    }
-    o += '<div class="dgrid">' +
-         '<div class="dfield"><span class="k">Campaign site</span><span class="v">' +
-           (r.u ? '<a href="' + esc(r.u) + '" target="_blank" rel="noopener">' + esc(r.u) + "</a>" +
-                  (r.uc < 0.55 ? " (low match confidence " + r.uc.toFixed(2) + ")" : "")
-                : "none found") + "</span></div>" +
-         '<div class="dfield"><span class="k">Detailed position</span><span class="v">' +
-           pill(r.t) + "</span></div>" +
-         '<div class="dfield"><span class="k">Campaign site alone says</span><span class="v">' +
-           pill(r.st) + "</span></div>" +
-         '<div class="dfield"><span class="k">Cosponsors H.R.3069</span><span class="v">' +
-           (r.co ? "Yes" : "No") + "</span></div>";
-    if (r.rule && r.rule !== "party_nominee") {
-      o += '<div class="dfield"><span class="k">Ballot rule</span><span class="v">' +
-           esc(r.rule.replace(/_/g, " ")) + "</span></div>";
-    }
-    o += "</div>";
-    if (r.nt) o += '<div class="dfield"><span class="k">Classifier notes</span><span class="v">' + esc(r.nt) + "</span></div>";
-    (r.cf || []).forEach(function(c){ o += '<div class="flag">' + esc(c) + "</div>"; });
-    return o + "</div>";
-  }
+        function statCards(s) {
+          [["On the ballot", s.total, "Democratic candidates, 3 November"],
+           ["Supports Medicare for All", s.buckets.supports_m4a, "or single-payer, across all evidence sources"],
+           ["Does not support Medicare for All", s.buckets.does_not_support_m4a, "states a coverage position that is not Medicare for All"]
+          ].forEach(function (t) {
+            var d = document.createElement("div");
+            d.className = "stat";
+            d.innerHTML = '<span class="k">' + t[0] + '</span><span class="v">' + t[1] +
+                          '</span><span class="n">' + t[2] + "</span>";
+            $("stats").appendChild(d);
+          });
+        }
 
-  function render(){
-    var list = sorted(rows.filter(matches));
-    var tb = $("rows");
-    tb.innerHTML = "";
-    var frag = document.createDocumentFragment();
+        function buildControls() {
+          var host = $("tiers");
+          BUCKET_ORDER.forEach(function (bk) {
+            if (!rows.some(function (r) { return r.bk === bk; })) return;
+            var b = document.createElement("button");
+            b.type = "button";
+            b.className = "tab";
+            b.dataset.bucket = bk;
+            b.setAttribute("aria-pressed", state.buckets.has(bk) ? "true" : "false");
+            b.innerHTML = esc(DATA.bucket_labels[bk] || bk) + ' <span class="ct"></span>';
+            b.addEventListener("click", function () {
+              if (state.buckets.has(bk)) state.buckets.delete(bk); else state.buckets.add(bk);
+              b.setAttribute("aria-pressed", state.buckets.has(bk) ? "true" : "false");
+              render();
+            });
+            host.appendChild(b);
+          });
 
-    list.forEach(function(r){
-      var tr = document.createElement("tr");
-      tr.className = "r";
-      tr.tabIndex = 0;
-      tr.setAttribute("aria-expanded", "false");
-      tr.innerHTML =
-        '<td><span class="nm">' + esc(r.n) + "</span></td>" +
-        '<td class="dist">' + esc(r.d) +
-          '<span class="sub-s">' + esc(DATA.basis_labels[r.b] || "") + "</span></td>" +
-        "<td>" + bucketPill(r.bk) + "</td>" +
-        '<td class="src hide-s">' + esc(DATA.basis_labels[r.b] || r.b) + "</td>" +
-        '<td class="hide-s"><span class="' + (r.co ? "co-y" : "co-n") + '">' +
-          (r.co ? "yes" : "—") + "</span></td>";
+          Array.from(new Set(rows.map(function (r) { return r.s; }))).sort().forEach(function (st) {
+            var o = document.createElement("option");
+            o.value = st; o.textContent = st;
+            $("state").appendChild(o);
+          });
+          Object.keys(DATA.basis_labels).forEach(function (k) {
+            if (!rows.some(function (r) { return r.b === k; })) return;
+            var o = document.createElement("option");
+            o.value = k; o.textContent = DATA.basis_labels[k];
+            $("basis").appendChild(o);
+          });
 
-      var det = document.createElement("tr");
-      det.className = "detail";
-      det.hidden = true;
-      det.innerHTML = '<td colspan="5">' + detailHTML(r) + "</td>";
+          $("state").value = state.state;
+          $("basis").value = state.basis;
+          $("q").value = state.q;
 
-      function toggle(){
-        var open = tr.getAttribute("aria-expanded") === "true";
-        tr.setAttribute("aria-expanded", open ? "false" : "true");
-        det.hidden = open;
-      }
-      tr.addEventListener("click", toggle);
-      tr.addEventListener("keydown", function(e){
-        if (e.key === "Enter" || e.key === " ") { e.preventDefault(); toggle(); }
-      });
-      frag.appendChild(tr);
-      frag.appendChild(det);
-    });
+          var timer;
+          $("q").addEventListener("input", function (e) {
+            clearTimeout(timer);
+            var v = e.target.value;
+            timer = setTimeout(function () { state.q = v.trim(); render(); }, 120);
+          });
+          $("q").addEventListener("keydown", function (e) {
+            if (e.key === "Escape") { e.target.value = ""; state.q = ""; render(); }
+          });
+          $("state").addEventListener("change", function (e) { state.state = e.target.value; render(); });
+          $("basis").addEventListener("change", function (e) { state.basis = e.target.value; render(); });
+          $("clear").addEventListener("click", function () {
+            state = { q: "", state: "", basis: "", buckets: new Set() };
+            $("q").value = ""; $("state").value = ""; $("basis").value = "";
+            document.querySelectorAll("#tiers .tab").forEach(function (c) { c.setAttribute("aria-pressed", "false"); });
+            render();
+          });
+          document.querySelectorAll("thead th.sortable").forEach(function (th) {
+            th.addEventListener("click", function () {
+              var k = th.dataset.k;
+              if (sortKey === k) sortAsc = !sortAsc; else { sortKey = k; sortAsc = true; }
+              render();
+            });
+          });
+        }
 
-    tb.appendChild(frag);
-    var none = list.length === 0;
-    $("empty").hidden = !none;
-    if (none) $("empty").textContent = "No candidates match those filters.";
-
-    var m4a = list.filter(function(r){ return r.bk === "supports_m4a"; }).length;
-    $("count").innerHTML = "<b>" + list.length + "</b> of " + rows.length + " candidates · <b>" +
-                           m4a + "</b> back Medicare for All" +
-                           (list.length ? " (" + Math.round(m4a / list.length * 100) + "%)" : "");
-
-    // Chip counts respect the other active filters, not the whole dataset.
-    Array.prototype.forEach.call(document.querySelectorAll("#tiers .chip"), function(btn){
-      var t = btn.dataset.tier;
-      btn.querySelector(".x").textContent = rows.filter(function(r){
-        if (state.state && r.s !== state.state) return false;
-        if (state.basis && r.b !== state.basis) return false;
-        return textMatch(r) && r.bk === t;
-      }).length;
-    });
-
-    document.querySelectorAll("thead th").forEach(function(th){
-      if (th.dataset.k === sortKey) th.setAttribute("aria-sort", sortAsc ? "ascending" : "descending");
-      else th.removeAttribute("aria-sort");
-      var a = th.querySelector(".ar");
-      if (a) a.textContent = th.dataset.k === sortKey ? (sortAsc ? "↑" : "↓") : "↕";
-    });
-    writeHash();
-  }
-
-  function statTiles(s){
-    [["On the ballot", s.total, "Democratic candidates, 3 November"],
-     ["Supports Medicare for All", s.buckets.supports_m4a,
-      "across all evidence sources"]
-    ].forEach(function(t){
-      var d = document.createElement("div");
-      d.className = "stat";
-      d.innerHTML = '<span class="k">' + t[0] + '</span><span class="v">' + t[1] +
-                    '</span><span class="n">' + t[2] + "</span>";
-      $("stats").appendChild(d);
-    });
-  }
-
-  function buildControls(){
-    var host = $("tiers");
-    BUCKET_ORDER.forEach(function(t){
-      if (!rows.some(function(r){ return r.bk === t; })) return;
-      var b = document.createElement("button");
-      b.type = "button";
-      b.className = "chip b-" + t;
-      b.dataset.tier = t;
-      b.setAttribute("aria-pressed", state.tiers.has(t) ? "true" : "false");
-      b.innerHTML = '<i class="sw" style="background:var(--c)"></i>' +
-                    esc(DATA.bucket_labels[t] || t) + ' <span class="x"></span>';
-      b.addEventListener("click", function(){
-        if (state.tiers.has(t)) state.tiers.delete(t); else state.tiers.add(t);
-        b.setAttribute("aria-pressed", state.tiers.has(t) ? "true" : "false");
-        render();
-      });
-      host.appendChild(b);
-    });
-
-    Array.from(new Set(rows.map(function(r){ return r.s; }))).sort().forEach(function(s){
-      var o = document.createElement("option");
-      o.value = s; o.textContent = s;
-      $("state").appendChild(o);
-    });
-    Object.keys(DATA.basis_labels).forEach(function(k){
-      if (!rows.some(function(r){ return r.b === k; })) return;
-      var o = document.createElement("option");
-      o.value = k; o.textContent = DATA.basis_labels[k];
-      $("basis").appendChild(o);
-    });
-
-    $("state").value = state.state;
-    $("basis").value = state.basis;
-    $("q").value = state.q;
-
-    var timer;
-    $("q").addEventListener("input", function(e){
-      clearTimeout(timer);
-      var v = e.target.value;
-      timer = setTimeout(function(){ state.q = v.trim(); render(); }, 120);
-    });
-    $("q").addEventListener("keydown", function(e){
-      if (e.key === "Escape") { e.target.value = ""; state.q = ""; render(); }
-    });
-    $("state").addEventListener("change", function(e){ state.state = e.target.value; render(); });
-    $("basis").addEventListener("change", function(e){ state.basis = e.target.value; render(); });
-    $("clear").addEventListener("click", function(){
-      state = { q: "", state: "", basis: "", tiers: new Set() };
-      $("q").value = ""; $("state").value = ""; $("basis").value = "";
-      document.querySelectorAll("#tiers .chip").forEach(function(c){ c.setAttribute("aria-pressed","false"); });
-      render();
-    });
-    document.querySelectorAll("thead th").forEach(function(th){
-      var btn = th.querySelector("button");
-      if (!btn) return;
-      btn.addEventListener("click", function(){
-        var k = th.dataset.k;
-        if (sortKey === k) sortAsc = !sortAsc; else { sortKey = k; sortAsc = true; }
-        render();
-      });
-    });
-  }
-
-  fetch("data.json")
-    .then(function(r){ if (!r.ok) throw new Error("HTTP " + r.status); return r.json(); })
-    .then(function(d){
-      DATA = d;
-      rows = d.candidates;
-      readHash();
-      statTiles(d.summary);
-      buildControls();
-      var when = new Date(d.as_of + "T00:00:00Z");
-      $("gen").textContent =
-        "Field as of " + when.toLocaleDateString("en-GB", { day:"numeric", month:"long", year:"numeric", timeZone:"UTC" }) +
-        ". " + d.summary.unresolved_seats + " seats are excluded because their field was not yet settled: " +
-        "Massachusetts, New Hampshire, Rhode Island and Delaware had not voted, and Louisiana holds no nominating primary in 2026.";
-      render();
-    })
-    .catch(function(err){
-      $("empty").hidden = false;
-      $("empty").innerHTML = "Could not load <code>data.json</code> (" + esc(err.message) + "). " +
-        "This page reads its data over HTTP, so it must be served rather than opened from disk.";
-    });
-})();
-</script>
-</body>
+        fetch("data.json")
+          .then(function (r) { if (!r.ok) throw new Error("HTTP " + r.status); return r.json(); })
+          .then(function (d) {
+            DATA = d;
+            rows = d.candidates;
+            readHash();
+            statCards(d.summary);
+            buildControls();
+            var when = new Date(d.as_of + "T00:00:00Z");
+            $("gen").textContent =
+              "Field as of " + when.toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric", timeZone: "UTC" }) +
+              ". " + d.summary.unresolved_seats + " seats are excluded because their field was not yet settled: " +
+              "Massachusetts, New Hampshire, Rhode Island and Delaware had not voted, and Louisiana holds no nominating primary in 2026.";
+            render();
+          })
+          .catch(function (err) {
+            $("empty").hidden = false;
+            $("empty").innerHTML = "Could not load <code>data.json</code> (" + esc(err.message) + "). " +
+              "This page reads its data over HTTP, so it must be served rather than opened from disk.";
+          });
+      })();
+    </script>
+  </body>
 </html>

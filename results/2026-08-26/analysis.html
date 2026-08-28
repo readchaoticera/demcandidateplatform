@@ -1,372 +1,528 @@
-<title>How Many Democrats Back Medicare for All? — DCP Explorer</title>
+<title>How Many Democrats Back Medicare for All? · Chaotic Era</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <style>
-/* house.css inlined: an Artifact is a single file behind a strict CSP.
-   Edit docs/house.css and re-run scripts/build_artifact.py. */
-/* ===========================================================================
-   Explorer house style.
-   Shared with the FBIC and ArabiCCR Explorers — same tokens, same primitives.
-   Keep the token block byte-identical across projects so the family reads as
-   one system; project-specific rules go in the page, not here.
-
-   Deliberately no web fonts: every face is a system stack, so a page renders
-   identically offline, behind a proxy, or on a locked-down network.
-   =========================================================================== */
-
-:root{
-  color-scheme: light;
-  --paper:#eef0f3; --surface:#ffffff; --surface-2:#f6f7f9;
-  --ink:#0e1218; --ink-2:#3d4653; --ink-3:#6b7583; --rule:#d7dbe1; --rule-2:#e7eaee;
-  --chrome:#2f3a6b; --chrome-soft:#eaecf5;
-  --s1:#2a78d6; --s2:#1baf7a; --s3:#eda100; --s4:#e34948; --s5:#4a3aa7; --s6:#e87ba4;
-  --grid:#e4e7ec;
-  --display:"Iowan Old Style","Palatino Linotype",Palatino,"Book Antiqua",Georgia,serif;
-  --sans:ui-sans-serif,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",sans-serif;
-  --mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace;
-}
-@media (prefers-color-scheme: dark){
-  :root:where(:not([data-theme="light"])){
-    color-scheme: dark;
-    --paper:#0d1014; --surface:#161b22; --surface-2:#1c222b;
-    --ink:#f2f4f7; --ink-2:#b8c0cc; --ink-3:#828d9c; --rule:#2b333e; --rule-2:#222932;
-    --chrome:#8f9bd8; --chrome-soft:#232a45;
-    --s1:#3987e5; --s2:#199e70; --s3:#c98500; --s4:#e66767; --s5:#9085e9; --s6:#d55181;
-    --grid:#252d38;
-  }
-}
-:root[data-theme="dark"]{
-  color-scheme: dark;
-  --paper:#0d1014; --surface:#161b22; --surface-2:#1c222b;
-  --ink:#f2f4f7; --ink-2:#b8c0cc; --ink-3:#828d9c; --rule:#2b333e; --rule-2:#222932;
-  --chrome:#8f9bd8; --chrome-soft:#232a45;
-  --s1:#3987e5; --s2:#199e70; --s3:#c98500; --s4:#e66767; --s5:#9085e9; --s6:#d55181;
-  --grid:#252d38;
+/* styles.css inlined: an Artifact is a single file behind a strict CSP.
+   Edit docs/styles.css and re-run scripts/build_artifact.py. */
+/* ============================================================
+   Chaotic Era — Medicare for All Tracker
+   Brand tokens mirror the Chaotic Era YouTube Politics
+   Leaderboard so the two dashboards read as one publication.
+   Keep this block in sync with that site.
+   ============================================================ */
+:root {
+  --ink: #0d1117;          /* near-black text */
+  --ink-soft: #5b6675;     /* muted cool gray */
+  --paper: #fafcff;        /* Chaotic Era background */
+  --paper-card: #ffffff;
+  --line: #e6edf6;
+  --line-strong: #cdd9e8;
+  --accent: #419eff;       /* Chaotic Era blue */
+  --accent-dark: #2486ec;  /* hover / links */
+  --accent-soft: #eaf4ff;
+  --gold: #d9a441;
+  --shadow: 0 1px 2px rgba(13, 17, 23, 0.05), 0 8px 24px rgba(65, 158, 255, 0.08);
+  --serif: "IBM Plex Serif", Georgia, "Times New Roman", serif;
+  --sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
 }
 
-*{box-sizing:border-box}
-body{background:var(--paper); color:var(--ink); font-family:var(--sans); margin:0; -webkit-font-smoothing:antialiased;}
-a{color:var(--chrome); text-underline-offset:2px;}
-.wrap{max-width:1240px; margin:0 auto; padding:28px 20px 80px; display:flex; flex-direction:column; gap:20px;}
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  font-family: var(--sans);
+  color: var(--ink);
+  background: var(--paper);
+  line-height: 1.5;
+  font-feature-settings: "tnum" 1;
+}
+a { color: inherit; }
 
-/* ---- masthead ---- */
-header.masthead{display:flex; flex-direction:column; gap:8px; padding-bottom:18px; border-bottom:2px solid var(--ink);}
-.eyebrow{font-family:var(--mono); font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:var(--ink-3);}
-h1{font-family:var(--display); font-weight:600; font-size:clamp(26px,3.4vw,40px); margin:0; letter-spacing:-.01em; text-wrap:balance;}
-.sub{color:var(--ink-2); font-size:14.5px; max-width:70ch; line-height:1.55; margin:0;}
+/* ---------- Masthead ---------- */
+.masthead { background: var(--paper-card); color: var(--ink); border-bottom: 3px solid var(--accent); }
+.masthead-inner {
+  max-width: 1120px; margin: 0 auto; padding: 14px 24px;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.brand { display: inline-flex; align-items: center; gap: 11px; text-decoration: none; color: var(--ink); }
+.brand-logo { width: 40px; height: 40px; border-radius: 9px; display: block; object-fit: cover; }
+.brand-name { font-family: var(--serif); font-weight: 700; font-size: 1.35rem; letter-spacing: 0.01em; line-height: 1; }
+.subscribe-btn {
+  background: var(--accent); color: #fff; text-decoration: none; font-weight: 600;
+  font-size: 0.85rem; padding: 8px 16px; border-radius: 999px; transition: background 0.15s ease;
+}
+.subscribe-btn:hover { background: var(--accent-dark); }
 
-/* ---- filter bar ---- */
-.filters{position:sticky; top:0; z-index:20; background:var(--surface); border:1px solid var(--rule); border-radius:10px; padding:12px 14px; display:flex; flex-wrap:wrap; gap:14px; align-items:flex-end; box-shadow:0 1px 0 rgba(0,0,0,.03);}
-.fgroup{display:flex; flex-direction:column; gap:6px; min-width:0;}
-.flabel{font-family:var(--mono); font-size:10px; letter-spacing:.12em; text-transform:uppercase; color:var(--ink-3);}
-select,input[type="search"],button.reset{font-family:var(--sans); font-size:13px; color:var(--ink); background:var(--surface-2); border:1px solid var(--rule); border-radius:6px; padding:6px 9px;}
-select:focus-visible,button:focus-visible,.chip:focus-visible,input:focus-visible,tr:focus-visible{outline:2px solid var(--chrome); outline-offset:2px;}
-button.reset{cursor:pointer;}
-button.reset:hover{border-color:var(--chrome); color:var(--chrome);}
-.count{margin-left:auto; font-family:var(--mono); font-size:12px; color:var(--ink-2); text-align:right;}
-.count b{color:var(--ink); font-size:15px;}
+/* ---------- Layout ---------- */
+main { max-width: 1120px; margin: 0 auto; padding: 0 24px 64px; }
 
-/* ---- stat rail ---- */
-.stats{display:grid; grid-template-columns:repeat(auto-fit,minmax(180px,1fr)); gap:12px;}
-.stat{background:var(--surface); border:1px solid var(--rule); border-radius:10px; padding:13px 14px; display:flex; flex-direction:column; gap:5px;}
-.stat .k{font-family:var(--mono); font-size:10px; letter-spacing:.11em; text-transform:uppercase; color:var(--ink-3);}
-.stat .v{font-family:var(--display); font-size:24px; font-variant-numeric:tabular-nums; letter-spacing:-.02em; line-height:1.1;}
-.stat .n{font-size:11.5px; color:var(--ink-3); line-height:1.35;}
+/* ---------- Hero ---------- */
+.hero { padding: 56px 0 28px; }
+.kicker {
+  text-transform: uppercase; letter-spacing: 0.16em; font-size: 0.72rem;
+  font-weight: 700; color: var(--accent); margin: 0 0 12px;
+}
+.hero h1 {
+  font-family: var(--serif); font-weight: 700; font-size: clamp(2.1rem, 5vw, 3.4rem);
+  line-height: 1.04; letter-spacing: -0.02em; margin: 0 0 16px;
+}
+.dek { font-size: 1.08rem; color: var(--ink-soft); margin: 0; max-width: 72ch; }
 
-/* ---- cards ---- */
-.card{background:var(--surface); border:1px solid var(--rule); border-radius:10px; padding:16px 16px 14px; display:flex; flex-direction:column; gap:3px; min-width:0;}
-.card h2{font-family:var(--display); font-size:17px; font-weight:600; margin:0; letter-spacing:-.005em;}
-.card .desc{font-size:12.5px; color:var(--ink-3); margin:0 0 8px; line-height:1.45;}
+/* ---------- Stat cards ---------- */
+.stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 300px)); gap: 14px; margin-bottom: 26px; }
+.stat {
+  background: var(--paper-card); border: 1px solid var(--line); border-radius: 12px;
+  box-shadow: var(--shadow); padding: 16px 18px; display: flex; flex-direction: column; gap: 4px;
+}
+.stat .k {
+  font-size: 0.74rem; text-transform: uppercase; letter-spacing: 0.08em;
+  font-weight: 700; color: var(--ink-soft);
+}
+.stat .v {
+  font-family: var(--serif); font-weight: 700; font-size: 2rem;
+  line-height: 1.05; font-variant-numeric: tabular-nums;
+}
+.stat .n { font-size: 0.8rem; color: var(--ink-soft); line-height: 1.4; }
 
-/* ---- chips ---- */
-.chips{display:flex; flex-wrap:wrap; gap:7px;}
-.chip{display:inline-flex; align-items:center; gap:6px; font-size:12px; font-family:var(--sans); color:var(--ink-2); background:var(--surface-2); border:1px solid var(--rule); border-radius:999px; padding:4px 11px; cursor:pointer;}
-.chip .sw{width:9px; height:9px; border-radius:2px; flex:none;}
-.chip .x{font-family:var(--mono); color:var(--ink-3); font-variant-numeric:tabular-nums;}
-.chip:hover{border-color:var(--chrome);}
-.chip[aria-pressed="true"]{background:var(--chrome-soft); border-color:var(--chrome); color:var(--ink);}
+/* ---------- Controls ---------- */
+.controls {
+  display: flex; flex-wrap: wrap; gap: 16px; align-items: center; justify-content: space-between;
+  border-top: 1px solid var(--line); padding-top: 20px; margin-bottom: 18px;
+}
+.tools { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+.search {
+  font-family: var(--sans); font-size: 0.92rem; padding: 9px 14px;
+  border: 1px solid var(--line-strong); border-radius: 8px; background: var(--paper-card);
+  min-width: 240px; color: var(--ink);
+}
+.search:focus { outline: 2px solid var(--accent); outline-offset: 1px; border-color: transparent; }
+select {
+  font-family: var(--sans); font-size: 0.92rem; padding: 9px 12px;
+  border: 1px solid var(--line-strong); border-radius: 8px; background: var(--paper-card); color: var(--ink);
+}
+select:focus, button:focus-visible, .tab:focus-visible, tr:focus-visible {
+  outline: 2px solid var(--accent); outline-offset: 1px;
+}
+.btn {
+  font-family: var(--sans); font-size: 0.92rem; font-weight: 600; padding: 9px 16px; cursor: pointer;
+  border: 1px solid var(--line-strong); border-radius: 8px; background: var(--paper-card); color: var(--ink-soft);
+}
+.btn:hover { color: var(--ink); border-color: var(--accent); }
+.meta { font-size: 0.8rem; color: var(--ink-soft); }
+.meta b { color: var(--ink); font-variant-numeric: tabular-nums; }
 
-/* ---- tables ---- */
-table{border-collapse:collapse; width:100%; font-size:12.5px;}
-th,td{text-align:left; padding:7px 10px; border-bottom:1px solid var(--rule-2);}
-th{font-family:var(--mono); font-size:10px; letter-spacing:.09em; text-transform:uppercase; color:var(--ink-3); border-bottom:1px solid var(--rule); user-select:none;}
-td.num,th.num{font-family:var(--mono); font-variant-numeric:tabular-nums; text-align:right;}
-tbody tr.r{cursor:pointer;}
-tbody tr.r:hover{background:var(--surface-2);}
-.up{color:var(--s2);} .dn{color:var(--s4);}
+/* Pill tab group, used for the bucket filter. */
+.tabs { display: inline-flex; gap: 4px; background: var(--accent-soft); padding: 4px; border-radius: 999px; flex-wrap: wrap; }
+.tab {
+  border: 0; background: transparent; font-family: var(--sans); font-weight: 600; font-size: 0.88rem;
+  color: var(--ink-soft); padding: 8px 16px; border-radius: 999px; cursor: pointer; transition: all 0.15s ease;
+  display: inline-flex; align-items: center; gap: 7px;
+}
+.tab:hover { color: var(--ink); }
+.tab[aria-pressed="true"] { background: var(--accent); color: #fff; }
+.tab .ct { font-variant-numeric: tabular-nums; opacity: 0.7; }
+.tab[aria-pressed="true"] .ct { opacity: 0.85; }
 
-/* ---- caveat panel ---- */
-.caveats{background:var(--surface-2); border:1px solid var(--rule); border-left:3px solid var(--chrome); border-radius:8px; padding:15px 17px;}
-.caveats h2{font-family:var(--display); font-size:16px; margin:0 0 8px;}
-.caveats ul{margin:0; padding-left:17px; display:flex; flex-direction:column; gap:6px;}
-.caveats li{font-size:12.8px; color:var(--ink-2); line-height:1.5;}
-.caveats b{color:var(--ink);}
-.caveats p{font-size:12.8px; color:var(--ink-2); line-height:1.5; margin:0 0 8px;}
-.caveats p:last-child{margin-bottom:0;}
+/* ---------- Table ---------- */
+.table-wrap {
+  background: var(--paper-card); border: 1px solid var(--line); border-radius: 12px;
+  box-shadow: var(--shadow); overflow: hidden; max-height: 2100px; overflow-y: auto;
+}
+table { width: 100%; border-collapse: collapse; }
+thead th {
+  text-align: left; font-size: 0.74rem; text-transform: uppercase; letter-spacing: 0.08em;
+  color: var(--ink-soft); font-weight: 700; padding: 11px; background: #f1f7fe;
+  border-bottom: 2px solid var(--line-strong); white-space: nowrap; position: sticky; top: 0; z-index: 1;
+}
+th.num, td.num { text-align: right; font-variant-numeric: tabular-nums; }
+th.sortable { cursor: pointer; user-select: none; }
+th.sortable:hover { color: var(--ink); }
+th.sortable::after { content: "↕"; opacity: 0.35; margin-left: 6px; font-size: 0.8em; }
+th.sortable[aria-sort="ascending"]::after { content: "↑"; opacity: 1; color: var(--accent); }
+th.sortable[aria-sort="descending"]::after { content: "↓"; opacity: 1; color: var(--accent); }
+tbody td { padding: 10px 11px; border-bottom: 1px solid var(--line); font-size: 0.84rem; vertical-align: top; }
+tbody tr:last-child td { border-bottom: 0; }
+tbody tr.r { cursor: pointer; }
+tbody tr.r:hover { background: #f4f9ff; }
+.cand-name { font-weight: 600; }
+.dist { color: var(--ink-soft); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.pub-link { color: var(--accent-dark); text-decoration: none; word-break: break-word; }
+.pub-link:hover { text-decoration: underline; }
 
-@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+/* ---------- Position pills ----------
+   Mirrors the Leaderboard's lean pills: tinted fill, matching text, soft border. */
+.pos {
+  display: inline-block; font-size: 0.78rem; font-weight: 700; padding: 2px 10px;
+  border-radius: 999px; border: 1px solid transparent; white-space: nowrap;
+}
+.pos-supports_m4a         { background: #dbe9ff; color: #1d4ed8; border-color: #b8d4ff; }
+.pos-does_not_support_m4a { background: #eef1f5; color: #5b6675; border-color: #dbe2ea; }
+.pos-no_position_found    { background: transparent; color: #9aa6b2; border-color: #e6ecf3; }
+
+/* Finer tier pills, used only inside an expanded row. */
+.tier { display: inline-block; font-size: 0.76rem; font-weight: 600; padding: 2px 9px;
+        border-radius: 999px; border: 1px solid var(--line-strong); color: var(--ink-soft); background: #f7fafd; }
+
+.empty { padding: 28px 16px; text-align: center; color: var(--ink-soft); }
+
+/* ---------- Expanded row ---------- */
+tr.detail td { background: #f7fbff; padding: 0; border-bottom: 1px solid var(--line); }
+.dbody { padding: 16px 18px; display: flex; flex-direction: column; gap: 13px; max-width: 940px; }
+.dgrid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 13px; }
+.dfield { display: flex; flex-direction: column; gap: 3px; min-width: 0; }
+.dfield .k { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.08em; font-weight: 700; color: var(--ink-soft); }
+.dfield .v { font-size: 0.86rem; color: var(--ink-soft); word-break: break-word; }
+blockquote.q {
+  margin: 0; padding: 12px 15px; background: var(--paper-card);
+  border: 1px solid var(--line); border-left: 3px solid var(--accent); border-radius: 0 8px 8px 0;
+  font-family: var(--serif); font-size: 0.98rem; line-height: 1.5; color: var(--ink);
+}
+.qmeta { font-size: 0.74rem; color: var(--ink-soft); margin-top: 7px; }
+.flag {
+  font-size: 0.83rem; color: #6b4e16; background: #fff8e8;
+  border: 1px solid var(--gold); border-radius: 8px; padding: 9px 12px;
+}
+.srcs { display: flex; flex-direction: column; gap: 3px; font-size: 0.83rem; }
+
+/* ---------- Methodology ---------- */
+.methodology {
+  margin-top: 40px; padding: 24px 28px; background: var(--paper-card);
+  border: 1px solid var(--line); border-radius: 12px;
+}
+.methodology h2 { font-family: var(--serif); font-size: 1.3rem; margin: 0 0 12px; }
+.methodology ul { margin: 0; padding-left: 20px; color: var(--ink-soft); }
+.methodology li { margin-bottom: 8px; font-size: 0.92rem; }
+.methodology p { color: var(--ink-soft); font-size: 0.92rem; margin: 0 0 10px; }
+.methodology code { background: var(--accent-soft); padding: 1px 6px; border-radius: 4px; font-size: 0.85em; }
+.footnote { margin: 14px 0 0; font-size: 0.84rem; color: var(--ink-soft); }
+
+/* ---------- Composition bar ---------- */
+.sumrow { display: flex; align-items: center; gap: 14px; padding: 10px 0; }
+.sumrow-track { flex: 1 1 auto; display: flex; height: 22px; border-radius: 6px; overflow: hidden; background: #eef2f7; }
+.sumseg { height: 100%; border-right: 1.5px solid var(--paper-card); }
+.sumseg:last-child { border-right: 0; }
+.seg-supports_m4a         { background: var(--accent); }
+.seg-does_not_support_m4a { background: #9aa6b2; }
+.seg-no_position_found    { background: repeating-linear-gradient(45deg, #cdd9e8 0 4px, #eef2f7 4px 9px); }
+.chart-legend { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 16px; font-size: 0.8rem; color: var(--ink-soft); margin-bottom: 10px; }
+.chart-legend .lg { display: inline-flex; align-items: center; gap: 6px; }
+.chart-legend .dot { width: 11px; height: 11px; border-radius: 50%; display: inline-block; }
+
+/* ---------- Footer ---------- */
+.site-footer { border-top: 1px solid var(--line); background: var(--ink); color: #aab4c0; }
+.site-footer p { max-width: 1120px; margin: 0 auto; padding: 20px 24px; font-size: 0.86rem; }
+.site-footer a { color: #fff; }
+
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+@media (max-width: 760px) {
+  .hide-s { display: none; }
+  .controls { justify-content: flex-start; }
+}
 
 /* ---- page ---- */
-.wrap{max-width:820px;}
-  .backlink{font-family:var(--mono); font-size:11px; letter-spacing:.11em; text-transform:uppercase;
-            color:var(--ink-3); text-decoration:none;}
-  .backlink:hover{color:var(--chrome);}
-  section{display:flex; flex-direction:column; gap:14px;}
-  h2{font-family:var(--display); font-weight:600; font-size:clamp(19px,2.4vw,25px); margin:0; letter-spacing:-.008em; text-wrap:balance;}
-  p{color:var(--ink-2); font-size:14.5px; line-height:1.6; margin:0 0 11px; max-width:68ch;}
-  p:last-child{margin-bottom:0;}
-  strong{color:var(--ink); font-weight:600;}
-  .lede{font-family:var(--display); font-size:17px; font-style:italic; color:var(--ink-2); max-width:60ch;}
-
-  /* Bucket and tier colours match the Explorer exactly. */
-  .b-supports_m4a         { --c: var(--s2); }
-  .b-does_not_support_m4a { --c: var(--s3); }
-  .b-no_position_found    { --c: var(--ink-3); }
-
-  /* Tier colours, for the worked examples. */
-  .t-explicit_m4a           { --c: var(--s2); }
-  .t-single_payer_substance { --c: var(--s1); }
-  .t-public_option          { --c: var(--s3); }
-  .t-aca_strengthen         { --c: var(--s5); }
-  .t-no_coverage_position   { --c: var(--ink-3); }
-  .t-opposed                { --c: var(--s4); }
-  .t-unknown                { --c: var(--ink-3); }
-  .sw{width:9px; height:9px; border-radius:2px; background:var(--c); display:inline-block; flex:none;}
-
-  .figs{display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); gap:12px;}
-  .fig{background:var(--surface); border:1px solid var(--rule); border-radius:10px; padding:16px; display:flex; flex-direction:column; gap:6px;}
-  .fig .big{font-family:var(--display); font-size:38px; line-height:1; letter-spacing:-.02em; color:var(--s2); font-variant-numeric:tabular-nums;}
-  .fig .big.muted{color:var(--ink-2);}
-  .fig .of{font-family:var(--mono); font-size:10px; letter-spacing:.11em; text-transform:uppercase; color:var(--ink-3);}
-  .fig .what{font-size:12.8px; color:var(--ink-2); line-height:1.45;}
-
-  /* Stacked tally: the whole field in one bar. */
-  .tally{display:flex; width:100%; height:46px; border:1px solid var(--rule); border-radius:8px; overflow:hidden;}
-  .tally span{display:block; height:100%; background:var(--c);}
-  /* "Not found" is hatched, not filled: absent data, not a measured category. */
-  .tally span.t-unknown{background:repeating-linear-gradient(45deg,var(--ink-3) 0 4px,transparent 4px 9px),var(--surface-2);}
-  .key{display:flex; flex-wrap:wrap; gap:6px 16px; font-size:11.5px; color:var(--ink-3);}
-  .key span{display:inline-flex; align-items:center; gap:6px;}
-
-  .tbl{background:var(--surface); border:1px solid var(--rule); border-radius:10px; overflow:hidden;}
-  .tbl .scroll{overflow-x:auto;}
-  .cap{font-size:11.5px; color:var(--ink-3); padding:12px 12px 0; line-height:1.45;}
-  .tname{display:inline-flex; align-items:center; gap:7px; color:var(--ink);}
-  tr.zero td{color:var(--ink-3);}
-  tr.miss td{color:var(--ink-3);}
-
-  .quotes{display:grid; grid-template-columns:repeat(auto-fit,minmax(255px,1fr)); gap:12px;}
-  .quote{background:var(--surface); border:1px solid var(--rule); border-radius:10px; padding:15px; display:flex; flex-direction:column; gap:10px;}
-  .quote blockquote{margin:0; font-family:var(--display); font-size:15px; line-height:1.5; color:var(--ink);}
-  .quote .who{font-family:var(--mono); font-size:10.5px; letter-spacing:.06em; color:var(--ink-3);}
-  .verdict{display:inline-flex; align-items:center; gap:6px; align-self:flex-start;
-           font-family:var(--mono); font-size:10px; letter-spacing:.09em; text-transform:uppercase;
-           padding:4px 9px; border-radius:999px; border:1px solid var(--c); color:var(--ink-2); background:var(--surface-2);}
-
-  footer{border-top:1px solid var(--rule); padding-top:14px; font-size:12.2px; color:var(--ink-3); line-height:1.55;}
-  code{font-family:var(--mono); font-size:.9em; background:var(--surface-2); border:1px solid var(--rule-2); border-radius:3px; padding:1px 4px;}
+main { max-width: 860px; }
+      .prose p { font-size: 1.02rem; line-height: 1.65; color: var(--ink-soft); margin: 0 0 14px; }
+      .prose p:last-child { margin-bottom: 0; }
+      .prose strong { color: var(--ink); font-weight: 700; }
+      section.block { margin: 0 0 40px; }
+      h2.head {
+        font-family: var(--serif); font-weight: 700; font-size: clamp(1.4rem, 3vw, 1.9rem);
+        line-height: 1.15; letter-spacing: -0.01em; margin: 0 0 14px;
+      }
+      .figs { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 14px; margin: 0 0 20px; }
+      .fig {
+        background: var(--paper-card); border: 1px solid var(--line); border-radius: 12px;
+        box-shadow: var(--shadow); padding: 18px; display: flex; flex-direction: column; gap: 7px;
+      }
+      .fig .big {
+        font-family: var(--serif); font-weight: 700; font-size: 2.6rem; line-height: 1;
+        letter-spacing: -0.02em; color: var(--accent); font-variant-numeric: tabular-nums;
+      }
+      .fig .big.muted { color: var(--ink-soft); }
+      .fig .of { font-size: 0.74rem; text-transform: uppercase; letter-spacing: 0.08em; font-weight: 700; color: var(--ink-soft); }
+      .fig .what { font-size: 0.9rem; color: var(--ink-soft); line-height: 1.5; }
+      .quotes { display: grid; grid-template-columns: repeat(auto-fit, minmax(270px, 1fr)); gap: 14px; }
+      .qcard {
+        background: var(--paper-card); border: 1px solid var(--line); border-radius: 12px;
+        box-shadow: var(--shadow); padding: 17px; display: flex; flex-direction: column; gap: 11px;
+      }
+      .qcard blockquote { margin: 0; font-family: var(--serif); font-size: 1rem; line-height: 1.5; color: var(--ink); }
+      .qcard .who { font-size: 0.76rem; font-weight: 700; letter-spacing: 0.04em; color: var(--ink-soft); text-transform: uppercase; }
+      .panel {
+        background: var(--paper-card); border: 1px solid var(--line);
+        border-radius: 12px; box-shadow: var(--shadow); padding: 8px 18px 16px;
+      }
+      .panel .cap { font-size: 0.8rem; color: var(--ink-soft); padding: 12px 0 4px; line-height: 1.5; }
+      .backlink { font-size: 0.8rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--accent); text-decoration: none; }
+      .backlink:hover { color: var(--accent-dark); }
 </style>
-<div class="wrap">
-
-  <header class="masthead">
-    <div class="eyebrow">DCP Explorer · U.S. House · General election 3 Nov 2026</div>
-    <h1>How many Democrats back Medicare for All?</h1>
-    <p class="lede">Every Democratic candidate on the November ballot, measured three ways —
-      what they publish, what they have signed, and what has been reported — and the large
-      gap between the first two.</p>
-  </header>
-
-  <section>
-    <div class="eyebrow">First, the denominator</div>
-    <h2>What the number is out of</h2>
-    <p>Any “share who support X” figure is only as good as the share of candidates you
-      actually managed to read. So that comes first.</p>
-    <p>Reading campaign websites alone left 92 candidates unaccounted for — more than a fifth of
-      the field, and not a random quarter, since the sites that defeat a scraper belong
-      disproportionately to well-funded incumbents. Two further sources closed almost all of it.</p>
-
-    <div class="stats">
-      <div class="stat"><span class="k">On the ballot</span><span class="v">432</span><span class="n">Democratic candidates</span></div>
-      <div class="stat"><span class="k">With a position</span><span class="v">429</span><span class="n">from at least one source</span></div>
-      <div class="stat"><span class="k">No position found</span><span class="v">3</span><span class="n">anywhere we looked</span></div>
-      <div class="stat"><span class="k">Coverage</span><span class="v">99%</span><span class="n">up from 79% on sites alone</span></div>
-    </div>
-
-    <div class="caveats">
-      <h2>Three kinds of evidence, not one</h2>
-      <p><b>89</b> candidates cosponsor the bill — a recorded legislative act. <b>257</b>
-        stated a position on their own campaign site. <b>70</b> more were resolved from news
-        coverage, and <b>13</b> by hand where the site serves a crawler almost nothing.
-        Where they conflict, the stronger evidence wins, and every row in the Explorer
-        records which source decided it.</p>
-    </div>
-  </section>
-
-  <section>
-    <div class="eyebrow">The answer</div>
-    <h2>162 candidates support Medicare for All or single-payer</h2>
-    <div class="figs">
-      <div class="fig">
-        <span class="big">37.5%</span>
-        <span class="of">of all 432 on the ballot</span>
-        <span class="what">back Medicare for All or single-payer, counting the bill’s cosponsors
-          alongside those who say so publicly.</span>
+<header class="masthead">
+      <div class="masthead-inner">
+        <a class="brand" href="https://chaoticera.news" target="_blank" rel="noopener">
+          <img class="brand-logo" src="data:image/png;base64,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" alt="Chaotic Era logo" width="40" height="40" />
+          <span class="brand-name">Chaotic Era</span>
+        </a>
+        <a class="subscribe-btn" href="https://chaoticera.news/subscribe" target="_blank" rel="noopener">
+          Subscribe
+        </a>
       </div>
-      <div class="fig">
-        <span class="big muted">17.4%</span>
-        <span class="of">counting campaign websites only</span>
-        <span class="what">75 candidates. The measure of what they choose to tell voters, and
-          under half the real figure.</span>
-      </div>
-    </div>
-    <p>The distance between those two numbers is the most interesting thing in this dataset,
-      and it is almost entirely incumbents: <strong>64 of the 89 cosponsors of the Medicare
-      for All Act never mention it on their own campaign site.</strong></p>
-    <p>Signing the bill and campaigning on it are close to disjoint activities. A reader who
-      judged the House Democratic caucus by its campaign websites would conclude that support
-      is less than half what the congressional record shows.</p>
-  </section>
+    </header>
 
-  <section>
-    <div class="eyebrow">Distribution</div>
-    <h2>Where the field actually sits</h2>
+    <main>
+      <section class="hero">
+        <h1>How many Democrats back Medicare for All?</h1>
+        <p class="dek">
+          Every Democratic candidate on the November ballot, measured three ways — what they publish,
+          what they have signed, and what has been reported — and the large gap between the first two.
+        </p>
+      </section>
 
-    <div class="tally" role="img" aria-label="432 candidates: 162 support Medicare for All or single-payer, 222 do not support it, 48 no position found.">
-      <span class="b-supports_m4a" style="width:37.50%"></span>
-      <span class="b-does_not_support_m4a" style="width:51.39%"></span>
-      <span class="b-no_position_found" style="width:11.11%"></span>
-    </div>
-    <div class="key">
-      <span class="b-supports_m4a"><i class="sw"></i>Supports Medicare for All or single-payer</span>
-      <span class="b-does_not_support_m4a"><i class="sw"></i>Does not support Medicare for All</span>
-      <span class="b-no_position_found"><i class="sw"></i>No position found</span>
-    </div>
+      <section class="block">
+        <h2 class="head">First, what the number is out of</h2>
+        <div class="prose">
+          <p>
+            Any “share who support X” figure is only as good as the share of candidates you actually
+            managed to read. So that comes first.
+          </p>
+          <p>
+            Reading campaign websites alone left 175 candidates unaccounted for — more than a third of
+            the field, and not a random third, since the sites that defeat a crawler belong
+            disproportionately to well-funded incumbents. Three further sources closed almost all of it.
+          </p>
+        </div>
+        <section class="stats" style="margin-top:20px">
+          <div class="stat"><span class="k">On the ballot</span><span class="v">432</span><span class="n">Democratic candidates</span></div>
+          <div class="stat"><span class="k">With a position</span><span class="v">384</span><span class="n">from at least one source</span></div>
+          <div class="stat"><span class="k">No position found</span><span class="v">48</span><span class="n">anywhere we looked</span></div>
+        </section>
+        <div class="methodology" style="margin-top:20px">
+          <h2>Three kinds of evidence, not one</h2>
+          <p>
+            <strong>89</strong> candidates cosponsor H.R.3069, the Medicare for All Act — a recorded
+            legislative act. <strong>257</strong> stated a position on their own campaign site.
+            <strong>70</strong> more were resolved from news coverage, and <strong>13</strong> by hand
+            where the site serves a crawler almost nothing. Where they conflict, the stronger evidence
+            wins, and every row in the tracker records which source decided it.
+          </p>
+        </div>
+      </section>
 
-    <div class="tbl">
-      <p class="cap">Two measures side by side. “Site only” is what candidates publish;
-        “combined” adds the cosponsor roll, news coverage and reviewed corrections. Shares are
-        of all 432 candidates on the ballot under both measures.</p>
-      <div class="scroll">
-        <table>
-          <thead>
-            <tr><th>Position</th><th class="num">Site only</th><th class="num">Share</th>
-                <th class="num">Combined</th><th class="num">Share</th></tr>
-          </thead>
-          <tbody>
-            <tr><td><span class="tname b-supports_m4a"><i class="sw"></i>Supports Medicare for All or single-payer</span></td>
-                <td class="num">75</td><td class="num">17.4%</td><td class="num">162</td><td class="num">37.5%</td></tr>
-            <tr><td><span class="tname b-does_not_support_m4a"><i class="sw"></i>Does not support Medicare for All</span></td>
-                <td class="num">182</td><td class="num">42.1%</td><td class="num">222</td><td class="num">51.4%</td></tr>
-            <tr><td><span class="tname b-no_position_found"><i class="sw"></i>No position found</span></td>
-                <td class="num">175</td><td class="num">40.5%</td><td class="num">48</td><td class="num">11.1%</td></tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
+      <section class="block">
+        <h2 class="head">162 candidates support Medicare for All or single-payer</h2>
+        <div class="figs">
+          <div class="fig">
+            <span class="big">37.5%</span>
+            <span class="of">of all 432 on the ballot</span>
+            <span class="what">
+              support Medicare for All or single-payer, counting the bill’s cosponsors alongside those
+              who say so publicly.
+            </span>
+          </div>
+          <div class="fig">
+            <span class="big muted">17.4%</span>
+            <span class="of">counting campaign websites only</span>
+            <span class="what">
+              75 candidates. The measure of what they choose to tell voters, and under half the real
+              figure.
+            </span>
+          </div>
+        </div>
+        <div class="prose">
+          <p>
+            The distance between those two numbers is the most interesting thing in this dataset, and
+            it is almost entirely incumbents:
+            <strong>64 of the 89 cosponsors of the Medicare for All Act never mention it on their own
+            campaign site.</strong>
+          </p>
+          <p>
+            Signing the bill and campaigning on it are close to disjoint activities. A reader who
+            judged the House Democratic caucus by its campaign websites would conclude that support is
+            under half what the congressional record shows.
+          </p>
+        </div>
+      </section>
 
-    <p>Even after adding every source, <strong>48 candidates have no coverage position we could establish.</strong> That is not silence on health — many write at length about cancer
-      research, mental health, reproductive care or veterans’ services. They simply take no
-      position on the insurance question.</p>
-    <p>Almost no candidate argues against Medicare for All in so many words. The 222 in the
-      middle bucket are not campaigning against it — they are campaigning on something else,
-      usually protecting the ACA, cutting drug costs or defending Medicaid.</p>
-  </section>
+      <section class="block">
+        <h2 class="head">Where the field actually sits</h2>
+        <div class="chart-legend">
+          <span class="lg"><i class="dot" style="background:var(--accent)"></i>Supports Medicare for All or single-payer</span>
+          <span class="lg"><i class="dot" style="background:#9aa6b2"></i>Does not support Medicare for All</span>
+          <span class="lg"><i class="dot" style="background:#cdd9e8"></i>No position found</span>
+        </div>
+        <div class="sumrow" style="padding-top:0">
+          <div class="sumrow-track" role="img" aria-label="432 candidates: 162 support Medicare for All or single-payer, 222 do not support it, 48 no position found.">
+            <span class="sumseg seg-supports_m4a" style="width:37.50%"></span>
+            <span class="sumseg seg-does_not_support_m4a" style="width:51.39%"></span>
+            <span class="sumseg seg-no_position_found" style="width:11.11%"></span>
+          </div>
+        </div>
 
-  <section>
-    <div class="eyebrow">How a candidate is scored</div>
-    <h2>The distinction the tiers exist to catch</h2>
-    <div class="quotes">
-      <div class="quote">
-        <blockquote>“I support Medicare for All, which would remove the profit motive from
-          health insurance and allow us all to access quality care, for a lower price.”</blockquote>
-        <span class="who">William Lawrence · MI-07</span>
-        <span class="verdict t-explicit_m4a"><i class="sw"></i>Medicare for All</span>
-      </div>
-      <div class="quote">
-        <blockquote>“Allowing Iowans the option to buy into Medicare at any age — which will
-          increase competition, expand choice, and bring down costs — is the best way to do it.”</blockquote>
-        <span class="who">Christina Bohannan · IA-01</span>
-        <span class="verdict t-public_option"><i class="sw"></i>Public option</span>
-      </div>
-    </div>
-    <p>Both sentences contain the word “Medicare.” Only the first is Medicare for All. Keyword
-      counting collapses them — and collapses a great deal else besides, all of it in the same
-      direction, toward overstating support.</p>
-    <p>So every match is read in the context of its sentence before it counts. A statement that
-      is negated (“I don’t support Medicare for All”), attributed to someone else (“my opponent
-      supports…”), or held at arm’s length (“while I admire the goal…, we should start with a
-      public option”) does not register as support. Every classification above the bottom tier
-      carries the verbatim quote and the rule that fired, so any row can be checked by hand in
-      the Explorer.</p>
-  </section>
+        <div class="panel" style="margin-top:16px">
+          <p class="cap">
+            Two measures side by side. “Site only” is what candidates publish; “combined” adds the
+            cosponsor roll, news coverage and reviewed corrections. Shares are of all 432 candidates
+            on the ballot under both measures.
+          </p>
+          <table>
+            <thead>
+              <tr>
+                <th>Position</th>
+                <th class="num">Site only</th>
+                <th class="num">Share</th>
+                <th class="num">Combined</th>
+                <th class="num">Share</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><span class="pos pos-supports_m4a">Supports Medicare for All or single-payer</span></td>
+                <td class="num">75</td><td class="num">17.4%</td><td class="num">162</td><td class="num">37.5%</td>
+              </tr>
+              <tr>
+                <td><span class="pos pos-does_not_support_m4a">Does not support Medicare for All</span></td>
+                <td class="num">182</td><td class="num">42.1%</td><td class="num">222</td><td class="num">51.4%</td>
+              </tr>
+              <tr>
+                <td><span class="pos pos-no_position_found">No position found</span></td>
+                <td class="num">175</td><td class="num">40.5%</td><td class="num">48</td><td class="num">11.1%</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
 
-  <section>
-    <div class="eyebrow">Geography</div>
-    <h2>Where explicit support concentrates</h2>
-    <div class="tbl">
-      <p class="cap">States with at least eight Democratic candidates on the ballot, ranked by the
-        share supporting Medicare for All or single-payer on the combined measure. Ohio is included as
-        the low end of the range.</p>
-      <div class="scroll">
-        <table>
-          <thead><tr><th>State</th><th class="num">On ballot</th><th class="num">Back M4A</th><th class="num">Share</th></tr></thead>
-          <tbody>
-            <tr><td>Maryland</td><td class="num">8</td><td class="num">6</td><td class="num">75%</td></tr>
-            <tr><td>Minnesota</td><td class="num">8</td><td class="num">5</td><td class="num">62%</td></tr>
-            <tr><td>California</td><td class="num">60</td><td class="num">36</td><td class="num">60%</td></tr>
-            <tr><td>Michigan</td><td class="num">13</td><td class="num">7</td><td class="num">54%</td></tr>
-            <tr><td>Missouri</td><td class="num">8</td><td class="num">4</td><td class="num">50%</td></tr>
-            <tr><td>New Jersey</td><td class="num">12</td><td class="num">6</td><td class="num">50%</td></tr>
-            <tr><td>New York</td><td class="num">26</td><td class="num">13</td><td class="num">50%</td></tr>
-            <tr><td>Indiana</td><td class="num">9</td><td class="num">4</td><td class="num">44%</td></tr>
-            <tr><td>Pennsylvania</td><td class="num">17</td><td class="num">7</td><td class="num">41%</td></tr>
-            <tr><td>Texas</td><td class="num">38</td><td class="num">13</td><td class="num">34%</td></tr>
-            <tr><td>Florida</td><td class="num">28</td><td class="num">6</td><td class="num">21%</td></tr>
-            <tr><td>Ohio</td><td class="num">15</td><td class="num">1</td><td class="num">7%</td></tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-    <p>California fields 60 Democrats across 52 districts — more candidates than seats, because
-      its top-two primary can send two Democrats to the same general election. Eight of its
-      districts do, and 36 of its 60 candidates back Medicare for All or single-payer.</p>
-  </section>
+        <div class="prose" style="margin-top:18px">
+          <p>
+            <strong>48 candidates have no coverage position we could establish anywhere.</strong> That
+            is not silence on health — many write at length about cancer research, mental health,
+            reproductive care or veterans’ services. They simply take no position on the insurance
+            question.
+          </p>
+          <p>
+            Almost no candidate argues against Medicare for All in so many words. The 222 in the middle
+            are not campaigning against it — they are campaigning on something else, usually protecting
+            the ACA, cutting drug costs or defending Medicaid.
+          </p>
+        </div>
+      </section>
 
-  <section>
-    <div class="eyebrow">Limits</div>
-    <h2>What this cannot tell you</h2>
-    <div class="caveats">
-      <ul>
-        <li><b>Twenty seats are not in the field yet.</b> Massachusetts, New Hampshire, Rhode
-          Island and Delaware had not voted when this was collected. Louisiana holds no
-          nominating primary at all in 2026 — its all-party ballot <em>is</em> the November
-          election, after House races were postponed following <em>Louisiana v. Callais</em>.</li>
-        <li><b>A campaign website is not a voting record, and a voting record is not a
-          campaign.</b> The two measures answer different questions, which is why both are
-          reported rather than blended.</li>
-        <li><b>“Does not support” means a stated position that is not Medicare for
-          All</b> — a public option, ACA measures, or explicit opposition. It is never
-          inferred from silence: a candidate with no stated position is counted in the
-          third bucket instead.</li>
-      <li><b>The last bucket merges two different facts.</b> “Read it, states no
-          coverage position” and “could not read it” are not the same thing. The finer
-          seven-tier classification is kept per candidate in the Explorer and the CSV.</li>
-      <li><b>Some sites serve a crawler almost nothing.</b> Where a campaign runs a
-          Javascript-rendered site, the served HTML can carry no policy text at all. Those
-          rows are corrected by hand, recorded in <code>config/overrides.yaml</code> with a
-          source and a named reviewer, and marked “human review” in the Explorer.</li>
-        <li><b>News-sourced positions are the weakest evidence here.</b> They carry a confidence
-          score, and thin or contradictory cases are labelled as such in the Explorer rather
-          than smoothed over.</li>
-        <li><b>No incumbency breakdown.</b> That field comes from the FEC, which was skipped for
-          want of an API key, so incumbents and challengers cannot be compared directly —
-          though cosponsorship is a close proxy.</li>
-      </ul>
-    </div>
-  </section>
+      <section class="block">
+        <h2 class="head">The distinction the classifier exists to catch</h2>
+        <div class="quotes">
+          <div class="qcard">
+            <blockquote>
+              “I support Medicare for All, which would remove the profit motive from health insurance
+              and allow us all to access quality care, for a lower price.”
+            </blockquote>
+            <span class="who">William Lawrence · MI-07</span>
+            <span class="pos pos-supports_m4a" style="align-self:flex-start">Supports Medicare for All</span>
+          </div>
+          <div class="qcard">
+            <blockquote>
+              “Allowing Iowans the option to buy into Medicare at any age — which will increase
+              competition, expand choice, and bring down costs — is the best way to do it.”
+            </blockquote>
+            <span class="who">Christina Bohannan · IA-01</span>
+            <span class="pos pos-does_not_support_m4a" style="align-self:flex-start">Does not support Medicare for All</span>
+          </div>
+        </div>
+        <div class="prose" style="margin-top:18px">
+          <p>
+            Both sentences contain the word “Medicare.” Only the first is Medicare for All. Keyword
+            counting collapses them — and collapses a great deal else besides, all of it in the same
+            direction, toward overstating support.
+          </p>
+          <p>
+            So every match is read in the context of its sentence before it counts. A statement that is
+            negated (“I don’t support Medicare for All”), attributed to someone else (“my opponent
+            supports…”), or held at arm’s length (“while I admire the goal…, we should start with a
+            public option”) does not register as support. Every classification carries the verbatim
+            quote and the rule that fired, so any row can be checked by hand in the tracker.
+          </p>
+        </div>
+      </section>
 
-  <footer>
-    Compiled 26 August 2026 from candidates’ own campaign websites, the cosponsor roll of
-    H.R.3069, and news coverage. Ballot roster drawn from state election articles; primary
-    calendar generated from the Federal Election Commission’s official 2026 dates.
-    Per-candidate data, evidence quotes and the review queue are in <code>candidates.csv</code>.
-  </footer>
-</div>
+      <section class="block">
+        <h2 class="head">Where support concentrates</h2>
+        <div class="panel">
+          <p class="cap">
+            States with at least eight Democratic candidates on the ballot, ranked by the share
+            supporting Medicare for All or single-payer on the combined measure.
+          </p>
+          <table>
+            <thead>
+              <tr><th>State</th><th class="num">On ballot</th><th class="num">Support M4A</th><th class="num">Share</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Maryland</td><td class="num">8</td><td class="num">6</td><td class="num">75%</td></tr>
+              <tr><td>Minnesota</td><td class="num">8</td><td class="num">5</td><td class="num">62%</td></tr>
+              <tr><td>California</td><td class="num">60</td><td class="num">36</td><td class="num">60%</td></tr>
+              <tr><td>Michigan</td><td class="num">13</td><td class="num">7</td><td class="num">54%</td></tr>
+              <tr><td>Missouri</td><td class="num">8</td><td class="num">4</td><td class="num">50%</td></tr>
+              <tr><td>New Jersey</td><td class="num">12</td><td class="num">6</td><td class="num">50%</td></tr>
+              <tr><td>New York</td><td class="num">26</td><td class="num">13</td><td class="num">50%</td></tr>
+              <tr><td>Indiana</td><td class="num">9</td><td class="num">4</td><td class="num">44%</td></tr>
+              <tr><td>Pennsylvania</td><td class="num">17</td><td class="num">7</td><td class="num">41%</td></tr>
+              <tr><td>Texas</td><td class="num">38</td><td class="num">13</td><td class="num">34%</td></tr>
+              <tr><td>Florida</td><td class="num">28</td><td class="num">6</td><td class="num">21%</td></tr>
+              <tr><td>Ohio</td><td class="num">15</td><td class="num">1</td><td class="num">7%</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="prose" style="margin-top:18px">
+          <p>
+            California fields 60 Democrats across 52 districts — more candidates than seats, because
+            its top-two primary can send two Democrats to the same general election. Eight of its
+            districts do, and 36 of its 60 candidates back Medicare for All or single-payer.
+          </p>
+        </div>
+      </section>
+
+      <section class="methodology">
+        <h2>What this cannot tell you</h2>
+        <ul>
+          <li>
+            <strong>Twenty seats are not in the field yet.</strong> Massachusetts, New Hampshire, Rhode
+            Island and Delaware had not voted when this was collected. Louisiana holds no nominating
+            primary at all in 2026 — its all-party ballot <em>is</em> the November election, after House
+            races were postponed following <em>Louisiana v. Callais</em>.
+          </li>
+          <li>
+            <strong>“Does not support” means a stated position that is not Medicare for All</strong> — a
+            public option, ACA measures, or explicit opposition. It is never inferred from silence: a
+            candidate with nothing stated is counted under <em>No position found</em>.
+          </li>
+          <li>
+            <strong>The last bucket merges two different facts.</strong> “Read it, states no coverage
+            position” and “could not read it” are not the same thing. The finer seven-tier
+            classification is kept per candidate in the tracker and the CSV.
+          </li>
+          <li>
+            <strong>A campaign website is not a voting record, and a voting record is not a campaign.</strong>
+            The two measures answer different questions, which is why both are reported rather than blended.
+          </li>
+          <li>
+            <strong>News-sourced positions are the weakest evidence here.</strong> They carry a confidence
+            score, and thin or contradictory cases are labelled as such rather than smoothed over.
+          </li>
+        </ul>
+        <p class="footnote">
+          Compiled 26 August 2026 from candidates’ own campaign websites, the cosponsor roll of
+          H.R.3069, and news coverage. Ballot roster drawn from state election articles; primary
+          calendar generated from the Federal Election Commission’s official 2026 dates.
+          Per-candidate data, evidence quotes and the review queue are in <code>candidates.csv</code>.
+        </p>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <p>
+        Built by <a href="https://chaoticera.news" target="_blank" rel="noopener">Chaotic Era</a> ·
+        Politics, media &amp; online influence by Kyle Tharp.
+      </p>
+    </footer>

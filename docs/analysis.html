@@ -1,281 +1,325 @@
 <!doctype html>
 <html lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>How Many Democrats Back Medicare for All? — DCP Explorer</title>
-<meta name="description" content="Analysis of Medicare for All support among Democratic U.S. House candidates on the November 2026 ballot, measured across campaign sites, the cosponsor roll and news coverage.">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#129658;</text></svg>">
-<link rel="stylesheet" href="house.css">
-<style>
-  .wrap{max-width:820px;}
-  .backlink{font-family:var(--mono); font-size:11px; letter-spacing:.11em; text-transform:uppercase;
-            color:var(--ink-3); text-decoration:none;}
-  .backlink:hover{color:var(--chrome);}
-  section{display:flex; flex-direction:column; gap:14px;}
-  h2{font-family:var(--display); font-weight:600; font-size:clamp(19px,2.4vw,25px); margin:0; letter-spacing:-.008em; text-wrap:balance;}
-  p{color:var(--ink-2); font-size:14.5px; line-height:1.6; margin:0 0 11px; max-width:68ch;}
-  p:last-child{margin-bottom:0;}
-  strong{color:var(--ink); font-weight:600;}
-  .lede{font-family:var(--display); font-size:17px; font-style:italic; color:var(--ink-2); max-width:60ch;}
-
-  /* Bucket and tier colours match the Explorer exactly. */
-  .b-supports_m4a         { --c: var(--s2); }
-  .b-does_not_support_m4a { --c: var(--s3); }
-  .b-no_position_found    { --c: var(--ink-3); }
-
-  /* Tier colours, for the worked examples. */
-  .t-explicit_m4a           { --c: var(--s2); }
-  .t-single_payer_substance { --c: var(--s1); }
-  .t-public_option          { --c: var(--s3); }
-  .t-aca_strengthen         { --c: var(--s5); }
-  .t-no_coverage_position   { --c: var(--ink-3); }
-  .t-opposed                { --c: var(--s4); }
-  .t-unknown                { --c: var(--ink-3); }
-  .sw{width:9px; height:9px; border-radius:2px; background:var(--c); display:inline-block; flex:none;}
-
-  .figs{display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); gap:12px;}
-  .fig{background:var(--surface); border:1px solid var(--rule); border-radius:10px; padding:16px; display:flex; flex-direction:column; gap:6px;}
-  .fig .big{font-family:var(--display); font-size:38px; line-height:1; letter-spacing:-.02em; color:var(--s2); font-variant-numeric:tabular-nums;}
-  .fig .big.muted{color:var(--ink-2);}
-  .fig .of{font-family:var(--mono); font-size:10px; letter-spacing:.11em; text-transform:uppercase; color:var(--ink-3);}
-  .fig .what{font-size:12.8px; color:var(--ink-2); line-height:1.45;}
-
-  /* Stacked tally: the whole field in one bar. */
-  .tally{display:flex; width:100%; height:46px; border:1px solid var(--rule); border-radius:8px; overflow:hidden;}
-  .tally span{display:block; height:100%; background:var(--c);}
-  /* "Not found" is hatched, not filled: absent data, not a measured category. */
-  .tally span.t-unknown{background:repeating-linear-gradient(45deg,var(--ink-3) 0 4px,transparent 4px 9px),var(--surface-2);}
-  .key{display:flex; flex-wrap:wrap; gap:6px 16px; font-size:11.5px; color:var(--ink-3);}
-  .key span{display:inline-flex; align-items:center; gap:6px;}
-
-  .tbl{background:var(--surface); border:1px solid var(--rule); border-radius:10px; overflow:hidden;}
-  .tbl .scroll{overflow-x:auto;}
-  .cap{font-size:11.5px; color:var(--ink-3); padding:12px 12px 0; line-height:1.45;}
-  .tname{display:inline-flex; align-items:center; gap:7px; color:var(--ink);}
-  tr.zero td{color:var(--ink-3);}
-  tr.miss td{color:var(--ink-3);}
-
-  .quotes{display:grid; grid-template-columns:repeat(auto-fit,minmax(255px,1fr)); gap:12px;}
-  .quote{background:var(--surface); border:1px solid var(--rule); border-radius:10px; padding:15px; display:flex; flex-direction:column; gap:10px;}
-  .quote blockquote{margin:0; font-family:var(--display); font-size:15px; line-height:1.5; color:var(--ink);}
-  .quote .who{font-family:var(--mono); font-size:10.5px; letter-spacing:.06em; color:var(--ink-3);}
-  .verdict{display:inline-flex; align-items:center; gap:6px; align-self:flex-start;
-           font-family:var(--mono); font-size:10px; letter-spacing:.09em; text-transform:uppercase;
-           padding:4px 9px; border-radius:999px; border:1px solid var(--c); color:var(--ink-2); background:var(--surface-2);}
-
-  footer{border-top:1px solid var(--rule); padding-top:14px; font-size:12.2px; color:var(--ink-3); line-height:1.55;}
-  code{font-family:var(--mono); font-size:.9em; background:var(--surface-2); border:1px solid var(--rule-2); border-radius:3px; padding:1px 4px;}
-</style>
-</head>
-<body>
-<div class="wrap">
-
-  <a class="backlink" href="./">&larr; Back to the Explorer</a>
-
-  <header class="masthead">
-    <div class="eyebrow">DCP Explorer · U.S. House · General election 3 Nov 2026</div>
-    <h1>How many Democrats back Medicare for All?</h1>
-    <p class="lede">Every Democratic candidate on the November ballot, measured three ways —
-      what they publish, what they have signed, and what has been reported — and the large
-      gap between the first two.</p>
-  </header>
-
-  <section>
-    <div class="eyebrow">First, the denominator</div>
-    <h2>What the number is out of</h2>
-    <p>Any “share who support X” figure is only as good as the share of candidates you
-      actually managed to read. So that comes first.</p>
-    <p>Reading campaign websites alone left 92 candidates unaccounted for — more than a fifth of
-      the field, and not a random quarter, since the sites that defeat a scraper belong
-      disproportionately to well-funded incumbents. Two further sources closed almost all of it.</p>
-
-    <div class="stats">
-      <div class="stat"><span class="k">On the ballot</span><span class="v">432</span><span class="n">Democratic candidates</span></div>
-      <div class="stat"><span class="k">With a position</span><span class="v">429</span><span class="n">from at least one source</span></div>
-      <div class="stat"><span class="k">No position found</span><span class="v">3</span><span class="n">anywhere we looked</span></div>
-      <div class="stat"><span class="k">Coverage</span><span class="v">99%</span><span class="n">up from 79% on sites alone</span></div>
-    </div>
-
-    <div class="caveats">
-      <h2>Three kinds of evidence, not one</h2>
-      <p><b>89</b> candidates cosponsor the bill — a recorded legislative act. <b>257</b>
-        stated a position on their own campaign site. <b>70</b> more were resolved from news
-        coverage, and <b>13</b> by hand where the site serves a crawler almost nothing.
-        Where they conflict, the stronger evidence wins, and every row in the Explorer
-        records which source decided it.</p>
-    </div>
-  </section>
-
-  <section>
-    <div class="eyebrow">The answer</div>
-    <h2>162 candidates support Medicare for All or single-payer</h2>
-    <div class="figs">
-      <div class="fig">
-        <span class="big">37.5%</span>
-        <span class="of">of all 432 on the ballot</span>
-        <span class="what">back Medicare for All or single-payer, counting the bill’s cosponsors
-          alongside those who say so publicly.</span>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>How Many Democrats Back Medicare for All? · Chaotic Era</title>
+    <meta
+      name="description"
+      content="Where Democratic U.S. House candidates stand on Medicare for All in November 2026, measured across campaign sites, the cosponsor roll and news coverage."
+    />
+    <link rel="icon" href="assets/logo.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <style>
+      main { max-width: 860px; }
+      .prose p { font-size: 1.02rem; line-height: 1.65; color: var(--ink-soft); margin: 0 0 14px; }
+      .prose p:last-child { margin-bottom: 0; }
+      .prose strong { color: var(--ink); font-weight: 700; }
+      section.block { margin: 0 0 40px; }
+      h2.head {
+        font-family: var(--serif); font-weight: 700; font-size: clamp(1.4rem, 3vw, 1.9rem);
+        line-height: 1.15; letter-spacing: -0.01em; margin: 0 0 14px;
+      }
+      .figs { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 14px; margin: 0 0 20px; }
+      .fig {
+        background: var(--paper-card); border: 1px solid var(--line); border-radius: 12px;
+        box-shadow: var(--shadow); padding: 18px; display: flex; flex-direction: column; gap: 7px;
+      }
+      .fig .big {
+        font-family: var(--serif); font-weight: 700; font-size: 2.6rem; line-height: 1;
+        letter-spacing: -0.02em; color: var(--accent); font-variant-numeric: tabular-nums;
+      }
+      .fig .big.muted { color: var(--ink-soft); }
+      .fig .of { font-size: 0.74rem; text-transform: uppercase; letter-spacing: 0.08em; font-weight: 700; color: var(--ink-soft); }
+      .fig .what { font-size: 0.9rem; color: var(--ink-soft); line-height: 1.5; }
+      .quotes { display: grid; grid-template-columns: repeat(auto-fit, minmax(270px, 1fr)); gap: 14px; }
+      .qcard {
+        background: var(--paper-card); border: 1px solid var(--line); border-radius: 12px;
+        box-shadow: var(--shadow); padding: 17px; display: flex; flex-direction: column; gap: 11px;
+      }
+      .qcard blockquote { margin: 0; font-family: var(--serif); font-size: 1rem; line-height: 1.5; color: var(--ink); }
+      .qcard .who { font-size: 0.76rem; font-weight: 700; letter-spacing: 0.04em; color: var(--ink-soft); text-transform: uppercase; }
+      .panel {
+        background: var(--paper-card); border: 1px solid var(--line);
+        border-radius: 12px; box-shadow: var(--shadow); padding: 8px 18px 16px;
+      }
+      .panel .cap { font-size: 0.8rem; color: var(--ink-soft); padding: 12px 0 4px; line-height: 1.5; }
+      .backlink { font-size: 0.8rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--accent); text-decoration: none; }
+      .backlink:hover { color: var(--accent-dark); }
+    </style>
+  </head>
+  <body>
+    <header class="masthead">
+      <div class="masthead-inner">
+        <a class="brand" href="https://chaoticera.news" target="_blank" rel="noopener">
+          <img class="brand-logo" src="assets/logo.png" alt="Chaotic Era logo" width="40" height="40" />
+          <span class="brand-name">Chaotic Era</span>
+        </a>
+        <a class="subscribe-btn" href="https://chaoticera.news/subscribe" target="_blank" rel="noopener">
+          Subscribe
+        </a>
       </div>
-      <div class="fig">
-        <span class="big muted">17.4%</span>
-        <span class="of">counting campaign websites only</span>
-        <span class="what">75 candidates. The measure of what they choose to tell voters, and
-          under half the real figure.</span>
-      </div>
-    </div>
-    <p>The distance between those two numbers is the most interesting thing in this dataset,
-      and it is almost entirely incumbents: <strong>64 of the 89 cosponsors of the Medicare
-      for All Act never mention it on their own campaign site.</strong></p>
-    <p>Signing the bill and campaigning on it are close to disjoint activities. A reader who
-      judged the House Democratic caucus by its campaign websites would conclude that support
-      is less than half what the congressional record shows.</p>
-  </section>
+    </header>
 
-  <section>
-    <div class="eyebrow">Distribution</div>
-    <h2>Where the field actually sits</h2>
+    <main>
+      <section class="hero">
+        <p class="kicker"><a class="backlink" href="./">← Back to the tracker</a></p>
+        <h1>How many Democrats back Medicare for All?</h1>
+        <p class="dek">
+          Every Democratic candidate on the November ballot, measured three ways — what they publish,
+          what they have signed, and what has been reported — and the large gap between the first two.
+        </p>
+      </section>
 
-    <div class="tally" role="img" aria-label="432 candidates: 162 support Medicare for All or single-payer, 222 do not support it, 48 no position found.">
-      <span class="b-supports_m4a" style="width:37.50%"></span>
-      <span class="b-does_not_support_m4a" style="width:51.39%"></span>
-      <span class="b-no_position_found" style="width:11.11%"></span>
-    </div>
-    <div class="key">
-      <span class="b-supports_m4a"><i class="sw"></i>Supports Medicare for All or single-payer</span>
-      <span class="b-does_not_support_m4a"><i class="sw"></i>Does not support Medicare for All</span>
-      <span class="b-no_position_found"><i class="sw"></i>No position found</span>
-    </div>
+      <section class="block">
+        <h2 class="head">First, what the number is out of</h2>
+        <div class="prose">
+          <p>
+            Any “share who support X” figure is only as good as the share of candidates you actually
+            managed to read. So that comes first.
+          </p>
+          <p>
+            Reading campaign websites alone left 175 candidates unaccounted for — more than a third of
+            the field, and not a random third, since the sites that defeat a crawler belong
+            disproportionately to well-funded incumbents. Three further sources closed almost all of it.
+          </p>
+        </div>
+        <section class="stats" style="margin-top:20px">
+          <div class="stat"><span class="k">On the ballot</span><span class="v">432</span><span class="n">Democratic candidates</span></div>
+          <div class="stat"><span class="k">With a position</span><span class="v">384</span><span class="n">from at least one source</span></div>
+          <div class="stat"><span class="k">No position found</span><span class="v">48</span><span class="n">anywhere we looked</span></div>
+        </section>
+        <div class="methodology" style="margin-top:20px">
+          <h2>Three kinds of evidence, not one</h2>
+          <p>
+            <strong>89</strong> candidates cosponsor H.R.3069, the Medicare for All Act — a recorded
+            legislative act. <strong>257</strong> stated a position on their own campaign site.
+            <strong>70</strong> more were resolved from news coverage, and <strong>13</strong> by hand
+            where the site serves a crawler almost nothing. Where they conflict, the stronger evidence
+            wins, and every row in the tracker records which source decided it.
+          </p>
+        </div>
+      </section>
 
-    <div class="tbl">
-      <p class="cap">Two measures side by side. “Site only” is what candidates publish;
-        “combined” adds the cosponsor roll, news coverage and reviewed corrections. Shares are
-        of all 432 candidates on the ballot under both measures.</p>
-      <div class="scroll">
-        <table>
-          <thead>
-            <tr><th>Position</th><th class="num">Site only</th><th class="num">Share</th>
-                <th class="num">Combined</th><th class="num">Share</th></tr>
-          </thead>
-          <tbody>
-            <tr><td><span class="tname b-supports_m4a"><i class="sw"></i>Supports Medicare for All or single-payer</span></td>
-                <td class="num">75</td><td class="num">17.4%</td><td class="num">162</td><td class="num">37.5%</td></tr>
-            <tr><td><span class="tname b-does_not_support_m4a"><i class="sw"></i>Does not support Medicare for All</span></td>
-                <td class="num">182</td><td class="num">42.1%</td><td class="num">222</td><td class="num">51.4%</td></tr>
-            <tr><td><span class="tname b-no_position_found"><i class="sw"></i>No position found</span></td>
-                <td class="num">175</td><td class="num">40.5%</td><td class="num">48</td><td class="num">11.1%</td></tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
+      <section class="block">
+        <h2 class="head">162 candidates support Medicare for All or single-payer</h2>
+        <div class="figs">
+          <div class="fig">
+            <span class="big">37.5%</span>
+            <span class="of">of all 432 on the ballot</span>
+            <span class="what">
+              support Medicare for All or single-payer, counting the bill’s cosponsors alongside those
+              who say so publicly.
+            </span>
+          </div>
+          <div class="fig">
+            <span class="big muted">17.4%</span>
+            <span class="of">counting campaign websites only</span>
+            <span class="what">
+              75 candidates. The measure of what they choose to tell voters, and under half the real
+              figure.
+            </span>
+          </div>
+        </div>
+        <div class="prose">
+          <p>
+            The distance between those two numbers is the most interesting thing in this dataset, and
+            it is almost entirely incumbents:
+            <strong>64 of the 89 cosponsors of the Medicare for All Act never mention it on their own
+            campaign site.</strong>
+          </p>
+          <p>
+            Signing the bill and campaigning on it are close to disjoint activities. A reader who
+            judged the House Democratic caucus by its campaign websites would conclude that support is
+            under half what the congressional record shows.
+          </p>
+        </div>
+      </section>
 
-    <p>Even after adding every source, <strong>48 candidates have no coverage position we could establish.</strong> That is not silence on health — many write at length about cancer
-      research, mental health, reproductive care or veterans’ services. They simply take no
-      position on the insurance question.</p>
-    <p>Almost no candidate argues against Medicare for All in so many words. The 222 in the
-      middle bucket are not campaigning against it — they are campaigning on something else,
-      usually protecting the ACA, cutting drug costs or defending Medicaid.</p>
-  </section>
+      <section class="block">
+        <h2 class="head">Where the field actually sits</h2>
+        <div class="chart-legend">
+          <span class="lg"><i class="dot" style="background:var(--accent)"></i>Supports Medicare for All or single-payer</span>
+          <span class="lg"><i class="dot" style="background:#9aa6b2"></i>Does not support Medicare for All</span>
+          <span class="lg"><i class="dot" style="background:#cdd9e8"></i>No position found</span>
+        </div>
+        <div class="sumrow" style="padding-top:0">
+          <div class="sumrow-track" role="img" aria-label="432 candidates: 162 support Medicare for All or single-payer, 222 do not support it, 48 no position found.">
+            <span class="sumseg seg-supports_m4a" style="width:37.50%"></span>
+            <span class="sumseg seg-does_not_support_m4a" style="width:51.39%"></span>
+            <span class="sumseg seg-no_position_found" style="width:11.11%"></span>
+          </div>
+        </div>
 
-  <section>
-    <div class="eyebrow">How a candidate is scored</div>
-    <h2>The distinction the tiers exist to catch</h2>
-    <div class="quotes">
-      <div class="quote">
-        <blockquote>“I support Medicare for All, which would remove the profit motive from
-          health insurance and allow us all to access quality care, for a lower price.”</blockquote>
-        <span class="who">William Lawrence · MI-07</span>
-        <span class="verdict t-explicit_m4a"><i class="sw"></i>Medicare for All</span>
-      </div>
-      <div class="quote">
-        <blockquote>“Allowing Iowans the option to buy into Medicare at any age — which will
-          increase competition, expand choice, and bring down costs — is the best way to do it.”</blockquote>
-        <span class="who">Christina Bohannan · IA-01</span>
-        <span class="verdict t-public_option"><i class="sw"></i>Public option</span>
-      </div>
-    </div>
-    <p>Both sentences contain the word “Medicare.” Only the first is Medicare for All. Keyword
-      counting collapses them — and collapses a great deal else besides, all of it in the same
-      direction, toward overstating support.</p>
-    <p>So every match is read in the context of its sentence before it counts. A statement that
-      is negated (“I don’t support Medicare for All”), attributed to someone else (“my opponent
-      supports…”), or held at arm’s length (“while I admire the goal…, we should start with a
-      public option”) does not register as support. Every classification above the bottom tier
-      carries the verbatim quote and the rule that fired, so any row can be checked by hand in
-      the Explorer.</p>
-  </section>
+        <div class="panel" style="margin-top:16px">
+          <p class="cap">
+            Two measures side by side. “Site only” is what candidates publish; “combined” adds the
+            cosponsor roll, news coverage and reviewed corrections. Shares are of all 432 candidates
+            on the ballot under both measures.
+          </p>
+          <table>
+            <thead>
+              <tr>
+                <th>Position</th>
+                <th class="num">Site only</th>
+                <th class="num">Share</th>
+                <th class="num">Combined</th>
+                <th class="num">Share</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><span class="pos pos-supports_m4a">Supports Medicare for All or single-payer</span></td>
+                <td class="num">75</td><td class="num">17.4%</td><td class="num">162</td><td class="num">37.5%</td>
+              </tr>
+              <tr>
+                <td><span class="pos pos-does_not_support_m4a">Does not support Medicare for All</span></td>
+                <td class="num">182</td><td class="num">42.1%</td><td class="num">222</td><td class="num">51.4%</td>
+              </tr>
+              <tr>
+                <td><span class="pos pos-no_position_found">No position found</span></td>
+                <td class="num">175</td><td class="num">40.5%</td><td class="num">48</td><td class="num">11.1%</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
 
-  <section>
-    <div class="eyebrow">Geography</div>
-    <h2>Where explicit support concentrates</h2>
-    <div class="tbl">
-      <p class="cap">States with at least eight Democratic candidates on the ballot, ranked by the
-        share supporting Medicare for All or single-payer on the combined measure. Ohio is included as
-        the low end of the range.</p>
-      <div class="scroll">
-        <table>
-          <thead><tr><th>State</th><th class="num">On ballot</th><th class="num">Back M4A</th><th class="num">Share</th></tr></thead>
-          <tbody>
-            <tr><td>Maryland</td><td class="num">8</td><td class="num">6</td><td class="num">75%</td></tr>
-            <tr><td>Minnesota</td><td class="num">8</td><td class="num">5</td><td class="num">62%</td></tr>
-            <tr><td>California</td><td class="num">60</td><td class="num">36</td><td class="num">60%</td></tr>
-            <tr><td>Michigan</td><td class="num">13</td><td class="num">7</td><td class="num">54%</td></tr>
-            <tr><td>Missouri</td><td class="num">8</td><td class="num">4</td><td class="num">50%</td></tr>
-            <tr><td>New Jersey</td><td class="num">12</td><td class="num">6</td><td class="num">50%</td></tr>
-            <tr><td>New York</td><td class="num">26</td><td class="num">13</td><td class="num">50%</td></tr>
-            <tr><td>Indiana</td><td class="num">9</td><td class="num">4</td><td class="num">44%</td></tr>
-            <tr><td>Pennsylvania</td><td class="num">17</td><td class="num">7</td><td class="num">41%</td></tr>
-            <tr><td>Texas</td><td class="num">38</td><td class="num">13</td><td class="num">34%</td></tr>
-            <tr><td>Florida</td><td class="num">28</td><td class="num">6</td><td class="num">21%</td></tr>
-            <tr><td>Ohio</td><td class="num">15</td><td class="num">1</td><td class="num">7%</td></tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-    <p>California fields 60 Democrats across 52 districts — more candidates than seats, because
-      its top-two primary can send two Democrats to the same general election. Eight of its
-      districts do, and 36 of its 60 candidates back Medicare for All or single-payer.</p>
-  </section>
+        <div class="prose" style="margin-top:18px">
+          <p>
+            <strong>48 candidates have no coverage position we could establish anywhere.</strong> That
+            is not silence on health — many write at length about cancer research, mental health,
+            reproductive care or veterans’ services. They simply take no position on the insurance
+            question.
+          </p>
+          <p>
+            Almost no candidate argues against Medicare for All in so many words. The 222 in the middle
+            are not campaigning against it — they are campaigning on something else, usually protecting
+            the ACA, cutting drug costs or defending Medicaid.
+          </p>
+        </div>
+      </section>
 
-  <section>
-    <div class="eyebrow">Limits</div>
-    <h2>What this cannot tell you</h2>
-    <div class="caveats">
-      <ul>
-        <li><b>Twenty seats are not in the field yet.</b> Massachusetts, New Hampshire, Rhode
-          Island and Delaware had not voted when this was collected. Louisiana holds no
-          nominating primary at all in 2026 — its all-party ballot <em>is</em> the November
-          election, after House races were postponed following <em>Louisiana v. Callais</em>.</li>
-        <li><b>A campaign website is not a voting record, and a voting record is not a
-          campaign.</b> The two measures answer different questions, which is why both are
-          reported rather than blended.</li>
-        <li><b>“Does not support” means a stated position that is not Medicare for
-          All</b> — a public option, ACA measures, or explicit opposition. It is never
-          inferred from silence: a candidate with no stated position is counted in the
-          third bucket instead.</li>
-      <li><b>The last bucket merges two different facts.</b> “Read it, states no
-          coverage position” and “could not read it” are not the same thing. The finer
-          seven-tier classification is kept per candidate in the Explorer and the CSV.</li>
-      <li><b>Some sites serve a crawler almost nothing.</b> Where a campaign runs a
-          Javascript-rendered site, the served HTML can carry no policy text at all. Those
-          rows are corrected by hand, recorded in <code>config/overrides.yaml</code> with a
-          source and a named reviewer, and marked “human review” in the Explorer.</li>
-        <li><b>News-sourced positions are the weakest evidence here.</b> They carry a confidence
-          score, and thin or contradictory cases are labelled as such in the Explorer rather
-          than smoothed over.</li>
-        <li><b>No incumbency breakdown.</b> That field comes from the FEC, which was skipped for
-          want of an API key, so incumbents and challengers cannot be compared directly —
-          though cosponsorship is a close proxy.</li>
-      </ul>
-    </div>
-  </section>
+      <section class="block">
+        <h2 class="head">The distinction the classifier exists to catch</h2>
+        <div class="quotes">
+          <div class="qcard">
+            <blockquote>
+              “I support Medicare for All, which would remove the profit motive from health insurance
+              and allow us all to access quality care, for a lower price.”
+            </blockquote>
+            <span class="who">William Lawrence · MI-07</span>
+            <span class="pos pos-supports_m4a" style="align-self:flex-start">Supports Medicare for All</span>
+          </div>
+          <div class="qcard">
+            <blockquote>
+              “Allowing Iowans the option to buy into Medicare at any age — which will increase
+              competition, expand choice, and bring down costs — is the best way to do it.”
+            </blockquote>
+            <span class="who">Christina Bohannan · IA-01</span>
+            <span class="pos pos-does_not_support_m4a" style="align-self:flex-start">Does not support Medicare for All</span>
+          </div>
+        </div>
+        <div class="prose" style="margin-top:18px">
+          <p>
+            Both sentences contain the word “Medicare.” Only the first is Medicare for All. Keyword
+            counting collapses them — and collapses a great deal else besides, all of it in the same
+            direction, toward overstating support.
+          </p>
+          <p>
+            So every match is read in the context of its sentence before it counts. A statement that is
+            negated (“I don’t support Medicare for All”), attributed to someone else (“my opponent
+            supports…”), or held at arm’s length (“while I admire the goal…, we should start with a
+            public option”) does not register as support. Every classification carries the verbatim
+            quote and the rule that fired, so any row can be checked by hand in the tracker.
+          </p>
+        </div>
+      </section>
 
-  <footer>
-    Compiled 26 August 2026 from candidates’ own campaign websites, the cosponsor roll of
-    H.R.3069, and news coverage. Ballot roster drawn from state election articles; primary
-    calendar generated from the Federal Election Commission’s official 2026 dates.
-    Per-candidate data, evidence quotes and the review queue are in <code>candidates.csv</code>.
-  </footer>
-</div>
-</body>
+      <section class="block">
+        <h2 class="head">Where support concentrates</h2>
+        <div class="panel">
+          <p class="cap">
+            States with at least eight Democratic candidates on the ballot, ranked by the share
+            supporting Medicare for All or single-payer on the combined measure.
+          </p>
+          <table>
+            <thead>
+              <tr><th>State</th><th class="num">On ballot</th><th class="num">Support M4A</th><th class="num">Share</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Maryland</td><td class="num">8</td><td class="num">6</td><td class="num">75%</td></tr>
+              <tr><td>Minnesota</td><td class="num">8</td><td class="num">5</td><td class="num">62%</td></tr>
+              <tr><td>California</td><td class="num">60</td><td class="num">36</td><td class="num">60%</td></tr>
+              <tr><td>Michigan</td><td class="num">13</td><td class="num">7</td><td class="num">54%</td></tr>
+              <tr><td>Missouri</td><td class="num">8</td><td class="num">4</td><td class="num">50%</td></tr>
+              <tr><td>New Jersey</td><td class="num">12</td><td class="num">6</td><td class="num">50%</td></tr>
+              <tr><td>New York</td><td class="num">26</td><td class="num">13</td><td class="num">50%</td></tr>
+              <tr><td>Indiana</td><td class="num">9</td><td class="num">4</td><td class="num">44%</td></tr>
+              <tr><td>Pennsylvania</td><td class="num">17</td><td class="num">7</td><td class="num">41%</td></tr>
+              <tr><td>Texas</td><td class="num">38</td><td class="num">13</td><td class="num">34%</td></tr>
+              <tr><td>Florida</td><td class="num">28</td><td class="num">6</td><td class="num">21%</td></tr>
+              <tr><td>Ohio</td><td class="num">15</td><td class="num">1</td><td class="num">7%</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="prose" style="margin-top:18px">
+          <p>
+            California fields 60 Democrats across 52 districts — more candidates than seats, because
+            its top-two primary can send two Democrats to the same general election. Eight of its
+            districts do, and 36 of its 60 candidates back Medicare for All or single-payer.
+          </p>
+        </div>
+      </section>
+
+      <section class="methodology">
+        <h2>What this cannot tell you</h2>
+        <ul>
+          <li>
+            <strong>Twenty seats are not in the field yet.</strong> Massachusetts, New Hampshire, Rhode
+            Island and Delaware had not voted when this was collected. Louisiana holds no nominating
+            primary at all in 2026 — its all-party ballot <em>is</em> the November election, after House
+            races were postponed following <em>Louisiana v. Callais</em>.
+          </li>
+          <li>
+            <strong>“Does not support” means a stated position that is not Medicare for All</strong> — a
+            public option, ACA measures, or explicit opposition. It is never inferred from silence: a
+            candidate with nothing stated is counted under <em>No position found</em>.
+          </li>
+          <li>
+            <strong>The last bucket merges two different facts.</strong> “Read it, states no coverage
+            position” and “could not read it” are not the same thing. The finer seven-tier
+            classification is kept per candidate in the tracker and the CSV.
+          </li>
+          <li>
+            <strong>A campaign website is not a voting record, and a voting record is not a campaign.</strong>
+            The two measures answer different questions, which is why both are reported rather than blended.
+          </li>
+          <li>
+            <strong>News-sourced positions are the weakest evidence here.</strong> They carry a confidence
+            score, and thin or contradictory cases are labelled as such rather than smoothed over.
+          </li>
+        </ul>
+        <p class="footnote">
+          Compiled 26 August 2026 from candidates’ own campaign websites, the cosponsor roll of
+          H.R.3069, and news coverage. Ballot roster drawn from state election articles; primary
+          calendar generated from the Federal Election Commission’s official 2026 dates.
+          Per-candidate data, evidence quotes and the review queue are in <code>candidates.csv</code>.
+        </p>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <p>
+        Built by <a href="https://chaoticera.news" target="_blank" rel="noopener">Chaotic Era</a> ·
+        Politics, media &amp; online influence by Kyle Tharp.
+        <a href="./">Back to the tracker →</a>
+      </p>
+    </footer>
+  </body>
 </html>
