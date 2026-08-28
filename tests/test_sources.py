@@ -440,3 +440,40 @@ def test_per_state_articles_supply_the_safe_seats():
     assert got["OH-01"] == ("Lean D", "April 7, 2026")
     # Cook's row is second here: the source column decides, not the row order.
     assert got["OH-02"] == ("Solid R", "November 2, 2025")
+
+
+#: A top-two district where both slots went to the same party. Two Republicans
+#: advanced and the leading Democrat finished third, so the district sends no
+#: Democrat to November at all.
+_TOP_TWO_HTML = """
+<div class="mw-parser-output">
+<div class="mw-heading mw-heading2"><h2>District 12</h2></div>
+<table class="infobox">
+  <tr><th>Candidate</th><td>Ken Calvert</td><td>Young Kim</td></tr>
+  <tr><th>Party</th><td>Republican</td><td>Republican</td></tr>
+</table>
+<table class="wikitable">
+  <caption>Primary results</caption>
+  <tr><th>Party</th><th>Candidate</th><th>Votes</th><th>%</th></tr>
+  <tr><td>Republican</td><td>Ken Calvert (incumbent)</td><td>75,811</td><td>34.89</td></tr>
+  <tr><td>Republican</td><td>Young Kim (incumbent)</td><td>44,818</td><td>20.63</td></tr>
+  <tr><td>Democratic</td><td>Esther Kim-Varet</td><td>36,072</td><td>16.60</td></tr>
+  <tr><td>Democratic</td><td>Lisa Ramirez</td><td>30,495</td><td>14.03</td></tr>
+</table>
+</div>
+"""
+
+
+def test_top_two_district_that_advances_no_democrat_yields_none():
+    # The leading Democrat in an all-party primary is not a nominee, and here
+    # did not advance at all. Reading her as one put an eliminated candidate on
+    # the roster for a seat contested by two Republicans.
+    rows = parse_rows(_TOP_TWO_HTML, "CA")
+    assert [r.democrats for r in rows] == [[]]
+
+
+def test_party_nominee_state_still_uses_the_primary_leader():
+    # The same table in a state that nominates one candidate per party: there
+    # the leading Democrat really is the nominee, and must not be lost.
+    rows = parse_rows(_TOP_TWO_HTML.replace("Ken Calvert", "Some Republican"), "OH")
+    assert [r.democrats for r in rows] == [["Esther Kim-Varet"]]

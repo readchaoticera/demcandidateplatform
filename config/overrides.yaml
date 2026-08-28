@@ -193,3 +193,15 @@ overrides:
       Medicaid and Medicare, and bipartisan improvement of the current system.
     reviewed_by: kyle@kyletharp.com
     reviewed_on: 2026-08-28
+
+  - name: Aisha Wahab
+    district: CA-14
+    tier: explicit_m4a
+    source: https://www.aishawahab.com/simple
+    note: >-
+      Site is Javascript-rendered: the homepage serves 1,743 characters to a
+      crawler and its nav never resolves, so the platform page at /simple was
+      never reached. That page states "Aisha will fight to: Pass Medicare for
+      All healthcare."
+    reviewed_by: kyle@kyletharp.com
+    reviewed_on: 2026-08-28

@@ -351,15 +351,21 @@ def _row_from_section(
         if name and name not in dems:
             dems.append(name)
 
-    # Top-four states run a blanket primary: several Democrats can advance and
-    # none of them is a "nominee", so the primary table's leader is the wrong
-    # answer. Read who actually appears on the November ballot instead.
-    if not dems and ballot_rule(state) is BallotRule.TOP_FOUR_RCV:
+    rule = ballot_rule(state)
+
+    # All-party primaries advance candidates on overall rank, not per party, so
+    # there is no such thing as "the Democratic nominee" and the leading
+    # Democrat may not have advanced at all: in CA-40 two Republicans took both
+    # slots and the top Democrat finished third. Read the general-election
+    # table, which lists exactly who is on the November ballot.
+    if not dems and rule in (BallotRule.TOP_FOUR_RCV, BallotRule.TOP_TWO):
         dems.extend(general_election_candidates(nodes))
 
-    # No infobox (or no Democrat in it): fall back to the primary results table
-    # and take the top vote-getter, which is the nominee.
-    if not dems:
+    # Only where each party nominates one candidate does the primary results
+    # table's leading Democrat become the nominee. This fallback must never
+    # run for an all-party primary, which is what put eliminated candidates on
+    # the roster.
+    if not dems and rule is BallotRule.PARTY_NOMINEE:
         primary = democratic_primary_candidates(nodes)
         if primary:
             winner = max(primary, key=lambda kv: kv[1])
@@ -369,7 +375,7 @@ def _row_from_section(
     # Louisiana holds no nominating primary, so no district has a nominee
     # infobox. Every filer goes on the November ballot, which makes the
     # campaign-finance table a valid roster there and only there.
-    if not dems and ballot_rule(state) is BallotRule.JUNGLE_NOV:
+    if not dems and rule is BallotRule.JUNGLE_NOV:
         dems.extend(finance_table_candidates(nodes))
 
     return ParsedRow(number, at_large, dems, raw[:200])

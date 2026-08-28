@@ -1,15 +1,15 @@
 {
-  "generated_at": "2026-08-28T16:08:40.011755",
+  "generated_at": "2026-08-28T16:27:38.524555",
   "candidate_count": 440,
-  "on_ballot_count": 433,
+  "on_ballot_count": 432,
   "coverage_gaps": [
     "DE (1 seats): nominees not settled until Sep 15, 2026",
     "LA (6 seats): all-party primary held on election day Nov 03, 2026; no party nominees exist (runoff Dec 12)",
     "MA (9 seats): nominees not settled until Sep 01, 2026",
     "NH (2 seats): nominees not settled until Sep 08, 2026",
     "RI (2 seats): nominees not settled until Sep 09, 2026",
-    "14 district(s) with no Democrat recorded as on-ballot (uncontested seats and/or collection gaps): DE-AL, MA-01, MA-02, MA-03, MA-04, MA-05, MA-06, MA-07, MA-08, MA-09, NH-01, NH-02 ...",
-    "7 of 433 on-ballot candidates have no matching FEC filing; their names may be transcribed incorrectly"
+    "15 district(s) with no Democrat recorded as on-ballot (uncontested seats and/or collection gaps): CA-40, DE-AL, MA-01, MA-02, MA-03, MA-04, MA-05, MA-06, MA-07, MA-08, MA-09, NH-01 ...",
+    "6 of 432 on-ballot candidates have no matching FEC filing; their names may be transcribed incorrectly"
   ],
   "candidates": [
     {
@@ -55,7 +55,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.920096",
+          "retrieved_at": "2026-08-28T16:27:38.547553",
           "note": "H4AK00164, status N; matched on name tokens only, FEC records \"Hafner Eric\""
         },
         {
@@ -189,7 +189,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.920134",
+          "retrieved_at": "2026-08-28T16:27:38.547612",
           "note": "H6AL01094, status C"
         },
         {
@@ -266,7 +266,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.920156",
+          "retrieved_at": "2026-08-28T16:27:38.547643",
           "note": "H4AL02170, status C, incumbent"
         },
         {
@@ -326,7 +326,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.920177",
+          "retrieved_at": "2026-08-28T16:27:38.547672",
           "note": "H6AL03199, status C"
         },
         {
@@ -411,7 +411,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.920201",
+          "retrieved_at": "2026-08-28T16:27:38.547713",
           "note": "H6AL05228, status C"
         },
         {
@@ -488,7 +488,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.920241",
+          "retrieved_at": "2026-08-28T16:27:38.547768",
           "note": "H6AL05244, status C"
         },
         {
@@ -549,7 +549,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.920289",
+          "retrieved_at": "2026-08-28T16:27:38.547819",
           "note": "H6AL06184, status C"
         },
         {
@@ -630,7 +630,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.920311",
+          "retrieved_at": "2026-08-28T16:27:38.547841",
           "note": "H0AL07086, status C, incumbent"
         },
         {
@@ -696,7 +696,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.920337",
+          "retrieved_at": "2026-08-28T16:27:38.547867",
           "note": "H6AR01155, status C"
         },
         {
@@ -748,7 +748,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.920358",
+          "retrieved_at": "2026-08-28T16:27:38.547894",
           "note": "H6AR02286, status C"
         },
         {
@@ -812,7 +812,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.920378",
+          "retrieved_at": "2026-08-28T16:27:38.547915",
           "note": "H6AR03128, status C"
         },
         {
@@ -866,7 +866,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.920404",
+          "retrieved_at": "2026-08-28T16:27:38.547938",
           "note": "H6AR04084, status C"
         },
         {
@@ -943,7 +943,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.920481",
+          "retrieved_at": "2026-08-28T16:27:38.548009",
           "note": "H4AZ01194, status C"
         },
         {
@@ -997,13 +997,13 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.920504",
+          "retrieved_at": "2026-08-28T16:27:38.548037",
           "note": "H4AZ02184, status C"
         },
         {
           "source": "human_review",
           "url": "https://www.jonathannezforaz.com/issues",
-          "retrieved_at": "2026-08-28T15:16:32.359318",
+          "retrieved_at": "2026-08-28T16:26:26.132281",
           "note": "reviewed by kyle@kyletharp.com on 2026-08-28"
         },
         {
@@ -1064,7 +1064,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.920525",
+          "retrieved_at": "2026-08-28T16:27:38.548058",
           "note": "H4AZ03109, status C, incumbent"
         },
         {
@@ -1128,7 +1128,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.920544",
+          "retrieved_at": "2026-08-28T16:27:38.548080",
           "note": "H8AZ09040, status C, incumbent"
         },
         {
@@ -1209,7 +1209,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.920600",
+          "retrieved_at": "2026-08-28T16:27:38.548132",
           "note": "H6AZ05240, status C"
         },
         {
@@ -1284,7 +1284,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.920650",
+          "retrieved_at": "2026-08-28T16:27:38.548180",
           "note": "H6AZ06099, status C"
         },
         {
@@ -1338,7 +1338,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.920671",
+          "retrieved_at": "2026-08-28T16:27:38.548203",
           "note": "H6AZ07121, status C, incumbent"
         },
         {
@@ -1432,6 +1432,7 @@
         "no FEC filing record found for this name and district",
         "no FEC filing record found for this name and district",
         "no FEC filing record found for this name and district",
+        "no FEC filing record found for this name and district",
         "no FEC filing record found for this name and district"
       ]
     },
@@ -1484,7 +1485,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.921132",
+          "retrieved_at": "2026-08-28T16:27:38.548940",
           "note": "H6AZ09085, status C"
         },
         {
@@ -1559,7 +1560,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.921178",
+          "retrieved_at": "2026-08-28T16:27:38.549030",
           "note": "H6CA01269, status C"
         },
         {
@@ -1611,7 +1612,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.921205",
+          "retrieved_at": "2026-08-28T16:27:38.549075",
           "note": "H2CA06259, status C, incumbent"
         },
         {
@@ -1694,7 +1695,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.921237",
+          "retrieved_at": "2026-08-28T16:27:38.549133",
           "note": "H0CA03078, status C, incumbent"
         },
         {
@@ -1761,7 +1762,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.921261",
+          "retrieved_at": "2026-08-28T16:27:38.549173",
           "note": "H6CA04222, status C"
         },
         {
@@ -1844,7 +1845,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.921285",
+          "retrieved_at": "2026-08-28T16:27:38.549211",
           "note": "H8CA01109, status C, incumbent"
         },
         {
@@ -1921,7 +1922,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.921321",
+          "retrieved_at": "2026-08-28T16:27:38.549271",
           "note": "H6CA05377, status C"
         },
         {
@@ -1973,13 +1974,13 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.921364",
+          "retrieved_at": "2026-08-28T16:27:38.549341",
           "note": "H6CA03158, status C"
         },
         {
           "source": "human_review",
           "url": "https://pro.stateaffairs.com/ca/news/richard-pan-congressional-candidate-ambigious-on-universal-healthcare",
-          "retrieved_at": "2026-08-28T15:16:32.359324",
+          "retrieved_at": "2026-08-28T16:26:26.132288",
           "note": "reviewed by kyle@kyletharp.com on 2026-08-28"
         },
         {
@@ -2058,7 +2059,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.921397",
+          "retrieved_at": "2026-08-28T16:27:38.549394",
           "note": "H6CA05195, status C, incumbent"
         },
         {
@@ -2127,7 +2128,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.921433",
+          "retrieved_at": "2026-08-28T16:27:38.549441",
           "note": "H6CA07175, status C"
         },
         {
@@ -2204,7 +2205,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.921467",
+          "retrieved_at": "2026-08-28T16:27:38.549546",
           "note": "H0CA10149, status C, incumbent"
         },
         {
@@ -2271,7 +2272,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.921489",
+          "retrieved_at": "2026-08-28T16:27:38.549577",
           "note": "H8CA10126, status C, incumbent"
         },
         {
@@ -2324,7 +2325,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.921524",
+          "retrieved_at": "2026-08-28T16:27:38.549612",
           "note": "H0CA10073, status C, incumbent"
         },
         {
@@ -2381,13 +2382,13 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.921604",
+          "retrieved_at": "2026-08-28T16:27:38.549735",
           "note": "H6CA11268, status C"
         },
         {
           "source": "human_review",
           "url": "https://ballotpedia.org/Connie_Chan",
-          "retrieved_at": "2026-08-28T15:16:32.359334",
+          "retrieved_at": "2026-08-28T16:26:26.132302",
           "note": "reviewed by kyle@kyletharp.com on 2026-08-28"
         },
         {
@@ -2462,7 +2463,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.921678",
+          "retrieved_at": "2026-08-28T16:27:38.549827",
           "note": "H8CA11116, status C"
         },
         {
@@ -2514,7 +2515,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.921697",
+          "retrieved_at": "2026-08-28T16:27:38.549846",
           "note": "H6CA12209, status C"
         },
         {
@@ -2581,7 +2582,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.921719",
+          "retrieved_at": "2026-08-28T16:27:38.549868",
           "note": "H4CA12154, status C, incumbent"
         },
         {
@@ -2658,7 +2659,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.921747",
+          "retrieved_at": "2026-08-28T16:27:38.549899",
           "note": "H2CA13115, status C, incumbent"
         },
         {
@@ -2716,13 +2717,13 @@
         }
       ],
       "m4a_notes": "",
-      "resolved_tier": "aca_strengthen",
-      "bucket": "does_not_support_m4a",
-      "evidence_basis": "campaign_site",
-      "override_tier": "unknown",
-      "override_note": "",
-      "override_source": "",
-      "override_reviewer": "",
+      "resolved_tier": "explicit_m4a",
+      "bucket": "supports_m4a",
+      "evidence_basis": "human_review",
+      "override_tier": "explicit_m4a",
+      "override_note": "Site is Javascript-rendered: the homepage serves 1,743 characters to a crawler and its nav never resolves, so the platform page at /simple was never reached. That page states \"Aisha will fight to: Pass Medicare for All healthcare.\"",
+      "override_source": "https://www.aishawahab.com/simple",
+      "override_reviewer": "kyle@kyletharp.com",
       "secondary_tier": "unknown",
       "secondary_confidence": 0.0,
       "secondary_note": "",
@@ -2735,7 +2736,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.921814",
+          "retrieved_at": "2026-08-28T16:27:38.549960",
           "note": "H0CA15213, status C"
         },
         {
@@ -2743,6 +2744,12 @@
           "url": "https://en.wikipedia.org/wiki/2026_United_States_House_of_Representatives_election_ratings",
           "retrieved_at": "2026-08-28T16:08:59.374863",
           "note": "Solid D as of November 5, 2025"
+        },
+        {
+          "source": "human_review",
+          "url": "https://www.aishawahab.com/simple",
+          "retrieved_at": "2026-08-28T16:26:26.132369",
+          "note": "reviewed by kyle@kyletharp.com on 2026-08-28"
         }
       ],
       "conflicts": []
@@ -2804,7 +2811,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.921875",
+          "retrieved_at": "2026-08-28T16:27:38.550021",
           "note": "H6CA14163, status C"
         },
         {
@@ -2870,7 +2877,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.922063",
+          "retrieved_at": "2026-08-28T16:27:38.550049",
           "note": "H2CA14162, status C, incumbent"
         },
         {
@@ -2940,7 +2947,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.922124",
+          "retrieved_at": "2026-08-28T16:27:38.550071",
           "note": "H4CA16197, status C, incumbent"
         },
         {
@@ -3007,7 +3014,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.922164",
+          "retrieved_at": "2026-08-28T16:27:38.550101",
           "note": "H4CA12055, status C, incumbent"
         },
         {
@@ -3059,7 +3066,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.922206",
+          "retrieved_at": "2026-08-28T16:27:38.550138",
           "note": "H4CA16049, status C, incumbent"
         },
         {
@@ -3120,7 +3127,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.922233",
+          "retrieved_at": "2026-08-28T16:27:38.550164",
           "note": "H6CA20152, status C, incumbent"
         },
         {
@@ -3181,7 +3188,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.922270",
+          "retrieved_at": "2026-08-28T16:27:38.550195",
           "note": "H6CA20228, status C"
         },
         {
@@ -3232,7 +3239,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.922307",
+          "retrieved_at": "2026-08-28T16:27:38.550223",
           "note": "H4CA20082, status C, incumbent"
         },
         {
@@ -3323,7 +3330,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.922337",
+          "retrieved_at": "2026-08-28T16:27:38.550247",
           "note": "H6CA22190, status C"
         },
         {
@@ -3392,7 +3399,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.922398",
+          "retrieved_at": "2026-08-28T16:27:38.550296",
           "note": "H6CA23230, status C"
         },
         {
@@ -3473,7 +3480,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.922421",
+          "retrieved_at": "2026-08-28T16:27:38.550316",
           "note": "H6CA24303, status C, incumbent"
         },
         {
@@ -3550,7 +3557,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.922436",
+          "retrieved_at": "2026-08-28T16:27:38.550330",
           "note": "H2CA36439, status C, incumbent"
         },
         {
@@ -3601,13 +3608,13 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.922512",
+          "retrieved_at": "2026-08-28T16:27:38.550383",
           "note": "H6CA26266, status C"
         },
         {
           "source": "human_review",
           "url": "https://irwin.asmdc.org/covered-california",
-          "retrieved_at": "2026-08-28T15:16:32.359349",
+          "retrieved_at": "2026-08-28T16:26:26.132315",
           "note": "reviewed by kyle@kyletharp.com on 2026-08-28"
         },
         {
@@ -3668,7 +3675,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.922541",
+          "retrieved_at": "2026-08-28T16:27:38.550416",
           "note": "H4CA27111, status C, incumbent"
         },
         {
@@ -3720,7 +3727,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.922571",
+          "retrieved_at": "2026-08-28T16:27:38.550452",
           "note": "H0CA32101, status C, incumbent"
         },
         {
@@ -3780,7 +3787,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.922621",
+          "retrieved_at": "2026-08-28T16:27:38.550547",
           "note": "H8CA29100, status C"
         },
         {
@@ -3849,7 +3856,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.922641",
+          "retrieved_at": "2026-08-28T16:27:38.550591",
           "note": "H4CA29141, status C, incumbent"
         },
         {
@@ -3900,7 +3907,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.922742",
+          "retrieved_at": "2026-08-28T16:27:38.550668",
           "note": "H4CA30149, status C, incumbent"
         },
         {
@@ -3953,7 +3960,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.922771",
+          "retrieved_at": "2026-08-28T16:27:38.550689",
           "note": "H8CA39174, status C"
         },
         {
@@ -4013,7 +4020,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.922857",
+          "retrieved_at": "2026-08-28T16:27:38.550849",
           "note": "H6CA24113, status C, incumbent"
         },
         {
@@ -4066,7 +4073,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.922879",
+          "retrieved_at": "2026-08-28T16:27:38.550883",
           "note": "H2CA31125, status C, incumbent"
         },
         {
@@ -4139,7 +4146,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.922961",
+          "retrieved_at": "2026-08-28T16:27:38.550938",
           "note": "H6CA34286, status C"
         },
         {
@@ -4208,7 +4215,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.923001",
+          "retrieved_at": "2026-08-28T16:27:38.550992",
           "note": "H8CA34266, status C, incumbent"
         },
         {
@@ -4262,7 +4269,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.923020",
+          "retrieved_at": "2026-08-28T16:27:38.551017",
           "note": "H4CA35031, status C, incumbent"
         },
         {
@@ -4321,7 +4328,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.923049",
+          "retrieved_at": "2026-08-28T16:27:38.551060",
           "note": "H4CA33119, status C, incumbent"
         },
         {
@@ -4394,7 +4401,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.923094",
+          "retrieved_at": "2026-08-28T16:27:38.551121",
           "note": "H6CA37339, status C"
         },
         {
@@ -4455,7 +4462,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.923140",
+          "retrieved_at": "2026-08-28T16:27:38.551182",
           "note": "H2CA37304, status C, incumbent"
         },
         {
@@ -4509,7 +4516,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.923174",
+          "retrieved_at": "2026-08-28T16:27:38.551230",
           "note": "H6CA38139, status C"
         },
         {
@@ -4561,7 +4568,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.923187",
+          "retrieved_at": "2026-08-28T16:27:38.551250",
           "note": "H2CA43245, status C, incumbent"
         },
         {
@@ -4579,8 +4586,8 @@
       "state": "CA",
       "district": "CA-40",
       "ballot_rule": "top_two",
-      "status": "on_ballot",
-      "on_general_ballot": true,
+      "status": "lost_primary",
+      "on_general_ballot": false,
       "incumbent": false,
       "cook_rating": "Solid R",
       "cook_rating_as_of": "November 5, 2025",
@@ -4630,7 +4637,8 @@
         "no FEC filing record found for this name and district",
         "no FEC filing record found for this name and district",
         "no FEC filing record found for this name and district",
-        "no FEC filing record found for this name and district"
+        "no FEC filing record found for this name and district",
+        "eliminated in California's top-two primary: finished 3rd with 16.60%; the November ballot is Ken Calvert (R) v Young Kim (R)"
       ]
     },
     {
@@ -4676,7 +4684,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.925370",
+          "retrieved_at": "2026-08-28T16:27:38.551328",
           "note": "H2CA39078, status C, incumbent"
         },
         {
@@ -4755,7 +4763,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.925402",
+          "retrieved_at": "2026-08-28T16:27:38.551348",
           "note": "H2CA47188, status C, incumbent"
         },
         {
@@ -4806,7 +4814,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.925440",
+          "retrieved_at": "2026-08-28T16:27:38.551397",
           "note": "H4CA23011, status C, incumbent"
         },
         {
@@ -4870,7 +4878,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.925458",
+          "retrieved_at": "2026-08-28T16:27:38.551421",
           "note": "H6CA44103, status C, incumbent"
         },
         {
@@ -4939,7 +4947,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.925478",
+          "retrieved_at": "2026-08-28T16:27:38.551450",
           "note": "H4CA45170, status C, incumbent"
         },
         {
@@ -4992,7 +5000,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.925503",
+          "retrieved_at": "2026-08-28T16:27:38.551478",
           "note": "H6CA46116, status C, incumbent"
         },
         {
@@ -5065,7 +5073,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.925524",
+          "retrieved_at": "2026-08-28T16:27:38.551528",
           "note": "H4CA47085, status C, incumbent"
         },
         {
@@ -5134,7 +5142,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.925637",
+          "retrieved_at": "2026-08-28T16:27:38.551719",
           "note": "H6CA48310, status C"
         },
         {
@@ -5209,7 +5217,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.925657",
+          "retrieved_at": "2026-08-28T16:27:38.551752",
           "note": "H8CA49058, status C, incumbent"
         },
         {
@@ -5292,7 +5300,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.925705",
+          "retrieved_at": "2026-08-28T16:27:38.551820",
           "note": "H2CA52089, status C, incumbent"
         },
         {
@@ -5350,7 +5358,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.925731",
+          "retrieved_at": "2026-08-28T16:27:38.551848",
           "note": "H8CA49074, status C, incumbent"
         },
         {
@@ -5403,7 +5411,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.925751",
+          "retrieved_at": "2026-08-28T16:27:38.551870",
           "note": "H2CA50026, status C, incumbent"
         },
         {
@@ -5473,7 +5481,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.925803",
+          "retrieved_at": "2026-08-28T16:27:38.551935",
           "note": "H6CO01273, status C"
         },
         {
@@ -5527,7 +5535,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.925828",
+          "retrieved_at": "2026-08-28T16:27:38.551956",
           "note": "H8CO02160, status C, incumbent"
         },
         {
@@ -5604,7 +5612,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.925861",
+          "retrieved_at": "2026-08-28T16:27:38.551987",
           "note": "H6CO03253, status C"
         },
         {
@@ -5665,7 +5673,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.925928",
+          "retrieved_at": "2026-08-28T16:27:38.552027",
           "note": "H6CO04202, status C"
         },
         {
@@ -5742,7 +5750,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.926002",
+          "retrieved_at": "2026-08-28T16:27:38.552088",
           "note": "H6CO05324, status C"
         },
         {
@@ -5803,7 +5811,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.926028",
+          "retrieved_at": "2026-08-28T16:27:38.552113",
           "note": "H8CO06229, status C, incumbent"
         },
         {
@@ -5880,7 +5888,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.926053",
+          "retrieved_at": "2026-08-28T16:27:38.552130",
           "note": "H8CO07045, status C, incumbent"
         },
         {
@@ -5957,7 +5965,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.926116",
+          "retrieved_at": "2026-08-28T16:27:38.552195",
           "note": "H6CO08013, status C"
         },
         {
@@ -6024,7 +6032,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.926360",
+          "retrieved_at": "2026-08-28T16:27:38.552245",
           "note": "H6CT01206, status C"
         },
         {
@@ -6078,7 +6086,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.926421",
+          "retrieved_at": "2026-08-28T16:27:38.552276",
           "note": "H2CT02112, status C, incumbent"
         },
         {
@@ -6167,7 +6175,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.926454",
+          "retrieved_at": "2026-08-28T16:27:38.552299",
           "note": "H0CT03072, status C, incumbent"
         },
         {
@@ -6227,7 +6235,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.926476",
+          "retrieved_at": "2026-08-28T16:27:38.552331",
           "note": "H8CT04172, status C, incumbent"
         },
         {
@@ -6302,7 +6310,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.926503",
+          "retrieved_at": "2026-08-28T16:27:38.552368",
           "note": "H8CT05245, status C, incumbent"
         },
         {
@@ -6422,7 +6430,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.926529",
+          "retrieved_at": "2026-08-28T16:27:38.552409",
           "note": "H4FL01197, status C"
         },
         {
@@ -6491,7 +6499,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.926563",
+          "retrieved_at": "2026-08-28T16:27:38.552458",
           "note": "H6FL02299, status C"
         },
         {
@@ -6552,7 +6560,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.926607",
+          "retrieved_at": "2026-08-28T16:27:38.552572",
           "note": "H6FL03099, status C"
         },
         {
@@ -6613,7 +6621,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.926642",
+          "retrieved_at": "2026-08-28T16:27:38.552613",
           "note": "H6FL05193, status C"
         },
         {
@@ -6674,7 +6682,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.926679",
+          "retrieved_at": "2026-08-28T16:27:38.552652",
           "note": "H6FL05250, status C"
         },
         {
@@ -6734,7 +6742,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.926778",
+          "retrieved_at": "2026-08-28T16:27:38.552691",
           "note": "H6FL06340, status C"
         },
         {
@@ -6818,7 +6826,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.926842",
+          "retrieved_at": "2026-08-28T16:27:38.552739",
           "note": "H6FL07215, status C"
         },
         {
@@ -6878,7 +6886,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.926868",
+          "retrieved_at": "2026-08-28T16:27:38.552765",
           "note": "H6FL06399, status C"
         },
         {
@@ -6948,7 +6956,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.926883",
+          "retrieved_at": "2026-08-28T16:27:38.552778",
           "note": "H6FL09179, status C, incumbent"
         },
         {
@@ -7009,7 +7017,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.926935",
+          "retrieved_at": "2026-08-28T16:27:38.552793",
           "note": "H2FL10259, status C, incumbent"
         },
         {
@@ -7069,7 +7077,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.927108",
+          "retrieved_at": "2026-08-28T16:27:38.552826",
           "note": "H6FL11357, status C"
         },
         {
@@ -7141,7 +7149,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.927153",
+          "retrieved_at": "2026-08-28T16:27:38.552845",
           "note": "H6FL15200, status C"
         },
         {
@@ -7207,7 +7215,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.927264",
+          "retrieved_at": "2026-08-28T16:27:38.552914",
           "note": "H6FL13312, status C"
         },
         {
@@ -7284,7 +7292,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.927293",
+          "retrieved_at": "2026-08-28T16:27:38.552933",
           "note": "H6FL11126, status C, incumbent"
         },
         {
@@ -7353,7 +7361,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.927338",
+          "retrieved_at": "2026-08-28T16:27:38.552961",
           "note": "H6FL15168, status C"
         },
         {
@@ -7429,7 +7437,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.927396",
+          "retrieved_at": "2026-08-28T16:27:38.552998",
           "note": "H6FL16158, status C"
         },
         {
@@ -7498,7 +7506,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.927430",
+          "retrieved_at": "2026-08-28T16:27:38.553018",
           "note": "H4FL17060, status C"
         },
         {
@@ -7550,7 +7558,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.927464",
+          "retrieved_at": "2026-08-28T16:27:38.553048",
           "note": "H6FL18212, status C"
         },
         {
@@ -7601,7 +7609,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.927499",
+          "retrieved_at": "2026-08-28T16:27:38.553081",
           "note": "H6FL19277, status C"
         },
         {
@@ -7678,7 +7686,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.927566",
+          "retrieved_at": "2026-08-28T16:27:38.553131",
           "note": "H4FL20023, status C, incumbent"
         },
         {
@@ -7745,7 +7753,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.927611",
+          "retrieved_at": "2026-08-28T16:27:38.553168",
           "note": "H6FL21075, status C"
         },
         {
@@ -7805,7 +7813,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.927644",
+          "retrieved_at": "2026-08-28T16:27:38.553194",
           "note": "H6FL21059, status C"
         },
         {
@@ -7871,7 +7879,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.927671",
+          "retrieved_at": "2026-08-28T16:27:38.553219",
           "note": "H2FL14053, status C, incumbent"
         },
         {
@@ -7933,7 +7941,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.927742",
+          "retrieved_at": "2026-08-28T16:27:38.553289",
           "note": "H6FL24095, status C"
         },
         {
@@ -7999,7 +8007,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.927763",
+          "retrieved_at": "2026-08-28T16:27:38.553310",
           "note": "H2FL22171, status C, incumbent"
         },
         {
@@ -8084,7 +8092,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.927795",
+          "retrieved_at": "2026-08-28T16:27:38.553328",
           "note": "H6FL26058, status C"
         },
         {
@@ -8144,7 +8152,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.927833",
+          "retrieved_at": "2026-08-28T16:27:38.553362",
           "note": "H6FL27098, status C"
         },
         {
@@ -8213,7 +8221,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.927868",
+          "retrieved_at": "2026-08-28T16:27:38.553394",
           "note": "H4FL28042, status C"
         },
         {
@@ -8282,7 +8290,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.927981",
+          "retrieved_at": "2026-08-28T16:27:38.553444",
           "note": "H6GA01158, status C"
         },
         {
@@ -8343,7 +8351,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.928016",
+          "retrieved_at": "2026-08-28T16:27:38.553482",
           "note": "H2GA02031, status C, incumbent"
         },
         {
@@ -8413,7 +8421,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.928065",
+          "retrieved_at": "2026-08-28T16:27:38.553576",
           "note": "H4GA03100, status C"
         },
         {
@@ -8480,7 +8488,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.928117",
+          "retrieved_at": "2026-08-28T16:27:38.553616",
           "note": "H6GA04129, status C, incumbent"
         },
         {
@@ -8532,7 +8540,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.928161",
+          "retrieved_at": "2026-08-28T16:27:38.553650",
           "note": "H0GA05301, status C, incumbent"
         },
         {
@@ -8603,7 +8611,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.928209",
+          "retrieved_at": "2026-08-28T16:27:38.553683",
           "note": "H8GA06393, status C, incumbent"
         },
         {
@@ -8654,7 +8662,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.928255",
+          "retrieved_at": "2026-08-28T16:27:38.553714",
           "note": "H6GA07221, status C"
         },
         {
@@ -8732,6 +8740,7 @@
         "no FEC filing record found for this name and district",
         "no FEC filing record found for this name and district",
         "no FEC filing record found for this name and district",
+        "no FEC filing record found for this name and district",
         "no FEC filing record found for this name and district"
       ]
     },
@@ -8776,7 +8785,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.928794",
+          "retrieved_at": "2026-08-28T16:27:38.554226",
           "note": "H6GA09284, status C"
         },
         {
@@ -8836,7 +8845,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.928817",
+          "retrieved_at": "2026-08-28T16:27:38.554255",
           "note": "H6GA10183, status C"
         },
         {
@@ -8904,7 +8913,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.928864",
+          "retrieved_at": "2026-08-28T16:27:38.554293",
           "note": "H6GA11116, status C"
         },
         {
@@ -8955,7 +8964,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.928962",
+          "retrieved_at": "2026-08-28T16:27:38.554339",
           "note": "H6GA12080, status C"
         },
         {
@@ -9024,7 +9033,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.929065",
+          "retrieved_at": "2026-08-28T16:27:38.554412",
           "note": "H6GA13070, status C"
         },
         {
@@ -9107,7 +9116,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.929098",
+          "retrieved_at": "2026-08-28T16:27:38.554441",
           "note": "H4GA14057, status C"
         },
         {
@@ -9167,7 +9176,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.929131",
+          "retrieved_at": "2026-08-28T16:27:38.554473",
           "note": "H2HI02128, status C, incumbent"
         },
         {
@@ -9244,7 +9253,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.929145",
+          "retrieved_at": "2026-08-28T16:27:38.554488",
           "note": "H2HI02581, status C, incumbent"
         },
         {
@@ -9313,7 +9322,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.929178",
+          "retrieved_at": "2026-08-28T16:27:38.554579",
           "note": "H2IA02111, status C"
         },
         {
@@ -9388,7 +9397,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.929232",
+          "retrieved_at": "2026-08-28T16:27:38.554628",
           "note": "H6IA02211, status C"
         },
         {
@@ -9471,7 +9480,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.929279",
+          "retrieved_at": "2026-08-28T16:27:38.554668",
           "note": "H6IA03268, status C"
         },
         {
@@ -9533,7 +9542,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.929319",
+          "retrieved_at": "2026-08-28T16:27:38.554743",
           "note": "H6IA04217, status C"
         },
         {
@@ -9603,7 +9612,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.929344",
+          "retrieved_at": "2026-08-28T16:27:38.554776",
           "note": "H2ID01192, status C"
         },
         {
@@ -9654,7 +9663,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.929371",
+          "retrieved_at": "2026-08-28T16:27:38.554805",
           "note": "H6ID02274, status C"
         },
         {
@@ -9720,7 +9729,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.929406",
+          "retrieved_at": "2026-08-28T16:27:38.554844",
           "note": "H2IL01349, status C, incumbent"
         },
         {
@@ -9783,7 +9792,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.929475",
+          "retrieved_at": "2026-08-28T16:27:38.554923",
           "note": "H6IL02355, status C"
         },
         {
@@ -9866,7 +9875,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.929497",
+          "retrieved_at": "2026-08-28T16:27:38.554943",
           "note": "H2IL03162, status C, incumbent"
         },
         {
@@ -9923,7 +9932,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.929515",
+          "retrieved_at": "2026-08-28T16:27:38.554960",
           "note": "H6IL04153, status C"
         },
         {
@@ -9989,7 +9998,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.929534",
+          "retrieved_at": "2026-08-28T16:27:38.554987",
           "note": "H0IL05096, status C, incumbent"
         },
         {
@@ -10074,7 +10083,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.929553",
+          "retrieved_at": "2026-08-28T16:27:38.555008",
           "note": "H8IL06139, status C, incumbent"
         },
         {
@@ -10154,7 +10163,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.929665",
+          "retrieved_at": "2026-08-28T16:27:38.555119",
           "note": "H6IL07354, status C"
         },
         {
@@ -10231,7 +10240,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.929731",
+          "retrieved_at": "2026-08-28T16:27:38.555186",
           "note": "H6IL08329, status C"
         },
         {
@@ -10298,7 +10307,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.929860",
+          "retrieved_at": "2026-08-28T16:27:38.555311",
           "note": "H6IL09228, status C"
         },
         {
@@ -10381,7 +10390,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.929881",
+          "retrieved_at": "2026-08-28T16:27:38.555339",
           "note": "H2IL10068, status C, incumbent"
         },
         {
@@ -10448,7 +10457,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.929929",
+          "retrieved_at": "2026-08-28T16:27:38.555358",
           "note": "H8IL14067, status C, incumbent"
         },
         {
@@ -10526,7 +10535,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.929966",
+          "retrieved_at": "2026-08-28T16:27:38.555373",
           "note": "H6IL12131, status C"
         },
         {
@@ -10609,7 +10618,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.930004",
+          "retrieved_at": "2026-08-28T16:27:38.555398",
           "note": "H2IL13153, status C, incumbent"
         },
         {
@@ -10665,13 +10674,13 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.930025",
+          "retrieved_at": "2026-08-28T16:27:38.555418",
           "note": "H8IL14174, status C, incumbent"
         },
         {
           "source": "human_review",
           "url": "https://www.cbsnews.com/news/the-youngest-black-woman-in-congress-has-an-alternative-to-medicare-for-all",
-          "retrieved_at": "2026-08-28T15:16:32.359340",
+          "retrieved_at": "2026-08-28T16:26:26.132309",
           "note": "reviewed by kyle@kyletharp.com on 2026-08-28"
         },
         {
@@ -10750,7 +10759,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.930054",
+          "retrieved_at": "2026-08-28T16:27:38.555446",
           "note": "H6IL15092, status C"
         },
         {
@@ -10827,7 +10836,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.930091",
+          "retrieved_at": "2026-08-28T16:27:38.555482",
           "note": "H6IL16108, status C"
         },
         {
@@ -10910,7 +10919,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.930110",
+          "retrieved_at": "2026-08-28T16:27:38.555529",
           "note": "H2IL17147, status C, incumbent"
         },
         {
@@ -10973,7 +10982,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.930137",
+          "retrieved_at": "2026-08-28T16:27:38.555569",
           "note": "H0IN01150, status C, incumbent"
         },
         {
@@ -11033,7 +11042,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.930165",
+          "retrieved_at": "2026-08-28T16:27:38.555599",
           "note": "H6IN02189, status C"
         },
         {
@@ -11108,7 +11117,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.930180",
+          "retrieved_at": "2026-08-28T16:27:38.555615",
           "note": "H6IN03294, status C"
         },
         {
@@ -11178,7 +11187,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.930232",
+          "retrieved_at": "2026-08-28T16:27:38.555660",
           "note": "H6IN04193, status C"
         },
         {
@@ -11257,7 +11266,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.930302",
+          "retrieved_at": "2026-08-28T16:27:38.555715",
           "note": "H6IN05307, status C"
         },
         {
@@ -11338,7 +11347,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.930347",
+          "retrieved_at": "2026-08-28T16:27:38.555758",
           "note": "H6IN06230, status C"
         },
         {
@@ -11415,7 +11424,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.930381",
+          "retrieved_at": "2026-08-28T16:27:38.555791",
           "note": "H8IN07184, status C, incumbent"
         },
         {
@@ -11492,7 +11501,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.930407",
+          "retrieved_at": "2026-08-28T16:27:38.555817",
           "note": "H6IN08293, status C"
         },
         {
@@ -11552,7 +11561,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.930456",
+          "retrieved_at": "2026-08-28T16:27:38.555869",
           "note": "H6IN09242, status C"
         },
         {
@@ -11621,7 +11630,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.930477",
+          "retrieved_at": "2026-08-28T16:27:38.555889",
           "note": "H6KS01203, status C"
         },
         {
@@ -11673,7 +11682,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.930497",
+          "retrieved_at": "2026-08-28T16:27:38.555907",
           "note": "H6KS02276, status C"
         },
         {
@@ -11751,7 +11760,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.930515",
+          "retrieved_at": "2026-08-28T16:27:38.555925",
           "note": "H8KS03155, status C, incumbent"
         },
         {
@@ -11811,7 +11820,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.930555",
+          "retrieved_at": "2026-08-28T16:27:38.555966",
           "note": "H6KS04272, status C"
         },
         {
@@ -11870,7 +11879,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.930570",
+          "retrieved_at": "2026-08-28T16:27:38.555983",
           "note": "H6KY01169, status C"
         },
         {
@@ -11930,7 +11939,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.930602",
+          "retrieved_at": "2026-08-28T16:27:38.556015",
           "note": "H6KY02068, status C"
         },
         {
@@ -12001,7 +12010,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.930622",
+          "retrieved_at": "2026-08-28T16:27:38.556037",
           "note": "H2KY03206, status C, incumbent"
         },
         {
@@ -12053,7 +12062,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.930670",
+          "retrieved_at": "2026-08-28T16:27:38.556072",
           "note": "H6KY04189, status C"
         },
         {
@@ -12104,7 +12113,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.930731",
+          "retrieved_at": "2026-08-28T16:27:38.556088",
           "note": "H6KY05152, status C"
         },
         {
@@ -12171,7 +12180,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.930792",
+          "retrieved_at": "2026-08-28T16:27:38.556122",
           "note": "H6KY06184, status C"
         },
         {
@@ -12238,7 +12247,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.930821",
+          "retrieved_at": "2026-08-28T16:27:38.556146",
           "note": "H6LA01258, status C"
         },
         {
@@ -12291,7 +12300,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.930838",
+          "retrieved_at": "2026-08-28T16:27:38.556161",
           "note": "H2LA02149, status C, incumbent"
         },
         {
@@ -12360,7 +12369,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.930852",
+          "retrieved_at": "2026-08-28T16:27:38.556175",
           "note": "H6LA03205, status C"
         },
         {
@@ -12424,6 +12433,7 @@
         "no FEC filing record found for this name and district",
         "no FEC filing record found for this name and district",
         "no FEC filing record found for this name and district",
+        "no FEC filing record found for this name and district",
         "no FEC filing record found for this name and district"
       ]
     },
@@ -12476,7 +12486,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.931094",
+          "retrieved_at": "2026-08-28T16:27:38.556349",
           "note": "H6LA04187, status C"
         },
         {
@@ -12528,7 +12538,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.931115",
+          "retrieved_at": "2026-08-28T16:27:38.556368",
           "note": "H6LA04195, status C"
         },
         {
@@ -12581,7 +12591,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.931162",
+          "retrieved_at": "2026-08-28T16:27:38.556412",
           "note": "H6LA05291, status C"
         },
         {
@@ -12638,7 +12648,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.931205",
+          "retrieved_at": "2026-08-28T16:27:38.556457",
           "note": "H6LA05275, status C"
         },
         {
@@ -12698,7 +12708,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.931238",
+          "retrieved_at": "2026-08-28T16:27:38.556481",
           "note": "H4LA06211, status C, incumbent"
         },
         {
@@ -12758,7 +12768,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.931272",
+          "retrieved_at": "2026-08-28T16:27:38.556537",
           "note": "H6LA05309, status C"
         },
         {
@@ -12973,7 +12983,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.931339",
+          "retrieved_at": "2026-08-28T16:27:38.556589",
           "note": "H6MD01320, status C"
         },
         {
@@ -13042,7 +13052,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.931381",
+          "retrieved_at": "2026-08-28T16:27:38.556620",
           "note": "H4MD02232, status C, incumbent"
         },
         {
@@ -13105,7 +13115,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.931410",
+          "retrieved_at": "2026-08-28T16:27:38.556645",
           "note": "H4MD03156, status C, incumbent"
         },
         {
@@ -13156,7 +13166,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.931455",
+          "retrieved_at": "2026-08-28T16:27:38.556689",
           "note": "H2MD04232, status C"
         },
         {
@@ -13210,7 +13220,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.931575",
+          "retrieved_at": "2026-08-28T16:27:38.556801",
           "note": "H6MD05321, status C"
         },
         {
@@ -13268,7 +13278,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.931617",
+          "retrieved_at": "2026-08-28T16:27:38.556842",
           "note": "H4MD06340, status C, incumbent"
         },
         {
@@ -13326,7 +13336,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.931650",
+          "retrieved_at": "2026-08-28T16:27:38.556882",
           "note": "H6MD07020, status C, incumbent"
         },
         {
@@ -13380,7 +13390,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.931675",
+          "retrieved_at": "2026-08-28T16:27:38.556914",
           "note": "H6MD08457, status C, incumbent"
         },
         {
@@ -13449,7 +13459,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.931698",
+          "retrieved_at": "2026-08-28T16:27:38.556936",
           "note": "H8ME01120, status C, incumbent"
         },
         {
@@ -13510,7 +13520,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.931737",
+          "retrieved_at": "2026-08-28T16:27:38.556976",
           "note": "H6ME02171, status C"
         },
         {
@@ -13571,7 +13581,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.931762",
+          "retrieved_at": "2026-08-28T16:27:38.556998",
           "note": "H4MI01155, status C"
         },
         {
@@ -13631,7 +13641,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.931809",
+          "retrieved_at": "2026-08-28T16:27:38.557044",
           "note": "H6MI02216, status C"
         },
         {
@@ -13714,7 +13724,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.931828",
+          "retrieved_at": "2026-08-28T16:27:38.557065",
           "note": "H0MI03316, status C, incumbent"
         },
         {
@@ -13775,7 +13785,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.931858",
+          "retrieved_at": "2026-08-28T16:27:38.557101",
           "note": "H6MI04204, status C"
         },
         {
@@ -13835,7 +13845,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.931874",
+          "retrieved_at": "2026-08-28T16:27:38.557117",
           "note": "H6MI05227, status C"
         },
         {
@@ -13920,7 +13930,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.931932",
+          "retrieved_at": "2026-08-28T16:27:38.557143",
           "note": "H4MI12079, status C, incumbent"
         },
         {
@@ -13981,7 +13991,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.931987",
+          "retrieved_at": "2026-08-28T16:27:38.557186",
           "note": "H6MI07298, status C"
         },
         {
@@ -14033,13 +14043,13 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.932013",
+          "retrieved_at": "2026-08-28T16:27:38.557202",
           "note": "H4MI08218, status C, incumbent"
         },
         {
           "source": "human_review",
           "url": "https://kristenmcdonaldrivet.com/",
-          "retrieved_at": "2026-08-28T15:16:32.359330",
+          "retrieved_at": "2026-08-28T16:26:26.132295",
           "note": "reviewed by kyle@kyletharp.com on 2026-08-28"
         },
         {
@@ -14108,7 +14118,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.932035",
+          "retrieved_at": "2026-08-28T16:27:38.557222",
           "note": "H6MI09245, status C"
         },
         {
@@ -14159,7 +14169,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.932077",
+          "retrieved_at": "2026-08-28T16:27:38.557260",
           "note": "H6MI10276, status C"
         },
         {
@@ -14220,7 +14230,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.932122",
+          "retrieved_at": "2026-08-28T16:27:38.557305",
           "note": "H6MI11191, status C"
         },
         {
@@ -14295,7 +14305,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.932152",
+          "retrieved_at": "2026-08-28T16:27:38.557334",
           "note": "H8MI13250, status C, incumbent"
         },
         {
@@ -14364,7 +14374,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.932204",
+          "retrieved_at": "2026-08-28T16:27:38.557384",
           "note": "H6MI13254, status C"
         },
         {
@@ -14426,7 +14436,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.932229",
+          "retrieved_at": "2026-08-28T16:27:38.557408",
           "note": "H6MN01190, status C"
         },
         {
@@ -14493,7 +14503,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.932273",
+          "retrieved_at": "2026-08-28T16:27:38.557451",
           "note": "H6MN02230, status C"
         },
         {
@@ -14545,7 +14555,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.932289",
+          "retrieved_at": "2026-08-28T16:27:38.557465",
           "note": "H4MN03118, status C, incumbent"
         },
         {
@@ -14597,7 +14607,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.932308",
+          "retrieved_at": "2026-08-28T16:27:38.557484",
           "note": "H0MN04049, status C, incumbent"
         },
         {
@@ -14680,7 +14690,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.932333",
+          "retrieved_at": "2026-08-28T16:27:38.557534",
           "note": "H8MN05239, status C, incumbent"
         },
         {
@@ -14744,7 +14754,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.932362",
+          "retrieved_at": "2026-08-28T16:27:38.557574",
           "note": "H6MN06215, status C"
         },
         {
@@ -14819,7 +14829,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.932386",
+          "retrieved_at": "2026-08-28T16:27:38.557598",
           "note": "H6MN07312, status C"
         },
         {
@@ -14871,7 +14881,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.932461",
+          "retrieved_at": "2026-08-28T16:27:38.557653",
           "note": "H6MN08179, status C"
         },
         {
@@ -14932,7 +14942,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.932495",
+          "retrieved_at": "2026-08-28T16:27:38.557683",
           "note": "H4MO01134, status C, incumbent"
         },
         {
@@ -14993,7 +15003,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.932533",
+          "retrieved_at": "2026-08-28T16:27:38.557720",
           "note": "H6MO02343, status C"
         },
         {
@@ -15072,7 +15082,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.932586",
+          "retrieved_at": "2026-08-28T16:27:38.557754",
           "note": "H2MO03167, status C"
         },
         {
@@ -15132,7 +15142,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.932630",
+          "retrieved_at": "2026-08-28T16:27:38.557801",
           "note": "H6MO05254, status C"
         },
         {
@@ -15189,7 +15199,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.932646",
+          "retrieved_at": "2026-08-28T16:27:38.557818",
           "note": "H4MO05234, status C, incumbent"
         },
         {
@@ -15260,7 +15270,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.932671",
+          "retrieved_at": "2026-08-28T16:27:38.557843",
           "note": "H6MO06260, status C"
         },
         {
@@ -15322,7 +15332,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.932684",
+          "retrieved_at": "2026-08-28T16:27:38.557859",
           "note": "H4MO07156, status C"
         },
         {
@@ -15393,6 +15403,7 @@
         "no FEC filing record found for this name and district",
         "no FEC filing record found for this name and district",
         "no FEC filing record found for this name and district",
+        "no FEC filing record found for this name and district",
         "no FEC filing record found for this name and district"
       ]
     },
@@ -15444,7 +15455,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.933067",
+          "retrieved_at": "2026-08-28T16:27:38.558140",
           "note": "H6MS01313, status C"
         },
         {
@@ -15527,7 +15538,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.933142",
+          "retrieved_at": "2026-08-28T16:27:38.558169",
           "note": "H4MS02068, status C, incumbent"
         },
         {
@@ -15579,7 +15590,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.933163",
+          "retrieved_at": "2026-08-28T16:27:38.558184",
           "note": "H6MS03228, status C"
         },
         {
@@ -15658,7 +15669,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.933195",
+          "retrieved_at": "2026-08-28T16:27:38.558215",
           "note": "H6MS04242, status C"
         },
         {
@@ -15735,7 +15746,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.933229",
+          "retrieved_at": "2026-08-28T16:27:38.558246",
           "note": "H6MT01137, status C"
         },
         {
@@ -15802,7 +15813,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.933256",
+          "retrieved_at": "2026-08-28T16:27:38.558270",
           "note": "H6MT02150, status C"
         },
         {
@@ -15877,7 +15888,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.933270",
+          "retrieved_at": "2026-08-28T16:27:38.558284",
           "note": "H2NC02287, status C, incumbent"
         },
         {
@@ -15960,7 +15971,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.933293",
+          "retrieved_at": "2026-08-28T16:27:38.558301",
           "note": "H0NC02125, status C, incumbent"
         },
         {
@@ -16021,7 +16032,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.933330",
+          "retrieved_at": "2026-08-28T16:27:38.558333",
           "note": "H6NC03229, status C"
         },
         {
@@ -16082,7 +16093,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.933356",
+          "retrieved_at": "2026-08-28T16:27:38.558359",
           "note": "H2NC06114, status C, incumbent"
         },
         {
@@ -16159,7 +16170,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.933375",
+          "retrieved_at": "2026-08-28T16:27:38.558384",
           "note": "H4NC05294, status C"
         },
         {
@@ -16233,7 +16244,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.933414",
+          "retrieved_at": "2026-08-28T16:27:38.558421",
           "note": "H6NC06164, status C"
         },
         {
@@ -16294,7 +16305,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.933435",
+          "retrieved_at": "2026-08-28T16:27:38.558441",
           "note": "H6NC07196, status C"
         },
         {
@@ -16361,7 +16372,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.933463",
+          "retrieved_at": "2026-08-28T16:27:38.558470",
           "note": "H6NC08202, status C"
         },
         {
@@ -16421,7 +16432,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.933497",
+          "retrieved_at": "2026-08-28T16:27:38.558525",
           "note": "H6NC09218, status C"
         },
         {
@@ -16490,7 +16501,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.933536",
+          "retrieved_at": "2026-08-28T16:27:38.558595",
           "note": "H6NC10174, status C"
         },
         {
@@ -16567,7 +16578,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.933590",
+          "retrieved_at": "2026-08-28T16:27:38.558658",
           "note": "H6NC11248, status C"
         },
         {
@@ -16634,7 +16645,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.933624",
+          "retrieved_at": "2026-08-28T16:27:38.558740",
           "note": "H4NC12100, status C, incumbent"
         },
         {
@@ -16688,7 +16699,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.933648",
+          "retrieved_at": "2026-08-28T16:27:38.558773",
           "note": "H6NC13228, status C"
         },
         {
@@ -16757,7 +16768,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.933672",
+          "retrieved_at": "2026-08-28T16:27:38.558798",
           "note": "H6NC14069, status C"
         },
         {
@@ -16808,7 +16819,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.933698",
+          "retrieved_at": "2026-08-28T16:27:38.558825",
           "note": "H6ND01049, status C"
         },
         {
@@ -16887,7 +16898,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.933720",
+          "retrieved_at": "2026-08-28T16:27:38.558846",
           "note": "H6NE01143, status C"
         },
         {
@@ -16964,7 +16975,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.933774",
+          "retrieved_at": "2026-08-28T16:27:38.558913",
           "note": "H6NE02174, status C"
         },
         {
@@ -17026,7 +17037,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.933797",
+          "retrieved_at": "2026-08-28T16:27:38.558938",
           "note": "H6NE03180, status C"
         },
         {
@@ -17109,7 +17120,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.933824",
+          "retrieved_at": "2026-08-28T16:27:38.558959",
           "note": "H4NJ01084, status C, incumbent"
         },
         {
@@ -17169,7 +17180,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.933923",
+          "retrieved_at": "2026-08-28T16:27:38.559025",
           "note": "H6NJ02251, status C"
         },
         {
@@ -17227,7 +17238,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.934053",
+          "retrieved_at": "2026-08-28T16:27:38.559040",
           "note": "H4NJ03080, status C, incumbent"
         },
         {
@@ -17281,7 +17292,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.934115",
+          "retrieved_at": "2026-08-28T16:27:38.559102",
           "note": "H6NJ04257, status C"
         },
         {
@@ -17341,13 +17352,13 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.934137",
+          "retrieved_at": "2026-08-28T16:27:38.559125",
           "note": "H6NJ05171, status C, incumbent"
         },
         {
           "source": "human_review",
           "url": "https://gottheimer.com/",
-          "retrieved_at": "2026-08-28T15:16:32.359406",
+          "retrieved_at": "2026-08-28T16:26:26.132357",
           "note": "reviewed by kyle@kyletharp.com on 2026-08-28"
         },
         {
@@ -17401,7 +17412,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.934174",
+          "retrieved_at": "2026-08-28T16:27:38.559150",
           "note": "H8NJ03073, status C, incumbent"
         },
         {
@@ -17468,7 +17479,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.934250",
+          "retrieved_at": "2026-08-28T16:27:38.559236",
           "note": "H6NJ07201, status C"
         },
         {
@@ -17551,7 +17562,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.934279",
+          "retrieved_at": "2026-08-28T16:27:38.559262",
           "note": "H2NJ08232, status C, incumbent"
         },
         {
@@ -17611,7 +17622,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.934298",
+          "retrieved_at": "2026-08-28T16:27:38.559281",
           "note": "H4NJ09194, status C, incumbent"
         },
         {
@@ -17672,7 +17683,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.934320",
+          "retrieved_at": "2026-08-28T16:27:38.559300",
           "note": "H4NJ10176, status C, incumbent"
         },
         {
@@ -17749,7 +17760,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.934425",
+          "retrieved_at": "2026-08-28T16:27:38.559434",
           "note": "H6NJ11286, status C, incumbent"
         },
         {
@@ -17828,7 +17839,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.934549",
+          "retrieved_at": "2026-08-28T16:27:38.559599",
           "note": "H6NJ12417, status C"
         },
         {
@@ -17889,7 +17900,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.934566",
+          "retrieved_at": "2026-08-28T16:27:38.559618",
           "note": "H2NM01144, status C, incumbent"
         },
         {
@@ -17949,7 +17960,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.934585",
+          "retrieved_at": "2026-08-28T16:27:38.559637",
           "note": "H2NM02191, status C, incumbent"
         },
         {
@@ -18012,7 +18023,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.934608",
+          "retrieved_at": "2026-08-28T16:27:38.559655",
           "note": "H0NM03102, status C, incumbent"
         },
         {
@@ -18065,7 +18076,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.934642",
+          "retrieved_at": "2026-08-28T16:27:38.559689",
           "note": "H8NV03036, status C, incumbent"
         },
         {
@@ -18125,7 +18136,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.934779",
+          "retrieved_at": "2026-08-28T16:27:38.559750",
           "note": "H6NV02362, status C"
         },
         {
@@ -18185,13 +18196,13 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.934827",
+          "retrieved_at": "2026-08-28T16:27:38.559819",
           "note": "H6NV04020, status C, incumbent"
         },
         {
           "source": "human_review",
           "url": "https://susieleeforcongress.com/",
-          "retrieved_at": "2026-08-28T15:16:32.359356",
+          "retrieved_at": "2026-08-28T16:26:26.132321",
           "note": "reviewed by kyle@kyletharp.com on 2026-08-28"
         },
         {
@@ -18261,7 +18272,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.934844",
+          "retrieved_at": "2026-08-28T16:27:38.559837",
           "note": "H2NV04011, status C, incumbent"
         },
         {
@@ -18339,7 +18350,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.934881",
+          "retrieved_at": "2026-08-28T16:27:38.559873",
           "note": "H6NY01159, status C"
         },
         {
@@ -18404,7 +18415,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.934960",
+          "retrieved_at": "2026-08-28T16:27:38.559906",
           "note": "H6NY02140, status C"
         },
         {
@@ -18456,13 +18467,13 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.934984",
+          "retrieved_at": "2026-08-28T16:27:38.559923",
           "note": "H6NY03247, status C, incumbent"
         },
         {
           "source": "human_review",
           "url": "https://www.tomsuozzi.com/",
-          "retrieved_at": "2026-08-28T15:16:32.359365",
+          "retrieved_at": "2026-08-28T16:26:26.132330",
           "note": "reviewed by kyle@kyletharp.com on 2026-08-28"
         },
         {
@@ -18523,7 +18534,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.935030",
+          "retrieved_at": "2026-08-28T16:27:38.559962",
           "note": "H2NY04244, status C"
         },
         {
@@ -18575,7 +18586,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.935051",
+          "retrieved_at": "2026-08-28T16:27:38.559983",
           "note": "H8NY06048, status C, incumbent"
         },
         {
@@ -18652,7 +18663,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.935075",
+          "retrieved_at": "2026-08-28T16:27:38.560006",
           "note": "H2NY06116, status C, incumbent"
         },
         {
@@ -18737,7 +18748,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.935154",
+          "retrieved_at": "2026-08-28T16:27:38.560083",
           "note": "H6NY07214, status C"
         },
         {
@@ -18798,13 +18809,13 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.935190",
+          "retrieved_at": "2026-08-28T16:27:38.560113",
           "note": "H2NY10092, status C, incumbent"
         },
         {
           "source": "human_review",
           "url": "https://jeffriesforcongress.com/",
-          "retrieved_at": "2026-08-28T15:16:32.359361",
+          "retrieved_at": "2026-08-28T16:26:26.132326",
           "note": "reviewed by kyle@kyletharp.com on 2026-08-28"
         },
         {
@@ -18856,7 +18867,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.935225",
+          "retrieved_at": "2026-08-28T16:27:38.560146",
           "note": "H4NY11138, status C, incumbent"
         },
         {
@@ -18908,13 +18919,13 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.935263",
+          "retrieved_at": "2026-08-28T16:27:38.560175",
           "note": "H6NY10176, status C"
         },
         {
           "source": "human_review",
           "url": "https://www.bradlanderforcongress.com/issues",
-          "retrieved_at": "2026-08-28T15:16:32.359299",
+          "retrieved_at": "2026-08-28T16:26:26.132253",
           "note": "reviewed by kyle@kyletharp.com on 2026-08-28"
         },
         {
@@ -18975,7 +18986,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.935298",
+          "retrieved_at": "2026-08-28T16:27:38.560205",
           "note": "H6NY11265, status C"
         },
         {
@@ -19052,7 +19063,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.935403",
+          "retrieved_at": "2026-08-28T16:27:38.560303",
           "note": "H6NY12172, status C"
         },
         {
@@ -19135,7 +19146,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.935480",
+          "retrieved_at": "2026-08-28T16:27:38.560371",
           "note": "H6NY13279, status C"
         },
         {
@@ -19220,7 +19231,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.935510",
+          "retrieved_at": "2026-08-28T16:27:38.560398",
           "note": "H8NY15148, status C, incumbent"
         },
         {
@@ -19276,7 +19287,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.935558",
+          "retrieved_at": "2026-08-28T16:27:38.560445",
           "note": "H0NY15160, status C, incumbent"
         },
         {
@@ -19353,7 +19364,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.935573",
+          "retrieved_at": "2026-08-28T16:27:38.560459",
           "note": "H4NY16087, status C, incumbent"
         },
         {
@@ -19430,7 +19441,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.935626",
+          "retrieved_at": "2026-08-28T16:27:38.560537",
           "note": "H6NY17171, status C"
         },
         {
@@ -19482,13 +19493,13 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.935640",
+          "retrieved_at": "2026-08-28T16:27:38.560554",
           "note": "H8NY19223, status C, incumbent"
         },
         {
           "source": "human_review",
           "url": "https://patryanforcongress.com/",
-          "retrieved_at": "2026-08-28T15:16:32.359369",
+          "retrieved_at": "2026-08-28T16:26:26.132335",
           "note": "reviewed by kyle@kyletharp.com on 2026-08-28"
         },
         {
@@ -19539,7 +19550,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.935653",
+          "retrieved_at": "2026-08-28T16:27:38.560573",
           "note": "H8NY22177, status C, incumbent"
         },
         {
@@ -19608,7 +19619,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.935669",
+          "retrieved_at": "2026-08-28T16:27:38.560589",
           "note": "H8NY21203, status C, incumbent"
         },
         {
@@ -19685,7 +19696,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.935710",
+          "retrieved_at": "2026-08-28T16:27:38.560631",
           "note": "H6NY21199, status C"
         },
         {
@@ -19768,7 +19779,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.935725",
+          "retrieved_at": "2026-08-28T16:27:38.560645",
           "note": "H4NY22085, status C, incumbent"
         },
         {
@@ -19828,7 +19839,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.935753",
+          "retrieved_at": "2026-08-28T16:27:38.560676",
           "note": "H6NY23559, status C"
         },
         {
@@ -19913,7 +19924,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.935783",
+          "retrieved_at": "2026-08-28T16:27:38.560703",
           "note": "H6NY24219, status C"
         },
         {
@@ -19991,7 +20002,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.935814",
+          "retrieved_at": "2026-08-28T16:27:38.560744",
           "note": "H8NY25105, status C, incumbent"
         },
         {
@@ -20052,7 +20063,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.935831",
+          "retrieved_at": "2026-08-28T16:27:38.560759",
           "note": "H4NY26078, status C, incumbent"
         },
         {
@@ -20129,7 +20140,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.935858",
+          "retrieved_at": "2026-08-28T16:27:38.560786",
           "note": "H2OH01194, status C, incumbent"
         },
         {
@@ -20192,6 +20203,7 @@
         "no FEC filing record found for this name and district",
         "no FEC filing record found for this name and district",
         "no FEC filing record found for this name and district",
+        "no FEC filing record found for this name and district",
         "no FEC filing record found for this name and district"
       ]
     },
@@ -20244,7 +20256,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.936292",
+          "retrieved_at": "2026-08-28T16:27:38.561187",
           "note": "H2OH03125, status C, incumbent"
         },
         {
@@ -20320,7 +20332,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.936315",
+          "retrieved_at": "2026-08-28T16:27:38.561214",
           "note": "H6OH04181, status C"
         },
         {
@@ -20372,7 +20384,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.936360",
+          "retrieved_at": "2026-08-28T16:27:38.561259",
           "note": "H6OH05154, status C"
         },
         {
@@ -20428,7 +20440,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.936417",
+          "retrieved_at": "2026-08-28T16:27:38.561324",
           "note": "H6OH06244, status N"
         },
         {
@@ -20482,13 +20494,13 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.936463",
+          "retrieved_at": "2026-08-28T16:27:38.561367",
           "note": "H6OH07168, status C"
         },
         {
           "source": "human_review",
           "url": "https://poindexterforcongress.com/",
-          "retrieved_at": "2026-08-28T15:16:32.359388",
+          "retrieved_at": "2026-08-28T16:26:26.132345",
           "note": "reviewed by kyle@kyletharp.com on 2026-08-28"
         },
         {
@@ -20565,7 +20577,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.936488",
+          "retrieved_at": "2026-08-28T16:27:38.561393",
           "note": "H8OH08097, status N"
         },
         {
@@ -20634,7 +20646,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.936504",
+          "retrieved_at": "2026-08-28T16:27:38.561409",
           "note": "H2OH09031, status C, incumbent"
         },
         {
@@ -20695,7 +20707,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.936541",
+          "retrieved_at": "2026-08-28T16:27:38.561443",
           "note": "H6OH10121, status C"
         },
         {
@@ -20753,7 +20765,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.936571",
+          "retrieved_at": "2026-08-28T16:27:38.561471",
           "note": "H2OH11169, status C, incumbent"
         },
         {
@@ -20807,7 +20819,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.936593",
+          "retrieved_at": "2026-08-28T16:27:38.561507",
           "note": "H4OH12080, status C"
         },
         {
@@ -20859,13 +20871,13 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.936607",
+          "retrieved_at": "2026-08-28T16:27:38.561535",
           "note": "H2OH13264, status C, incumbent"
         },
         {
           "source": "human_review",
           "url": "https://sykes.house.gov/issues/health-care",
-          "retrieved_at": "2026-08-28T15:16:32.359411",
+          "retrieved_at": "2026-08-28T16:26:26.132362",
           "note": "reviewed by kyle@kyletharp.com on 2026-08-28"
         },
         {
@@ -20925,7 +20937,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.936630",
+          "retrieved_at": "2026-08-28T16:27:38.561562",
           "note": "H6OH14248, status C"
         },
         {
@@ -20985,7 +20997,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.936650",
+          "retrieved_at": "2026-08-28T16:27:38.561591",
           "note": "H6OH15112, status C"
         },
         {
@@ -21054,7 +21066,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.936682",
+          "retrieved_at": "2026-08-28T16:27:38.561616",
           "note": "H6OK01201, status C"
         },
         {
@@ -21117,7 +21129,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.936701",
+          "retrieved_at": "2026-08-28T16:27:38.561635",
           "note": "H4OK02196, status N"
         },
         {
@@ -21168,7 +21180,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.936720",
+          "retrieved_at": "2026-08-28T16:27:38.561653",
           "note": "H6OK03272, status N"
         },
         {
@@ -21228,7 +21240,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.936748",
+          "retrieved_at": "2026-08-28T16:27:38.561678",
           "note": "H6OK04155, status C"
         },
         {
@@ -21288,7 +21300,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.936766",
+          "retrieved_at": "2026-08-28T16:27:38.561696",
           "note": "H6OK05293, status C"
         },
         {
@@ -21347,7 +21359,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.936789",
+          "retrieved_at": "2026-08-28T16:27:38.561717",
           "note": "H2OR01133, status C, incumbent"
         },
         {
@@ -21416,7 +21428,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.936837",
+          "retrieved_at": "2026-08-28T16:27:38.561764",
           "note": "H6OR02322, status C"
         },
         {
@@ -21491,7 +21503,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.936851",
+          "retrieved_at": "2026-08-28T16:27:38.561777",
           "note": "H4OR03192, status C, incumbent"
         },
         {
@@ -21544,7 +21556,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.936884",
+          "retrieved_at": "2026-08-28T16:27:38.561810",
           "note": "H2OR04095, status C, incumbent"
         },
         {
@@ -21629,7 +21641,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.936930",
+          "retrieved_at": "2026-08-28T16:27:38.561829",
           "note": "H4OR05304, status C, incumbent"
         },
         {
@@ -21686,7 +21698,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.936955",
+          "retrieved_at": "2026-08-28T16:27:38.561843",
           "note": "H2OR06066, status C, incumbent"
         },
         {
@@ -21755,7 +21767,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.937010",
+          "retrieved_at": "2026-08-28T16:27:38.561900",
           "note": "H6PA01181, status C"
         },
         {
@@ -21813,7 +21825,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.937030",
+          "retrieved_at": "2026-08-28T16:27:38.561920",
           "note": "H4PA13199, status C, incumbent"
         },
         {
@@ -21884,7 +21896,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.937122",
+          "retrieved_at": "2026-08-28T16:27:38.562007",
           "note": "H6PA03203, status C"
         },
         {
@@ -21951,7 +21963,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.937144",
+          "retrieved_at": "2026-08-28T16:27:38.562027",
           "note": "H8PA04116, status C, incumbent"
         },
         {
@@ -22003,7 +22015,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.937173",
+          "retrieved_at": "2026-08-28T16:27:38.562054",
           "note": "H8PA07200, status C, incumbent"
         },
         {
@@ -22055,7 +22067,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.937193",
+          "retrieved_at": "2026-08-28T16:27:38.562083",
           "note": "H8PA06087, status C, incumbent"
         },
         {
@@ -22115,7 +22127,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.937237",
+          "retrieved_at": "2026-08-28T16:27:38.562133",
           "note": "H6PA07188, status C"
         },
         {
@@ -22183,7 +22195,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.937256",
+          "retrieved_at": "2026-08-28T16:27:38.562153",
           "note": "H6PA08293, status C"
         },
         {
@@ -22248,7 +22260,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.937282",
+          "retrieved_at": "2026-08-28T16:27:38.562197",
           "note": "H6PA09127, status C"
         },
         {
@@ -22315,7 +22327,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.937327",
+          "retrieved_at": "2026-08-28T16:27:38.562238",
           "note": "H4PA10104, status C"
         },
         {
@@ -22367,7 +22379,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.937346",
+          "retrieved_at": "2026-08-28T16:27:38.562257",
           "note": "H6PA11099, status C"
         },
         {
@@ -22445,7 +22457,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.937369",
+          "retrieved_at": "2026-08-28T16:27:38.562294",
           "note": "H2PA18200, status C, incumbent"
         },
         {
@@ -22512,7 +22524,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.937391",
+          "retrieved_at": "2026-08-28T16:27:38.562315",
           "note": "H4PA13298, status C"
         },
         {
@@ -22581,7 +22593,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.937413",
+          "retrieved_at": "2026-08-28T16:27:38.562335",
           "note": "H6PA14200, status C"
         },
         {
@@ -22658,7 +22670,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.937432",
+          "retrieved_at": "2026-08-28T16:27:38.562365",
           "note": "H6PA15181, status C"
         },
         {
@@ -22727,7 +22739,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.937447",
+          "retrieved_at": "2026-08-28T16:27:38.562394",
           "note": "H6PA16379, status C"
         },
         {
@@ -22779,7 +22791,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.937467",
+          "retrieved_at": "2026-08-28T16:27:38.562414",
           "note": "H2PA17103, status C, incumbent"
         },
         {
@@ -22942,7 +22954,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.937526",
+          "retrieved_at": "2026-08-28T16:27:38.562489",
           "note": "H6SC01359, status C"
         },
         {
@@ -23019,7 +23031,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.937568",
+          "retrieved_at": "2026-08-28T16:27:38.562582",
           "note": "H6SC02159, status C"
         },
         {
@@ -23071,7 +23083,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.937589",
+          "retrieved_at": "2026-08-28T16:27:38.562606",
           "note": "H6SC03090, status C"
         },
         {
@@ -23138,7 +23150,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.937603",
+          "retrieved_at": "2026-08-28T16:27:38.562620",
           "note": "H6SC04171, status C"
         },
         {
@@ -23221,7 +23233,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.937626",
+          "retrieved_at": "2026-08-28T16:27:38.562645",
           "note": "H6SC05228, status C"
         },
         {
@@ -23281,7 +23293,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.937647",
+          "retrieved_at": "2026-08-28T16:27:38.562665",
           "note": "H2SC02042, status C, incumbent"
         },
         {
@@ -23340,7 +23352,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.937667",
+          "retrieved_at": "2026-08-28T16:27:38.562680",
           "note": "H6SC07034, status C"
         },
         {
@@ -23425,7 +23437,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.937692",
+          "retrieved_at": "2026-08-28T16:27:38.562747",
           "note": "H6SD01141, status C"
         },
         {
@@ -23478,7 +23490,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.937710",
+          "retrieved_at": "2026-08-28T16:27:38.562763",
           "note": "H6TN01537, status C"
         },
         {
@@ -23562,7 +23574,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.937730",
+          "retrieved_at": "2026-08-28T16:27:38.562784",
           "note": "H6TN02170, status C"
         },
         {
@@ -23640,7 +23652,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.937759",
+          "retrieved_at": "2026-08-28T16:27:38.562809",
           "note": "H6TN03228, status C"
         },
         {
@@ -23693,7 +23705,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.937797",
+          "retrieved_at": "2026-08-28T16:27:38.562845",
           "note": "H4TN04270, status C"
         },
         {
@@ -23762,7 +23774,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.937833",
+          "retrieved_at": "2026-08-28T16:27:38.562882",
           "note": "H6TN05397, status C"
         },
         {
@@ -23813,7 +23825,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.937869",
+          "retrieved_at": "2026-08-28T16:27:38.562916",
           "note": "H6TN06171, status C"
         },
         {
@@ -23872,7 +23884,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.937945",
+          "retrieved_at": "2026-08-28T16:27:38.562959",
           "note": "H6TN07286, status C"
         },
         {
@@ -23964,7 +23976,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.937991",
+          "retrieved_at": "2026-08-28T16:27:38.563002",
           "note": "H6TN08367, status C"
         },
         {
@@ -24033,7 +24045,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.938031",
+          "retrieved_at": "2026-08-28T16:27:38.563041",
           "note": "H6TN09449, status C"
         },
         {
@@ -24110,7 +24122,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.938069",
+          "retrieved_at": "2026-08-28T16:27:38.563079",
           "note": "H6TX01352, status C"
         },
         {
@@ -24170,7 +24182,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.938089",
+          "retrieved_at": "2026-08-28T16:27:38.563098",
           "note": "H6TX02251, status C"
         },
         {
@@ -24229,7 +24241,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.938116",
+          "retrieved_at": "2026-08-28T16:27:38.563118",
           "note": "H6TX03234, status C"
         },
         {
@@ -24289,7 +24301,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.938146",
+          "retrieved_at": "2026-08-28T16:27:38.563140",
           "note": "H6TX04174, status C"
         },
         {
@@ -24357,7 +24369,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.938186",
+          "retrieved_at": "2026-08-28T16:27:38.563173",
           "note": "H6TX05189, status C"
         },
         {
@@ -24417,7 +24429,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.938206",
+          "retrieved_at": "2026-08-28T16:27:38.563198",
           "note": "H6TX25203, status C"
         },
         {
@@ -24470,7 +24482,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.938222",
+          "retrieved_at": "2026-08-28T16:27:38.563219",
           "note": "H8TX07140, status C, incumbent"
         },
         {
@@ -24544,7 +24556,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.938242",
+          "retrieved_at": "2026-08-28T16:27:38.563237",
           "note": "H0TX08145, status C"
         },
         {
@@ -24596,7 +24608,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.938286",
+          "retrieved_at": "2026-08-28T16:27:38.563286",
           "note": "H6TX09231, status C"
         },
         {
@@ -24650,7 +24662,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.938330",
+          "retrieved_at": "2026-08-28T16:27:38.563342",
           "note": "H6TX31102, status C"
         },
         {
@@ -24717,7 +24729,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.938349",
+          "retrieved_at": "2026-08-28T16:27:38.563363",
           "note": "H6TX11112, status C"
         },
         {
@@ -24786,6 +24798,7 @@
         "no FEC filing record found for this name and district",
         "no FEC filing record found for this name and district",
         "no FEC filing record found for this name and district",
+        "no FEC filing record found for this name and district",
         "no FEC filing record found for this name and district"
       ]
     },
@@ -24838,7 +24851,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.939444",
+          "retrieved_at": "2026-08-28T16:27:38.564277",
           "note": "H6TX13159, status C"
         },
         {
@@ -24907,7 +24920,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.939496",
+          "retrieved_at": "2026-08-28T16:27:38.564329",
           "note": "H6TX14181, status C"
         },
         {
@@ -24969,7 +24982,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.939532",
+          "retrieved_at": "2026-08-28T16:27:38.564350",
           "note": "H6TX15246, status C"
         },
         {
@@ -25030,7 +25043,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.939555",
+          "retrieved_at": "2026-08-28T16:27:38.564365",
           "note": "H8TX16109, status C, incumbent"
         },
         {
@@ -25082,7 +25095,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.939594",
+          "retrieved_at": "2026-08-28T16:27:38.564391",
           "note": "H6TX17168, status C"
         },
         {
@@ -25165,7 +25178,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.939648",
+          "retrieved_at": "2026-08-28T16:27:38.564437",
           "note": "H6TX18232, status C"
         },
         {
@@ -25242,7 +25255,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.939662",
+          "retrieved_at": "2026-08-28T16:27:38.564450",
           "note": "H6TX19198, status C"
         },
         {
@@ -25295,7 +25308,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.939689",
+          "retrieved_at": "2026-08-28T16:27:38.564473",
           "note": "H2TX35011, status C, incumbent"
         },
         {
@@ -25362,7 +25375,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.939727",
+          "retrieved_at": "2026-08-28T16:27:38.564569",
           "note": "H4TX21108, status C"
         },
         {
@@ -25422,7 +25435,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.939754",
+          "retrieved_at": "2026-08-28T16:27:38.564602",
           "note": "H4TX22197, status C"
         },
         {
@@ -25499,7 +25512,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.939801",
+          "retrieved_at": "2026-08-28T16:27:38.564649",
           "note": "H6TX23273, status C"
         },
         {
@@ -25561,7 +25574,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.939837",
+          "retrieved_at": "2026-08-28T16:27:38.564702",
           "note": "H6TX24172, status C"
         },
         {
@@ -25621,7 +25634,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.939864",
+          "retrieved_at": "2026-08-28T16:27:38.564747",
           "note": "H6TX25237, status N"
         },
         {
@@ -25703,7 +25716,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.939885",
+          "retrieved_at": "2026-08-28T16:27:38.564769",
           "note": "H6TX26144, status C"
         },
         {
@@ -25754,7 +25767,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.939942",
+          "retrieved_at": "2026-08-28T16:27:38.564799",
           "note": "H4TX27089, status C"
         },
         {
@@ -25822,7 +25835,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.939985",
+          "retrieved_at": "2026-08-28T16:27:38.564831",
           "note": "H2TX23082, status C, incumbent"
         },
         {
@@ -25880,7 +25893,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.940011",
+          "retrieved_at": "2026-08-28T16:27:38.564856",
           "note": "H8TX29052, status C, incumbent"
         },
         {
@@ -25938,7 +25951,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.940071",
+          "retrieved_at": "2026-08-28T16:27:38.564931",
           "note": "H6TX30245, status C"
         },
         {
@@ -25990,7 +26003,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.940101",
+          "retrieved_at": "2026-08-28T16:27:38.564971",
           "note": "H6TX31094, status C"
         },
         {
@@ -26069,7 +26082,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.940128",
+          "retrieved_at": "2026-08-28T16:27:38.564997",
           "note": "H6TX32217, status C"
         },
         {
@@ -26122,13 +26135,13 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.940164",
+          "retrieved_at": "2026-08-28T16:27:38.565031",
           "note": "H8TX32098, status C"
         },
         {
           "source": "human_review",
           "url": "https://colinallred.com/",
-          "retrieved_at": "2026-08-28T15:16:32.359382",
+          "retrieved_at": "2026-08-28T16:26:26.132341",
           "note": "reviewed by kyle@kyletharp.com on 2026-08-28"
         },
         {
@@ -26198,7 +26211,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.940189",
+          "retrieved_at": "2026-08-28T16:27:38.565053",
           "note": "H6TX15162, status C, incumbent"
         },
         {
@@ -26267,7 +26280,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.940219",
+          "retrieved_at": "2026-08-28T16:27:38.565085",
           "note": "H6TX35095, status C"
         },
         {
@@ -26327,7 +26340,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.940239",
+          "retrieved_at": "2026-08-28T16:27:38.565103",
           "note": "H4TX14111, status C"
         },
         {
@@ -26402,7 +26415,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.940269",
+          "retrieved_at": "2026-08-28T16:27:38.565134",
           "note": "H2TX35144, status C"
         },
         {
@@ -26462,7 +26475,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.940311",
+          "retrieved_at": "2026-08-28T16:27:38.565179",
           "note": "H4TX38011, status C"
         },
         {
@@ -26535,7 +26548,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.940382",
+          "retrieved_at": "2026-08-28T16:27:38.565239",
           "note": "H8UT04053, status C"
         },
         {
@@ -26596,7 +26609,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.940423",
+          "retrieved_at": "2026-08-28T16:27:38.565296",
           "note": "H6UT01160, status C"
         },
         {
@@ -26647,7 +26660,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.940442",
+          "retrieved_at": "2026-08-28T16:27:38.565316",
           "note": "H6UT03182, status C"
         },
         {
@@ -26707,7 +26720,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.940469",
+          "retrieved_at": "2026-08-28T16:27:38.565349",
           "note": "H6UT02424, status C"
         },
         {
@@ -26792,7 +26805,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.940558",
+          "retrieved_at": "2026-08-28T16:27:38.565435",
           "note": "H6VA01299, status C"
         },
         {
@@ -26870,7 +26883,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.940623",
+          "retrieved_at": "2026-08-28T16:27:38.565507",
           "note": "H6VA02198, status C"
         },
         {
@@ -26923,7 +26936,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.940644",
+          "retrieved_at": "2026-08-28T16:27:38.565544",
           "note": "H6VA01117, status C, incumbent"
         },
         {
@@ -27006,7 +27019,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.940659",
+          "retrieved_at": "2026-08-28T16:27:38.565569",
           "note": "H4VA04066, status C, incumbent"
         },
         {
@@ -27067,7 +27080,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.940713",
+          "retrieved_at": "2026-08-28T16:27:38.565628",
           "note": "H6VA05217, status C"
         },
         {
@@ -27128,7 +27141,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.940751",
+          "retrieved_at": "2026-08-28T16:27:38.565665",
           "note": "H6VA06173, status C"
         },
         {
@@ -27197,7 +27210,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.940831",
+          "retrieved_at": "2026-08-28T16:27:38.565742",
           "note": "H4VA07234, status C, incumbent"
         },
         {
@@ -27264,7 +27277,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.940884",
+          "retrieved_at": "2026-08-28T16:27:38.565792",
           "note": "H4VA08224, status C, incumbent"
         },
         {
@@ -27342,7 +27355,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.940943",
+          "retrieved_at": "2026-08-28T16:27:38.565820",
           "note": "H6VA09136, status C"
         },
         {
@@ -27403,7 +27416,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.940968",
+          "retrieved_at": "2026-08-28T16:27:38.565834",
           "note": "H4VA10279, status C, incumbent"
         },
         {
@@ -27475,7 +27488,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.941015",
+          "retrieved_at": "2026-08-28T16:27:38.565878",
           "note": "H6VA11066, status C, incumbent"
         },
         {
@@ -27536,7 +27549,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.941031",
+          "retrieved_at": "2026-08-28T16:27:38.565894",
           "note": "H2VT01076, status C, incumbent"
         },
         {
@@ -27619,7 +27632,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.941062",
+          "retrieved_at": "2026-08-28T16:27:38.565923",
           "note": "H0WA08046, status C, incumbent"
         },
         {
@@ -27670,7 +27683,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.941087",
+          "retrieved_at": "2026-08-28T16:27:38.565948",
           "note": "H0WA02080, status C, incumbent"
         },
         {
@@ -27731,7 +27744,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.941120",
+          "retrieved_at": "2026-08-28T16:27:38.565975",
           "note": "H2WA03217, status C, incumbent"
         },
         {
@@ -27808,7 +27821,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.941135",
+          "retrieved_at": "2026-08-28T16:27:38.565989",
           "note": "H6WA04190, status C"
         },
         {
@@ -27877,7 +27890,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.941174",
+          "retrieved_at": "2026-08-28T16:27:38.566029",
           "note": "H4WA05168, status C"
         },
         {
@@ -27960,7 +27973,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.941194",
+          "retrieved_at": "2026-08-28T16:27:38.566041",
           "note": "H4WA06117, status C, incumbent"
         },
         {
@@ -28014,7 +28027,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.941215",
+          "retrieved_at": "2026-08-28T16:27:38.566061",
           "note": "H6WA07458, status C, incumbent"
         },
         {
@@ -28101,7 +28114,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.941230",
+          "retrieved_at": "2026-08-28T16:27:38.566077",
           "note": "H8WA08189, status C, incumbent"
         },
         {
@@ -28153,7 +28166,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.941249",
+          "retrieved_at": "2026-08-28T16:27:38.566096",
           "note": "H6WA09025, status C, incumbent"
         },
         {
@@ -28206,7 +28219,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.941274",
+          "retrieved_at": "2026-08-28T16:27:38.566122",
           "note": "H0WA10034, status C, incumbent"
         },
         {
@@ -28289,7 +28302,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.941331",
+          "retrieved_at": "2026-08-28T16:27:38.566181",
           "note": "H6WI01283, status C"
         },
         {
@@ -28349,7 +28362,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.941350",
+          "retrieved_at": "2026-08-28T16:27:38.566199",
           "note": "H2WI02124, status C, incumbent"
         },
         {
@@ -28434,7 +28447,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.941386",
+          "retrieved_at": "2026-08-28T16:27:38.566234",
           "note": "H4WI03169, status C"
         },
         {
@@ -28494,7 +28507,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.941412",
+          "retrieved_at": "2026-08-28T16:27:38.566255",
           "note": "H4WI04183, status C, incumbent"
         },
         {
@@ -28506,7 +28519,7 @@
         {
           "source": "human_review",
           "url": "https://www.ueunion.org/political-action/2019/ue-members-press-congresswoman-gwen-moore-to-support-medicare-for-all",
-          "retrieved_at": "2026-08-28T15:16:32.359400",
+          "retrieved_at": "2026-08-28T16:26:26.132350",
           "note": "reviewed by kyle@kyletharp.com on 2026-08-28"
         },
         {
@@ -28570,7 +28583,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.941432",
+          "retrieved_at": "2026-08-28T16:27:38.566280",
           "note": "H6WI05136, status C"
         },
         {
@@ -28631,7 +28644,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.941499",
+          "retrieved_at": "2026-08-28T16:27:38.566349",
           "note": "H6WI06191, status C"
         },
         {
@@ -28714,7 +28727,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.941533",
+          "retrieved_at": "2026-08-28T16:27:38.566377",
           "note": "H6WI07207, status C"
         },
         {
@@ -28791,7 +28804,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.941584",
+          "retrieved_at": "2026-08-28T16:27:38.566410",
           "note": "H6WI08205, status C"
         },
         {
@@ -28852,7 +28865,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.941627",
+          "retrieved_at": "2026-08-28T16:27:38.566436",
           "note": "H6WV01160, status C"
         },
         {
@@ -28914,7 +28927,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.941688",
+          "retrieved_at": "2026-08-28T16:27:38.566470",
           "note": "H6WV02150, status C"
         },
         {
@@ -28969,7 +28982,7 @@
         {
           "source": "fec_bulk",
           "url": "https://www.fec.gov/files/bulk-downloads/2026/cn26.zip",
-          "retrieved_at": "2026-08-28T15:18:09.941711",
+          "retrieved_at": "2026-08-28T16:27:38.566485",
           "note": "H6WY01173, status C"
         },
         {
