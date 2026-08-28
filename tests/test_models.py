@@ -95,3 +95,28 @@ def test_secondary_never_overwrites_the_site_only_measure():
     c.m4a_tier = M4ATier.NO_COVERAGE_POSITION
     c.secondary_tier = M4ATier.EXPLICIT_M4A
     assert c.m4a_tier is M4ATier.NO_COVERAGE_POSITION
+
+
+def test_human_review_outranks_every_automated_source():
+    """A reviewed correction must survive re-runs, not be overwritten by them.
+
+    It exists for material automation cannot reach at all, so it has to beat
+    even the cosponsor roll.
+    """
+    c = _cand()
+    c.m4a_tier = M4ATier.NO_COVERAGE_POSITION
+    c.secondary_tier = M4ATier.PUBLIC_OPTION
+    c.cosponsored_m4a_bill = True
+    assert c.resolved_tier is M4ATier.EXPLICIT_M4A       # cosponsorship, so far
+
+    c.override_tier = M4ATier.ACA_STRENGTHEN
+    assert c.resolved_tier is M4ATier.ACA_STRENGTHEN
+    assert c.evidence_basis == "human_review"
+
+
+def test_unset_override_does_not_affect_resolution():
+    c = _cand()
+    c.m4a_tier = M4ATier.PUBLIC_OPTION
+    assert c.override_tier is M4ATier.UNKNOWN
+    assert c.resolved_tier is M4ATier.PUBLIC_OPTION
+    assert c.evidence_basis == "campaign_site"

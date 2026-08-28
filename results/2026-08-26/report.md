@@ -1,6 +1,6 @@
 # Medicare for All support among Democratic U.S. House candidates
 
-Generated 2026-08-26 17:43 UTC, reflecting the field as of August 26, 2026.
+Generated 2026-08-28 12:55 UTC, reflecting the field as of August 26, 2026.
 
 ## Coverage first
 
@@ -8,7 +8,7 @@ Generated 2026-08-26 17:43 UTC, reflecting the field as of August 26, 2026.
 - **340** (79%) had a position we could actually read and classify.
 - **92** could not be classified (no site, unreachable, or too little readable text).
 - **20 seats** are in states whose field is not yet settled: primaries still to come, or no party nomination at all. No candidate list compiled today can cover them.
-- **48** of the classified rows are flagged for human review; see `needs_review.csv`.
+- **68** of the classified rows are flagged for human review; see `needs_review.csv`.
 
 > **Coverage is below 80%.** The shares below should be read as describing the
 > candidates we could read, not the full field.
@@ -30,13 +30,13 @@ recorded legislative act.
 | Evidence | Candidates |
 |---|---|
 | Cosponsors H.R.3069, the Medicare for All Act | 89 |
-| Position read from their own campaign site | 270 |
+| Position read from their own campaign site | 267 |
 | Position from news coverage (site unreadable) | 70 |
 | No position from any source | 3 |
 
 Combined, **429 of 432** candidates (99%) now have a position from some source, leaving **3** with none.
 
-On the combined measure, **158** candidates (36.8% of those with a known position) support Medicare for All - against 74 on campaign sites alone.
+On the combined measure, **159** candidates (37.1% of those with a known position) support Medicare for All - against 74 on campaign sites alone.
 
 > **64 of the 89 cosponsors never mention it on their own campaign site.** Cosponsorship and campaign messaging are
 > close to disjoint, which is a finding in itself rather than a gap to be
@@ -46,11 +46,11 @@ On the combined measure, **158** candidates (36.8% of those with a known positio
 
 | Position tier | Campaign site | Share | Combined | Share |
 |---|---|---|---|---|
-| `explicit_m4a` | 74 | 21.8% | 158 | 36.8% |
+| `explicit_m4a` | 74 | 21.8% | 159 | 37.1% |
 | `single_payer_substance` | 0 | 0.0% | 1 | 0.2% |
 | `public_option` | 15 | 4.4% | 23 | 5.4% |
-| `aca_strengthen` | 122 | 35.9% | 149 | 34.7% |
-| `no_coverage_position` | 129 | 37.9% | 98 | 22.8% |
+| `aca_strengthen` | 158 | 46.5% | 183 | 42.7% |
+| `no_coverage_position` | 93 | 27.4% | 63 | 14.7% |
 | `opposed` | 0 | 0.0% | 0 | 0.0% |
 | `unknown` | 92 | n/a | 3 | n/a |
 

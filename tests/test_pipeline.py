@@ -1,5 +1,6 @@
 """Tests for merging, calendar enforcement, reporting denominators, adjudication."""
 
+import re
 from datetime import date
 
 import pytest
@@ -342,3 +343,26 @@ def test_site_payload_truncates_long_quotes():
     c.m4a_evidence = [Evidence(quote="x" * 900, url="http://x", matched_rule="r",
                                tier=M4ATier.EXPLICIT_M4A)]
     assert len(trim(c.to_dict())["q"]) == 400
+
+
+def test_overrides_file_entries_are_well_formed():
+    """Every override needs a checkable source and a named reviewer.
+
+    A correction has to be as auditable as an automated classification, or it
+    is just an unexplained edit to the data.
+    """
+    import yaml
+    from pathlib import Path
+
+    path = Path(__file__).resolve().parents[1] / "config" / "overrides.yaml"
+    if not path.exists():
+        return
+    entries = (yaml.safe_load(path.read_text(encoding="utf-8")) or {}).get("overrides") or []
+    valid = {t.value for t in M4ATier if t.is_finding}
+    for e in entries:
+        assert e.get("name"), e
+        assert re.fullmatch(r"[A-Z]{2}-(\d{2}|AL)", e.get("district", "")), e
+        assert e.get("tier") in valid, e
+        assert str(e.get("source", "")).startswith("http"), e
+        assert "@" in str(e.get("reviewed_by", "")), e
+        assert e.get("note"), e

@@ -1,0 +1,56 @@
+# Human-reviewed corrections. Highest precedence of any evidence type.
+#
+# A person who has opened the page and read it is better evidence than any
+# automated read of it, and this file is how that judgement survives the next
+# re-run instead of being overwritten by it.
+#
+# Use it for what automation cannot reach:
+#   - Javascript-rendered sites, where the served HTML carries no content
+#   - positions stated in images, video or PDFs
+#   - a classifier call that is simply wrong on inspection
+#
+# Do NOT use it to record something the classifier already gets right. An
+# override masks future regressions in that row, so leaving correct rows to the
+# classifier is what keeps the tests meaningful.
+#
+# Every entry needs a source a reader can check, and the reviewer's name, so a
+# correction is as auditable as an automated classification.
+#
+# tier: one of explicit_m4a | single_payer_substance | public_option |
+#            aca_strengthen | no_coverage_position | opposed
+
+overrides:
+  - name: Brad Lander
+    district: NY-10
+    tier: explicit_m4a
+    source: https://www.bradlanderforcongress.com/issues
+    note: >-
+      Site is Javascript-rendered and serves almost no text to a crawler.
+      Lander states "In Congress, I look forward to championing Medicare for
+      All", and campaigns on the NY Health Act single-payer bill.
+    corroboration: https://x.com/bradlander/status/2066960537607381250
+    reviewed_by: kyle@kyletharp.com
+    reviewed_on: 2026-08-28
+
+  - name: Jonathan Nez
+    district: AZ-02
+    tier: aca_strengthen
+    source: https://www.jonathannezforaz.com/issues
+    note: >-
+      Site is Javascript-rendered; the healthcare section is a collapsed
+      accordion. Content is incremental: lower costs by taking on Big Pharma
+      price gouging and surprise billing, expand rural telehealth, reverse
+      Medicaid cuts, keep rural hospitals open. Medicare for All is not raised.
+    reviewed_by: kyle@kyletharp.com
+    reviewed_on: 2026-08-28
+
+  - name: Richard Pan
+    district: CA-06
+    tier: aca_strengthen
+    source: https://pro.stateaffairs.com/ca/news/richard-pan-congressional-candidate-ambigious-on-universal-healthcare
+    note: >-
+      Explicitly does not back single-payer or Medicare for All, and is
+      reported as ambiguous on universal healthcare. His site defends Medicare
+      but states no coverage-structure position.
+    reviewed_by: kyle@kyletharp.com
+    reviewed_on: 2026-08-28

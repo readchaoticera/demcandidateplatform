@@ -231,6 +231,15 @@ class Candidate:
 
     endorsements: list[str] = field(default_factory=list)
 
+    # --- human review -------------------------------------------------------
+    override_tier: "M4ATier" = None  # set in __post_init__
+    """A reviewed correction. Outranks every automated source, because a person
+    who opened the page is better evidence than any automated read of it."""
+
+    override_note: str = ""
+    override_source: str = ""
+    override_reviewer: str = ""
+
     # --- secondary (news-sourced) assessment --------------------------------
     secondary_tier: "M4ATier" = None  # set in __post_init__
     """Position derived from news coverage and third-party profiles, for
@@ -250,6 +259,8 @@ class Candidate:
     def __post_init__(self) -> None:
         if self.secondary_tier is None:
             self.secondary_tier = M4ATier.UNKNOWN
+        if self.override_tier is None:
+            self.override_tier = M4ATier.UNKNOWN
 
     @property
     def resolved_tier(self) -> "M4ATier":
@@ -257,6 +268,9 @@ class Candidate:
 
         Precedence reflects evidential strength, not convenience:
 
+        0. **A reviewed correction**, where a person has read the page. This
+           outranks the rest: it exists for material automation cannot reach
+           at all, such as Javascript-rendered sites.
         1. **Cosponsorship** of the Medicare for All Act - a recorded
            legislative act, and the least deniable evidence there is.
         2. **The candidate's own campaign site** - what they choose to tell
@@ -267,6 +281,8 @@ class Candidate:
         ``m4a_tier`` remains the site-only measure so the two can be compared;
         this property is what the combined figures use.
         """
+        if self.override_tier.is_finding:
+            return self.override_tier
         if self.cosponsored_m4a_bill:
             return M4ATier.EXPLICIT_M4A
         if self.m4a_tier.is_finding:
@@ -278,6 +294,8 @@ class Candidate:
     @property
     def evidence_basis(self) -> str:
         """Which evidence type set ``resolved_tier``."""
+        if self.override_tier.is_finding:
+            return "human_review"
         if self.cosponsored_m4a_bill:
             return "cosponsorship"
         if self.m4a_tier.is_finding:
@@ -322,6 +340,10 @@ class Candidate:
             "m4a_notes": self.m4a_notes,
             "resolved_tier": self.resolved_tier.value,
             "evidence_basis": self.evidence_basis,
+            "override_tier": self.override_tier.value,
+            "override_note": self.override_note,
+            "override_source": self.override_source,
+            "override_reviewer": self.override_reviewer,
             "secondary_tier": self.secondary_tier.value,
             "secondary_confidence": round(self.secondary_confidence, 3),
             "secondary_note": self.secondary_note,

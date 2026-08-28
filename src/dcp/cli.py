@@ -11,6 +11,7 @@ one. ``run`` chains them for convenience.
     dcp classify                # crawl sites, assign M4A tiers
     dcp cosponsors              # mark Medicare for All Act cosponsors
     dcp secondary               # apply news-sourced assessments for unreadable sites
+    dcp overrides               # apply human-reviewed corrections
     dcp report                  # markdown + CSV + JSON output
     dcp run                     # all of the above
 """
@@ -383,6 +384,65 @@ def cmd_secondary(args: argparse.Namespace) -> int:
     return 0
 
 
+OVERRIDES_PATH = Path("config/overrides.yaml")
+
+
+def cmd_overrides(args: argparse.Namespace) -> int:
+    """Apply human-reviewed corrections from config/overrides.yaml.
+
+    These outrank every automated source. They exist for material automation
+    cannot reach - Javascript-rendered sites, positions stated in images - and
+    for calls that are simply wrong on inspection. Applying them as a pipeline
+    stage rather than by editing the data means a correction survives the next
+    re-run instead of being silently overwritten by it.
+    """
+    import yaml
+
+    if not OVERRIDES_PATH.exists():
+        log.info("no %s; nothing to apply", OVERRIDES_PATH)
+        return 0
+    blob = yaml.safe_load(OVERRIDES_PATH.read_text(encoding="utf-8")) or {}
+    entries = blob.get("overrides") or []
+
+    roster = _load_roster()
+    by_key = {(c.full_name, c.district.code): c for c in roster.candidates}
+    by_name: dict[str, list[Candidate]] = {}
+    for c in roster.candidates:
+        by_name.setdefault(c.full_name, []).append(c)
+
+    applied = 0
+    for entry in entries:
+        name, district = entry.get("name", ""), entry.get("district", "")
+        cand = by_key.get((name, district))
+        if cand is None:
+            matches = by_name.get(name, [])
+            if len(matches) == 1:
+                cand = matches[0]
+                log.warning("override for %r: district %s did not match, matched on name "
+                            "alone (%s)", name, district, cand.district.code)
+        if cand is None:
+            log.error("override for %r (%s) matched no candidate; skipped", name, district)
+            continue
+
+        tier = _parse_tier(entry.get("tier", "unknown"))
+        if not tier.is_finding:
+            log.error("override for %r has unusable tier %r; skipped", name, entry.get("tier"))
+            continue
+        cand.override_tier = tier
+        cand.override_note = " ".join((entry.get("note") or "").split())
+        cand.override_source = entry.get("source", "")
+        cand.override_reviewer = entry.get("reviewed_by", "")
+        cand.add_provenance(
+            "human_review", cand.override_source,
+            f"reviewed by {cand.override_reviewer} on {entry.get('reviewed_on','?')}",
+        )
+        applied += 1
+
+    _write(OUT / "roster.json", json.dumps(roster.to_dict(), indent=2))
+    log.info("overrides: %d of %d applied", applied, len(entries))
+    return 0
+
+
 def cmd_report(args: argparse.Namespace) -> int:
     roster = _load_roster()
     as_of = _as_of(args.as_of)
@@ -400,7 +460,8 @@ def cmd_report(args: argparse.Namespace) -> int:
 
 
 def cmd_run(args: argparse.Namespace) -> int:
-    for step in (cmd_roster, cmd_websites, cmd_classify, cmd_cosponsors, cmd_report):
+    for step in (cmd_roster, cmd_websites, cmd_classify, cmd_cosponsors,
+                 cmd_secondary, cmd_overrides, cmd_report):
         rc = step(args)
         if rc != 0:
             return rc
@@ -483,6 +544,10 @@ def _load_roster() -> Roster:
             secondary_confidence=row.get("secondary_confidence", 0.0),
             secondary_note=row.get("secondary_note", ""),
             secondary_sources=row.get("secondary_sources", []),
+            override_tier=_parse_tier(row.get("override_tier", "unknown")),
+            override_note=row.get("override_note", ""),
+            override_source=row.get("override_source", ""),
+            override_reviewer=row.get("override_reviewer", ""),
             # Evidence must survive the round trip. Without this, any stage
             # that loads, mutates and saves the roster silently strips every
             # verbatim quote - which is the whole basis for auditing a row.
@@ -529,6 +594,7 @@ def main(argv: Optional[list[str]] = None) -> int:
         ("classify", cmd_classify, "crawl sites and classify positions"),
         ("cosponsors", cmd_cosponsors, "mark Medicare for All Act cosponsors"),
         ("secondary", cmd_secondary, "apply news-sourced assessments"),
+        ("overrides", cmd_overrides, "apply human-reviewed corrections"),
         ("report", cmd_report, "write the analysis"),
         ("run", cmd_run, "run every stage"),
     ):

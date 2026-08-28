@@ -218,3 +218,28 @@ def test_quote_is_centred_on_the_match_not_the_sentence_start():
     assert "Medicare for All" in quote
     assert "strong supporter" in quote
     assert quote.count("Skip navigation menu") <= 1
+
+
+# --- ACA phrasing the rules used to miss ------------------------------------
+
+@pytest.mark.parametrize("text", [
+    "I will expand Medicaid availability so working families keep coverage.",
+    "We must negotiate prescription drug costs down for seniors.",
+    "It is time to regulate for-profit insurance companies.",
+    "We have to keep rural hospitals open across the district.",
+    "My priority is to expand access to affordable healthcare.",
+])
+def test_incremental_healthcare_language_reads_as_aca_strengthening(text):
+    """These are real campaign phrasings that previously matched nothing.
+
+    Missing them is not harmless: a candidate with a full healthcare platform
+    was recorded as stating no coverage position at all.
+    """
+    assert tier(text) is M4ATier.ACA_STRENGTHEN
+
+
+def test_widened_aca_rules_do_not_reach_the_m4a_tier():
+    # ACA is the lowest support tier, so widening it must never inflate M4A.
+    text = ("Expand Medicaid availability. Negotiate prescription drug costs. "
+            "Regulate for-profit insurance companies. Keep rural hospitals open.")
+    assert tier(text) is M4ATier.ACA_STRENGTHEN

@@ -136,12 +136,28 @@ ACA_RULES: tuple[Rule, ...] = (
          r"\b(premium\s+tax\s+credits?|enhanced\s+subsidies|marketplace\s+subsidies)\b",
          weight=2.0, requires_affirm=False),
     Rule("aca.drug_negotiation", M4ATier.ACA_STRENGTHEN,
-         r"\bnegotiat\w+\b[^.]{0,40}\b(drug|prescription)\s+prices?\b", weight=1.5,
-         requires_affirm=False),
+         # "costs" as often as "prices"; "medication" as well as "drug".
+         r"\bnegotiat\w+\b[^.]{0,40}\b(drug|prescription|medication)\s*"
+         r"(drug\s*)?(price|cost)s?\b", weight=1.5, requires_affirm=False),
     Rule("aca.insulin", M4ATier.ACA_STRENGTHEN,
          r"\b(cap\w*|\$?35)\b[^.]{0,30}\binsulin\b", weight=1.5, requires_affirm=False),
     Rule("aca.medicaid_gap", M4ATier.ACA_STRENGTHEN,
-         r"\bmedicaid\s+(expansion|coverage\s+gap)\b", weight=1.5, requires_affirm=False),
+         # Campaigns write "expand Medicaid" at least as often as the noun
+         # phrase "Medicaid expansion"; both orders have to match.
+         r"\bmedicaid\s+(expansion|coverage\s+gap)\b|"
+         r"\bexpand\w*\s+medicaid\b|\bmedicaid\b[^.]{0,20}\bexpansion\b",
+         weight=1.5, requires_affirm=False),
+    Rule("aca.insurer_accountability", M4ATier.ACA_STRENGTHEN,
+         r"\b(regulat\w+|rein\s+in|crack\s+down\s+on|hold\b[^.]{0,20}\baccountable)\b"
+         r"[^.]{0,40}\b(insurance|insurer|health\s+plan)\w*\b",
+         weight=1.2, requires_affirm=False),
+    Rule("aca.rural_hospitals", M4ATier.ACA_STRENGTHEN,
+         r"\b(rural|community)\s+(hospital|clinic|health\s+cent(er|re))s?\b",
+         weight=1.0, requires_affirm=False),
+    Rule("aca.coverage_access", M4ATier.ACA_STRENGTHEN,
+         r"\b(expand\w*|increas\w*|improv\w*)\s+(access\s+to\s+)?"
+         r"(affordable\s+)?(health\s?care|health\s+coverage|coverage)\b",
+         weight=1.0, requires_affirm=False),
     Rule("aca.protect_medicare", M4ATier.ACA_STRENGTHEN,
          r"\b(protect\w*|defend\w*|save|strengthen\w*)\b[^.]{0,25}\bmedicare\b",
          weight=1.0, requires_affirm=False),
