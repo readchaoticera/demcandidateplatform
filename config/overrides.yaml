@@ -171,3 +171,25 @@ overrides:
       cosponsor of H.R.3069 in the current Congress.
     reviewed_by: kyle@kyletharp.com
     reviewed_on: 2026-08-28
+
+  - name: Josh Gottheimer
+    district: NJ-05
+    tier: aca_strengthen
+    source: https://gottheimer.com/
+    note: >-
+      Does not support Medicare for All, and is not a cosponsor of H.R.3069.
+      A Blue Dog / Problem Solvers member who runs on lowering costs within the
+      existing system.
+    reviewed_by: kyle@kyletharp.com
+    reviewed_on: 2026-08-28
+
+  - name: Emilia Sykes
+    district: OH-13
+    tier: aca_strengthen
+    source: https://sykes.house.gov/issues/health-care
+    note: >-
+      Does not support Medicare for All, and is not a cosponsor of H.R.3069.
+      Runs on lowering prescription drug costs, expanding access to existing
+      Medicaid and Medicare, and bipartisan improvement of the current system.
+    reviewed_by: kyle@kyletharp.com
+    reviewed_on: 2026-08-28

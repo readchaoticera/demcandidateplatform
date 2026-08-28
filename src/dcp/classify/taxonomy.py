@@ -172,6 +172,15 @@ ACA_RULES: tuple[Rule, ...] = (
          r"\b(expand\w*|increas\w*|improv\w*)\s+(access\s+to\s+)?"
          r"(affordable\s+)?(health\s?care|health\s+coverage|coverage)\b",
          weight=1.0, requires_affirm=False),
+    Rule("aca.universal_aspiration", M4ATier.ACA_STRENGTHEN,
+         # "Guarantee affordable health care for every American" with no
+         # mechanism named. Universal coverage as a goal is a stated position,
+         # but on its own it is not single-payer - the higher tiers catch a
+         # candidate who names one, and the ladder prefers them.
+         r"\b(guarantee\w*|ensur\w*|secur\w*|deliver\w*)\b[^.]{0,40}"
+         r"\b(affordable\s+|quality\s+)*(health\s?care|health\s+coverage|coverage)\b"
+         r"[^.]{0,50}\b(every|all|each)\b",
+         weight=1.2, requires_affirm=False),
     Rule("aca.protect_medicare", M4ATier.ACA_STRENGTHEN,
          r"\b(protect\w*|defend\w*|save|strengthen\w*)\b[^.]{0,25}\bmedicare\b",
          weight=1.0, requires_affirm=False),

@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-28T14:28:23.755696",
+  "generated_at": "2026-08-28T14:44:55.179374",
   "candidate_count": 439,
   "on_ballot_count": 432,
   "coverage_gaps": [
@@ -730,7 +730,7 @@
         {
           "source": "human_review",
           "url": "https://www.jonathannezforaz.com/issues",
-          "retrieved_at": "2026-08-28T14:28:23.759213",
+          "retrieved_at": "2026-08-28T14:44:55.183161",
           "note": "reviewed by kyle@kyletharp.com on 2026-08-28"
         }
       ],
@@ -1003,24 +1003,24 @@
       "m4a_tier": "aca_strengthen",
       "m4a_evidence": [
         {
-          "quote": "She will protect coverage for people with pre-existing conditions and expand access in underserved and fast-growing communities.",
-          "url": "https://bgp4az.com/priorities",
+          "quote": "Protect pre-existing condition coverage, improve rural access, demand clear prices, and bring costs under control.",
+          "url": "https://bgp4az.com/",
           "matched_rule": "aca.preexisting",
           "tier": "aca_strengthen",
           "negated": false,
           "context": "neutral"
         },
         {
-          "quote": "Protect coverage for pre-existing conditions.",
-          "url": "https://bgp4az.com/priorities",
-          "matched_rule": "aca.preexisting",
+          "quote": "Protect personal rights, retirement security, healthcare choices, and every family\u2019s chance to get ahead.",
+          "url": "https://bgp4az.com/",
+          "matched_rule": "aca.universal_aspiration",
           "tier": "aca_strengthen",
           "negated": false,
           "context": "neutral"
         },
         {
-          "quote": "Bernadette will fight to protect Social Security and Medicare from reckless cuts while working for practical solutions that lower prescription drug costs and ensure seniors can afford the care they need.",
-          "url": "https://bgp4az.com/priorities",
+          "quote": "PROTECT SOCIAL SECURITY & MEDICARE",
+          "url": "https://bgp4az.com/",
           "matched_rule": "aca.protect_medicare",
           "tier": "aca_strengthen",
           "negated": false,
@@ -1479,7 +1479,7 @@
         {
           "source": "human_review",
           "url": "https://pro.stateaffairs.com/ca/news/richard-pan-congressional-candidate-ambigious-on-universal-healthcare",
-          "retrieved_at": "2026-08-28T14:28:23.759221",
+          "retrieved_at": "2026-08-28T14:44:55.183168",
           "note": "reviewed by kyle@kyletharp.com on 2026-08-28"
         }
       ],
@@ -1798,7 +1798,7 @@
         {
           "source": "human_review",
           "url": "https://ballotpedia.org/Connie_Chan",
-          "retrieved_at": "2026-08-28T14:28:23.759230",
+          "retrieved_at": "2026-08-28T14:44:55.183176",
           "note": "reviewed by kyle@kyletharp.com on 2026-08-28"
         }
       ],
@@ -2737,7 +2737,7 @@
         {
           "source": "human_review",
           "url": "https://irwin.asmdc.org/covered-california",
-          "retrieved_at": "2026-08-28T14:28:23.759240",
+          "retrieved_at": "2026-08-28T14:44:55.183186",
           "note": "reviewed by kyle@kyletharp.com on 2026-08-28"
         }
       ],
@@ -3157,7 +3157,7 @@
           "context": "affirm"
         }
       ],
-      "m4a_notes": "",
+      "m4a_notes": "https://www.angela4congress.com/issues/climate-action: weak evidence; https://www.angela4congress.com/issues/education-youth-empowerment: weak evidence",
       "resolved_tier": "explicit_m4a",
       "bucket": "supports_m4a",
       "evidence_basis": "campaign_site",
@@ -4900,11 +4900,20 @@
         "https://www.sethharpforcongress.com/",
         "https://www.sethharpforcongress.com/issues"
       ],
-      "m4a_tier": "no_coverage_position",
-      "m4a_evidence": [],
-      "m4a_notes": "",
-      "resolved_tier": "no_coverage_position",
-      "bucket": "no_position_found",
+      "m4a_tier": "aca_strengthen",
+      "m4a_evidence": [
+        {
+          "quote": "Guarantee affordable health care for every American and ensure that no family is forced into bankruptcy because they got sick.",
+          "url": "https://www.sethharpforcongress.com/issues",
+          "matched_rule": "aca.universal_aspiration",
+          "tier": "aca_strengthen",
+          "negated": false,
+          "context": "neutral"
+        }
+      ],
+      "m4a_notes": "REVIEW: weak evidence",
+      "resolved_tier": "aca_strengthen",
+      "bucket": "does_not_support_m4a",
       "evidence_basis": "campaign_site",
       "override_tier": "unknown",
       "override_note": "",
@@ -8022,7 +8031,7 @@
         {
           "source": "human_review",
           "url": "https://www.cbsnews.com/news/the-youngest-black-woman-in-congress-has-an-alternative-to-medicare-for-all",
-          "retrieved_at": "2026-08-28T14:28:23.759235",
+          "retrieved_at": "2026-08-28T14:44:55.183181",
           "note": "reviewed by kyle@kyletharp.com on 2026-08-28"
         }
       ],
@@ -10481,7 +10490,7 @@
           "context": "affirm"
         }
       ],
-      "m4a_notes": "",
+      "m4a_notes": "https://wewill2026.com/: weak evidence",
       "resolved_tier": "explicit_m4a",
       "bucket": "supports_m4a",
       "evidence_basis": "campaign_site",
@@ -10538,7 +10547,7 @@
         {
           "source": "human_review",
           "url": "https://kristenmcdonaldrivet.com/",
-          "retrieved_at": "2026-08-28T14:28:23.759226",
+          "retrieved_at": "2026-08-28T14:44:55.183172",
           "note": "reviewed by kyle@kyletharp.com on 2026-08-28"
         }
       ],
@@ -11197,9 +11206,18 @@
         "https://www.bell4mo.com/",
         "https://www.bell4mo.com/issues"
       ],
-      "m4a_tier": "no_coverage_position",
-      "m4a_evidence": [],
-      "m4a_notes": "",
+      "m4a_tier": "aca_strengthen",
+      "m4a_evidence": [
+        {
+          "quote": "\u2026diation Exposure Compensation Act to finally deliver the compensation and health care that all affected families deserve, and he'll keep pushing until every eligible family gets what they're owed.",
+          "url": "https://www.bell4mo.com/issues",
+          "matched_rule": "aca.universal_aspiration",
+          "tier": "aca_strengthen",
+          "negated": false,
+          "context": "affirm"
+        }
+      ],
+      "m4a_notes": "REVIEW: weak evidence",
       "resolved_tier": "explicit_m4a",
       "bucket": "supports_m4a",
       "evidence_basis": "cosponsorship",
@@ -11861,7 +11879,7 @@
           "context": "neutral"
         }
       ],
-      "m4a_notes": "",
+      "m4a_notes": "https://www.miller4congress.com/copy-of-main-page-1: weak evidence",
       "resolved_tier": "explicit_m4a",
       "bucket": "supports_m4a",
       "evidence_basis": "campaign_site",
@@ -12862,12 +12880,12 @@
           "context": "neutral"
         },
         {
-          "quote": "Improving Health Care - Donald Norcross",
+          "quote": "\u2026to lower the cost of prescription drugs and ensure healthcare for all.",
           "url": "https://www.donaldnorcrossforcongress.com/issue/improving-health-care",
-          "matched_rule": "aca.coverage_access",
+          "matched_rule": "aca.universal_aspiration",
           "tier": "aca_strengthen",
           "negated": false,
-          "context": "neutral"
+          "context": "affirm"
         }
       ],
       "m4a_notes": "https://www.donaldnorcrossforcongress.com/: weak evidence; https://www.donaldnorcrossforcongress.com/issue/caring-for-seniors: weak evidence",
@@ -13031,13 +13049,13 @@
       "m4a_tier": "no_coverage_position",
       "m4a_evidence": [],
       "m4a_notes": "https://josh4jersey.com/about: healthcare phrases present but none in the candidate's own voice; https://josh4jersey.com/tax-cut-plan: page had too little text to classify",
-      "resolved_tier": "no_coverage_position",
-      "bucket": "no_position_found",
-      "evidence_basis": "campaign_site",
-      "override_tier": "unknown",
-      "override_note": "",
-      "override_source": "",
-      "override_reviewer": "",
+      "resolved_tier": "aca_strengthen",
+      "bucket": "does_not_support_m4a",
+      "evidence_basis": "human_review",
+      "override_tier": "aca_strengthen",
+      "override_note": "Does not support Medicare for All, and is not a cosponsor of H.R.3069. A Blue Dog / Problem Solvers member who runs on lowering costs within the existing system.",
+      "override_source": "https://gottheimer.com/",
+      "override_reviewer": "kyle@kyletharp.com",
       "secondary_tier": "unknown",
       "secondary_confidence": 0.0,
       "secondary_note": "",
@@ -13046,7 +13064,14 @@
       "endorsements": [],
       "wikipedia_url": null,
       "ballotpedia_url": null,
-      "provenance": [],
+      "provenance": [
+        {
+          "source": "human_review",
+          "url": "https://gottheimer.com/",
+          "retrieved_at": "2026-08-28T14:44:55.183242",
+          "note": "reviewed by kyle@kyletharp.com on 2026-08-28"
+        }
+      ],
       "conflicts": [
         "campaign site verification scored 0.40: campaign apparatus (donate/volunteer/disclaimer); 'for Congress' framing"
       ]
@@ -13669,7 +13694,7 @@
         {
           "source": "human_review",
           "url": "https://susieleeforcongress.com/",
-          "retrieved_at": "2026-08-28T14:28:23.759246",
+          "retrieved_at": "2026-08-28T14:44:55.183199",
           "note": "reviewed by kyle@kyletharp.com on 2026-08-28"
         }
       ],
@@ -13824,7 +13849,7 @@
           "context": "affirm"
         }
       ],
-      "m4a_notes": "https://www.halpinforcongress.com/building-a-better-long-island: weak evidence",
+      "m4a_notes": "",
       "resolved_tier": "public_option",
       "bucket": "does_not_support_m4a",
       "evidence_basis": "campaign_site",
@@ -13881,7 +13906,7 @@
         {
           "source": "human_review",
           "url": "https://www.tomsuozzi.com/",
-          "retrieved_at": "2026-08-28T14:28:23.759255",
+          "retrieved_at": "2026-08-28T14:44:55.183208",
           "note": "reviewed by kyle@kyletharp.com on 2026-08-28"
         }
       ],
@@ -14149,7 +14174,7 @@
         {
           "source": "human_review",
           "url": "https://jeffriesforcongress.com/",
-          "retrieved_at": "2026-08-28T14:28:23.759251",
+          "retrieved_at": "2026-08-28T14:44:55.183204",
           "note": "reviewed by kyle@kyletharp.com on 2026-08-28"
         }
       ],
@@ -14230,7 +14255,7 @@
         {
           "source": "human_review",
           "url": "https://www.bradlanderforcongress.com/issues",
-          "retrieved_at": "2026-08-28T14:28:23.759171",
+          "retrieved_at": "2026-08-28T14:44:55.183143",
           "note": "reviewed by kyle@kyletharp.com on 2026-08-28"
         }
       ],
@@ -14685,7 +14710,7 @@
         {
           "source": "human_review",
           "url": "https://patryanforcongress.com/",
-          "retrieved_at": "2026-08-28T14:28:23.759259",
+          "retrieved_at": "2026-08-28T14:44:55.183216",
           "note": "reviewed by kyle@kyletharp.com on 2026-08-28"
         }
       ],
@@ -15449,7 +15474,7 @@
         {
           "source": "human_review",
           "url": "https://poindexterforcongress.com/",
-          "retrieved_at": "2026-08-28T14:28:23.759269",
+          "retrieved_at": "2026-08-28T14:44:55.183227",
           "note": "reviewed by kyle@kyletharp.com on 2026-08-28"
         }
       ],
@@ -15712,13 +15737,13 @@
       "m4a_tier": "no_coverage_position",
       "m4a_evidence": [],
       "m4a_notes": "",
-      "resolved_tier": "no_coverage_position",
-      "bucket": "no_position_found",
-      "evidence_basis": "campaign_site",
-      "override_tier": "unknown",
-      "override_note": "",
-      "override_source": "",
-      "override_reviewer": "",
+      "resolved_tier": "aca_strengthen",
+      "bucket": "does_not_support_m4a",
+      "evidence_basis": "human_review",
+      "override_tier": "aca_strengthen",
+      "override_note": "Does not support Medicare for All, and is not a cosponsor of H.R.3069. Runs on lowering prescription drug costs, expanding access to existing Medicaid and Medicare, and bipartisan improvement of the current system.",
+      "override_source": "https://sykes.house.gov/issues/health-care",
+      "override_reviewer": "kyle@kyletharp.com",
       "secondary_tier": "unknown",
       "secondary_confidence": 0.0,
       "secondary_note": "",
@@ -15727,7 +15752,14 @@
       "endorsements": [],
       "wikipedia_url": null,
       "ballotpedia_url": null,
-      "provenance": [],
+      "provenance": [
+        {
+          "source": "human_review",
+          "url": "https://sykes.house.gov/issues/health-care",
+          "retrieved_at": "2026-08-28T14:44:55.183246",
+          "note": "reviewed by kyle@kyletharp.com on 2026-08-28"
+        }
+      ],
       "conflicts": []
     },
     {
@@ -17301,6 +17333,14 @@
       "m4a_tier": "aca_strengthen",
       "m4a_evidence": [
         {
+          "quote": "Improve Medicare and Medical Care Availability Strengthen Medicare Services : Advocate for enhancements to Medicare, ensuring comprehensive coverage and support for all eligible South Carolinians.",
+          "url": "https://www.khalifaforcongress.com/platform",
+          "matched_rule": "aca.universal_aspiration",
+          "tier": "aca_strengthen",
+          "negated": false,
+          "context": "affirm"
+        },
+        {
           "quote": "Expand Healthcare Access Address the Uninsured : Focus on reducing the approximately nine percent of South Carolinians who are uninsured by enhancing outreach and enrollment efforts for available health programs. 2.",
           "url": "https://www.khalifaforcongress.com/platform",
           "matched_rule": "aca.coverage_access",
@@ -17315,14 +17355,6 @@
           "tier": "aca_strengthen",
           "negated": false,
           "context": "affirm"
-        },
-        {
-          "quote": "Expand Healthcare Facilities : Work to increase the number of hospitals and healthcare services in underserved areas, improving access to quality medical care for all communities.",
-          "url": "https://www.khalifaforcongress.com/platform",
-          "matched_rule": "aca.coverage_access",
-          "tier": "aca_strengthen",
-          "negated": false,
-          "context": "neutral"
         }
       ],
       "m4a_notes": "",
@@ -19630,7 +19662,7 @@
         {
           "source": "human_review",
           "url": "https://colinallred.com/",
-          "retrieved_at": "2026-08-28T14:28:23.759265",
+          "retrieved_at": "2026-08-28T14:44:55.183223",
           "note": "reviewed by kyle@kyletharp.com on 2026-08-28"
         }
       ],
@@ -21442,7 +21474,7 @@
         {
           "source": "human_review",
           "url": "https://www.ueunion.org/political-action/2019/ue-members-press-congresswoman-gwen-moore-to-support-medicare-for-all",
-          "retrieved_at": "2026-08-28T14:28:23.759275",
+          "retrieved_at": "2026-08-28T14:44:55.183232",
           "note": "reviewed by kyle@kyletharp.com on 2026-08-28"
         }
       ],

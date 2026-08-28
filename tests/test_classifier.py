@@ -264,3 +264,19 @@ def test_word_order_and_synonym_variants(text, expected):
     negotiated through Medicare" rather than "negotiate drug prices".
     """
     assert tier(text) is expected
+
+
+def test_universal_coverage_aspiration_without_a_mechanism_is_aca_tier():
+    """"Guarantee health care for every American" states a position.
+
+    It is not single-payer on its own - no mechanism is named - but it is not
+    silence either, and treating it as silence loses a real platform.
+    """
+    assert tier("I will guarantee affordable health care for every American and ensure "
+                "no family goes bankrupt because they got sick.") is M4ATier.ACA_STRENGTHEN
+
+
+def test_universal_aspiration_does_not_outrank_a_named_mechanism():
+    # A candidate who names Medicare for All must still read as Medicare for All.
+    assert tier("I will guarantee health care for every American by passing "
+                "Medicare for All.") is M4ATier.EXPLICIT_M4A
