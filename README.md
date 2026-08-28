@@ -98,6 +98,8 @@ dcp classify    # crawl each site's issues pages, assign a tier with evidence
 dcp fec         # cross-check the roster against the FEC bulk filing universe
 dcp ratings     # attach Cook Political Report race ratings, via Wikipedia
 dcp louisiana   # replace LA's roster with the Secretary of State's certified list
+dcp overrides   # apply human-reviewed position corrections
+dcp adjust      # apply reviewed roster membership changes
 dcp report      # report.md + candidates.csv + analysis.json + needs_review.csv
 dcp run         # all of the above
 ```
