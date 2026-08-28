@@ -80,6 +80,10 @@ def trim(candidate: dict) -> dict:
         "cf": candidate.get("conflicts") or [],
         "rule": candidate.get("ballot_rule", "party_nominee"),
         "cr": candidate.get("cook_rating") or "",
+        # Empty for the 434 Democrats; set only for the deliberate exceptions,
+        # which the table marks with an asterisk rather than counting silently.
+        "p": "" if candidate.get("party", "Democratic") == "Democratic"
+             else candidate["party"],
     }
 
 

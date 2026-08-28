@@ -15,6 +15,7 @@ one. ``run`` chains them for convenience.
     dcp louisiana               # apply Louisiana's certified qualifying list
     dcp secondary               # apply news-sourced assessments for unreadable sites
     dcp overrides               # apply human-reviewed corrections
+    dcp adjust                  # apply reviewed roster membership changes
     dcp report                  # markdown + CSV + JSON output
     dcp run                     # all of the above
 """
@@ -448,6 +449,81 @@ def cmd_overrides(args: argparse.Namespace) -> int:
     return 0
 
 
+ADJUSTMENTS_PATH = Path("config/roster_adjustments.yaml")
+
+
+def cmd_adjust(args: argparse.Namespace) -> int:
+    """Apply reviewed roster membership changes from config/roster_adjustments.yaml.
+
+    ``overrides`` corrects what a candidate's position is; this corrects who is
+    on the roster at all. Both exist so that a judgement made by a person
+    looking at the race survives the next `dcp roster` run rather than being
+    silently reverted by it.
+
+    An excluded candidate is marked, not deleted, and keeps the reason. An
+    included one carries their real party, which is how a non-Democrat can be
+    on this roster without being counted as a Democrat.
+    """
+    import yaml
+
+    if not ADJUSTMENTS_PATH.exists():
+        log.info("no %s; nothing to apply", ADJUSTMENTS_PATH)
+        return 0
+    blob = yaml.safe_load(ADJUSTMENTS_PATH.read_text(encoding="utf-8")) or {}
+
+    roster = _load_roster()
+    by_key = {(c.full_name, c.district.code): c for c in roster.candidates}
+    excluded = included = 0
+
+    for entry in blob.get("exclude") or []:
+        cand = by_key.get((entry.get("name", ""), entry.get("district", "")))
+        if cand is None:
+            log.warning("adjust: no roster entry for %s (%s)",
+                        entry.get("name"), entry.get("district"))
+            continue
+        reason = " ".join((entry.get("reason") or "").split())
+        cand.status = NominationStatus.EXCLUDED
+        cand.conflicts = [c for c in cand.conflicts if not c.startswith("excluded by review")]
+        cand.conflicts.append(f"excluded by review: {reason}")
+        cand.add_provenance("human_review", entry.get("reviewed_by", ""), reason)
+        excluded += 1
+
+    for entry in blob.get("include") or []:
+        name, code = entry.get("name", ""), entry.get("district", "")
+        cand = by_key.get((name, code))
+        if cand is None:
+            state, seat = code.split("-")
+            at_large = seat == "AL"
+            cand = Candidate(
+                full_name=name,
+                district=District(
+                    state,
+                    1 if at_large else int(seat),
+                    ballot_rule=statefacts.ballot_rule(state),
+                    at_large=at_large,
+                ),
+                status=NominationStatus.ON_BALLOT,
+            )
+            roster.candidates.append(cand)
+        cand.party = entry.get("party", "Democratic")
+        cand.status = NominationStatus.ON_BALLOT
+        if entry.get("campaign_url") and not cand.campaign_url:
+            cand.campaign_url = entry["campaign_url"]
+        reason = " ".join((entry.get("reason") or "").split())
+        cand.add_provenance("human_review", entry.get("reviewed_by", ""), reason)
+        included += 1
+
+    roster.candidates.sort(key=lambda c: (c.district.state, c.district.number, c.full_name))
+    _write(OUT / "roster.json", json.dumps(roster.to_dict(), indent=2))
+    log.info("adjust: %d excluded, %d included", excluded, included)
+    non_dem = [c for c in roster.on_ballot() if c.party != "Democratic"]
+    if non_dem:
+        log.info("adjust: %d non-Democratic candidate(s) on the roster: %s",
+                 len(non_dem),
+                 ", ".join(f"{c.full_name} ({c.district.code}, {c.party})" for c in non_dem))
+    return 0
+
+
 def cmd_report(args: argparse.Namespace) -> int:
     roster = _load_roster()
     as_of = _as_of(args.as_of)
@@ -630,9 +706,13 @@ def cmd_fec(args: argparse.Namespace) -> int:
         print(f"No Democratic House filers found for {args.year}.", file=sys.stderr)
         return 1
 
-    on_ballot = roster.on_ballot()
+    # The filing universe loaded here is Democratic, so a non-Democrat on the
+    # roster would be reported as a missing filing when the truth is that this
+    # check does not cover them.
+    on_ballot = [c for c in roster.on_ballot() if c.party == "Democratic"]
+    skipped = len(roster.on_ballot()) - len(on_ballot)
     stats = fec_bulk.annotate(on_ballot, filers)
-    missing = fec_bulk.districts_with_filers_but_no_candidate(on_ballot, filers)
+    missing = fec_bulk.districts_with_filers_but_no_candidate(roster.on_ballot(), filers)
     # Coverage gaps are recorded as prose keyed by state ("MA (9 seats): ..."),
     # so a seat is explained when its state is already known to be unsettled.
     explained_states = {g[:2] for g in roster.coverage_gaps if g[2:3] == " "}
@@ -652,8 +732,10 @@ def cmd_fec(args: argparse.Namespace) -> int:
     rate = 100.0 * stats["matched"] / total if total else 0.0
     log.info("FEC: %d Democratic House filers for %d (%d active)",
              len(filers), args.year, sum(1 for f in filers if f.active))
-    log.info("FEC: matched %d/%d on-ballot candidates (%.1f%%), %d incumbents",
+    log.info("FEC: matched %d/%d on-ballot Democrats (%.1f%%), %d incumbents",
              stats["matched"], total, rate, stats["incumbents"])
+    if skipped:
+        log.info("FEC: %d non-Democratic candidate(s) not covered by this check", skipped)
     if stats["statewide"]:
         log.info("FEC: %d matched statewide rather than in-district (%d of them "
                  "across a redistricting boundary)",
@@ -701,7 +783,7 @@ def cmd_fec(args: argparse.Namespace) -> int:
 def cmd_run(args: argparse.Namespace) -> int:
     for step in (cmd_roster, cmd_louisiana, cmd_websites, cmd_classify, cmd_cosponsors,
                  cmd_fec, cmd_ratings, cmd_secondary, cmd_overrides,
-                 cmd_report):
+                 cmd_adjust, cmd_report):
         rc = step(args)
         if rc != 0:
             return rc
@@ -781,6 +863,7 @@ def _load_roster() -> Roster:
         )
         cand = Candidate(
             full_name=row["full_name"],
+            party=row.get("party", "Democratic"),
             district=district,
             status=NominationStatus(row["status"]),
             fec_candidate_id=row.get("fec_candidate_id"),
@@ -864,6 +947,7 @@ def main(argv: Optional[list[str]] = None) -> int:
         ("louisiana", cmd_louisiana, "apply Louisiana's certified qualifying list"),
         ("secondary", cmd_secondary, "apply news-sourced assessments"),
         ("overrides", cmd_overrides, "apply human-reviewed corrections"),
+        ("adjust", cmd_adjust, "apply reviewed roster membership changes"),
         ("report", cmd_report, "write the analysis"),
         ("run", cmd_run, "run every stage"),
     ):

@@ -1,0 +1,38 @@
+# Reviewed changes to who is on the roster, as opposed to what their position
+# is. config/overrides.yaml corrects a classification; this file corrects
+# membership, and it exists for the same reason: a judgement made by a person
+# looking at the race has to survive the next `dcp roster` run instead of being
+# silently reverted by it.
+#
+# Use it sparingly. A candidate missing or wrongly present because a parser
+# misread a page is a bug to fix in the parser, not an entry here. What belongs
+# here is a decision the sources cannot make for you.
+#
+# Every entry needs a reason a reader can weigh, and the reviewer's name.
+
+exclude:
+  - name: Eric Hafner
+    district: AK-AL
+    reason: >-
+      On the ballot as a Democrat, but not a candidate in any meaningful sense:
+      a perennial filer serving a 20-year federal sentence, who did not
+      campaign, drew 3.8% of the primary vote, and reached the general only
+      because Matt Schultz withdrew. Listing him as the Democratic option in
+      AK-AL misrepresents the race.
+    reviewed_by: kyle@kyletharp.com
+    reviewed_on: 2026-08-28
+
+include:
+  - name: Bill Hill
+    district: AK-AL
+    party: Independent
+    campaign_url: https://billhillforalaskans.com/
+    reason: >-
+      Not a Democrat, and marked as such wherever he appears. Included because
+      he is the candidate the Democratic side is behind in AK-AL: he placed
+      second in the top-four primary with 32.1%, Matt Schultz withdrew and
+      endorsed him, and the largest federal employee union endorsed him
+      alongside Mary Peltola. With Hafner excluded the district would otherwise
+      show no one.
+    reviewed_by: kyle@kyletharp.com
+    reviewed_on: 2026-08-28

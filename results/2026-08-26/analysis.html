@@ -191,6 +191,19 @@ tbody tr.r:hover { background: #f4f9ff; }
 .cook-likely-r { background: #ffdada; color: #ab2b22; border-color: #f8bcbc; }
 .cook-solid-r  { background: #ffc9c9; color: #8f1d17; border-color: #f5a9a9; }
 
+/* Marks a roster entry who is not a Democrat. Deliberately small and quiet:
+   it flags an exception without competing with the candidate's name. */
+.party-mark {
+  color: var(--accent-dark); font-weight: 700; text-decoration: none;
+  margin-left: 3px; font-size: 0.9em; vertical-align: super; line-height: 0;
+}
+.party-mark:hover { text-decoration: underline; }
+.tablenote {
+  margin: 10px 2px 0; font-size: 0.82rem; color: var(--ink-soft); max-width: 78ch;
+  line-height: 1.5;
+}
+.tablenote:empty { display: none; }
+
 /* Finer tier pills, used only inside an expanded row. */
 .tier { display: inline-block; font-size: 0.76rem; font-weight: 600; padding: 2px 9px;
         border-radius: 999px; border: 1px solid var(--line-strong); color: var(--ink-soft); background: #f7fafd; }
@@ -308,7 +321,7 @@ main { max-width: 860px; }
       <section class="hero">
         <h1>How many Democrats back Medicare for All?</h1>
         <p class="dek">
-          Every Democratic candidate on the November ballot, measured three ways — what they publish,
+          Every Democratic candidate on the November ballot, and one marked exception, measured three ways — what they publish,
           what they have signed, and what has been reported — and the large gap between the first two.
         </p>
       </section>
@@ -321,21 +334,21 @@ main { max-width: 860px; }
             managed to read. So that comes first.
           </p>
           <p>
-            Reading campaign websites alone left 174 candidates unaccounted for — more than a third of
+            Reading campaign websites alone left 173 candidates unaccounted for — more than a third of
             the field, and not a random third, since the sites that defeat a crawler belong
             disproportionately to well-funded incumbents. Three further sources closed almost all of it.
           </p>
         </div>
         <section class="stats" style="margin-top:20px">
-          <div class="stat"><span class="k">On the ballot</span><span class="v">435</span><span class="n">Democratic candidates</span></div>
-          <div class="stat"><span class="k">With a position</span><span class="v">386</span><span class="n">from at least one source</span></div>
-          <div class="stat"><span class="k">No position found</span><span class="v">49</span><span class="n">anywhere we looked</span></div>
+          <div class="stat"><span class="k">On the ballot</span><span class="v">435</span><span class="n">Democratic candidates, plus one marked exception</span></div>
+          <div class="stat"><span class="k">With a position</span><span class="v">387</span><span class="n">from at least one source</span></div>
+          <div class="stat"><span class="k">No position found</span><span class="v">48</span><span class="n">anywhere we looked</span></div>
         </section>
         <div class="methodology" style="margin-top:20px">
           <h2>Three kinds of evidence, not one</h2>
           <p>
             <strong>89</strong> candidates cosponsor H.R.3069, the Medicare for All Act — a recorded
-            legislative act. <strong>256</strong> stated a position on their own campaign site.
+            legislative act. <strong>257</strong> stated a position on their own campaign site.
             <strong>65</strong> more were resolved from news coverage, and <strong>17</strong> by hand
             where the site serves a crawler almost nothing. Where they conflict, the stronger evidence
             wins, and every row in the tracker records which source decided it.
@@ -386,9 +399,9 @@ main { max-width: 860px; }
           <span class="lg"><i class="dot" style="background:#cdd9e8"></i>No position found</span>
         </div>
         <div class="sumrow" style="padding-top:0">
-          <div class="sumrow-track" role="img" aria-label="435 candidates: 162 support Medicare for All or single-payer, 224 do not support it, 49 no position found.">
+          <div class="sumrow-track" role="img" aria-label="435 candidates: 162 support Medicare for All or single-payer, 225 do not support it, 48 no position found.">
             <span class="sumseg seg-supports_m4a" style="width:37.24%"></span>
-            <span class="sumseg seg-does_not_support_m4a" style="width:51.49%"></span>
+            <span class="sumseg seg-does_not_support_m4a" style="width:51.72%"></span>
             <span class="sumseg seg-no_position_found" style="width:10.19%"></span>
           </div>
         </div>
@@ -416,11 +429,11 @@ main { max-width: 860px; }
               </tr>
               <tr>
                 <td><span class="pos pos-does_not_support_m4a">Does not support Medicare for All</span></td>
-                <td class="num">186</td><td class="num">42.8%</td><td class="num">224</td><td class="num">51.5%</td>
+                <td class="num">187</td><td class="num">43.0%</td><td class="num">225</td><td class="num">51.7%</td>
               </tr>
               <tr>
                 <td><span class="pos pos-no_position_found">No position found</span></td>
-                <td class="num">174</td><td class="num">40.0%</td><td class="num">49</td><td class="num">11.3%</td>
+                <td class="num">173</td><td class="num">39.8%</td><td class="num">48</td><td class="num">11.0%</td>
               </tr>
             </tbody>
           </table>
@@ -428,7 +441,7 @@ main { max-width: 860px; }
 
         <div class="prose" style="margin-top:18px">
           <p>
-            <strong>49 candidates have no coverage position we could establish anywhere.</strong> That
+            <strong>48 candidates have no coverage position we could establish anywhere.</strong> That
             is not silence on health — many write at length about cancer research, mental health,
             reproductive care or veterans’ services. They simply take no position on the insurance
             question.
@@ -535,6 +548,14 @@ main { max-width: 860px; }
           <li>
             <strong>A campaign website is not a voting record, and a voting record is not a campaign.</strong>
             The two measures answer different questions, which is why both are reported rather than blended.
+          </li>
+          <li>
+            <strong>One candidate on this list is not a Democrat.</strong> Alaska’s at-large seat has
+            no Democrat contesting it in earnest: the party’s only name on the November ballot is a
+            perennial filer serving a federal sentence, who reached the general with 3.8% of the
+            primary vote after the actual Democratic candidate withdrew and endorsed the independent,
+            Bill Hill. Hill is counted here in his place, marked with an asterisk wherever he appears
+            and recorded with his real party in the data. He is the only such exception.
           </li>
           <li>
             <strong>Louisiana comes from the state, not from Wikipedia.</strong> It holds no

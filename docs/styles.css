@@ -179,6 +179,19 @@ tbody tr.r:hover { background: #f4f9ff; }
 .cook-likely-r { background: #ffdada; color: #ab2b22; border-color: #f8bcbc; }
 .cook-solid-r  { background: #ffc9c9; color: #8f1d17; border-color: #f5a9a9; }
 
+/* Marks a roster entry who is not a Democrat. Deliberately small and quiet:
+   it flags an exception without competing with the candidate's name. */
+.party-mark {
+  color: var(--accent-dark); font-weight: 700; text-decoration: none;
+  margin-left: 3px; font-size: 0.9em; vertical-align: super; line-height: 0;
+}
+.party-mark:hover { text-decoration: underline; }
+.tablenote {
+  margin: 10px 2px 0; font-size: 0.82rem; color: var(--ink-soft); max-width: 78ch;
+  line-height: 1.5;
+}
+.tablenote:empty { display: none; }
+
 /* Finer tier pills, used only inside an expanded row. */
 .tier { display: inline-block; font-size: 0.76rem; font-weight: 600; padding: 2px 9px;
         border-radius: 999px; border: 1px solid var(--line-strong); color: var(--ink-soft); background: #f7fafd; }

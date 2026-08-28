@@ -135,3 +135,24 @@ def test_add_provenance_refreshes_rather_than_duplicating():
     # A different finding from the same source is a separate fact.
     cand.add_provenance("fec_bulk", "https://fec.gov/x", "incumbent")
     assert len(cand.provenance) == 2
+
+
+def test_candidate_is_democratic_unless_told_otherwise():
+    # The roster carries a small number of reviewed exceptions, and they must
+    # be labelled rather than counted silently as Democrats.
+    from dcp.models import Candidate, District, NominationStatus
+    dem = Candidate("Jane Doe", District("TX", 18), NominationStatus.ON_BALLOT)
+    assert dem.party == "Democratic"
+    assert dem.to_dict()["party"] == "Democratic"
+    ind = Candidate("Bill Hill", District("AK", 1, at_large=True),
+                    NominationStatus.ON_BALLOT, party="Independent")
+    assert ind.to_dict()["party"] == "Independent"
+
+
+def test_excluded_status_is_not_on_the_general_ballot():
+    # EXCLUDED means "really on the ballot, deliberately left out", so it must
+    # not be counted, and must not be confused with a candidacy that ended.
+    from dcp.models import NominationStatus
+    assert not NominationStatus.EXCLUDED.on_general_ballot
+    assert NominationStatus.EXCLUDED is not NominationStatus.WITHDREW
+    assert NominationStatus.EXCLUDED is not NominationStatus.LOST_PRIMARY

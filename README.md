@@ -121,6 +121,7 @@ inspecting before paying for the next one.
 | `crawl.py` | Follow a site's own nav to its issues pages |
 | `classify/` | Taxonomy, stance detection, tier assignment with evidence |
 | `adjudicate.py` | Review queue for cases the rules cannot settle |
+| `config/roster_adjustments.yaml` | Reviewed additions/exclusions: who is on the roster at all |
 | `report.py` | Aggregation with honest denominators |
 
 ### Design commitments
@@ -242,6 +243,30 @@ number and email. Only name, party, district and filing date are read into the
 roster. The contact *domain* is used as a lead when looking for a campaign
 site — it is often the campaign's own — but the address itself is never stored,
 and the test fixture is scrubbed.
+
+### Roster adjustments
+
+`config/overrides.yaml` corrects what a candidate's position is.
+`config/roster_adjustments.yaml` corrects who is on the roster at all, and
+`dcp adjust` applies it. Both exist so a judgement made by a person looking at
+the race survives the next `dcp roster` run instead of being silently reverted.
+
+It is for decisions the sources cannot make. A candidate missing or wrongly
+present because a parser misread a page is a bug to fix in the parser.
+
+There is one entry as of this writing. Alaska's at-large seat has no Democrat
+contesting it in earnest: the only Democrat on the November ballot is a
+perennial filer serving a federal sentence who did not campaign, took 3.8% of
+the primary vote, and reached the general only because Matt Schultz withdrew —
+endorsing the independent, Bill Hill, who placed second with 32.1%. Hill is
+included in his place.
+
+That makes `party` a field on `Candidate` rather than an assumption. It
+defaults to `Democratic`; anything else is carried through to the CSV, marked
+with an asterisk in the tracker, and skipped by the FEC cross-check, whose
+filing universe is Democratic. An excluded candidate is marked `excluded` and
+keeps the reason rather than being deleted — they are genuinely on the ballot,
+so recording them as withdrawn or defeated would state something untrue.
 
 ---
 

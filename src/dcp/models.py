@@ -67,6 +67,15 @@ class NominationStatus(str, Enum):
     WITHDREW = "withdrew"
     DISQUALIFIED = "disqualified"
 
+    EXCLUDED = "excluded"
+    """On the November ballot, but deliberately left out of the analysis.
+
+    Distinct from every status above, which describe how a candidacy ended.
+    This one is a reviewed editorial decision about a candidate who really is
+    on the ballot, recorded in config/roster_adjustments.yaml with its reason.
+    Marking them WITHDREW or LOST_PRIMARY would state something untrue about
+    the election."""
+
     @property
     def on_general_ballot(self) -> bool:
         """True for statuses that put a name in front of a November voter."""
@@ -259,13 +268,23 @@ class District:
 
 @dataclass
 class Candidate:
-    """One Democratic candidate on (or headed for) a November general ballot."""
+    """One candidate on (or headed for) a November general ballot.
+
+    Democratic unless ``party`` says otherwise; see that field."""
 
     full_name: str
     district: District
     status: NominationStatus
 
     # --- identity / linkage -------------------------------------------------
+    party: str = "Democratic"
+    """Almost always Democratic, which is what this project measures.
+
+    It is a field rather than an assumption because the roster carries a small
+    number of deliberate exceptions - a non-Democrat included by editorial
+    decision, recorded in config/roster_adjustments.yaml. Those must be
+    labelled wherever they appear rather than silently counted as Democrats."""
+
     fec_candidate_id: Optional[str] = None
     incumbent: bool = False
     wikipedia_url: Optional[str] = None
@@ -410,6 +429,7 @@ class Candidate:
         return {
             "candidate_id": self.candidate_id,
             "full_name": self.full_name,
+            "party": self.party,
             "state": self.district.state,
             "district": self.district.code,
             "ballot_rule": self.district.ballot_rule.value,
