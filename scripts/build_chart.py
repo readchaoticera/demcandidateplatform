@@ -8,8 +8,10 @@ Reads the published dashboard data so the chart cannot drift from the site, and
 renders through headless Chromium so the newsletter's own faces - IBM Plex Serif
 Bold for the title, Inter for everything else - are the ones that come out.
 
-Fonts are fetched from Google Fonts on first run and cached under data/cache;
-both families are OFL-licensed. The output is 2x for print and retina.
+Fonts are fetched from Google Fonts as woff2 on first run and cached under
+data/cache; both families are OFL-licensed. The render asserts that the real
+faces actually loaded, because a failed @font-face is invisible in the output -
+it just quietly draws in a fallback serif. Output is 2x for print and retina.
 """
 
 from __future__ import annotations
@@ -24,10 +26,21 @@ from pathlib import Path
 
 FONT_CACHE = Path("data/cache/fonts")
 FACES = {
-    "plexserif700.ttf": ("IBM Plex Serif", "700"),
-    "inter400.ttf": ("Inter", "400"),
-    "inter600.ttf": ("Inter", "600"),
+    "plexserif700.woff2": ("IBM Plex Serif", "700"),
+    "inter400.woff2": ("Inter", "400"),
+    "inter600.woff2": ("Inter", "600"),
 }
+#: Google Fonts serves a format per user-agent, and gets it right only if you
+#: tell the truth. An archaic UA returns EOT - Internet Explorer's format,
+#: which Chromium cannot load at all, so every @font-face fails silently and
+#: the page renders in fallback serif and sans that pass for the real thing at
+#: a glance. A current Chrome UA returns woff2, which Chromium reads natively.
+BROWSER_UA = ("Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) "
+              "Chrome/124.0.0.0 Safari/537.36")
+
+#: First four bytes of a woff2 file. Checked on every fetch, because the
+#: failure this guards against is invisible in the output.
+WOFF2_MAGIC = b"wOF2"
 #: Bars carry the raw count of supporters, scaled so the largest group fills
 #: the zone. Counts, not shares: the chart answers "how many", and the field
 #: sizes that would turn these into rates are given in the footnote instead.
@@ -51,26 +64,50 @@ RATING_COLORS = {
 FALLBACK_COLOR = "#419eff"
 
 
+def _latin_subset_url(css: str) -> str | None:
+    """The woff2 URL for the Latin subset of a Google Fonts css2 response.
+
+    css2 returns one @font-face per Unicode subset - Cyrillic, Greek,
+    Vietnamese, Latin-Extended, Latin - and Latin is last, not first. Taking
+    the first URL fetches a face that loads cleanly, satisfies
+    document.fonts.check(), and contains no Latin glyphs at all, so the page
+    renders in the fallback family while every signal says the font is fine.
+    Pick the block whose range covers Basic Latin instead of trusting order.
+    """
+    for block in re.findall(r"@font-face\s*\{(.*?)\}", css, re.S):
+        rng = re.search(r"unicode-range:\s*([^;]+);", block)
+        url = re.search(r"url\((https://[^)]+\.woff2)\)", block)
+        if url and rng and "U+0000-00FF" in rng.group(1).replace(" ", ""):
+            return url.group(1)
+    # No subsetting at all (a single unranged face) is still fine.
+    single = re.findall(r"@font-face\s*\{(.*?)\}", css, re.S)
+    if len(single) == 1:
+        url = re.search(r"url\((https://[^)]+\.woff2)\)", single[0])
+        return url.group(1) if url else None
+    return None
+
+
 def _fetch_fonts() -> dict[str, str]:
     """Return {filename: base64}, downloading anything not already cached."""
     FONT_CACHE.mkdir(parents=True, exist_ok=True)
-    # An old user-agent makes Google Fonts serve TrueType rather than woff2,
-    # which Chromium takes from a data: URI without further ceremony.
-    ua = "Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1)"
     out: dict[str, str] = {}
     for name, (family, weight) in FACES.items():
         path = FONT_CACHE / name
-        if not path.exists():
-            css_url = (f"https://fonts.googleapis.com/css?family="
-                       f"{family.replace(' ', '+')}:{weight}")
-            css = subprocess.run(["curl", "-sS", "-m", "40", "-A", ua, css_url],
+        if not path.exists() or path.read_bytes()[:4] != WOFF2_MAGIC:
+            css_url = (f"https://fonts.googleapis.com/css2?family="
+                       f"{family.replace(' ', '+')}:wght@{weight}")
+            css = subprocess.run(["curl", "-sS", "-m", "40", "-A", BROWSER_UA, css_url],
                                  capture_output=True, text=True, check=True).stdout
-            match = re.search(r"url\(([^)]+)\)", css)
-            if not match:
-                raise SystemExit(f"no font URL for {family} {weight}; is the network up?")
-            subprocess.run(["curl", "-sS", "-m", "60", "-o", str(path), match.group(1)],
-                           check=True)
-        out[name] = base64.b64encode(path.read_bytes()).decode()
+            url = _latin_subset_url(css)
+            if not url:
+                raise SystemExit(f"no Latin woff2 for {family} {weight}; is the network up?")
+            subprocess.run(["curl", "-sS", "-m", "60", "-A", BROWSER_UA,
+                            "-o", str(path), url], check=True)
+        blob = path.read_bytes()
+        if blob[:4] != WOFF2_MAGIC:
+            raise SystemExit(f"{path} is not woff2 (got {blob[:4]!r}); refusing to "
+                             "render in a fallback face")
+        out[name] = base64.b64encode(blob).decode()
     return out
 
 
@@ -111,17 +148,17 @@ def render_html(rows: list[tuple[str, int, int]], fonts: dict[str, str],
 
     face = lambda fam, wt, key: (
         f"@font-face{{font-family:'{fam}';font-weight:{wt};"
-        f"src:url(data:font/ttf;base64,{fonts[key]}) format('truetype');}}"
+        f"src:url(data:font/woff2;base64,{fonts[key]}) format('woff2');}}"
     )
     return f"""<!doctype html><html><head><meta charset="utf-8"><style>
-{face('Plex', 700, 'plexserif700.ttf')}
-{face('Inter', 400, 'inter400.ttf')}
-{face('Inter', 600, 'inter600.ttf')}
+{face('Plex', 700, 'plexserif700.woff2')}
+{face('Inter', 400, 'inter400.woff2')}
+{face('Inter', 600, 'inter600.woff2')}
 *{{margin:0;padding:0;box-sizing:border-box}}
 body{{width:1520px;background:#fff;font-family:'Inter',sans-serif;color:#111418;
      padding:52px 60px 34px;-webkit-font-smoothing:antialiased}}
-h1{{font-family:'Plex',serif;font-weight:700;font-size:47px;letter-spacing:-.45px;line-height:1.1}}
-.sub{{font-size:23px;color:#5b6675;margin-top:15px;line-height:1.48;max-width:1330px}}
+h1{{font-family:'Plex',serif;font-weight:700;font-size:44px;letter-spacing:-.45px;line-height:1.1}}
+.sub{{font-size:22px;color:#5b6675;margin-top:15px;line-height:1.48;max-width:1400px}}
 .chart{{margin-top:44px;border-left:2px solid #e6ecf3;margin-left:200px}}
 .row{{display:flex;align-items:center;height:66px;margin-left:-186px}}
 .cat{{width:200px;text-align:right;padding-right:24px;font-size:27px;font-weight:600;flex:none}}
@@ -178,6 +215,40 @@ def main() -> int:
                                 device_scale_factor=args.scale)
         page.goto(tmp.resolve().as_uri(), wait_until="networkidle")
         page.wait_for_timeout(600)
+
+        # A failed @font-face does not error - it silently draws in a fallback
+        # face that passes for the real thing at a glance, which is exactly how
+        # this shipped in EOT for several revisions. Ask the page directly, and
+        # confirm the title is measurably not the generic serif.
+        loaded = page.evaluate("""() => {
+            const want = [["700 44px Plex", 'Plex'], ["400 22px Inter", 'Inter'],
+                          ["600 27px Inter", 'Inter']];
+            const missing = want.filter(([f]) => !document.fonts.check(f)).map(([,n]) => n);
+            const probe = (family) => {
+                const s = document.createElement('span');
+                s.textContent = 'Democrats Backing Medicare for All';
+                s.style.cssText = 'position:absolute;visibility:hidden;white-space:nowrap;'
+                                + 'font:700 44px ' + family;
+                document.body.appendChild(s);
+                const w = s.getBoundingClientRect().width;
+                s.remove();
+                return w;
+            };
+            const h1 = document.querySelector('h1');
+            const lines = Math.round(h1.getBoundingClientRect().height
+                          / parseFloat(getComputedStyle(h1).lineHeight));
+            return {missing, lines, plex: probe("'Plex',serif"), fallback: probe('serif')};
+        }""")
+        if loaded["missing"]:
+            raise SystemExit("font(s) failed to load: " + ", ".join(sorted(set(loaded["missing"])))) 
+        if abs(loaded["plex"] - loaded["fallback"]) < 1.0:
+            raise SystemExit("the title measures identically to the generic serif; "
+                             "IBM Plex Serif did not take effect")
+        if loaded["lines"] > 1:
+            print(f"note: the title wraps to {loaded['lines']} lines at this size",
+                  file=sys.stderr)
+        print(f"fonts ok: title sets {loaded['plex']:.0f}px wide in IBM Plex Serif Bold "
+              f"vs {loaded['fallback']:.0f}px in the fallback serif")
         page.set_viewport_size({"width": 1520, "height": page.evaluate("document.body.scrollHeight")})
         page.wait_for_timeout(200)
         page.screenshot(path=str(args.out))
