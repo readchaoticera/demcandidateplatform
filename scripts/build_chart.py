@@ -28,9 +28,9 @@ FACES = {
     "inter400.ttf": ("Inter", "400"),
     "inter600.ttf": ("Inter", "600"),
 }
-#: Bars are scaled against this rather than 100%, so the field's actual range
-#: fills the width instead of hugging the axis.
-MAX_PCT = 65.0
+#: Bars carry the raw count of supporters, scaled so the largest group fills
+#: the zone. Counts, not shares: the chart answers "how many", and the field
+#: sizes that would turn these into rates are given in the footnote instead.
 BAR_ZONE_PX = 830
 ACCENT = "#419eff"
 
@@ -77,24 +77,20 @@ def tally(data: dict) -> list[tuple[str, int, int]]:
 
 def render_html(rows: list[tuple[str, int, int]], fonts: dict[str, str],
                 as_of: str, ratings_as_of: str) -> str:
+    top = max(sup for _, _, sup in rows) or 1
     bars = []
     for label, n, sup in rows:
-        pct = 100 * sup / n
-        # A true zero draws no bar. A hairline stub would read as a small value.
-        width = round(pct / MAX_PCT * BAR_ZONE_PX)
+        # A true zero draws no bar. A hairline stub would read as a small count.
+        width = round(sup / top * BAR_ZONE_PX)
         bars.append(
-            f'<div class="row"><div class="cat">{label}'
-            f'<span class="n">{n} Dem{"s" if n != 1 else ""}</span></div>'
+            f'<div class="row"><div class="cat">{label}</div>'
             f'<div class="bar" style="width:{width}px"></div>'
-            f'<div class="val"><b>{pct:.1f}%</b>'
-            f'<span class="of">{sup} of {n}</span></div></div>'
+            f'<div class="val"><b>{sup}</b></div></div>'
         )
-    small = [f"{r} ({n})" for r, n, _ in sorted(rows, key=lambda x: x[1]) if n <= 20]
-    small_note = (
-        f"{'Four' if len(small) == 4 else str(len(small))} groups are small &mdash; "
-        + ", ".join(small[:-1]) + f" and {small[-1]}" +
-        " &mdash; so read those shares with their denominators. "
-    ) if len(small) > 1 else ""
+    # The bars are counts, so the size of each field is the context that makes
+    # them readable: 48 out of 188 Solid R seats is not 48 out of 20.
+    field = ", ".join(f"{r} {n}" for r, n, _ in rows)
+    small_note = f"Democratic candidates in each group: {field}. "
 
     face = lambda fam, wt, key: (
         f"@font-face{{font-family:'{fam}';font-weight:{wt};"
@@ -111,17 +107,15 @@ h1{{font-family:'Plex',serif;font-weight:700;font-size:43px;letter-spacing:-.4px
 .sub{{font-size:19.5px;color:#5b6675;margin-top:13px;line-height:1.5;max-width:1260px}}
 .chart{{margin-top:40px;border-left:2px solid #e6ecf3;margin-left:186px}}
 .row{{display:flex;align-items:center;height:80px;margin-left:-186px}}
-.cat{{width:186px;text-align:right;padding-right:22px;font-size:22px;font-weight:600;flex:none}}
-.cat .n{{display:block;font-size:15px;font-weight:400;color:#8792a2;margin-top:3px}}
+.cat{{width:186px;text-align:right;padding-right:22px;font-size:23px;font-weight:600;flex:none}}
 .bar{{height:44px;background:{ACCENT};border-radius:0 5px 5px 0;flex:none}}
-.val{{display:flex;align-items:baseline;gap:11px;padding-left:16px;white-space:nowrap}}
-.val b{{font-size:26px;font-weight:600}}
-.val .of{{font-size:16.5px;color:#8792a2}}
+.val{{padding-left:16px;white-space:nowrap}}
+.val b{{font-size:27px;font-weight:600}}
 .foot{{margin-top:30px;padding-top:18px;border-top:1px solid #e6ecf3;
       font-size:15.5px;color:#5b6675;line-height:1.55}}
 </style></head><body>
-<h1>Democratic Support for Medicare for All, by District Competitiveness</h1>
-<p class="sub">Share of Democratic candidates on the November 2026 U.S. House ballot who back
+<h1>Democrats Backing Medicare for All, by District Competitiveness</h1>
+<p class="sub">Number of Democratic candidates on the November 2026 U.S. House ballot who back
 Medicare for All or single-payer &mdash; counting cosponsors of H.R.3069 alongside those who say so
 publicly &mdash; grouped by The Cook Political Report&rsquo;s rating of the seat.</p>
 <div class="chart">{''.join(bars)}</div>
