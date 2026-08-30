@@ -221,34 +221,61 @@ def main() -> int:
         # this shipped in EOT for several revisions. Ask the page directly, and
         # confirm the title is measurably not the generic serif.
         loaded = page.evaluate("""() => {
-            const want = [["700 44px Plex", 'Plex'], ["400 22px Inter", 'Inter'],
-                          ["600 27px Inter", 'Inter']];
-            const missing = want.filter(([f]) => !document.fonts.check(f)).map(([,n]) => n);
-            const probe = (family) => {
+            // A long probe string so the width gap is far larger than any
+            // sub-pixel noise: Inter SemiBold and the fallback sans are close
+            // enough at one line that a short sample proves little.
+            const SAMPLE = ('Democrats Backing Medicare for All 107 Solid D ').repeat(6);
+            const probe = (font) => {
                 const s = document.createElement('span');
-                s.textContent = 'Democrats Backing Medicare for All';
-                s.style.cssText = 'position:absolute;visibility:hidden;white-space:nowrap;'
-                                + 'font:700 44px ' + family;
+                s.textContent = SAMPLE;
+                s.style.cssText = 'position:absolute;visibility:hidden;white-space:nowrap;font:' + font;
                 document.body.appendChild(s);
                 const w = s.getBoundingClientRect().width;
                 s.remove();
                 return w;
             };
+            // Each face is measured against its own generic fallback. Equal
+            // widths mean the named family never took effect - which is what a
+            // face that loads but carries no Latin glyph looks like.
+            const faces = [
+                ["IBM Plex Serif Bold", "700 44px 'Plex',serif",  "700 44px serif"],
+                ["Inter Regular",       "400 22px Inter,sans-serif", "400 22px sans-serif"],
+                ["Inter SemiBold 27",   "600 27px Inter,sans-serif", "600 27px sans-serif"],
+                ["Inter SemiBold 33",   "600 33px Inter,sans-serif", "600 33px sans-serif"],
+            ].map(([name, real, fb]) => ({name, real: probe(real), fb: probe(fb)}));
+
+            const declared = [["700 44px Plex", 'Plex'], ["400 22px Inter", 'Inter'],
+                              ["600 27px Inter", 'Inter']];
+            const missing = declared.filter(([f]) => !document.fonts.check(f)).map(([,n]) => n);
+            // Every visible element should be asking for one of the two families.
+            const used = {};
+            for (const [name, sel] of [["title","h1"], ["subtitle",".sub"], ["category",".cat"],
+                                       ["value",".val b"], ["footer",".foot"]])
+                used[name] = getComputedStyle(document.querySelector(sel)).fontFamily;
+
             const h1 = document.querySelector('h1');
             const lines = Math.round(h1.getBoundingClientRect().height
                           / parseFloat(getComputedStyle(h1).lineHeight));
-            return {missing, lines, plex: probe("'Plex',serif"), fallback: probe('serif')};
+            return {missing, faces, used, lines};
         }""")
         if loaded["missing"]:
-            raise SystemExit("font(s) failed to load: " + ", ".join(sorted(set(loaded["missing"])))) 
-        if abs(loaded["plex"] - loaded["fallback"]) < 1.0:
-            raise SystemExit("the title measures identically to the generic serif; "
-                             "IBM Plex Serif did not take effect")
+            raise SystemExit("font(s) failed to load: " + ", ".join(sorted(set(loaded["missing"]))))
+        for face in loaded["faces"]:
+            if abs(face["real"] - face["fb"]) < 2.0:
+                raise SystemExit(
+                    f"{face['name']} measures the same as its generic fallback "
+                    f"({face['real']:.1f}px vs {face['fb']:.1f}px); the face did not take "
+                    "effect - most likely the wrong Unicode subset was fetched")
+        for name, family in loaded["used"].items():
+            head = family.split(",")[0].strip().strip("'\"")
+            if head not in ("Plex", "Inter"):
+                raise SystemExit(f"the {name} asks for {family!r}, not Plex or Inter")
         if loaded["lines"] > 1:
             print(f"note: the title wraps to {loaded['lines']} lines at this size",
                   file=sys.stderr)
-        print(f"fonts ok: title sets {loaded['plex']:.0f}px wide in IBM Plex Serif Bold "
-              f"vs {loaded['fallback']:.0f}px in the fallback serif")
+        print("fonts ok: " + " | ".join(
+            f"{f['name']} {f['real']:.0f}px vs fallback {f['fb']:.0f}px"
+            for f in loaded["faces"]))
         page.set_viewport_size({"width": 1520, "height": page.evaluate("document.body.scrollHeight")})
         page.wait_for_timeout(200)
         page.screenshot(path=str(args.out))
