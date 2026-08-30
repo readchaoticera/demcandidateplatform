@@ -55,6 +55,25 @@ BASIS_LABELS = {
 }
 
 
+def _exception_note(candidate: dict) -> str:
+    """Why this row is an exception, or "" for the rows that are not.
+
+    Two kinds so far and no reason to expect a third shape: someone who is not
+    a Democrat, and someone in a seat that is not one of the 435. Both are
+    reviewed decisions from config/roster_adjustments.yaml, and both get the
+    same asterisk, so the page builds its footnote from this one field rather
+    than knowing about either case.
+    """
+    notes = []
+    party = candidate.get("party", "Democratic")
+    if party != "Democratic":
+        notes.append(f"runs as {party}, not as a Democrat")
+    if candidate.get("delegate"):
+        notes.append("is running for a non-voting delegate seat, "
+                     "not one of the 435 voting districts")
+    return "; ".join(notes)
+
+
 def trim(candidate: dict) -> dict:
     """One dashboard row. Evidence is reduced to the single strongest quote."""
     evidence = candidate.get("m4a_evidence") or []
@@ -80,10 +99,11 @@ def trim(candidate: dict) -> dict:
         "cf": candidate.get("conflicts") or [],
         "rule": candidate.get("ballot_rule", "party_nominee"),
         "cr": candidate.get("cook_rating") or "",
-        # Empty for the 434 Democrats; set only for the deliberate exceptions,
+        # Empty for the ordinary rows; set only for the deliberate exceptions,
         # which the table marks with an asterisk rather than counting silently.
         "p": "" if candidate.get("party", "Democratic") == "Democratic"
              else candidate["party"],
+        "x": _exception_note(candidate),
     }
 
 

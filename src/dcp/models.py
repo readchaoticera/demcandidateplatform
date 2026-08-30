@@ -257,6 +257,15 @@ class District:
     ballot_rule: BallotRule = BallotRule.PARTY_NOMINEE
     at_large: bool = False
 
+    delegate: bool = False
+    """A non-voting House seat: DC and the five territories.
+
+    Not one of the 435, and deliberately not added to the apportionment tables
+    that define them - ``all_districts()`` and the FEC and ratings sweeps all
+    key off those, and a delegate seat appearing in them would corrupt every
+    coverage figure that assumes 435. A delegate reaches the roster only
+    through config/roster_adjustments.yaml, and is marked wherever counted."""
+
     @property
     def code(self) -> str:
         """Canonical district id, e.g. "CA-12", "DE-AL"."""
@@ -469,6 +478,7 @@ class Candidate:
             "status": self.status.value,
             "on_general_ballot": self.on_general_ballot,
             "incumbent": self.incumbent,
+            "delegate": self.district.delegate,
             "cook_rating": self.cook_rating,
             "cook_rating_as_of": self.cook_rating_as_of,
             "fec_candidate_id": self.fec_candidate_id,

@@ -217,3 +217,25 @@ def test_demotion_leaves_lower_tiers_untouched():
     for tier in (M4ATier.PUBLIC_OPTION, M4ATier.ACA_STRENGTHEN,
                  M4ATier.NO_COVERAGE_POSITION):
         assert _member(m4a_tier=tier).resolved_tier is tier
+
+
+def test_delegate_seat_is_marked_and_round_trips():
+    # A non-voting seat is not one of the 435 and must be labelled wherever it
+    # is counted, the same way a non-Democrat is.
+    from dcp.models import Candidate, District, NominationStatus
+    d = District("DC", 1, at_large=True, delegate=True)
+    assert d.code == "DC-AL"
+    c = Candidate("Robert White", d, NominationStatus.ON_BALLOT)
+    assert c.to_dict()["delegate"] is True
+    assert Candidate("Jane Doe", District("TX", 18),
+                     NominationStatus.ON_BALLOT).to_dict()["delegate"] is False
+
+
+def test_delegate_seats_stay_out_of_the_apportionment_tables():
+    # all_districts() defines the 435, and the FEC and ratings sweeps key off
+    # it. A delegate seat appearing there would corrupt every coverage figure.
+    from dcp.statefacts import all_districts, SEAT_COUNTS
+    codes = {d.code for d in all_districts()}
+    assert len(codes) == 435
+    assert "DC-AL" not in codes
+    assert "DC" not in SEAT_COUNTS

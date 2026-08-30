@@ -501,6 +501,7 @@ def cmd_adjust(args: argparse.Namespace) -> int:
                     1 if at_large else int(seat),
                     ballot_rule=statefacts.ballot_rule(state),
                     at_large=at_large,
+                    delegate=bool(entry.get("delegate")),
                 ),
                 status=NominationStatus.ON_BALLOT,
             )
@@ -859,7 +860,8 @@ def _load_roster() -> Roster:
         at_large = code.endswith("-AL")
         number = 1 if at_large else int(code.split("-")[1])
         district = District(
-            state, number, ballot_rule=statefacts.ballot_rule(state), at_large=at_large
+            state, number, ballot_rule=statefacts.ballot_rule(state),
+            at_large=at_large, delegate=row.get("delegate", False),
         )
         cand = Candidate(
             full_name=row["full_name"],

@@ -36,3 +36,16 @@ include:
       show no one.
     reviewed_by: kyle@kyletharp.com
     reviewed_on: 2026-08-28
+
+  - name: Robert White
+    district: DC-AL
+    delegate: true
+    campaign_url: https://www.joinrobertwhite.com/
+    reason: >-
+      The District of Columbia's non-voting delegate seat, which is not one of
+      the 435 and so is not in the apportionment tables the rest of the
+      pipeline sweeps. White is the Democratic nominee, having taken 63% of the
+      June primary to succeed Eleanor Holmes Norton, who is retiring after 18
+      terms. Included on request and marked as a delegate wherever counted.
+    reviewed_by: kyle@kyletharp.com
+    reviewed_on: 2026-08-28

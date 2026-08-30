@@ -74,7 +74,7 @@
         </table>
       </div>
       <div class="empty" id="empty" hidden></div>
-      <p class="tablenote" id="not-a-democrat"></p>
+      <p class="tablenote" id="exceptions"></p>
 
       <section class="methodology">
         <h2>How to read this</h2>
@@ -215,9 +215,9 @@
         }
 
         function detailHTML(r) {
-          var partyNote = r.p
-            ? '<div class="flag">Runs as ' + esc(r.p) + ', not as a Democrat. ' +
-              'Included by review; see the note under the table.</div>'
+          var partyNote = r.x
+            ? '<div class="flag">This candidate ' + esc(r.x) +
+              '. Included by review; see the note under the table.</div>'
             : "";
           var o = '<div class="dbody">' + partyNote;
           if (r.q) {
@@ -272,8 +272,8 @@
             tr.setAttribute("aria-expanded", "false");
             tr.innerHTML =
               '<td><span class="cand-name">' + esc(r.n) + "</span>" +
-                (r.p ? '<a class="party-mark" href="#not-a-democrat" title="' + esc(r.p) +
-                       ' \u2014 not a Democrat; see note below">*</a>' : "") + "</td>" +
+                (r.x ? '<a class="party-mark" href="#exceptions" title="' + esc(r.x) +
+                       '">*</a>' : "") + "</td>" +
               '<td class="dist">' + esc(r.d) +
                 '<span class="show-s">' + ratingPill(r.cr) + "</span></td>" +
               '<td class="hide-s">' + ratingPill(r.cr) + "</td>" +
@@ -421,13 +421,11 @@
               ". " + d.summary.unresolved_seats + " seats are excluded because their field was not yet settled: " +
               "Massachusetts, New Hampshire, Rhode Island and Delaware had not voted, and Louisiana holds no nominating primary in 2026." +
               (d.rating_as_of ? " Cook Political Report ratings as of " + d.rating_as_of + "." : "");
-            var exceptions = rows.filter(function (r) { return r.p; });
+            var exceptions = rows.filter(function (r) { return r.x; });
             if (exceptions.length) {
-              $("not-a-democrat").innerHTML = "* " + exceptions.map(function (r) {
-                return "<strong>" + esc(r.n) + "</strong> (" + esc(r.d) + ") runs as " +
-                       esc(r.p) + ", not as a Democrat";
-              }).join("; ") + ". Included by review because the seat has no Democratic " +
-              "candidate contesting it in earnest, and marked wherever counted.";
+              $("exceptions").innerHTML = "* " + exceptions.map(function (r) {
+                return "<strong>" + esc(r.n) + "</strong> (" + esc(r.d) + ") " + esc(r.x);
+              }).join(". ") + ". Each was added by review and is marked wherever counted.";
             }
             render();
           })
