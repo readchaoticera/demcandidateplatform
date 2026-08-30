@@ -236,3 +236,34 @@ overrides:
       the classifier read no coverage position.
     reviewed_by: kyle@kyletharp.com
     reviewed_on: 2026-08-28
+
+  - name: Victoria Broderick
+    district: TN-04
+    tier: explicit_m4a
+    source: https://nashvillebanner.com/2026/07/16/victoria-broderick-congress-tennessee-district-4/
+    note: >-
+      States it in her own words, twice, in the Nashville Banner's candidate
+      questionnaire. Asked what policies she would support to alleviate
+      cost-of-living increases: "Medicare for All." Asked whether the federal
+      government should spend more or less on health care benefits: "Medicare
+      for All would address the needs of healthcare needs for taxpayers." Her
+      own site goes only as far as "Universal Healthcare is a must", which
+      names no mechanism and so does not reach the Medicare for All tier on
+      its own.
+    reviewed_by: kyle@kyletharp.com
+    reviewed_on: 2026-08-28
+
+  - name: Mary Gay Scanlon
+    district: PA-05
+    tier: aca_strengthen
+    source: https://www.scanlonforcongress.com/about
+    note: >-
+      Does not support Medicare for All. A sitting member since 2018 and not a
+      cosponsor of H.R.3069 in the current Congress; the Pennsylvania Democrats
+      on that roll are Brendan Boyle, Chris Deluzio and Summer Lee. Her
+      campaign site publishes no issues page at all - a homepage of 1,526
+      characters with no navigable links, and an about page that never touches
+      coverage - which is why the classifier found no position rather than a
+      contrary one.
+    reviewed_by: kyle@kyletharp.com
+    reviewed_on: 2026-08-28

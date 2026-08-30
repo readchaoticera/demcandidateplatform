@@ -280,3 +280,38 @@ def test_universal_aspiration_does_not_outrank_a_named_mechanism():
     # A candidate who names Medicare for All must still read as Medicare for All.
     assert tier("I will guarantee health care for every American by passing "
                 "Medicare for All.") is M4ATier.EXPLICIT_M4A
+
+
+def test_bare_universal_healthcare_is_a_stated_position():
+    # "Universal Healthcare is a must" names a coverage goal with no verb
+    # phrase and no mechanism. aca.universal_aspiration requires a verb plus
+    # "every/all", so this shape fell through every rule and the candidate read
+    # as stating no coverage position at all - a different and wrong claim.
+    from dcp.classify.classifier import classify_text
+    from dcp.models import M4ATier
+    pad = "Our campaign is about working families and this district. " * 4
+    res = classify_text(pad + "Universal Healthcare is a must. " + pad,
+                        source_url="https://example.org/issues")
+    assert res.tier is M4ATier.ACA_STRENGTHEN
+    assert "aca.universal_goal" in res.matched_rules
+
+
+def test_universal_healthcare_goal_stays_below_single_payer():
+    # A goal without a mechanism is not single-payer. A candidate who names one
+    # is caught by the higher rules, and the ladder prefers them.
+    from dcp.classify.classifier import classify_text
+    from dcp.models import M4ATier
+    pad = "Our campaign is about working families and this district. " * 4
+    res = classify_text(pad + "Universal Healthcare is a must. I back Medicare for All. " + pad,
+                        source_url="https://example.org/issues")
+    assert res.tier is M4ATier.EXPLICIT_M4A
+
+
+def test_universal_healthcare_does_not_count_when_negated_or_attributed():
+    from dcp.classify.classifier import classify_text
+    from dcp.models import M4ATier
+    pad = "Our campaign is about working families and this district. " * 4
+    for sentence in ("I do not support universal healthcare. ",
+                     "My opponent wants universal healthcare paid for by your taxes. "):
+        res = classify_text(pad + sentence + pad, source_url="https://example.org/issues")
+        assert res.tier is M4ATier.NO_COVERAGE_POSITION, sentence

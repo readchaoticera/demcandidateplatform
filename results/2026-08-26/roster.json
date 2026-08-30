@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-30T13:35:39.214600",
+  "generated_at": "2026-08-30T14:08:16.861521",
   "candidate_count": 447,
   "on_ballot_count": 435,
   "coverage_gaps": [
@@ -62,7 +62,7 @@
         {
           "source": "human_review",
           "url": "kyle@kyletharp.com",
-          "retrieved_at": "2026-08-30T13:35:39.220759",
+          "retrieved_at": "2026-08-30T14:08:16.866906",
           "note": "Not a Democrat, and marked as such wherever he appears. Included because he is the candidate the Democratic side is behind in AK-AL: he placed second in the top-four primary with 32.1%, Matt Schultz withdrew and endorsed him, and the largest federal employee union endorsed him alongside Mary Peltola. With Hafner excluded the district would otherwise show no one."
         },
         {
@@ -130,7 +130,7 @@
         {
           "source": "human_review",
           "url": "kyle@kyletharp.com",
-          "retrieved_at": "2026-08-30T13:35:39.220733",
+          "retrieved_at": "2026-08-30T14:08:16.866883",
           "note": "On the ballot as a Democrat, but not a candidate in any meaningful sense: a perennial filer serving a 20-year federal sentence, who did not campaign, drew 3.8% of the primary vote, and reached the general only because Matt Schultz withdrew. Listing him as the Democratic option in AK-AL misrepresents the race."
         }
       ],
@@ -348,6 +348,12 @@
           "url": "https://en.wikipedia.org/wiki/2026_United_States_House_of_Representatives_election_ratings",
           "retrieved_at": "2026-08-28T16:56:24.182295",
           "note": "Likely R as of Aug. 25, 2026"
+        },
+        {
+          "source": "congress",
+          "url": "https://www.govtrack.us/congress/bills/119/hr3069/cosponsors",
+          "retrieved_at": "2026-08-30T14:08:16.273086",
+          "note": "Sept. 3, 2025 of HR3069, Medicare for All Act (119th Congress)"
         }
       ],
       "conflicts": []
@@ -1088,7 +1094,7 @@
         {
           "source": "human_review",
           "url": "https://www.jonathannezforaz.com/issues",
-          "retrieved_at": "2026-08-30T13:35:29.882777",
+          "retrieved_at": "2026-08-30T14:08:16.593395",
           "note": "reviewed by kyle@kyletharp.com on 2026-08-28"
         },
         {
@@ -1164,6 +1170,12 @@
           "url": "https://en.wikipedia.org/wiki/2026_United_States_House_of_Representatives_election_ratings",
           "retrieved_at": "2026-08-28T16:08:59.374785",
           "note": "Solid D as of June 30, 2025"
+        },
+        {
+          "source": "congress",
+          "url": "https://www.govtrack.us/congress/bills/119/hr3069/cosponsors",
+          "retrieved_at": "2026-08-30T14:08:16.273254",
+          "note": "Original Cosponsor of HR3069, Medicare for All Act (119th Congress)"
         }
       ],
       "conflicts": [
@@ -1442,6 +1454,12 @@
           "url": "https://en.wikipedia.org/wiki/2026_United_States_House_of_Representatives_election_ratings",
           "retrieved_at": "2026-08-28T16:08:59.374801",
           "note": "Solid D as of June 30, 2025"
+        },
+        {
+          "source": "congress",
+          "url": "https://www.govtrack.us/congress/bills/119/hr3069/cosponsors",
+          "retrieved_at": "2026-08-30T14:08:16.273352",
+          "note": "Nov. 20, 2025 of HR3069, Medicare for All Act (119th Congress)"
         }
       ],
       "conflicts": []
@@ -1717,6 +1735,12 @@
           "url": "https://en.wikipedia.org/wiki/2026_United_States_House_of_Representatives_election_ratings",
           "retrieved_at": "2026-08-28T16:08:59.374815",
           "note": "Solid D as of November 5, 2025"
+        },
+        {
+          "source": "congress",
+          "url": "https://www.govtrack.us/congress/bills/119/hr3069/cosponsors",
+          "retrieved_at": "2026-08-30T14:08:16.273481",
+          "note": "Original Cosponsor of HR3069, Medicare for All Act (119th Congress)"
         }
       ],
       "conflicts": []
@@ -1953,6 +1977,12 @@
           "url": "https://en.wikipedia.org/wiki/2026_United_States_House_of_Representatives_election_ratings",
           "retrieved_at": "2026-08-28T16:08:59.374825",
           "note": "Solid D as of November 5, 2025"
+        },
+        {
+          "source": "congress",
+          "url": "https://www.govtrack.us/congress/bills/119/hr3069/cosponsors",
+          "retrieved_at": "2026-08-30T14:08:16.273650",
+          "note": "Original Cosponsor of HR3069, Medicare for All Act (119th Congress)"
         }
       ],
       "conflicts": []
@@ -2082,7 +2112,7 @@
         {
           "source": "human_review",
           "url": "https://pro.stateaffairs.com/ca/news/richard-pan-congressional-candidate-ambigious-on-universal-healthcare",
-          "retrieved_at": "2026-08-30T13:35:29.882786",
+          "retrieved_at": "2026-08-30T14:08:16.593402",
           "note": "reviewed by kyle@kyletharp.com on 2026-08-28"
         },
         {
@@ -2318,6 +2348,12 @@
           "url": "https://en.wikipedia.org/wiki/2026_United_States_House_of_Representatives_election_ratings",
           "retrieved_at": "2026-08-28T16:08:59.374839",
           "note": "Solid D as of November 5, 2025"
+        },
+        {
+          "source": "congress",
+          "url": "https://www.govtrack.us/congress/bills/119/hr3069/cosponsors",
+          "retrieved_at": "2026-08-30T14:08:16.273972",
+          "note": "Original Cosponsor of HR3069, Medicare for All Act (119th Congress)"
         }
       ],
       "conflicts": []
@@ -2386,6 +2422,12 @@
           "url": "https://en.wikipedia.org/wiki/2026_United_States_House_of_Representatives_election_ratings",
           "retrieved_at": "2026-08-28T16:08:59.374846",
           "note": "Solid D as of November 5, 2025"
+        },
+        {
+          "source": "congress",
+          "url": "https://www.govtrack.us/congress/bills/119/hr3069/cosponsors",
+          "retrieved_at": "2026-08-30T14:08:16.273980",
+          "note": "Original Cosponsor of HR3069, Medicare for All Act (119th Congress)"
         }
       ],
       "conflicts": []
@@ -2440,6 +2482,12 @@
           "url": "https://en.wikipedia.org/wiki/2026_United_States_House_of_Representatives_election_ratings",
           "retrieved_at": "2026-08-28T16:08:59.374849",
           "note": "Solid D as of November 5, 2025"
+        },
+        {
+          "source": "congress",
+          "url": "https://www.govtrack.us/congress/bills/119/hr3069/cosponsors",
+          "retrieved_at": "2026-08-30T14:08:16.273988",
+          "note": "Original Cosponsor of HR3069, Medicare for All Act (119th Congress)"
         }
       ],
       "conflicts": []
@@ -2496,7 +2544,7 @@
         {
           "source": "human_review",
           "url": "https://ballotpedia.org/Connie_Chan",
-          "retrieved_at": "2026-08-30T13:35:29.882803",
+          "retrieved_at": "2026-08-30T14:08:16.593421",
           "note": "reviewed by kyle@kyletharp.com on 2026-08-28"
         },
         {
@@ -2701,6 +2749,12 @@
           "url": "https://en.wikipedia.org/wiki/2026_United_States_House_of_Representatives_election_ratings",
           "retrieved_at": "2026-08-28T16:08:59.374858",
           "note": "Solid D as of November 5, 2025"
+        },
+        {
+          "source": "congress",
+          "url": "https://www.govtrack.us/congress/bills/119/hr3069/cosponsors",
+          "retrieved_at": "2026-08-30T14:08:16.274228",
+          "note": "Original Cosponsor of HR3069, Medicare for All Act (119th Congress)"
         }
       ],
       "conflicts": []
@@ -2861,7 +2915,7 @@
         {
           "source": "human_review",
           "url": "https://www.aishawahab.com/simple",
-          "retrieved_at": "2026-08-30T13:35:29.882882",
+          "retrieved_at": "2026-08-30T14:08:16.593489",
           "note": "reviewed by kyle@kyletharp.com on 2026-08-28"
         }
       ],
@@ -3000,6 +3054,12 @@
           "url": "https://en.wikipedia.org/wiki/2026_United_States_House_of_Representatives_election_ratings",
           "retrieved_at": "2026-08-28T16:08:59.374869",
           "note": "Solid D as of November 5, 2025"
+        },
+        {
+          "source": "congress",
+          "url": "https://www.govtrack.us/congress/bills/119/hr3069/cosponsors",
+          "retrieved_at": "2026-08-30T14:08:16.274498",
+          "note": "Original Cosponsor of HR3069, Medicare for All Act (119th Congress)"
         }
       ],
       "conflicts": []
@@ -3139,6 +3199,12 @@
           "url": "https://en.wikipedia.org/wiki/2026_United_States_House_of_Representatives_election_ratings",
           "retrieved_at": "2026-08-28T16:08:59.374874",
           "note": "Solid D as of November 5, 2025"
+        },
+        {
+          "source": "congress",
+          "url": "https://www.govtrack.us/congress/bills/119/hr3069/cosponsors",
+          "retrieved_at": "2026-08-30T14:08:16.274585",
+          "note": "Original Cosponsor of HR3069, Medicare for All Act (119th Congress)"
         }
       ],
       "conflicts": []
@@ -3192,6 +3258,12 @@
           "url": "https://en.wikipedia.org/wiki/2026_United_States_House_of_Representatives_election_ratings",
           "retrieved_at": "2026-08-28T16:08:59.374876",
           "note": "Solid D as of November 5, 2025"
+        },
+        {
+          "source": "congress",
+          "url": "https://www.govtrack.us/congress/bills/119/hr3069/cosponsors",
+          "retrieved_at": "2026-08-30T14:08:16.274592",
+          "note": "Original Cosponsor of HR3069, Medicare for All Act (119th Congress)"
         }
       ],
       "conflicts": []
@@ -3254,6 +3326,12 @@
           "url": "https://en.wikipedia.org/wiki/2026_United_States_House_of_Representatives_election_ratings",
           "retrieved_at": "2026-08-28T16:08:59.374878",
           "note": "Solid D as of November 5, 2025"
+        },
+        {
+          "source": "congress",
+          "url": "https://www.govtrack.us/congress/bills/119/hr3069/cosponsors",
+          "retrieved_at": "2026-08-30T14:08:16.274599",
+          "note": "Original Cosponsor of HR3069, Medicare for All Act (119th Congress)"
         }
       ],
       "conflicts": []
@@ -3612,6 +3690,12 @@
           "url": "https://en.wikipedia.org/wiki/2026_United_States_House_of_Representatives_election_ratings",
           "retrieved_at": "2026-08-28T16:08:59.374890",
           "note": "Solid D as of November 5, 2025"
+        },
+        {
+          "source": "congress",
+          "url": "https://www.govtrack.us/congress/bills/119/hr3069/cosponsors",
+          "retrieved_at": "2026-08-30T14:08:16.274935",
+          "note": "Original Cosponsor of HR3069, Medicare for All Act (119th Congress)"
         }
       ],
       "conflicts": []
@@ -3740,7 +3824,7 @@
         {
           "source": "human_review",
           "url": "https://irwin.asmdc.org/covered-california",
-          "retrieved_at": "2026-08-30T13:35:29.882820",
+          "retrieved_at": "2026-08-30T14:08:16.593433",
           "note": "reviewed by kyle@kyletharp.com on 2026-08-28"
         },
         {
@@ -3863,6 +3947,12 @@
           "url": "https://en.wikipedia.org/wiki/2026_United_States_House_of_Representatives_election_ratings",
           "retrieved_at": "2026-08-28T16:08:59.374899",
           "note": "Solid D as of November 5, 2025"
+        },
+        {
+          "source": "congress",
+          "url": "https://www.govtrack.us/congress/bills/119/hr3069/cosponsors",
+          "retrieved_at": "2026-08-30T14:08:16.275170",
+          "note": "Original Cosponsor of HR3069, Medicare for All Act (119th Congress)"
         }
       ],
       "conflicts": []
@@ -3994,6 +4084,12 @@
           "url": "https://en.wikipedia.org/wiki/2026_United_States_House_of_Representatives_election_ratings",
           "retrieved_at": "2026-08-28T16:08:59.374904",
           "note": "Solid D as of November 5, 2025"
+        },
+        {
+          "source": "congress",
+          "url": "https://www.govtrack.us/congress/bills/119/hr3069/cosponsors",
+          "retrieved_at": "2026-08-30T14:08:16.275258",
+          "note": "Original Cosponsor of HR3069, Medicare for All Act (119th Congress)"
         }
       ],
       "conflicts": []
@@ -4016,9 +4112,18 @@
       "issues_urls": [
         "https://www.lauraforcongress.org/"
       ],
-      "m4a_tier": "no_coverage_position",
-      "m4a_evidence": [],
-      "m4a_notes": "",
+      "m4a_tier": "aca_strengthen",
+      "m4a_evidence": [
+        {
+          "quote": "\u2026illness and homelessness. \n \u200b \n In Congress, Laura is focused on advancing bold national solutions\u2014expanding access to affordable housing, supporting universal healthcare and childcare, strengthening economic security for families, and protecting democratic institutions.",
+          "url": "https://www.lauraforcongress.org/",
+          "matched_rule": "aca.universal_goal",
+          "tier": "aca_strengthen",
+          "negated": false,
+          "context": "neutral"
+        }
+      ],
+      "m4a_notes": "REVIEW: weak evidence",
       "resolved_tier": "explicit_m4a",
       "bucket": "supports_m4a",
       "evidence_basis": "cosponsorship",
@@ -4046,6 +4151,12 @@
           "url": "https://en.wikipedia.org/wiki/2026_United_States_House_of_Representatives_election_ratings",
           "retrieved_at": "2026-08-28T16:08:59.374906",
           "note": "Solid D as of November 5, 2025"
+        },
+        {
+          "source": "congress",
+          "url": "https://www.govtrack.us/congress/bills/119/hr3069/cosponsors",
+          "retrieved_at": "2026-08-30T14:08:16.275266",
+          "note": "Original Cosponsor of HR3069, Medicare for All Act (119th Congress)"
         }
       ],
       "conflicts": [
@@ -4161,6 +4272,12 @@
           "url": "https://en.wikipedia.org/wiki/2026_United_States_House_of_Representatives_election_ratings",
           "retrieved_at": "2026-08-28T16:08:59.374911",
           "note": "Solid D as of November 5, 2025"
+        },
+        {
+          "source": "congress",
+          "url": "https://www.govtrack.us/congress/bills/119/hr3069/cosponsors",
+          "retrieved_at": "2026-08-30T14:08:16.275379",
+          "note": "Original Cosponsor of HR3069, Medicare for All Act (119th Congress)"
         }
       ],
       "conflicts": []
@@ -4359,6 +4476,12 @@
           "url": "https://en.wikipedia.org/wiki/2026_United_States_House_of_Representatives_election_ratings",
           "retrieved_at": "2026-08-28T16:08:59.374919",
           "note": "Solid D as of November 5, 2025"
+        },
+        {
+          "source": "congress",
+          "url": "https://www.govtrack.us/congress/bills/119/hr3069/cosponsors",
+          "retrieved_at": "2026-08-30T14:08:16.275543",
+          "note": "Original Cosponsor of HR3069, Medicare for All Act (119th Congress)"
         }
       ],
       "conflicts": []
@@ -4480,6 +4603,12 @@
           "url": "https://en.wikipedia.org/wiki/2026_United_States_House_of_Representatives_election_ratings",
           "retrieved_at": "2026-08-28T16:08:59.374925",
           "note": "Solid D as of November 5, 2025"
+        },
+        {
+          "source": "congress",
+          "url": "https://www.govtrack.us/congress/bills/119/hr3069/cosponsors",
+          "retrieved_at": "2026-08-30T14:08:16.275627",
+          "note": "Original Cosponsor of HR3069, Medicare for All Act (119th Congress)"
         }
       ],
       "conflicts": []
@@ -4610,6 +4739,12 @@
           "url": "https://en.wikipedia.org/wiki/2026_United_States_House_of_Representatives_election_ratings",
           "retrieved_at": "2026-08-28T16:08:59.374936",
           "note": "Solid D as of November 5, 2025"
+        },
+        {
+          "source": "congress",
+          "url": "https://www.govtrack.us/congress/bills/119/hr3069/cosponsors",
+          "retrieved_at": "2026-08-30T14:08:16.275714",
+          "note": "Original Cosponsor of HR3069, Medicare for All Act (119th Congress)"
         }
       ],
       "conflicts": [
@@ -4718,6 +4853,12 @@
           "url": "https://en.wikipedia.org/wiki/2026_United_States_House_of_Representatives_election_ratings",
           "retrieved_at": "2026-08-28T16:08:59.374943",
           "note": "Solid D as of November 5, 2025"
+        },
+        {
+          "source": "congress",
+          "url": "https://www.govtrack.us/congress/bills/119/hr3069/cosponsors",
+          "retrieved_at": "2026-08-30T14:08:16.275807",
+          "note": "Original Cosponsor of HR3069, Medicare for All Act (119th Congress)"
         }
       ],
       "conflicts": []
@@ -4799,10 +4940,13 @@
       "fec_candidate_id": "H2CA39078",
       "campaign_url": "https://voteforlinda.com/",
       "campaign_url_confidence": 0.75,
-      "issues_urls": [],
-      "m4a_tier": "unknown",
+      "issues_urls": [
+        "https://voteforlinda.com/",
+        "https://voteforlinda.com/meet"
+      ],
+      "m4a_tier": "no_coverage_position",
       "m4a_evidence": [],
-      "m4a_notes": "no campaign website resolved",
+      "m4a_notes": "",
       "resolved_tier": "explicit_m4a",
       "bucket": "supports_m4a",
       "evidence_basis": "cosponsorship",
@@ -4836,6 +4980,12 @@
           "url": "https://en.wikipedia.org/wiki/2026_United_States_House_of_Representatives_election_ratings",
           "retrieved_at": "2026-08-28T16:08:59.374949",
           "note": "Solid D as of November 5, 2025"
+        },
+        {
+          "source": "congress",
+          "url": "https://www.govtrack.us/congress/bills/119/hr3069/cosponsors",
+          "retrieved_at": "2026-08-30T14:08:16.275982",
+          "note": "Original Cosponsor of HR3069, Medicare for All Act (119th Congress); roll lists CA-38, candidate runs in CA-41 after redistricting"
         }
       ],
       "conflicts": [
@@ -4916,6 +5066,12 @@
           "url": "https://en.wikipedia.org/wiki/2026_United_States_House_of_Representatives_election_ratings",
           "retrieved_at": "2026-08-28T16:08:59.374953",
           "note": "Solid D as of November 5, 2025"
+        },
+        {
+          "source": "congress",
+          "url": "https://www.govtrack.us/congress/bills/119/hr3069/cosponsors",
+          "retrieved_at": "2026-08-30T14:08:16.275994",
+          "note": "Original Cosponsor of HR3069, Medicare for All Act (119th Congress)"
         }
       ],
       "conflicts": []
@@ -4974,6 +5130,12 @@
           "url": "https://en.wikipedia.org/wiki/2026_United_States_House_of_Representatives_election_ratings",
           "retrieved_at": "2026-08-28T16:08:59.374956",
           "note": "Solid D as of November 5, 2025"
+        },
+        {
+          "source": "congress",
+          "url": "https://www.govtrack.us/congress/bills/119/hr3069/cosponsors",
+          "retrieved_at": "2026-08-30T14:08:16.276007",
+          "note": "Original Cosponsor of HR3069, Medicare for All Act (119th Congress)"
         }
       ],
       "conflicts": [
@@ -4997,10 +5159,13 @@
       "fec_candidate_id": "H6CA44103",
       "campaign_url": "https://barraganforcongress.com/",
       "campaign_url_confidence": 1.0,
-      "issues_urls": [],
-      "m4a_tier": "unknown",
+      "issues_urls": [
+        "https://barraganforcongress.com/",
+        "https://barraganforcongress.com/issues"
+      ],
+      "m4a_tier": "no_coverage_position",
       "m4a_evidence": [],
-      "m4a_notes": "no campaign website resolved",
+      "m4a_notes": "",
       "resolved_tier": "explicit_m4a",
       "bucket": "supports_m4a",
       "evidence_basis": "cosponsorship",
@@ -5034,6 +5199,12 @@
           "url": "https://en.wikipedia.org/wiki/2026_United_States_House_of_Representatives_election_ratings",
           "retrieved_at": "2026-08-28T16:08:59.374959",
           "note": "Solid D as of November 5, 2025"
+        },
+        {
+          "source": "congress",
+          "url": "https://www.govtrack.us/congress/bills/119/hr3069/cosponsors",
+          "retrieved_at": "2026-08-30T14:08:16.276016",
+          "note": "Original Cosponsor of HR3069, Medicare for All Act (119th Congress)"
         }
       ],
       "conflicts": [
@@ -5232,6 +5403,12 @@
           "url": "https://en.wikipedia.org/wiki/2026_United_States_House_of_Representatives_election_ratings",
           "retrieved_at": "2026-08-28T16:08:59.374968",
           "note": "Solid D as of January 15, 2026"
+        },
+        {
+          "source": "congress",
+          "url": "https://www.govtrack.us/congress/bills/119/hr3069/cosponsors",
+          "retrieved_at": "2026-08-30T14:08:16.276176",
+          "note": "Original Cosponsor of HR3069, Medicare for All Act (119th Congress)"
         }
       ],
       "conflicts": []
@@ -5378,6 +5555,12 @@
           "url": "https://en.wikipedia.org/wiki/2026_United_States_House_of_Representatives_election_ratings",
           "retrieved_at": "2026-08-28T16:56:24.182436",
           "note": "Solid D as of Aug. 25, 2026"
+        },
+        {
+          "source": "congress",
+          "url": "https://www.govtrack.us/congress/bills/119/hr3069/cosponsors",
+          "retrieved_at": "2026-08-30T14:08:16.276266",
+          "note": "Original Cosponsor of HR3069, Medicare for All Act (119th Congress)"
         }
       ],
       "conflicts": []
@@ -5521,6 +5704,12 @@
           "url": "https://en.wikipedia.org/wiki/2026_United_States_House_of_Representatives_election_ratings",
           "retrieved_at": "2026-08-28T16:08:59.374983",
           "note": "Solid D as of November 5, 2025"
+        },
+        {
+          "source": "congress",
+          "url": "https://www.govtrack.us/congress/bills/119/hr3069/cosponsors",
+          "retrieved_at": "2026-08-30T14:08:16.276383",
+          "note": "Original Cosponsor of HR3069, Medicare for All Act (119th Congress)"
         }
       ],
       "conflicts": [
@@ -5575,6 +5764,12 @@
           "url": "https://en.wikipedia.org/wiki/2026_United_States_House_of_Representatives_election_ratings",
           "retrieved_at": "2026-08-28T16:08:59.374986",
           "note": "Solid D as of November 5, 2025"
+        },
+        {
+          "source": "congress",
+          "url": "https://www.govtrack.us/congress/bills/119/hr3069/cosponsors",
+          "retrieved_at": "2026-08-30T14:08:16.276394",
+          "note": "Original Cosponsor of HR3069, Medicare for All Act (119th Congress)"
         }
       ],
       "conflicts": []
@@ -5671,9 +5866,18 @@
         "https://joeforcolorado.com/campaign-updates/joe-neguse-spearheading-congressional-agenda-aimed-at-tackling-corruption",
         "https://joeforcolorado.com/on-the-issues"
       ],
-      "m4a_tier": "no_coverage_position",
-      "m4a_evidence": [],
-      "m4a_notes": "",
+      "m4a_tier": "aca_strengthen",
+      "m4a_evidence": [
+        {
+          "quote": "Joe supports universal health care coverage and has championed efforts in Congress to lower the cost of prescription drugs, expand Medicare, and combat discriminatory practices of for-profit insurance companies.",
+          "url": "https://joeforcolorado.com/on-the-issues",
+          "matched_rule": "aca.universal_goal",
+          "tier": "aca_strengthen",
+          "negated": false,
+          "context": "affirm"
+        }
+      ],
+      "m4a_notes": "REVIEW: weak evidence",
       "resolved_tier": "explicit_m4a",
       "bucket": "supports_m4a",
       "evidence_basis": "cosponsorship",
@@ -5701,6 +5905,12 @@
           "url": "https://en.wikipedia.org/wiki/2026_United_States_House_of_Representatives_election_ratings",
           "retrieved_at": "2026-08-28T16:08:59.374993",
           "note": "Solid D as of February 6, 2025"
+        },
+        {
+          "source": "congress",
+          "url": "https://www.govtrack.us/congress/bills/119/hr3069/cosponsors",
+          "retrieved_at": "2026-08-30T14:08:16.276422",
+          "note": "Original Cosponsor of HR3069, Medicare for All Act (119th Congress)"
         }
       ],
       "conflicts": []
@@ -6487,6 +6697,12 @@
           "url": "https://en.wikipedia.org/wiki/2026_United_States_House_of_Representatives_election_ratings",
           "retrieved_at": "2026-08-28T16:56:24.182458",
           "note": "Solid D as of Aug. 25, 2026"
+        },
+        {
+          "source": "congress",
+          "url": "https://www.govtrack.us/congress/bills/119/hr3069/cosponsors",
+          "retrieved_at": "2026-08-30T14:08:16.276663",
+          "note": "Original Cosponsor of HR3069, Medicare for All Act (119th Congress)"
         }
       ],
       "conflicts": []
@@ -7205,6 +7421,12 @@
           "url": "https://en.wikipedia.org/wiki/2026_United_States_House_of_Representatives_election_ratings",
           "retrieved_at": "2026-08-28T16:08:59.375059",
           "note": "Solid D as of February 6, 2025"
+        },
+        {
+          "source": "congress",
+          "url": "https://www.govtrack.us/congress/bills/119/hr3069/cosponsors",
+          "retrieved_at": "2026-08-30T14:08:16.276935",
+          "note": "Original Cosponsor of HR3069, Medicare for All Act (119th Congress)"
         }
       ],
       "conflicts": []
@@ -8080,6 +8302,12 @@
           "url": "https://en.wikipedia.org/wiki/2026_United_States_House_of_Representatives_election_ratings",
           "retrieved_at": "2026-08-28T16:08:59.375095",
           "note": "Solid D as of May 8, 2026"
+        },
+        {
+          "source": "congress",
+          "url": "https://www.govtrack.us/congress/bills/119/hr3069/cosponsors",
+          "retrieved_at": "2026-08-30T14:08:16.277351",
+          "note": "Original Cosponsor of HR3069, Medicare for All Act (119th Congress); roll lists FL-22, candidate runs in FL-23 after redistricting"
         }
       ],
       "conflicts": [
@@ -8210,6 +8438,12 @@
           "url": "https://en.wikipedia.org/wiki/2026_United_States_House_of_Representatives_election_ratings",
           "retrieved_at": "2026-08-28T16:56:24.182508",
           "note": "Toss Up as of Aug. 25, 2026"
+        },
+        {
+          "source": "congress",
+          "url": "https://www.govtrack.us/congress/bills/119/hr3069/cosponsors",
+          "retrieved_at": "2026-08-30T14:08:16.277393",
+          "note": "Dec. 10, 2025 of HR3069, Medicare for All Act (119th Congress); roll lists FL-23, candidate runs in FL-25 after redistricting"
         }
       ],
       "conflicts": [
@@ -8698,6 +8932,12 @@
           "url": "https://en.wikipedia.org/wiki/2026_United_States_House_of_Representatives_election_ratings",
           "retrieved_at": "2026-08-28T16:08:59.375118",
           "note": "Solid D as of February 6, 2025"
+        },
+        {
+          "source": "congress",
+          "url": "https://www.govtrack.us/congress/bills/119/hr3069/cosponsors",
+          "retrieved_at": "2026-08-30T14:08:16.277527",
+          "note": "Original Cosponsor of HR3069, Medicare for All Act (119th Congress)"
         }
       ],
       "conflicts": []
@@ -8751,6 +8991,12 @@
           "url": "https://en.wikipedia.org/wiki/2026_United_States_House_of_Representatives_election_ratings",
           "retrieved_at": "2026-08-28T16:08:59.375121",
           "note": "Solid D as of February 6, 2025"
+        },
+        {
+          "source": "congress",
+          "url": "https://www.govtrack.us/congress/bills/119/hr3069/cosponsors",
+          "retrieved_at": "2026-08-30T14:08:16.277535",
+          "note": "Original Cosponsor of HR3069, Medicare for All Act (119th Congress)"
         }
       ],
       "conflicts": [
@@ -9480,6 +9726,12 @@
           "url": "https://en.wikipedia.org/wiki/2026_United_States_House_of_Representatives_election_ratings",
           "retrieved_at": "2026-08-28T16:08:59.375148",
           "note": "Solid D as of February 6, 2025"
+        },
+        {
+          "source": "congress",
+          "url": "https://www.govtrack.us/congress/bills/119/hr3069/cosponsors",
+          "retrieved_at": "2026-08-30T14:08:16.277758",
+          "note": "Original Cosponsor of HR3069, Medicare for All Act (119th Congress)"
         }
       ],
       "conflicts": []
@@ -9963,6 +10215,12 @@
           "url": "https://en.wikipedia.org/wiki/2026_United_States_House_of_Representatives_election_ratings",
           "retrieved_at": "2026-08-28T16:08:59.375164",
           "note": "Solid D as of February 6, 2025"
+        },
+        {
+          "source": "congress",
+          "url": "https://www.govtrack.us/congress/bills/119/hr3069/cosponsors",
+          "retrieved_at": "2026-08-30T14:08:16.277834",
+          "note": "Original Cosponsor of HR3069, Medicare for All Act (119th Congress)"
         }
       ],
       "conflicts": [
@@ -10111,6 +10369,12 @@
           "url": "https://en.wikipedia.org/wiki/2026_United_States_House_of_Representatives_election_ratings",
           "retrieved_at": "2026-08-28T16:08:59.375168",
           "note": "Solid D as of February 6, 2025"
+        },
+        {
+          "source": "congress",
+          "url": "https://www.govtrack.us/congress/bills/119/hr3069/cosponsors",
+          "retrieved_at": "2026-08-30T14:08:16.277877",
+          "note": "Original Cosponsor of HR3069, Medicare for All Act (119th Congress)"
         }
       ],
       "conflicts": []
@@ -10130,13 +10394,25 @@
       "fec_candidate_id": "H6IL04153",
       "campaign_url": "https://pattyforillinois.com/",
       "campaign_url_confidence": 0.75,
-      "issues_urls": [],
-      "m4a_tier": "unknown",
-      "m4a_evidence": [],
-      "m4a_notes": "no campaign website resolved",
+      "issues_urls": [
+        "https://pattyforillinois.com/",
+        "https://pattyforillinois.com/issues"
+      ],
+      "m4a_tier": "explicit_m4a",
+      "m4a_evidence": [
+        {
+          "quote": "Patty backs Medicare for All to ensure healthcare as a human right, provide access to more healthcare coverage, reduce prescription drug prices, and end medical bills that have become a burden on middle-class families.",
+          "url": "https://pattyforillinois.com/issues",
+          "matched_rule": "m4a.phrase",
+          "tier": "explicit_m4a",
+          "negated": false,
+          "context": "neutral"
+        }
+      ],
+      "m4a_notes": "",
       "resolved_tier": "explicit_m4a",
       "bucket": "supports_m4a",
-      "evidence_basis": "news",
+      "evidence_basis": "campaign_site",
       "override_tier": "unknown",
       "override_note": "",
       "override_source": "",
@@ -10236,6 +10512,12 @@
           "url": "https://en.wikipedia.org/wiki/2026_United_States_House_of_Representatives_election_ratings",
           "retrieved_at": "2026-08-28T16:08:59.375173",
           "note": "Solid D as of February 6, 2025"
+        },
+        {
+          "source": "congress",
+          "url": "https://www.govtrack.us/congress/bills/119/hr3069/cosponsors",
+          "retrieved_at": "2026-08-30T14:08:16.277918",
+          "note": "Original Cosponsor of HR3069, Medicare for All Act (119th Congress)"
         }
       ],
       "conflicts": [
@@ -10919,7 +11201,7 @@
         {
           "source": "human_review",
           "url": "https://www.cbsnews.com/news/the-youngest-black-woman-in-congress-has-an-alternative-to-medicare-for-all",
-          "retrieved_at": "2026-08-30T13:35:29.882811",
+          "retrieved_at": "2026-08-30T14:08:16.593428",
           "note": "reviewed by kyle@kyletharp.com on 2026-08-28"
         },
         {
@@ -11681,6 +11963,12 @@
           "url": "https://en.wikipedia.org/wiki/2026_United_States_House_of_Representatives_election_ratings",
           "retrieved_at": "2026-08-28T16:08:59.375220",
           "note": "Solid D as of February 6, 2025"
+        },
+        {
+          "source": "congress",
+          "url": "https://www.govtrack.us/congress/bills/119/hr3069/cosponsors",
+          "retrieved_at": "2026-08-30T14:08:16.278455",
+          "note": "Original Cosponsor of HR3069, Medicare for All Act (119th Congress)"
         }
       ],
       "conflicts": []
@@ -12277,6 +12565,12 @@
           "url": "https://en.wikipedia.org/wiki/2026_United_States_House_of_Representatives_election_ratings",
           "retrieved_at": "2026-08-28T16:08:59.375239",
           "note": "Solid D as of February 6, 2025"
+        },
+        {
+          "source": "congress",
+          "url": "https://www.govtrack.us/congress/bills/119/hr3069/cosponsors",
+          "retrieved_at": "2026-08-30T14:08:16.278560",
+          "note": "Original Cosponsor of HR3069, Medicare for All Act (119th Congress)"
         }
       ],
       "conflicts": []
@@ -12572,6 +12866,12 @@
           "url": "https://en.wikipedia.org/wiki/2026_United_States_House_of_Representatives_election_ratings",
           "retrieved_at": "2026-08-28T16:40:10.714805",
           "note": "Solid D as of March 13, 2025"
+        },
+        {
+          "source": "congress",
+          "url": "https://www.govtrack.us/congress/bills/119/hr3069/cosponsors",
+          "retrieved_at": "2026-08-30T14:08:16.278619",
+          "note": "Original Cosponsor of HR3069, Medicare for All Act (119th Congress)"
         }
       ],
       "conflicts": []
@@ -12898,11 +13198,28 @@
         "https://www.mattgromlichforcongress.com/",
         "https://www.mattgromlichforcongress.com/priorities"
       ],
-      "m4a_tier": "no_coverage_position",
-      "m4a_evidence": [],
-      "m4a_notes": "",
-      "resolved_tier": "no_coverage_position",
-      "bucket": "no_position_found",
+      "m4a_tier": "aca_strengthen",
+      "m4a_evidence": [
+        {
+          "quote": "Universal Healthcare Access We need universal healthcare that protects everyone, but especially our most vulnerable populations (children, seniors, veterans, people with disabilities).",
+          "url": "https://www.mattgromlichforcongress.com/priorities",
+          "matched_rule": "aca.universal_goal",
+          "tier": "aca_strengthen",
+          "negated": false,
+          "context": "affirm"
+        },
+        {
+          "quote": "Universal Healthcare Access We need universal healthcare that protects everyone, but especially our most vulnerable populations (children, seniors, veterans, people with disabilities).",
+          "url": "https://www.mattgromlichforcongress.com/priorities",
+          "matched_rule": "aca.universal_goal",
+          "tier": "aca_strengthen",
+          "negated": false,
+          "context": "affirm"
+        }
+      ],
+      "m4a_notes": "REVIEW: weak evidence",
+      "resolved_tier": "aca_strengthen",
+      "bucket": "does_not_support_m4a",
       "evidence_basis": "campaign_site",
       "override_tier": "unknown",
       "override_note": "",
@@ -13507,6 +13824,12 @@
           "url": "https://en.wikipedia.org/wiki/2026_United_States_House_of_Representatives_election_ratings",
           "retrieved_at": "2026-08-28T16:08:59.375271",
           "note": "Solid D as of February 6, 2025"
+        },
+        {
+          "source": "congress",
+          "url": "https://www.govtrack.us/congress/bills/119/hr3069/cosponsors",
+          "retrieved_at": "2026-08-30T14:08:16.278831",
+          "note": "Original Cosponsor of HR3069, Medicare for All Act (119th Congress)"
         }
       ],
       "conflicts": []
@@ -13551,6 +13874,12 @@
           "url": "https://en.wikipedia.org/wiki/2026_United_States_House_of_Representatives_election_ratings",
           "retrieved_at": "2026-08-28T16:08:59.375273",
           "note": "Solid D as of February 6, 2025"
+        },
+        {
+          "source": "congress",
+          "url": "https://www.govtrack.us/congress/bills/119/hr3069/cosponsors",
+          "retrieved_at": "2026-08-30T14:08:16.278846",
+          "note": "Original Cosponsor of HR3069, Medicare for All Act (119th Congress)"
         }
       ],
       "conflicts": []
@@ -13595,6 +13924,12 @@
           "url": "https://en.wikipedia.org/wiki/2026_United_States_House_of_Representatives_election_ratings",
           "retrieved_at": "2026-08-28T16:08:59.375275",
           "note": "Solid D as of February 6, 2025"
+        },
+        {
+          "source": "congress",
+          "url": "https://www.govtrack.us/congress/bills/119/hr3069/cosponsors",
+          "retrieved_at": "2026-08-30T14:08:16.278854",
+          "note": "Original Cosponsor of HR3069, Medicare for All Act (119th Congress)"
         }
       ],
       "conflicts": []
@@ -13807,6 +14142,12 @@
           "url": "https://en.wikipedia.org/wiki/2026_United_States_House_of_Representatives_election_ratings",
           "retrieved_at": "2026-08-28T16:08:59.375292",
           "note": "Solid D as of February 6, 2025"
+        },
+        {
+          "source": "congress",
+          "url": "https://www.govtrack.us/congress/bills/119/hr3069/cosponsors",
+          "retrieved_at": "2026-08-30T14:08:16.278914",
+          "note": "Dec. 18, 2025 of HR3069, Medicare for All Act (119th Congress)"
         }
       ],
       "conflicts": []
@@ -13859,6 +14200,12 @@
           "url": "https://en.wikipedia.org/wiki/2026_United_States_House_of_Representatives_election_ratings",
           "retrieved_at": "2026-08-28T16:08:59.375296",
           "note": "Solid D as of February 6, 2025"
+        },
+        {
+          "source": "congress",
+          "url": "https://www.govtrack.us/congress/bills/119/hr3069/cosponsors",
+          "retrieved_at": "2026-08-30T14:08:16.278921",
+          "note": "Original Cosponsor of HR3069, Medicare for All Act (119th Congress)"
         }
       ],
       "conflicts": []
@@ -13973,6 +14320,12 @@
           "url": "https://en.wikipedia.org/wiki/2026_United_States_House_of_Representatives_election_ratings",
           "retrieved_at": "2026-08-28T16:56:24.182623",
           "note": "Solid D as of Aug. 25, 2026"
+        },
+        {
+          "source": "congress",
+          "url": "https://www.govtrack.us/congress/bills/119/hr3069/cosponsors",
+          "retrieved_at": "2026-08-30T14:08:16.278952",
+          "note": "Dec. 2, 2025 of HR3069, Medicare for All Act (119th Congress)"
         }
       ],
       "conflicts": []
@@ -14032,6 +14385,12 @@
           "url": "https://en.wikipedia.org/wiki/2026_United_States_House_of_Representatives_election_ratings",
           "retrieved_at": "2026-08-28T16:08:59.375304",
           "note": "Solid D as of February 6, 2025"
+        },
+        {
+          "source": "congress",
+          "url": "https://www.govtrack.us/congress/bills/119/hr3069/cosponsors",
+          "retrieved_at": "2026-08-30T14:08:16.278959",
+          "note": "Original Cosponsor of HR3069, Medicare for All Act (119th Congress)"
         }
       ],
       "conflicts": [
@@ -14087,6 +14446,12 @@
           "url": "https://en.wikipedia.org/wiki/2026_United_States_House_of_Representatives_election_ratings",
           "retrieved_at": "2026-08-28T16:08:59.375306",
           "note": "Solid D as of February 6, 2025"
+        },
+        {
+          "source": "congress",
+          "url": "https://www.govtrack.us/congress/bills/119/hr3069/cosponsors",
+          "retrieved_at": "2026-08-30T14:08:16.278966",
+          "note": "Original Cosponsor of HR3069, Medicare for All Act (119th Congress)"
         }
       ],
       "conflicts": []
@@ -14157,6 +14522,12 @@
           "url": "https://en.wikipedia.org/wiki/2026_United_States_House_of_Representatives_election_ratings",
           "retrieved_at": "2026-08-28T16:56:24.182627",
           "note": "Solid D as of Aug. 25, 2026"
+        },
+        {
+          "source": "congress",
+          "url": "https://www.govtrack.us/congress/bills/119/hr3069/cosponsors",
+          "retrieved_at": "2026-08-30T14:08:16.278973",
+          "note": "Original Cosponsor of HR3069, Medicare for All Act (119th Congress)"
         }
       ],
       "conflicts": []
@@ -14635,6 +15006,12 @@
           "url": "https://en.wikipedia.org/wiki/2026_United_States_House_of_Representatives_election_ratings",
           "retrieved_at": "2026-08-28T16:08:59.375325",
           "note": "Solid D as of May 13, 2026"
+        },
+        {
+          "source": "congress",
+          "url": "https://www.govtrack.us/congress/bills/119/hr3069/cosponsors",
+          "retrieved_at": "2026-08-30T14:08:16.279081",
+          "note": "Original Cosponsor of HR3069, Medicare for All Act (119th Congress)"
         }
       ],
       "conflicts": []
@@ -14748,7 +15125,7 @@
         {
           "source": "human_review",
           "url": "https://kristenmcdonaldrivet.com/",
-          "retrieved_at": "2026-08-30T13:35:29.882794",
+          "retrieved_at": "2026-08-30T14:08:16.593413",
           "note": "reviewed by kyle@kyletharp.com on 2026-08-28"
         },
         {
@@ -14848,11 +15225,20 @@
       "issues_urls": [
         "https://www.christinahinesforcongress.com/"
       ],
-      "m4a_tier": "no_coverage_position",
-      "m4a_evidence": [],
-      "m4a_notes": "",
-      "resolved_tier": "no_coverage_position",
-      "bucket": "no_position_found",
+      "m4a_tier": "aca_strengthen",
+      "m4a_evidence": [
+        {
+          "quote": "Universal Healthcare",
+          "url": "https://www.christinahinesforcongress.com/",
+          "matched_rule": "aca.universal_goal",
+          "tier": "aca_strengthen",
+          "negated": false,
+          "context": "neutral"
+        }
+      ],
+      "m4a_notes": "REVIEW: weak evidence",
+      "resolved_tier": "aca_strengthen",
+      "bucket": "does_not_support_m4a",
       "evidence_basis": "campaign_site",
       "override_tier": "unknown",
       "override_note": "",
@@ -15016,6 +15402,12 @@
           "url": "https://en.wikipedia.org/wiki/2026_United_States_House_of_Representatives_election_ratings",
           "retrieved_at": "2026-08-28T16:08:59.375338",
           "note": "Solid D as of May 13, 2026"
+        },
+        {
+          "source": "congress",
+          "url": "https://www.govtrack.us/congress/bills/119/hr3069/cosponsors",
+          "retrieved_at": "2026-08-30T14:08:16.279176",
+          "note": "Original Cosponsor of HR3069, Medicare for All Act (119th Congress)"
         }
       ],
       "conflicts": []
@@ -15323,6 +15715,12 @@
           "url": "https://en.wikipedia.org/wiki/2026_United_States_House_of_Representatives_election_ratings",
           "retrieved_at": "2026-08-28T16:08:59.375347",
           "note": "Solid D as of February 6, 2025"
+        },
+        {
+          "source": "congress",
+          "url": "https://www.govtrack.us/congress/bills/119/hr3069/cosponsors",
+          "retrieved_at": "2026-08-30T14:08:16.279247",
+          "note": "Original Cosponsor of HR3069, Medicare for All Act (119th Congress)"
         }
       ],
       "conflicts": []
@@ -15407,6 +15805,12 @@
           "url": "https://en.wikipedia.org/wiki/2026_United_States_House_of_Representatives_election_ratings",
           "retrieved_at": "2026-08-28T16:08:59.375349",
           "note": "Solid D as of February 6, 2025"
+        },
+        {
+          "source": "congress",
+          "url": "https://www.govtrack.us/congress/bills/119/hr3069/cosponsors",
+          "retrieved_at": "2026-08-30T14:08:16.279254",
+          "note": "Original Cosponsor of HR3069, Medicare for All Act (119th Congress)"
         }
       ],
       "conflicts": [
@@ -15571,11 +15975,36 @@
         "https://trinaforcongress.com/",
         "https://trinaforcongress.com/priorities"
       ],
-      "m4a_tier": "no_coverage_position",
-      "m4a_evidence": [],
+      "m4a_tier": "aca_strengthen",
+      "m4a_evidence": [
+        {
+          "quote": "Universal healthcare",
+          "url": "https://trinaforcongress.com/priorities",
+          "matched_rule": "aca.universal_goal",
+          "tier": "aca_strengthen",
+          "negated": false,
+          "context": "neutral"
+        },
+        {
+          "quote": "\u2026, affordable and accessible healthcare means universal healthcare.",
+          "url": "https://trinaforcongress.com/priorities",
+          "matched_rule": "aca.universal_goal",
+          "tier": "aca_strengthen",
+          "negated": false,
+          "context": "neutral"
+        },
+        {
+          "quote": "I will fight for universal healthcare.",
+          "url": "https://trinaforcongress.com/priorities",
+          "matched_rule": "aca.universal_goal",
+          "tier": "aca_strengthen",
+          "negated": false,
+          "context": "affirm"
+        }
+      ],
       "m4a_notes": "",
-      "resolved_tier": "no_coverage_position",
-      "bucket": "no_position_found",
+      "resolved_tier": "aca_strengthen",
+      "bucket": "does_not_support_m4a",
       "evidence_basis": "campaign_site",
       "override_tier": "unknown",
       "override_note": "",
@@ -15663,6 +16092,12 @@
           "url": "https://en.wikipedia.org/wiki/2026_United_States_House_of_Representatives_election_ratings",
           "retrieved_at": "2026-08-28T16:08:59.375358",
           "note": "Solid D as of February 6, 2025"
+        },
+        {
+          "source": "congress",
+          "url": "https://www.govtrack.us/congress/bills/119/hr3069/cosponsors",
+          "retrieved_at": "2026-08-30T14:08:16.279342",
+          "note": "Original Cosponsor of HR3069, Medicare for All Act (119th Congress)"
         }
       ],
       "conflicts": []
@@ -15924,6 +16359,12 @@
           "url": "https://en.wikipedia.org/wiki/2026_United_States_House_of_Representatives_election_ratings",
           "retrieved_at": "2026-08-28T16:56:24.182676",
           "note": "Solid R as of Aug. 25, 2026"
+        },
+        {
+          "source": "congress",
+          "url": "https://www.govtrack.us/congress/bills/119/hr3069/cosponsors",
+          "retrieved_at": "2026-08-30T14:08:16.279398",
+          "note": "Original Cosponsor of HR3069, Medicare for All Act (119th Congress)"
         }
       ],
       "conflicts": [
@@ -16272,6 +16713,12 @@
           "url": "https://en.wikipedia.org/wiki/2026_United_States_House_of_Representatives_election_ratings",
           "retrieved_at": "2026-08-28T16:08:59.375378",
           "note": "Solid D as of March 13, 2025"
+        },
+        {
+          "source": "congress",
+          "url": "https://www.govtrack.us/congress/bills/119/hr3069/cosponsors",
+          "retrieved_at": "2026-08-30T14:08:16.279464",
+          "note": "Original Cosponsor of HR3069, Medicare for All Act (119th Congress)"
         }
       ],
       "conflicts": []
@@ -16835,6 +17282,12 @@
           "url": "https://en.wikipedia.org/wiki/2026_United_States_House_of_Representatives_election_ratings",
           "retrieved_at": "2026-08-28T16:08:59.375396",
           "note": "Solid D as of February 6, 2025"
+        },
+        {
+          "source": "congress",
+          "url": "https://www.govtrack.us/congress/bills/119/hr3069/cosponsors",
+          "retrieved_at": "2026-08-30T14:08:16.279565",
+          "note": "Original Cosponsor of HR3069, Medicare for All Act (119th Congress)"
         }
       ],
       "conflicts": []
@@ -17395,6 +17848,12 @@
           "url": "https://en.wikipedia.org/wiki/2026_United_States_House_of_Representatives_election_ratings",
           "retrieved_at": "2026-08-28T16:08:59.375414",
           "note": "Solid D as of February 6, 2025"
+        },
+        {
+          "source": "congress",
+          "url": "https://www.govtrack.us/congress/bills/119/hr3069/cosponsors",
+          "retrieved_at": "2026-08-30T14:08:16.279676",
+          "note": "Original Cosponsor of HR3069, Medicare for All Act (119th Congress)"
         }
       ],
       "conflicts": [
@@ -18112,7 +18571,7 @@
         {
           "source": "human_review",
           "url": "https://gottheimer.com/",
-          "retrieved_at": "2026-08-30T13:35:29.882868",
+          "retrieved_at": "2026-08-30T14:08:16.593478",
           "note": "reviewed by kyle@kyletharp.com on 2026-08-28"
         },
         {
@@ -18175,6 +18634,12 @@
           "url": "https://en.wikipedia.org/wiki/2026_United_States_House_of_Representatives_election_ratings",
           "retrieved_at": "2026-08-28T16:08:59.375446",
           "note": "Solid D as of August 13, 2025"
+        },
+        {
+          "source": "congress",
+          "url": "https://www.govtrack.us/congress/bills/119/hr3069/cosponsors",
+          "retrieved_at": "2026-08-30T14:08:16.279858",
+          "note": "Original Cosponsor of HR3069, Medicare for All Act (119th Congress)"
         }
       ],
       "conflicts": []
@@ -18420,9 +18885,18 @@
         "https://www.lamonicaforcongress.com/priorities",
         "https://www.lamonicaforcongress.com/providing-equitable-access-to-high-quali"
       ],
-      "m4a_tier": "no_coverage_position",
-      "m4a_evidence": [],
-      "m4a_notes": "",
+      "m4a_tier": "aca_strengthen",
+      "m4a_evidence": [
+        {
+          "quote": "This begins with universal healthcare so that every American can obtain the healthcare they need and deserve at a cost that they can afford.",
+          "url": "https://www.lamonicaforcongress.com/providing-equitable-access-to-high-quali",
+          "matched_rule": "aca.universal_goal",
+          "tier": "aca_strengthen",
+          "negated": false,
+          "context": "neutral"
+        }
+      ],
+      "m4a_notes": "REVIEW: weak evidence",
       "resolved_tier": "explicit_m4a",
       "bucket": "supports_m4a",
       "evidence_basis": "cosponsorship",
@@ -18450,6 +18924,12 @@
           "url": "https://en.wikipedia.org/wiki/2026_United_States_House_of_Representatives_election_ratings",
           "retrieved_at": "2026-08-28T16:08:59.375455",
           "note": "Solid D as of August 13, 2025"
+        },
+        {
+          "source": "congress",
+          "url": "https://www.govtrack.us/congress/bills/119/hr3069/cosponsors",
+          "retrieved_at": "2026-08-30T14:08:16.279971",
+          "note": "Original Cosponsor of HR3069, Medicare for All Act (119th Congress)"
         }
       ],
       "conflicts": []
@@ -18528,6 +19008,12 @@
           "url": "https://en.wikipedia.org/wiki/2026_United_States_House_of_Representatives_election_ratings",
           "retrieved_at": "2026-08-28T16:08:59.375457",
           "note": "Solid D as of August 13, 2025"
+        },
+        {
+          "source": "congress",
+          "url": "https://www.govtrack.us/congress/bills/119/hr3069/cosponsors",
+          "retrieved_at": "2026-08-30T14:08:16.279981",
+          "note": "April 27, 2026 of HR3069, Medicare for All Act (119th Congress)"
         }
       ],
       "conflicts": [
@@ -18670,6 +19156,12 @@
           "url": "https://en.wikipedia.org/wiki/2026_United_States_House_of_Representatives_election_ratings",
           "retrieved_at": "2026-08-28T16:08:59.375461",
           "note": "Solid D as of June 19, 2025"
+        },
+        {
+          "source": "congress",
+          "url": "https://www.govtrack.us/congress/bills/119/hr3069/cosponsors",
+          "retrieved_at": "2026-08-30T14:08:16.280014",
+          "note": "Original Cosponsor of HR3069, Medicare for All Act (119th Congress)"
         }
       ],
       "conflicts": []
@@ -18758,10 +19250,23 @@
       "fec_candidate_id": "H0NM03102",
       "campaign_url": "https://www.teresaforall.com/",
       "campaign_url_confidence": 0.75,
-      "issues_urls": [],
-      "m4a_tier": "unknown",
-      "m4a_evidence": [],
-      "m4a_notes": "no campaign website resolved",
+      "issues_urls": [
+        "https://www.teresaforall.com/",
+        "https://www.teresaforall.com/healthcare",
+        "https://www.teresaforall.com/issues"
+      ],
+      "m4a_tier": "aca_strengthen",
+      "m4a_evidence": [
+        {
+          "quote": "That\u2019s why I voted to bring down health insurance premiums and lower insurance costs for millions of Americans. \n \u200b \n I voted to cap out-of-pocket prescription drug payments and gave Medicare the authority to negotiate with drug companies so that prices can finally start coming down.",
+          "url": "https://www.teresaforall.com/healthcare",
+          "matched_rule": "aca.drug_negotiation",
+          "tier": "aca_strengthen",
+          "negated": false,
+          "context": "neutral"
+        }
+      ],
+      "m4a_notes": "REVIEW: weak evidence",
       "resolved_tier": "explicit_m4a",
       "bucket": "supports_m4a",
       "evidence_basis": "cosponsorship",
@@ -18795,6 +19300,12 @@
           "url": "https://en.wikipedia.org/wiki/2026_United_States_House_of_Representatives_election_ratings",
           "retrieved_at": "2026-08-28T16:56:24.182789",
           "note": "Solid D as of Aug. 25, 2026"
+        },
+        {
+          "source": "congress",
+          "url": "https://www.govtrack.us/congress/bills/119/hr3069/cosponsors",
+          "retrieved_at": "2026-08-30T14:08:16.280042",
+          "note": "Original Cosponsor of HR3069, Medicare for All Act (119th Congress)"
         }
       ],
       "conflicts": [
@@ -18849,6 +19360,12 @@
           "url": "https://en.wikipedia.org/wiki/2026_United_States_House_of_Representatives_election_ratings",
           "retrieved_at": "2026-08-28T16:56:24.182792",
           "note": "Likely D as of Aug. 25, 2026"
+        },
+        {
+          "source": "congress",
+          "url": "https://www.govtrack.us/congress/bills/119/hr3069/cosponsors",
+          "retrieved_at": "2026-08-30T14:08:16.280050",
+          "note": "Original Cosponsor of HR3069, Medicare for All Act (119th Congress)"
         }
       ],
       "conflicts": []
@@ -18969,7 +19486,7 @@
         {
           "source": "human_review",
           "url": "https://susieleeforcongress.com/",
-          "retrieved_at": "2026-08-30T13:35:29.882827",
+          "retrieved_at": "2026-08-30T14:08:16.593439",
           "note": "reviewed by kyle@kyletharp.com on 2026-08-28"
         },
         {
@@ -19244,7 +19761,7 @@
         {
           "source": "human_review",
           "url": "https://www.tomsuozzi.com/",
-          "retrieved_at": "2026-08-30T13:35:29.882837",
+          "retrieved_at": "2026-08-30T14:08:16.593447",
           "note": "reviewed by kyle@kyletharp.com on 2026-08-28"
         },
         {
@@ -19367,6 +19884,12 @@
           "url": "https://en.wikipedia.org/wiki/2026_United_States_House_of_Representatives_election_ratings",
           "retrieved_at": "2026-08-28T16:08:59.375485",
           "note": "Solid D as of February 6, 2025"
+        },
+        {
+          "source": "congress",
+          "url": "https://www.govtrack.us/congress/bills/119/hr3069/cosponsors",
+          "retrieved_at": "2026-08-30T14:08:16.280242",
+          "note": "Original Cosponsor of HR3069, Medicare for All Act (119th Congress)"
         }
       ],
       "conflicts": []
@@ -19445,6 +19968,12 @@
           "url": "https://en.wikipedia.org/wiki/2026_United_States_House_of_Representatives_election_ratings",
           "retrieved_at": "2026-08-28T16:08:59.375487",
           "note": "Solid D as of February 6, 2025"
+        },
+        {
+          "source": "congress",
+          "url": "https://www.govtrack.us/congress/bills/119/hr3069/cosponsors",
+          "retrieved_at": "2026-08-30T14:08:16.280250",
+          "note": "Original Cosponsor of HR3069, Medicare for All Act (119th Congress)"
         }
       ],
       "conflicts": [
@@ -19591,7 +20120,7 @@
         {
           "source": "human_review",
           "url": "https://jeffriesforcongress.com/",
-          "retrieved_at": "2026-08-30T13:35:29.882832",
+          "retrieved_at": "2026-08-30T14:08:16.593443",
           "note": "reviewed by kyle@kyletharp.com on 2026-08-28"
         },
         {
@@ -19652,6 +20181,12 @@
           "url": "https://en.wikipedia.org/wiki/2026_United_States_House_of_Representatives_election_ratings",
           "retrieved_at": "2026-08-28T16:08:59.375497",
           "note": "Solid D as of February 6, 2025"
+        },
+        {
+          "source": "congress",
+          "url": "https://www.govtrack.us/congress/bills/119/hr3069/cosponsors",
+          "retrieved_at": "2026-08-30T14:08:16.280361",
+          "note": "Original Cosponsor of HR3069, Medicare for All Act (119th Congress)"
         }
       ],
       "conflicts": []
@@ -19703,7 +20238,7 @@
         {
           "source": "human_review",
           "url": "https://www.bradlanderforcongress.com/issues",
-          "retrieved_at": "2026-08-30T13:35:29.882744",
+          "retrieved_at": "2026-08-30T14:08:16.593369",
           "note": "reviewed by kyle@kyletharp.com on 2026-08-28"
         },
         {
@@ -20021,6 +20556,12 @@
           "url": "https://en.wikipedia.org/wiki/2026_United_States_House_of_Representatives_election_ratings",
           "retrieved_at": "2026-08-28T16:08:59.375508",
           "note": "Solid D as of February 6, 2025"
+        },
+        {
+          "source": "congress",
+          "url": "https://www.govtrack.us/congress/bills/119/hr3069/cosponsors",
+          "retrieved_at": "2026-08-30T14:08:16.280525",
+          "note": "Original Cosponsor of HR3069, Medicare for All Act (119th Congress)"
         }
       ],
       "conflicts": []
@@ -20078,6 +20619,12 @@
           "url": "https://en.wikipedia.org/wiki/2026_United_States_House_of_Representatives_election_ratings",
           "retrieved_at": "2026-08-28T16:08:59.375510",
           "note": "Solid D as of February 6, 2025"
+        },
+        {
+          "source": "congress",
+          "url": "https://www.govtrack.us/congress/bills/119/hr3069/cosponsors",
+          "retrieved_at": "2026-08-30T14:08:16.280533",
+          "note": "Original Cosponsor of HR3069, Medicare for All Act (119th Congress)"
         }
       ],
       "conflicts": []
@@ -20285,7 +20832,7 @@
         {
           "source": "human_review",
           "url": "https://patryanforcongress.com/",
-          "retrieved_at": "2026-08-30T13:35:29.882843",
+          "retrieved_at": "2026-08-30T14:08:16.593452",
           "note": "reviewed by kyle@kyletharp.com on 2026-08-28"
         },
         {
@@ -20415,6 +20962,12 @@
           "url": "https://en.wikipedia.org/wiki/2026_United_States_House_of_Representatives_election_ratings",
           "retrieved_at": "2026-08-28T16:08:59.375521",
           "note": "Solid D as of February 6, 2025"
+        },
+        {
+          "source": "congress",
+          "url": "https://www.govtrack.us/congress/bills/119/hr3069/cosponsors",
+          "retrieved_at": "2026-08-30T14:08:16.280693",
+          "note": "Original Cosponsor of HR3069, Medicare for All Act (119th Congress)"
         }
       ],
       "conflicts": []
@@ -20865,6 +21418,12 @@
           "url": "https://en.wikipedia.org/wiki/2026_United_States_House_of_Representatives_election_ratings",
           "retrieved_at": "2026-08-28T16:08:59.375533",
           "note": "Solid D as of February 6, 2025"
+        },
+        {
+          "source": "congress",
+          "url": "https://www.govtrack.us/congress/bills/119/hr3069/cosponsors",
+          "retrieved_at": "2026-08-30T14:08:16.280888",
+          "note": "Original Cosponsor of HR3069, Medicare for All Act (119th Congress)"
         }
       ],
       "conflicts": []
@@ -21221,11 +21780,20 @@
         "https://www.elizabethforus.com/issues/protect-constitutional-rights",
         "https://www.elizabethforus.com/issues/sample_issue"
       ],
-      "m4a_tier": "no_coverage_position",
-      "m4a_evidence": [],
-      "m4a_notes": "",
-      "resolved_tier": "no_coverage_position",
-      "bucket": "no_position_found",
+      "m4a_tier": "aca_strengthen",
+      "m4a_evidence": [
+        {
+          "quote": "\u2026titutional Rights ~ A Real Voice for Women ~ Universal Healthcare~",
+          "url": "https://www.elizabethforus.com/issues",
+          "matched_rule": "aca.universal_goal",
+          "tier": "aca_strengthen",
+          "negated": false,
+          "context": "neutral"
+        }
+      ],
+      "m4a_notes": "REVIEW: weak evidence",
+      "resolved_tier": "aca_strengthen",
+      "bucket": "does_not_support_m4a",
       "evidence_basis": "campaign_site",
       "override_tier": "unknown",
       "override_note": "",
@@ -21304,7 +21872,7 @@
         {
           "source": "human_review",
           "url": "https://poindexterforcongress.com/",
-          "retrieved_at": "2026-08-30T13:35:29.882856",
+          "retrieved_at": "2026-08-30T14:08:16.593462",
           "note": "reviewed by kyle@kyletharp.com on 2026-08-28"
         },
         {
@@ -21581,6 +22149,12 @@
           "url": "https://en.wikipedia.org/wiki/2026_United_States_House_of_Representatives_election_ratings",
           "retrieved_at": "2026-08-28T16:08:59.375557",
           "note": "Solid D as of November 2, 2025"
+        },
+        {
+          "source": "congress",
+          "url": "https://www.govtrack.us/congress/bills/119/hr3069/cosponsors",
+          "retrieved_at": "2026-08-30T14:08:16.281023",
+          "note": "Original Cosponsor of HR3069, Medicare for All Act (119th Congress)"
         }
       ],
       "conflicts": [
@@ -21606,11 +22180,36 @@
         "https://www.christianforohio.com/",
         "https://www.christianforohio.com/issues"
       ],
-      "m4a_tier": "no_coverage_position",
-      "m4a_evidence": [],
-      "m4a_notes": "",
-      "resolved_tier": "no_coverage_position",
-      "bucket": "no_position_found",
+      "m4a_tier": "aca_strengthen",
+      "m4a_evidence": [
+        {
+          "quote": "Pass Universal Healthcare This is not an abstract concept or a handout.",
+          "url": "https://www.christianforohio.com/issues",
+          "matched_rule": "aca.universal_goal",
+          "tier": "aca_strengthen",
+          "negated": false,
+          "context": "neutral"
+        },
+        {
+          "quote": "Universal healthcare is a non-partisan policy in nearly every other modern country.",
+          "url": "https://www.christianforohio.com/issues",
+          "matched_rule": "aca.universal_goal",
+          "tier": "aca_strengthen",
+          "negated": false,
+          "context": "neutral"
+        },
+        {
+          "quote": "Universal healthcare breaks that chain.",
+          "url": "https://www.christianforohio.com/issues",
+          "matched_rule": "aca.universal_goal",
+          "tier": "aca_strengthen",
+          "negated": false,
+          "context": "neutral"
+        }
+      ],
+      "m4a_notes": "REVIEW: weak evidence",
+      "resolved_tier": "aca_strengthen",
+      "bucket": "does_not_support_m4a",
       "evidence_basis": "campaign_site",
       "override_tier": "unknown",
       "override_note": "",
@@ -21687,7 +22286,7 @@
         {
           "source": "human_review",
           "url": "https://sykes.house.gov/issues/health-care",
-          "retrieved_at": "2026-08-30T13:35:29.882875",
+          "retrieved_at": "2026-08-30T14:08:16.593484",
           "note": "reviewed by kyle@kyletharp.com on 2026-08-28"
         },
         {
@@ -21787,11 +22386,20 @@
         "https://donforohio.com/",
         "https://donforohio.com/values"
       ],
-      "m4a_tier": "no_coverage_position",
-      "m4a_evidence": [],
-      "m4a_notes": "",
-      "resolved_tier": "no_coverage_position",
-      "bucket": "no_position_found",
+      "m4a_tier": "aca_strengthen",
+      "m4a_evidence": [
+        {
+          "quote": "Supporting life means fighting for universal healthcare, affordable childcare,\n paid family leave, and support for those who care for an aging parent or a disabled loved one.",
+          "url": "https://donforohio.com/values",
+          "matched_rule": "aca.universal_goal",
+          "tier": "aca_strengthen",
+          "negated": false,
+          "context": "affirm"
+        }
+      ],
+      "m4a_notes": "REVIEW: weak evidence",
+      "resolved_tier": "aca_strengthen",
+      "bucket": "does_not_support_m4a",
       "evidence_basis": "campaign_site",
       "override_tier": "unknown",
       "override_note": "",
@@ -22185,6 +22793,12 @@
           "url": "https://en.wikipedia.org/wiki/2026_United_States_House_of_Representatives_election_ratings",
           "retrieved_at": "2026-08-28T16:08:59.375687",
           "note": "Solid D as of February 6, 2025"
+        },
+        {
+          "source": "congress",
+          "url": "https://www.govtrack.us/congress/bills/119/hr3069/cosponsors",
+          "retrieved_at": "2026-08-30T14:08:16.281133",
+          "note": "Original Cosponsor of HR3069, Medicare for All Act (119th Congress)"
         }
       ],
       "conflicts": []
@@ -22331,6 +22945,12 @@
           "url": "https://en.wikipedia.org/wiki/2026_United_States_House_of_Representatives_election_ratings",
           "retrieved_at": "2026-08-28T16:08:59.375694",
           "note": "Solid D as of February 6, 2025"
+        },
+        {
+          "source": "congress",
+          "url": "https://www.govtrack.us/congress/bills/119/hr3069/cosponsors",
+          "retrieved_at": "2026-08-30T14:08:16.281161",
+          "note": "Original Cosponsor of HR3069, Medicare for All Act (119th Congress)"
         }
       ],
       "conflicts": [
@@ -22385,6 +23005,12 @@
           "url": "https://en.wikipedia.org/wiki/2026_United_States_House_of_Representatives_election_ratings",
           "retrieved_at": "2026-08-28T16:08:59.375697",
           "note": "Solid D as of February 6, 2025"
+        },
+        {
+          "source": "congress",
+          "url": "https://www.govtrack.us/congress/bills/119/hr3069/cosponsors",
+          "retrieved_at": "2026-08-30T14:08:16.281168",
+          "note": "Original Cosponsor of HR3069, Medicare for All Act (119th Congress)"
         }
       ],
       "conflicts": []
@@ -22529,6 +23155,12 @@
           "url": "https://en.wikipedia.org/wiki/2026_United_States_House_of_Representatives_election_ratings",
           "retrieved_at": "2026-08-28T16:08:59.375702",
           "note": "Solid D as of February 6, 2025"
+        },
+        {
+          "source": "congress",
+          "url": "https://www.govtrack.us/congress/bills/119/hr3069/cosponsors",
+          "retrieved_at": "2026-08-30T14:08:16.281201",
+          "note": "Original Cosponsor of HR3069, Medicare for All Act (119th Congress)"
         }
       ],
       "conflicts": []
@@ -22658,6 +23290,12 @@
           "url": "https://en.wikipedia.org/wiki/2026_United_States_House_of_Representatives_election_ratings",
           "retrieved_at": "2026-08-28T16:08:59.375707",
           "note": "Solid D as of September 11, 2025"
+        },
+        {
+          "source": "congress",
+          "url": "https://www.govtrack.us/congress/bills/119/hr3069/cosponsors",
+          "retrieved_at": "2026-08-30T14:08:16.281227",
+          "note": "Original Cosponsor of HR3069, Medicare for All Act (119th Congress)"
         }
       ],
       "conflicts": [
@@ -22824,13 +23462,13 @@
       "m4a_tier": "no_coverage_position",
       "m4a_evidence": [],
       "m4a_notes": "",
-      "resolved_tier": "no_coverage_position",
-      "bucket": "no_position_found",
-      "evidence_basis": "campaign_site",
-      "override_tier": "unknown",
-      "override_note": "",
-      "override_source": "",
-      "override_reviewer": "",
+      "resolved_tier": "aca_strengthen",
+      "bucket": "does_not_support_m4a",
+      "evidence_basis": "human_review",
+      "override_tier": "aca_strengthen",
+      "override_note": "Does not support Medicare for All. A sitting member since 2018 and not a cosponsor of H.R.3069 in the current Congress; the Pennsylvania Democrats on that roll are Brendan Boyle, Chris Deluzio and Summer Lee. Her campaign site publishes no issues page at all - a homepage of 1,526 characters with no navigable links, and an about page that never touches coverage - which is why the classifier found no position rather than a contrary one.",
+      "override_source": "https://www.scanlonforcongress.com/about",
+      "override_reviewer": "kyle@kyletharp.com",
       "secondary_tier": "unknown",
       "secondary_confidence": 0.0,
       "secondary_note": "",
@@ -22851,6 +23489,12 @@
           "url": "https://en.wikipedia.org/wiki/2026_United_States_House_of_Representatives_election_ratings",
           "retrieved_at": "2026-08-28T16:08:59.375714",
           "note": "Solid D as of September 11, 2025"
+        },
+        {
+          "source": "human_review",
+          "url": "https://www.scanlonforcongress.com/about",
+          "retrieved_at": "2026-08-30T14:08:16.593524",
+          "note": "reviewed by kyle@kyletharp.com on 2026-08-28"
         }
       ],
       "conflicts": []
@@ -23300,6 +23944,12 @@
           "url": "https://en.wikipedia.org/wiki/2026_United_States_House_of_Representatives_election_ratings",
           "retrieved_at": "2026-08-28T16:08:59.375732",
           "note": "Solid D as of September 11, 2025"
+        },
+        {
+          "source": "congress",
+          "url": "https://www.govtrack.us/congress/bills/119/hr3069/cosponsors",
+          "retrieved_at": "2026-08-30T14:08:16.281424",
+          "note": "Original Cosponsor of HR3069, Medicare for All Act (119th Congress)"
         }
       ],
       "conflicts": []
@@ -23639,6 +24289,12 @@
           "url": "https://en.wikipedia.org/wiki/2026_United_States_House_of_Representatives_election_ratings",
           "retrieved_at": "2026-08-28T16:56:24.182911",
           "note": "Solid D as of Aug. 25, 2026"
+        },
+        {
+          "source": "congress",
+          "url": "https://www.govtrack.us/congress/bills/119/hr3069/cosponsors",
+          "retrieved_at": "2026-08-30T14:08:16.281503",
+          "note": "Original Cosponsor of HR3069, Medicare for All Act (119th Congress)"
         }
       ],
       "conflicts": []
@@ -24537,16 +25193,25 @@
         "https://www.victoria4tennessee.org/issues",
         "https://www.victoria4tennessee.org/more-about-my-platform"
       ],
-      "m4a_tier": "no_coverage_position",
-      "m4a_evidence": [],
-      "m4a_notes": "",
-      "resolved_tier": "no_coverage_position",
-      "bucket": "no_position_found",
-      "evidence_basis": "campaign_site",
-      "override_tier": "unknown",
-      "override_note": "",
-      "override_source": "",
-      "override_reviewer": "",
+      "m4a_tier": "aca_strengthen",
+      "m4a_evidence": [
+        {
+          "quote": "Universal Healthcare is a must.",
+          "url": "https://www.victoria4tennessee.org/issues",
+          "matched_rule": "aca.universal_goal",
+          "tier": "aca_strengthen",
+          "negated": false,
+          "context": "neutral"
+        }
+      ],
+      "m4a_notes": "REVIEW: weak evidence",
+      "resolved_tier": "explicit_m4a",
+      "bucket": "supports_m4a",
+      "evidence_basis": "human_review",
+      "override_tier": "explicit_m4a",
+      "override_note": "States it in her own words, twice, in the Nashville Banner's candidate questionnaire. Asked what policies she would support to alleviate cost-of-living increases: \"Medicare for All.\" Asked whether the federal government should spend more or less on health care benefits: \"Medicare for All would address the needs of healthcare needs for taxpayers.\" Her own site goes only as far as \"Universal Healthcare is a must\", which names no mechanism and so does not reach the Medicare for All tier on its own.",
+      "override_source": "https://nashvillebanner.com/2026/07/16/victoria-broderick-congress-tennessee-district-4/",
+      "override_reviewer": "kyle@kyletharp.com",
       "secondary_tier": "unknown",
       "secondary_confidence": 0.0,
       "secondary_note": "",
@@ -24567,6 +25232,12 @@
           "url": "https://en.wikipedia.org/wiki/2026_United_States_House_of_Representatives_election_ratings",
           "retrieved_at": "2026-08-28T16:08:59.375774",
           "note": "Solid R as of February 6, 2025"
+        },
+        {
+          "source": "human_review",
+          "url": "https://nashvillebanner.com/2026/07/16/victoria-broderick-congress-tennessee-district-4/",
+          "retrieved_at": "2026-08-30T14:08:16.593516",
+          "note": "reviewed by kyle@kyletharp.com on 2026-08-28"
         }
       ],
       "conflicts": []
@@ -25931,6 +26602,12 @@
           "url": "https://en.wikipedia.org/wiki/2026_United_States_House_of_Representatives_election_ratings",
           "retrieved_at": "2026-08-28T16:08:59.375832",
           "note": "Solid D as of February 6, 2025"
+        },
+        {
+          "source": "congress",
+          "url": "https://www.govtrack.us/congress/bills/119/hr3069/cosponsors",
+          "retrieved_at": "2026-08-30T14:08:16.282150",
+          "note": "Original Cosponsor of HR3069, Medicare for All Act (119th Congress)"
         }
       ],
       "conflicts": []
@@ -26068,6 +26745,12 @@
           "url": "https://en.wikipedia.org/wiki/2026_United_States_House_of_Representatives_election_ratings",
           "retrieved_at": "2026-08-28T16:08:59.375836",
           "note": "Solid D as of February 6, 2025"
+        },
+        {
+          "source": "congress",
+          "url": "https://www.govtrack.us/congress/bills/119/hr3069/cosponsors",
+          "retrieved_at": "2026-08-30T14:08:16.282191",
+          "note": "April 21, 2026 of HR3069, Medicare for All Act (119th Congress)"
         }
       ],
       "conflicts": []
@@ -26798,7 +27481,7 @@
         {
           "source": "human_review",
           "url": "https://www.sylviaforcongress.com/issues",
-          "retrieved_at": "2026-08-30T13:35:29.882894",
+          "retrieved_at": "2026-08-30T14:08:16.593498",
           "note": "reviewed by kyle@kyletharp.com on 2026-08-28"
         }
       ],
@@ -26863,7 +27546,7 @@
         {
           "source": "human_review",
           "url": "https://theintercept.com/2026/02/04/texas-jasmine-crockett-house-primary-frederick-haynes/",
-          "retrieved_at": "2026-08-30T13:35:29.882905",
+          "retrieved_at": "2026-08-30T14:08:16.593507",
           "note": "reviewed by kyle@kyletharp.com on 2026-08-28"
         }
       ],
@@ -27050,7 +27733,7 @@
         {
           "source": "human_review",
           "url": "https://colinallred.com/",
-          "retrieved_at": "2026-08-30T13:35:29.882850",
+          "retrieved_at": "2026-08-30T14:08:16.593457",
           "note": "reviewed by kyle@kyletharp.com on 2026-08-28"
         },
         {
@@ -27865,6 +28548,12 @@
           "url": "https://en.wikipedia.org/wiki/2026_United_States_House_of_Representatives_election_ratings",
           "retrieved_at": "2026-08-28T16:08:59.375897",
           "note": "Solid D as of April 21, 2026"
+        },
+        {
+          "source": "congress",
+          "url": "https://www.govtrack.us/congress/bills/119/hr3069/cosponsors",
+          "retrieved_at": "2026-08-30T14:08:16.282876",
+          "note": "Original Cosponsor of HR3069, Medicare for All Act (119th Congress)"
         }
       ],
       "conflicts": []
@@ -28211,6 +28900,12 @@
           "url": "https://en.wikipedia.org/wiki/2026_United_States_House_of_Representatives_election_ratings",
           "retrieved_at": "2026-08-28T16:08:59.375907",
           "note": "Solid D as of April 21, 2026"
+        },
+        {
+          "source": "congress",
+          "url": "https://www.govtrack.us/congress/bills/119/hr3069/cosponsors",
+          "retrieved_at": "2026-08-30T14:08:16.282949",
+          "note": "Original Cosponsor of HR3069, Medicare for All Act (119th Congress)"
         }
       ],
       "conflicts": []
@@ -28487,6 +29182,12 @@
           "url": "https://en.wikipedia.org/wiki/2026_United_States_House_of_Representatives_election_ratings",
           "retrieved_at": "2026-08-28T16:08:59.375916",
           "note": "Solid D as of February 6, 2025"
+        },
+        {
+          "source": "congress",
+          "url": "https://www.govtrack.us/congress/bills/119/hr3069/cosponsors",
+          "retrieved_at": "2026-08-30T14:08:16.283004",
+          "note": "Original Cosponsor of HR3069, Medicare for All Act (119th Congress)"
         }
       ],
       "conflicts": []
@@ -28917,6 +29618,12 @@
           "url": "https://en.wikipedia.org/wiki/2026_United_States_House_of_Representatives_election_ratings",
           "retrieved_at": "2026-08-28T16:08:59.375928",
           "note": "Solid D as of February 6, 2025"
+        },
+        {
+          "source": "congress",
+          "url": "https://www.govtrack.us/congress/bills/119/hr3069/cosponsors",
+          "retrieved_at": "2026-08-30T14:08:16.283099",
+          "note": "Original Cosponsor of HR3069, Medicare for All Act (119th Congress)"
         }
       ],
       "conflicts": []
@@ -28978,6 +29685,12 @@
           "url": "https://en.wikipedia.org/wiki/2026_United_States_House_of_Representatives_election_ratings",
           "retrieved_at": "2026-08-28T16:08:59.375930",
           "note": "Solid D as of February 6, 2025"
+        },
+        {
+          "source": "congress",
+          "url": "https://www.govtrack.us/congress/bills/119/hr3069/cosponsors",
+          "retrieved_at": "2026-08-30T14:08:16.283106",
+          "note": "Primary Sponsor of HR3069, Medicare for All Act (119th Congress)"
         }
       ],
       "conflicts": [
@@ -29083,9 +29796,26 @@
         "https://electadamsmith.com/",
         "https://electadamsmith.com/priorities"
       ],
-      "m4a_tier": "no_coverage_position",
-      "m4a_evidence": [],
-      "m4a_notes": "",
+      "m4a_tier": "aca_strengthen",
+      "m4a_evidence": [
+        {
+          "quote": "He supported the State-Based Universal Health Care Act, which protects Washington\u2019s health-care model from attempts to dismantle ACA coverage.",
+          "url": "https://electadamsmith.com/priorities",
+          "matched_rule": "aca.universal_goal",
+          "tier": "aca_strengthen",
+          "negated": false,
+          "context": "neutral"
+        },
+        {
+          "quote": "\u2026to pay for environmental cleanup, creating a universal healthcare system and he has passed legislation stopping Big Pharma from price gouging life saving medication like insulin.",
+          "url": "https://electadamsmith.com/priorities",
+          "matched_rule": "aca.universal_goal",
+          "tier": "aca_strengthen",
+          "negated": false,
+          "context": "affirm"
+        }
+      ],
+      "m4a_notes": "REVIEW: weak evidence",
       "resolved_tier": "explicit_m4a",
       "bucket": "supports_m4a",
       "evidence_basis": "cosponsorship",
@@ -29113,6 +29843,12 @@
           "url": "https://en.wikipedia.org/wiki/2026_United_States_House_of_Representatives_election_ratings",
           "retrieved_at": "2026-08-28T16:08:59.375934",
           "note": "Solid D as of February 6, 2025"
+        },
+        {
+          "source": "congress",
+          "url": "https://www.govtrack.us/congress/bills/119/hr3069/cosponsors",
+          "retrieved_at": "2026-08-30T14:08:16.283131",
+          "note": "Original Cosponsor of HR3069, Medicare for All Act (119th Congress)"
         }
       ],
       "conflicts": []
@@ -29318,6 +30054,12 @@
           "url": "https://en.wikipedia.org/wiki/2026_United_States_House_of_Representatives_election_ratings",
           "retrieved_at": "2026-08-28T16:08:59.375941",
           "note": "Solid D as of February 6, 2025"
+        },
+        {
+          "source": "congress",
+          "url": "https://www.govtrack.us/congress/bills/119/hr3069/cosponsors",
+          "retrieved_at": "2026-08-30T14:08:16.283169",
+          "note": "Original Cosponsor of HR3069, Medicare for All Act (119th Congress)"
         }
       ],
       "conflicts": [
@@ -29463,7 +30205,7 @@
         {
           "source": "human_review",
           "url": "https://www.ueunion.org/political-action/2019/ue-members-press-congresswoman-gwen-moore-to-support-medicare-for-all",
-          "retrieved_at": "2026-08-30T13:35:29.882862",
+          "retrieved_at": "2026-08-30T14:08:16.593473",
           "note": "reviewed by kyle@kyletharp.com on 2026-08-28"
         },
         {

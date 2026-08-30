@@ -181,6 +181,17 @@ ACA_RULES: tuple[Rule, ...] = (
          r"\b(affordable\s+|quality\s+)*(health\s?care|health\s+coverage|coverage)\b"
          r"[^.]{0,50}\b(every|all|each)\b",
          weight=1.2, requires_affirm=False),
+    Rule("aca.universal_goal", M4ATier.ACA_STRENGTHEN,
+         # The bare declaration - "Universal healthcare is a must", "I believe
+         # in universal health care" - with no verb phrase and no mechanism.
+         # aca.universal_aspiration above needs a verb plus "every/all", so it
+         # misses this shape entirely and the candidate read as stating no
+         # coverage position at all, which is a different and wrong claim.
+         # Stays at this tier for the same reason as its neighbour: a goal
+         # without a mechanism is not single-payer, and a candidate who names
+         # one is caught by the higher rules the ladder prefers.
+         r"\buniversal\s+(health\s?care|health\s+coverage|health\s+insurance|coverage)\b",
+         weight=1.0, requires_affirm=False),
     Rule("aca.protect_medicare", M4ATier.ACA_STRENGTHEN,
          r"\b(protect\w*|defend\w*|save|strengthen\w*)\b[^.]{0,25}\bmedicare\b",
          weight=1.0, requires_affirm=False),
