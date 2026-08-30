@@ -1,6 +1,6 @@
 # Medicare for All support among Democratic U.S. House candidates
 
-Generated 2026-08-30 14:08 UTC, reflecting the field as of August 30, 2026.
+Generated 2026-08-30 14:11 UTC, reflecting the field as of August 30, 2026.
 
 ## Coverage first
 
@@ -30,7 +30,7 @@ recorded legislative act.
 | Evidence | Candidates |
 |---|---|
 | Cosponsors H.R.3069, the Medicare for All Act | 89 |
-| Position read from their own campaign site | 254 |
+| Position read from their own campaign site | 253 |
 | Position from news coverage (site unreadable) | 64 |
 | No position from any source | 7 |
 
@@ -49,8 +49,8 @@ On the combined measure, **163** candidates (38.1% of those with a known positio
 | `explicit_m4a` | 76 | 21.9% | 163 | 38.1% |
 | `single_payer_substance` | 0 | 0.0% | 1 | 0.2% |
 | `public_option` | 15 | 4.3% | 24 | 5.6% |
-| `aca_strengthen` | 184 | 53.0% | 209 | 48.8% |
-| `no_coverage_position` | 72 | 20.7% | 31 | 7.2% |
+| `aca_strengthen` | 184 | 53.0% | 210 | 49.1% |
+| `no_coverage_position` | 72 | 20.7% | 30 | 7.0% |
 | `opposed` | 0 | 0.0% | 0 | 0.0% |
 | `unknown` | 88 | n/a | 7 | n/a |
 
