@@ -205,3 +205,18 @@ overrides:
       All healthcare."
     reviewed_by: kyle@kyletharp.com
     reviewed_on: 2026-08-28
+
+  - name: Sylvia Garcia
+    district: TX-29
+    tier: aca_strengthen
+    source: https://www.sylviaforcongress.com/issues
+    note: >-
+      Does not support Medicare for All, and is not a cosponsor of H.R.3069 in
+      the current Congress. Expressed support on the campaign trail some years
+      ago but has not carried it into office. Her site defends Medicaid and
+      Medicare against cuts and raises premium costs without proposing any
+      change to how coverage works, which the classifier read as no coverage
+      position; the absence of one is not the same as neutrality here, given
+      the record.
+    reviewed_by: kyle@kyletharp.com
+    reviewed_on: 2026-08-28
