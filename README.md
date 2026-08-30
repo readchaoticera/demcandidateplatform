@@ -126,6 +126,7 @@ inspecting before paying for the next one.
 | `config/roster_adjustments.yaml` | Reviewed additions/exclusions: who is on the roster at all |
 | `report.py` | Aggregation with honest denominators |
 | `scripts/build_chart.py` | Newsletter chart PNG, rendered from the published data |
+| `scripts/build_csv.py` | Six-column CSV of the roster, for readers rather than auditors |
 
 ### Design commitments
 
