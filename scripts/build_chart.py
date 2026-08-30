@@ -64,6 +64,22 @@ RATING_COLORS = {
 FALLBACK_COLOR = "#419eff"
 
 
+#: Google Fonts and the ratings table both abbreviate months; the footnote
+#: spells them out.
+_MONTHS = {"Jan": "January", "Feb": "February", "Mar": "March", "Apr": "April",
+           "May": "May", "Jun": "June", "Jul": "July", "Aug": "August",
+           "Sep": "September", "Sept": "September", "Oct": "October",
+           "Nov": "November", "Dec": "December"}
+
+
+def _long_date(text: str) -> str:
+    """"Aug. 25, 2026" -> "August 25, 2026", leaving anything else alone."""
+    match = re.match(r"([A-Z][a-z]{2,4})\.?\s+(\d{1,2},\s*\d{4})$", text.strip())
+    if not match:
+        return text
+    return f"{_MONTHS.get(match.group(1), match.group(1))} {match.group(2)}"
+
+
 def _latin_subset_url(css: str) -> str | None:
     """The woff2 URL for the Latin subset of a Google Fonts css2 response.
 
@@ -141,10 +157,6 @@ def render_html(rows: list[tuple[str, int, int]], fonts: dict[str, str],
             f'background:{RATING_COLORS.get(label, FALLBACK_COLOR)}"></div>'
             f'<div class="val"><b>{sup}</b></div></div>'
         )
-    # The bars are counts, so the size of each field is the context that makes
-    # them readable: 48 out of 188 Solid R seats is not 48 out of 20.
-    field = ", ".join(f"{r} {n}" for r, n, _ in rows)
-    small_note = f"Democrats in each group: {field}. "
 
     face = lambda fam, wt, key: (
         f"@font-face{{font-family:'{fam}';font-weight:{wt};"
@@ -173,9 +185,8 @@ h1{{font-family:'Plex',serif;font-weight:700;font-size:44px;letter-spacing:-.45p
 Medicare for All or single-payer &mdash; counting cosponsors of H.R.3069 alongside those who say so
 publicly &mdash; grouped by The Cook Political Report&rsquo;s rating of the seat.</p>
 <div class="chart">{''.join(bars)}</div>
-<p class="foot">Chart: Kyle Tharp &#124; Chaotic Era Newsletter &#124; Data: campaign sites, the
-H.R.3069 cosponsor roll and news coverage, as of {as_of}. Cook ratings as of {ratings_as_of}.
-<br>{small_note}Excludes the D.C. delegate seat, which Cook does not rate.</p>
+<p class="foot">Chart: Kyle Tharp &#124; Chaotic Era Newsletter. Data: campaign sites,
+H.R. 3069, online issue indexes, public news reports. Cook ratings as of {ratings_as_of}.</p>
 </body></html>"""
 
 
@@ -193,7 +204,7 @@ def main() -> int:
         print("no rated candidates in the data", file=sys.stderr)
         return 1
 
-    ratings_as_of = data.get("rating_as_of", "")
+    ratings_as_of = _long_date(data.get("rating_as_of", ""))
     as_of = data.get("as_of", "")
     try:
         from datetime import date
