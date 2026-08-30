@@ -156,3 +156,64 @@ def test_excluded_status_is_not_on_the_general_ballot():
     assert not NominationStatus.EXCLUDED.on_general_ballot
     assert NominationStatus.EXCLUDED is not NominationStatus.WITHDREW
     assert NominationStatus.EXCLUDED is not NominationStatus.LOST_PRIMARY
+
+
+def _member(**kw):
+    from dcp.models import Candidate, District, NominationStatus
+    c = Candidate("Jane Member", District("NJ", 9), NominationStatus.ON_BALLOT,
+                  incumbent=True)
+    for k, v in kw.items():
+        setattr(c, k, v)
+    return c
+
+
+def test_incumbent_needs_cosponsorship_for_an_m4a_finding():
+    # A sitting member can put their name on the bill. A press profile calling
+    # them a supporter is not the same evidence, and crediting it puts them
+    # alongside members who signed.
+    from dcp.models import Bucket, M4ATier
+    c = _member(secondary_tier=M4ATier.EXPLICIT_M4A)
+    assert c.resolved_tier is M4ATier.UNKNOWN
+    assert c.bucket is Bucket.NO_POSITION_FOUND
+    assert c.evidence_basis == "none"
+
+
+def test_incumbent_cosponsor_still_resolves_to_m4a():
+    from dcp.models import Bucket, M4ATier
+    c = _member(cosponsored_m4a_bill=True, secondary_tier=M4ATier.EXPLICIT_M4A)
+    assert c.resolved_tier is M4ATier.EXPLICIT_M4A
+    assert c.bucket is Bucket.SUPPORTS_M4A
+
+
+def test_demotion_falls_back_to_what_their_own_site_says():
+    # The claim is dropped, not replaced: whatever else their material says
+    # stands rather than being overwritten with opposition.
+    from dcp.models import Bucket, M4ATier
+    c = _member(m4a_tier=M4ATier.ACA_STRENGTHEN, secondary_tier=M4ATier.EXPLICIT_M4A)
+    assert c.resolved_tier is M4ATier.ACA_STRENGTHEN
+    assert c.bucket is Bucket.DOES_NOT_SUPPORT_M4A
+
+
+def test_demotion_does_not_apply_to_challengers():
+    # Only a sitting member has the option of cosponsoring.
+    from dcp.models import Candidate, District, NominationStatus, Bucket, M4ATier
+    c = Candidate("Jane Challenger", District("NJ", 9), NominationStatus.ON_BALLOT)
+    c.m4a_tier = M4ATier.EXPLICIT_M4A
+    assert c.resolved_tier is M4ATier.EXPLICIT_M4A
+    assert c.bucket is Bucket.SUPPORTS_M4A
+
+
+def test_a_reviewed_override_outranks_the_incumbent_rule():
+    # A person who looked at the record beats a general rule about records.
+    from dcp.models import Bucket, M4ATier
+    c = _member(override_tier=M4ATier.EXPLICIT_M4A)
+    assert c.resolved_tier is M4ATier.EXPLICIT_M4A
+    assert c.bucket is Bucket.SUPPORTS_M4A
+    assert c.evidence_basis == "human_review"
+
+
+def test_demotion_leaves_lower_tiers_untouched():
+    from dcp.models import M4ATier
+    for tier in (M4ATier.PUBLIC_OPTION, M4ATier.ACA_STRENGTHEN,
+                 M4ATier.NO_COVERAGE_POSITION):
+        assert _member(m4a_tier=tier).resolved_tier is tier

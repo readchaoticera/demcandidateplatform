@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-30T14:11:42.326938",
+  "generated_at": "2026-08-30T14:20:53.228335",
   "candidate_count": 447,
   "on_ballot_count": 435,
   "coverage_gaps": [
@@ -62,7 +62,7 @@
         {
           "source": "human_review",
           "url": "kyle@kyletharp.com",
-          "retrieved_at": "2026-08-30T14:11:42.332394",
+          "retrieved_at": "2026-08-30T14:20:53.233718",
           "note": "Not a Democrat, and marked as such wherever he appears. Included because he is the candidate the Democratic side is behind in AK-AL: he placed second in the top-four primary with 32.1%, Matt Schultz withdrew and endorsed him, and the largest federal employee union endorsed him alongside Mary Peltola. With Hafner excluded the district would otherwise show no one."
         },
         {
@@ -130,7 +130,7 @@
         {
           "source": "human_review",
           "url": "kyle@kyletharp.com",
-          "retrieved_at": "2026-08-30T14:11:42.332372",
+          "retrieved_at": "2026-08-30T14:20:53.233695",
           "note": "On the ballot as a Democrat, but not a candidate in any meaningful sense: a perennial filer serving a 20-year federal sentence, who did not campaign, drew 3.8% of the primary vote, and reached the general only because Matt Schultz withdrew. Listing him as the Democratic option in AK-AL misrepresents the race."
         }
       ],
@@ -1094,7 +1094,7 @@
         {
           "source": "human_review",
           "url": "https://www.jonathannezforaz.com/issues",
-          "retrieved_at": "2026-08-30T14:10:36.781231",
+          "retrieved_at": "2026-08-30T14:19:38.688470",
           "note": "reviewed by kyle@kyletharp.com on 2026-08-28"
         },
         {
@@ -2112,7 +2112,7 @@
         {
           "source": "human_review",
           "url": "https://pro.stateaffairs.com/ca/news/richard-pan-congressional-candidate-ambigious-on-universal-healthcare",
-          "retrieved_at": "2026-08-30T14:10:36.781238",
+          "retrieved_at": "2026-08-30T14:19:38.688477",
           "note": "reviewed by kyle@kyletharp.com on 2026-08-28"
         },
         {
@@ -2544,7 +2544,7 @@
         {
           "source": "human_review",
           "url": "https://ballotpedia.org/Connie_Chan",
-          "retrieved_at": "2026-08-30T14:10:36.781251",
+          "retrieved_at": "2026-08-30T14:19:38.688489",
           "note": "reviewed by kyle@kyletharp.com on 2026-08-28"
         },
         {
@@ -2915,7 +2915,7 @@
         {
           "source": "human_review",
           "url": "https://www.aishawahab.com/simple",
-          "retrieved_at": "2026-08-30T14:10:36.781311",
+          "retrieved_at": "2026-08-30T14:19:38.688551",
           "note": "reviewed by kyle@kyletharp.com on 2026-08-28"
         }
       ],
@@ -3824,7 +3824,7 @@
         {
           "source": "human_review",
           "url": "https://irwin.asmdc.org/covered-california",
-          "retrieved_at": "2026-08-30T14:10:36.781262",
+          "retrieved_at": "2026-08-30T14:19:38.688501",
           "note": "reviewed by kyle@kyletharp.com on 2026-08-28"
         },
         {
@@ -11201,7 +11201,7 @@
         {
           "source": "human_review",
           "url": "https://www.cbsnews.com/news/the-youngest-black-woman-in-congress-has-an-alternative-to-medicare-for-all",
-          "retrieved_at": "2026-08-30T14:10:36.781257",
+          "retrieved_at": "2026-08-30T14:19:38.688496",
           "note": "reviewed by kyle@kyletharp.com on 2026-08-28"
         },
         {
@@ -12204,13 +12204,13 @@
       "m4a_tier": "no_coverage_position",
       "m4a_evidence": [],
       "m4a_notes": "",
-      "resolved_tier": "no_coverage_position",
-      "bucket": "no_position_found",
-      "evidence_basis": "campaign_site",
-      "override_tier": "unknown",
-      "override_note": "",
-      "override_source": "",
-      "override_reviewer": "",
+      "resolved_tier": "aca_strengthen",
+      "bucket": "does_not_support_m4a",
+      "evidence_basis": "human_review",
+      "override_tier": "aca_strengthen",
+      "override_note": "Does not support Medicare for All. His campaign site carries no healthcare content at all across its three pages, but his reported platform is Medicaid and rural access: KVOE has him wanting to address \"healthcare concerns - like Medicaid and access in rural areas\", and the Kansas candidate guides describe him running on the affordability of housing, food and health care and on extending Affordable Care Act subsidies. Nothing structural, and no mention of single-payer.",
+      "override_source": "https://kvoe.com/2026/02/18/coover-discusses-congressional-campaign-with-residents-in-emporia-osage-city/",
+      "override_reviewer": "kyle@kyletharp.com",
       "secondary_tier": "unknown",
       "secondary_confidence": 0.0,
       "secondary_note": "",
@@ -12231,6 +12231,12 @@
           "url": "https://en.wikipedia.org/wiki/2026_United_States_House_of_Representatives_election_ratings",
           "retrieved_at": "2026-08-28T16:56:24.182585",
           "note": "Solid R as of Aug. 25, 2026"
+        },
+        {
+          "source": "human_review",
+          "url": "https://kvoe.com/2026/02/18/coover-discusses-congressional-campaign-with-residents-in-emporia-osage-city/",
+          "retrieved_at": "2026-08-30T14:19:38.688599",
+          "note": "reviewed by kyle@kyletharp.com on 2026-08-28"
         }
       ],
       "conflicts": []
@@ -15125,7 +15131,7 @@
         {
           "source": "human_review",
           "url": "https://kristenmcdonaldrivet.com/",
-          "retrieved_at": "2026-08-30T14:10:36.781244",
+          "retrieved_at": "2026-08-30T14:19:38.688483",
           "note": "reviewed by kyle@kyletharp.com on 2026-08-28"
         },
         {
@@ -18571,7 +18577,7 @@
         {
           "source": "human_review",
           "url": "https://gottheimer.com/",
-          "retrieved_at": "2026-08-30T14:10:36.781301",
+          "retrieved_at": "2026-08-30T14:19:38.688540",
           "note": "reviewed by kyle@kyletharp.com on 2026-08-28"
         },
         {
@@ -18824,9 +18830,9 @@
       "m4a_tier": "unknown",
       "m4a_evidence": [],
       "m4a_notes": "REVIEW: only 608 characters retrieved across 8 page(s); site is likely Javascript-rendered",
-      "resolved_tier": "explicit_m4a",
-      "bucket": "supports_m4a",
-      "evidence_basis": "news",
+      "resolved_tier": "unknown",
+      "bucket": "no_position_found",
+      "evidence_basis": "none",
       "override_tier": "unknown",
       "override_note": "",
       "override_source": "",
@@ -19486,7 +19492,7 @@
         {
           "source": "human_review",
           "url": "https://susieleeforcongress.com/",
-          "retrieved_at": "2026-08-30T14:10:36.781268",
+          "retrieved_at": "2026-08-30T14:19:38.688506",
           "note": "reviewed by kyle@kyletharp.com on 2026-08-28"
         },
         {
@@ -19761,7 +19767,7 @@
         {
           "source": "human_review",
           "url": "https://www.tomsuozzi.com/",
-          "retrieved_at": "2026-08-30T14:10:36.781276",
+          "retrieved_at": "2026-08-30T14:19:38.688515",
           "note": "reviewed by kyle@kyletharp.com on 2026-08-28"
         },
         {
@@ -20120,7 +20126,7 @@
         {
           "source": "human_review",
           "url": "https://jeffriesforcongress.com/",
-          "retrieved_at": "2026-08-30T14:10:36.781272",
+          "retrieved_at": "2026-08-30T14:19:38.688511",
           "note": "reviewed by kyle@kyletharp.com on 2026-08-28"
         },
         {
@@ -20238,7 +20244,7 @@
         {
           "source": "human_review",
           "url": "https://www.bradlanderforcongress.com/issues",
-          "retrieved_at": "2026-08-30T14:10:36.781207",
+          "retrieved_at": "2026-08-30T14:19:38.688445",
           "note": "reviewed by kyle@kyletharp.com on 2026-08-28"
         },
         {
@@ -20832,7 +20838,7 @@
         {
           "source": "human_review",
           "url": "https://patryanforcongress.com/",
-          "retrieved_at": "2026-08-30T14:10:36.781280",
+          "retrieved_at": "2026-08-30T14:19:38.688519",
           "note": "reviewed by kyle@kyletharp.com on 2026-08-28"
         },
         {
@@ -21872,7 +21878,7 @@
         {
           "source": "human_review",
           "url": "https://poindexterforcongress.com/",
-          "retrieved_at": "2026-08-30T14:10:36.781290",
+          "retrieved_at": "2026-08-30T14:19:38.688529",
           "note": "reviewed by kyle@kyletharp.com on 2026-08-28"
         },
         {
@@ -22286,7 +22292,7 @@
         {
           "source": "human_review",
           "url": "https://sykes.house.gov/issues/health-care",
-          "retrieved_at": "2026-08-30T14:10:36.781306",
+          "retrieved_at": "2026-08-30T14:19:38.688545",
           "note": "reviewed by kyle@kyletharp.com on 2026-08-28"
         },
         {
@@ -23493,7 +23499,7 @@
         {
           "source": "human_review",
           "url": "https://www.scanlonforcongress.com/about",
-          "retrieved_at": "2026-08-30T14:10:36.781344",
+          "retrieved_at": "2026-08-30T14:19:38.688584",
           "note": "reviewed by kyle@kyletharp.com on 2026-08-28"
         }
       ],
@@ -23552,7 +23558,7 @@
         {
           "source": "human_review",
           "url": "https://chrissyhoulahanforcongress.com/",
-          "retrieved_at": "2026-08-30T14:10:36.781351",
+          "retrieved_at": "2026-08-30T14:19:38.688591",
           "note": "reviewed by kyle@kyletharp.com on 2026-08-28"
         }
       ],
@@ -25242,7 +25248,7 @@
         {
           "source": "human_review",
           "url": "https://nashvillebanner.com/2026/07/16/victoria-broderick-congress-tennessee-district-4/",
-          "retrieved_at": "2026-08-30T14:10:36.781336",
+          "retrieved_at": "2026-08-30T14:19:38.688576",
           "note": "reviewed by kyle@kyletharp.com on 2026-08-28"
         }
       ],
@@ -27487,7 +27493,7 @@
         {
           "source": "human_review",
           "url": "https://www.sylviaforcongress.com/issues",
-          "retrieved_at": "2026-08-30T14:10:36.781319",
+          "retrieved_at": "2026-08-30T14:19:38.688560",
           "note": "reviewed by kyle@kyletharp.com on 2026-08-28"
         }
       ],
@@ -27552,7 +27558,7 @@
         {
           "source": "human_review",
           "url": "https://theintercept.com/2026/02/04/texas-jasmine-crockett-house-primary-frederick-haynes/",
-          "retrieved_at": "2026-08-30T14:10:36.781328",
+          "retrieved_at": "2026-08-30T14:19:38.688568",
           "note": "reviewed by kyle@kyletharp.com on 2026-08-28"
         }
       ],
@@ -27739,7 +27745,7 @@
         {
           "source": "human_review",
           "url": "https://colinallred.com/",
-          "retrieved_at": "2026-08-30T14:10:36.781286",
+          "retrieved_at": "2026-08-30T14:19:38.688525",
           "note": "reviewed by kyle@kyletharp.com on 2026-08-28"
         },
         {
@@ -30211,7 +30217,7 @@
         {
           "source": "human_review",
           "url": "https://www.ueunion.org/political-action/2019/ue-members-press-congresswoman-gwen-moore-to-support-medicare-for-all",
-          "retrieved_at": "2026-08-30T14:10:36.781295",
+          "retrieved_at": "2026-08-30T14:19:38.688534",
           "note": "reviewed by kyle@kyletharp.com on 2026-08-28"
         },
         {

@@ -1,6 +1,6 @@
 # Medicare for All support among Democratic U.S. House candidates
 
-Generated 2026-08-30 14:11 UTC, reflecting the field as of August 30, 2026.
+Generated 2026-08-30 14:20 UTC, reflecting the field as of August 30, 2026.
 
 ## Coverage first
 
@@ -30,13 +30,13 @@ recorded legislative act.
 | Evidence | Candidates |
 |---|---|
 | Cosponsors H.R.3069, the Medicare for All Act | 89 |
-| Position read from their own campaign site | 253 |
-| Position from news coverage (site unreadable) | 64 |
-| No position from any source | 7 |
+| Position read from their own campaign site | 252 |
+| Position from news coverage (site unreadable) | 63 |
+| No position from any source | 8 |
 
-Combined, **428 of 435** candidates (98%) now have a position from some source, leaving **7** with none.
+Combined, **427 of 435** candidates (98%) now have a position from some source, leaving **8** with none.
 
-On the combined measure, **163** candidates (38.1% of those with a known position) support Medicare for All - against 76 on campaign sites alone.
+On the combined measure, **162** candidates (37.9% of those with a known position) support Medicare for All - against 76 on campaign sites alone.
 
 > **64 of the 89 cosponsors never mention it on their own campaign site.** Cosponsorship and campaign messaging are
 > close to disjoint, which is a finding in itself rather than a gap to be
@@ -46,13 +46,13 @@ On the combined measure, **163** candidates (38.1% of those with a known positio
 
 | Position tier | Campaign site | Share | Combined | Share |
 |---|---|---|---|---|
-| `explicit_m4a` | 76 | 21.9% | 163 | 38.1% |
+| `explicit_m4a` | 76 | 21.9% | 162 | 37.9% |
 | `single_payer_substance` | 0 | 0.0% | 1 | 0.2% |
 | `public_option` | 15 | 4.3% | 24 | 5.6% |
-| `aca_strengthen` | 184 | 53.0% | 210 | 49.1% |
-| `no_coverage_position` | 72 | 20.7% | 30 | 7.0% |
+| `aca_strengthen` | 184 | 53.0% | 211 | 49.4% |
+| `no_coverage_position` | 72 | 20.7% | 29 | 6.8% |
 | `opposed` | 0 | 0.0% | 0 | 0.0% |
-| `unknown` | 88 | n/a | 7 | n/a |
+| `unknown` | 88 | n/a | 8 | n/a |
 
 ## By incumbency
 

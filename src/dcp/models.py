@@ -365,6 +365,9 @@ class Candidate:
         3. **News coverage** - third-party reporting, used only where the site
            could not be read at all.
 
+        For a sitting member there is a further test, applied after the rest:
+        see ``_incumbent_needs_cosponsorship``.
+
         ``m4a_tier`` remains the site-only measure so the two can be compared;
         this property is what the combined figures use.
         """
@@ -373,9 +376,37 @@ class Candidate:
         if self.cosponsored_m4a_bill:
             return M4ATier.EXPLICIT_M4A
         if self.m4a_tier.is_finding:
+            tier = self.m4a_tier
+        elif self.secondary_tier.is_finding:
+            tier = self.secondary_tier
+        else:
+            return M4ATier.UNKNOWN
+        return self._demote_uncosponsored_incumbent(tier)
+
+    def _demote_uncosponsored_incumbent(self, tier: "M4ATier") -> "M4ATier":
+        """Withhold a Medicare for All finding from a member who has not signed.
+
+        A sitting member is in a position no challenger is: the bill exists,
+        and adding their name to it costs nothing but says everything. Where
+        they have not, a campaign-site line or a press profile describing them
+        as a supporter is not evidence of the same kind, and crediting it puts
+        them alongside members who did sign.
+
+        So for incumbents the top two tiers require cosponsorship, and without
+        it the claim is dropped rather than replaced: whatever else their own
+        material says stands, and if it says nothing they read as no position
+        rather than as opposition. A reviewed override still wins - it is
+        resolved before this is reached - because a person who looked at the
+        record outranks a general rule about records.
+        """
+        if not self.incumbent or self.cosponsored_m4a_bill:
+            return tier
+        if tier not in (M4ATier.EXPLICIT_M4A, M4ATier.SINGLE_PAYER_SUBSTANCE):
+            return tier
+        # Fall back to their own site if it says something else; a site that
+        # produced the rejected claim cannot also be the fallback.
+        if self.m4a_tier.is_finding and self.m4a_tier is not tier:
             return self.m4a_tier
-        if self.secondary_tier.is_finding:
-            return self.secondary_tier
         return M4ATier.UNKNOWN
 
     @property
@@ -390,6 +421,8 @@ class Candidate:
             return "human_review"
         if self.cosponsored_m4a_bill:
             return "cosponsorship"
+        if self.resolved_tier is M4ATier.UNKNOWN:
+            return "none"
         if self.m4a_tier.is_finding:
             return "campaign_site"
         if self.secondary_tier.is_finding:
