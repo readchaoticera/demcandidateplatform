@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-30T14:23:36.572871",
+  "generated_at": "2026-08-30T14:29:42.792974",
   "candidate_count": 448,
   "on_ballot_count": 436,
   "coverage_gaps": [
@@ -63,7 +63,7 @@
         {
           "source": "human_review",
           "url": "kyle@kyletharp.com",
-          "retrieved_at": "2026-08-30T14:23:36.290872",
+          "retrieved_at": "2026-08-30T14:29:42.798594",
           "note": "Not a Democrat, and marked as such wherever he appears. Included because he is the candidate the Democratic side is behind in AK-AL: he placed second in the top-four primary with 32.1%, Matt Schultz withdrew and endorsed him, and the largest federal employee union endorsed him alongside Mary Peltola. With Hafner excluded the district would otherwise show no one."
         },
         {
@@ -132,7 +132,7 @@
         {
           "source": "human_review",
           "url": "kyle@kyletharp.com",
-          "retrieved_at": "2026-08-30T14:23:36.290849",
+          "retrieved_at": "2026-08-30T14:29:42.798570",
           "note": "On the ballot as a Democrat, but not a candidate in any meaningful sense: a perennial filer serving a 20-year federal sentence, who did not campaign, drew 3.8% of the primary vote, and reached the general only because Matt Schultz withdrew. Listing him as the Democratic option in AK-AL misrepresents the race."
         }
       ],
@@ -823,13 +823,23 @@
       "campaign_url_confidence": 1.0,
       "issues_urls": [
         "https://chrisjonesforcongress.com/",
+        "https://chrisjonesforcongress.com/affordability",
         "https://chrisjonesforcongress.com/priorities"
       ],
-      "m4a_tier": "no_coverage_position",
-      "m4a_evidence": [],
-      "m4a_notes": "",
-      "resolved_tier": "no_coverage_position",
-      "bucket": "no_position_found",
+      "m4a_tier": "aca_strengthen",
+      "m4a_evidence": [
+        {
+          "quote": "Expand access to quality, affordable healthcare and lowering out-of-pocket costs for individuals and working families.",
+          "url": "https://chrisjonesforcongress.com/affordability",
+          "matched_rule": "aca.coverage_access",
+          "tier": "aca_strengthen",
+          "negated": false,
+          "context": "neutral"
+        }
+      ],
+      "m4a_notes": "REVIEW: weak evidence",
+      "resolved_tier": "aca_strengthen",
+      "bucket": "does_not_support_m4a",
       "evidence_basis": "campaign_site",
       "override_tier": "unknown",
       "override_note": "",
@@ -1110,7 +1120,7 @@
         {
           "source": "human_review",
           "url": "https://www.jonathannezforaz.com/issues",
-          "retrieved_at": "2026-08-30T14:23:36.579467",
+          "retrieved_at": "2026-08-30T14:29:42.523973",
           "note": "reviewed by kyle@kyletharp.com on 2026-08-28"
         },
         {
@@ -2142,7 +2152,7 @@
         {
           "source": "human_review",
           "url": "https://pro.stateaffairs.com/ca/news/richard-pan-congressional-candidate-ambigious-on-universal-healthcare",
-          "retrieved_at": "2026-08-30T14:23:36.579475",
+          "retrieved_at": "2026-08-30T14:29:42.523983",
           "note": "reviewed by kyle@kyletharp.com on 2026-08-28"
         },
         {
@@ -2580,7 +2590,7 @@
         {
           "source": "human_review",
           "url": "https://ballotpedia.org/Connie_Chan",
-          "retrieved_at": "2026-08-30T14:23:36.579487",
+          "retrieved_at": "2026-08-30T14:29:42.524035",
           "note": "reviewed by kyle@kyletharp.com on 2026-08-28"
         },
         {
@@ -2956,7 +2966,7 @@
         {
           "source": "human_review",
           "url": "https://www.aishawahab.com/simple",
-          "retrieved_at": "2026-08-30T14:23:36.579554",
+          "retrieved_at": "2026-08-30T14:29:42.524136",
           "note": "reviewed by kyle@kyletharp.com on 2026-08-28"
         }
       ],
@@ -3878,7 +3888,7 @@
         {
           "source": "human_review",
           "url": "https://irwin.asmdc.org/covered-california",
-          "retrieved_at": "2026-08-30T14:23:36.579505",
+          "retrieved_at": "2026-08-30T14:29:42.524053",
           "note": "reviewed by kyle@kyletharp.com on 2026-08-28"
         },
         {
@@ -6819,8 +6829,10 @@
       "fec_candidate_id": null,
       "campaign_url": "https://www.joinrobertwhite.com/",
       "campaign_url_confidence": 0.0,
-      "issues_urls": [],
-      "m4a_tier": "unknown",
+      "issues_urls": [
+        "https://www.joinrobertwhite.com/"
+      ],
+      "m4a_tier": "no_coverage_position",
       "m4a_evidence": [],
       "m4a_notes": "",
       "resolved_tier": "explicit_m4a",
@@ -6842,13 +6854,13 @@
         {
           "source": "human_review",
           "url": "kyle@kyletharp.com",
-          "retrieved_at": "2026-08-30T14:23:36.290889",
+          "retrieved_at": "2026-08-30T14:29:42.798602",
           "note": "The District of Columbia's non-voting delegate seat, which is not one of the 435 and so is not in the apportionment tables the rest of the pipeline sweeps. White is the Democratic nominee, having taken 63% of the June primary to succeed Eleanor Holmes Norton, who is retiring after 18 terms. Included on request and marked as a delegate wherever counted."
         },
         {
           "source": "human_review",
           "url": "https://weareprogressives.org/congressional-progressive-caucus-pac-endorses-robert-white-for-dc-delegate/",
-          "retrieved_at": "2026-08-30T14:23:36.579649",
+          "retrieved_at": "2026-08-30T14:29:42.524221",
           "note": "reviewed by kyle@kyletharp.com on 2026-08-28"
         }
       ],
@@ -9142,9 +9154,18 @@
         "https://www.nikemaforcongress.com/",
         "https://www.nikemaforcongress.com/issues-2026"
       ],
-      "m4a_tier": "no_coverage_position",
-      "m4a_evidence": [],
-      "m4a_notes": "",
+      "m4a_tier": "aca_strengthen",
+      "m4a_evidence": [
+        {
+          "quote": "Nikema continues to lead the fight to expand access to quality affordable healthcare, fully and equitably fund our public schools, protect our voting rights and our ability to thrive - not merely survive.",
+          "url": "https://www.nikemaforcongress.com/",
+          "matched_rule": "aca.coverage_access",
+          "tier": "aca_strengthen",
+          "negated": false,
+          "context": "neutral"
+        }
+      ],
+      "m4a_notes": "REVIEW: weak evidence",
       "resolved_tier": "explicit_m4a",
       "bucket": "supports_m4a",
       "evidence_basis": "cosponsorship",
@@ -9468,11 +9489,20 @@
         "https://www.votepamdelancy.com/",
         "https://www.votepamdelancy.com/issues"
       ],
-      "m4a_tier": "no_coverage_position",
-      "m4a_evidence": [],
-      "m4a_notes": "",
-      "resolved_tier": "no_coverage_position",
-      "bucket": "no_position_found",
+      "m4a_tier": "aca_strengthen",
+      "m4a_evidence": [
+        {
+          "quote": "I will work to protect and expand access to quality healthcare across Georgia\u2019s 10th District, ensuring that families, seniors, and veterans are not left without coverage .",
+          "url": "https://www.votepamdelancy.com/issues",
+          "matched_rule": "aca.coverage_access",
+          "tier": "aca_strengthen",
+          "negated": false,
+          "context": "affirm"
+        }
+      ],
+      "m4a_notes": "REVIEW: weak evidence",
+      "resolved_tier": "aca_strengthen",
+      "bucket": "does_not_support_m4a",
       "evidence_basis": "campaign_site",
       "override_tier": "unknown",
       "override_note": "",
@@ -11385,9 +11415,18 @@
         "https://underwoodforcongress.com/healthcare-costs",
         "https://underwoodforcongress.com/issues"
       ],
-      "m4a_tier": "no_coverage_position",
-      "m4a_evidence": [],
-      "m4a_notes": "",
+      "m4a_tier": "aca_strengthen",
+      "m4a_evidence": [
+        {
+          "quote": "\u2026demic on young people, Lauren secured a 700% increase in school-based mental health care.",
+          "url": "https://underwoodforcongress.com/healthcare",
+          "matched_rule": "aca.coverage_access",
+          "tier": "aca_strengthen",
+          "negated": false,
+          "context": "neutral"
+        }
+      ],
+      "m4a_notes": "REVIEW: weak evidence",
       "resolved_tier": "public_option",
       "bucket": "does_not_support_m4a",
       "evidence_basis": "human_review",
@@ -11413,7 +11452,7 @@
         {
           "source": "human_review",
           "url": "https://www.cbsnews.com/news/the-youngest-black-woman-in-congress-has-an-alternative-to-medicare-for-all",
-          "retrieved_at": "2026-08-30T14:23:36.579497",
+          "retrieved_at": "2026-08-30T14:29:42.524045",
           "note": "reviewed by kyle@kyletharp.com on 2026-08-28"
         },
         {
@@ -12461,7 +12500,7 @@
         {
           "source": "human_review",
           "url": "https://kvoe.com/2026/02/18/coover-discusses-congressional-campaign-with-residents-in-emporia-osage-city/",
-          "retrieved_at": "2026-08-30T14:23:36.579613",
+          "retrieved_at": "2026-08-30T14:29:42.524211",
           "note": "reviewed by kyle@kyletharp.com on 2026-08-28"
         }
       ],
@@ -13078,9 +13117,18 @@
         "https://www.congressmantroycarter.com/accomplishments",
         "https://www.congressmantroycarter.com/covid"
       ],
-      "m4a_tier": "no_coverage_position",
-      "m4a_evidence": [],
-      "m4a_notes": "",
+      "m4a_tier": "aca_strengthen",
+      "m4a_evidence": [
+        {
+          "quote": "Expand access to quality and affordable healthcare.",
+          "url": "https://www.congressmantroycarter.com/",
+          "matched_rule": "aca.coverage_access",
+          "tier": "aca_strengthen",
+          "negated": false,
+          "context": "neutral"
+        }
+      ],
+      "m4a_notes": "REVIEW: weak evidence",
       "resolved_tier": "explicit_m4a",
       "bucket": "supports_m4a",
       "evidence_basis": "cosponsorship",
@@ -15402,7 +15450,7 @@
         {
           "source": "human_review",
           "url": "https://kristenmcdonaldrivet.com/",
-          "retrieved_at": "2026-08-30T14:23:36.579481",
+          "retrieved_at": "2026-08-30T14:29:42.524020",
           "note": "reviewed by kyle@kyletharp.com on 2026-08-28"
         },
         {
@@ -17043,11 +17091,28 @@
         "https://michaelachiaradio.com/",
         "https://michaelachiaradio.com/issues"
       ],
-      "m4a_tier": "no_coverage_position",
-      "m4a_evidence": [],
-      "m4a_notes": "",
-      "resolved_tier": "no_coverage_position",
-      "bucket": "no_position_found",
+      "m4a_tier": "aca_strengthen",
+      "m4a_evidence": [
+        {
+          "quote": "Improving American Healthcare",
+          "url": "https://michaelachiaradio.com/issues",
+          "matched_rule": "aca.coverage_access",
+          "tier": "aca_strengthen",
+          "negated": false,
+          "context": "neutral"
+        },
+        {
+          "quote": "Expand low-cost access to healthcare Reduce out-of-pocket costs and premiums Train more healthcare workers Invest in modern medical facilities Improve health outcomes and protect dignity in old age READ TIME: 1 MIN Every American should have access to high\u2026",
+          "url": "https://michaelachiaradio.com/issues",
+          "matched_rule": "aca.coverage_access",
+          "tier": "aca_strengthen",
+          "negated": false,
+          "context": "neutral"
+        }
+      ],
+      "m4a_notes": "REVIEW: weak evidence",
+      "resolved_tier": "aca_strengthen",
+      "bucket": "does_not_support_m4a",
       "evidence_basis": "campaign_site",
       "override_tier": "unknown",
       "override_note": "",
@@ -18752,11 +18817,20 @@
         "https://www.herbforcongress.com/",
         "https://www.herbforcongress.com/issues"
       ],
-      "m4a_tier": "no_coverage_position",
-      "m4a_evidence": [],
-      "m4a_notes": "",
-      "resolved_tier": "no_coverage_position",
-      "bucket": "no_position_found",
+      "m4a_tier": "aca_strengthen",
+      "m4a_evidence": [
+        {
+          "quote": "Expanded Access to Reproductive Healthcare: In response to the Dobbs decision, Herb fought for individuals' rights by increasing funding and establishing legal protections for those seeking treatment.",
+          "url": "https://www.herbforcongress.com/",
+          "matched_rule": "aca.coverage_access",
+          "tier": "aca_strengthen",
+          "negated": false,
+          "context": "neutral"
+        }
+      ],
+      "m4a_notes": "REVIEW: weak evidence",
+      "resolved_tier": "aca_strengthen",
+      "bucket": "does_not_support_m4a",
       "evidence_basis": "campaign_site",
       "override_tier": "unknown",
       "override_note": "",
@@ -18898,7 +18972,7 @@
         {
           "source": "human_review",
           "url": "https://gottheimer.com/",
-          "retrieved_at": "2026-08-30T14:23:36.579544",
+          "retrieved_at": "2026-08-30T14:29:42.524121",
           "note": "reviewed by kyle@kyletharp.com on 2026-08-28"
         },
         {
@@ -19826,7 +19900,7 @@
         {
           "source": "human_review",
           "url": "https://susieleeforcongress.com/",
-          "retrieved_at": "2026-08-30T14:23:36.579510",
+          "retrieved_at": "2026-08-30T14:29:42.524063",
           "note": "reviewed by kyle@kyletharp.com on 2026-08-28"
         },
         {
@@ -20105,7 +20179,7 @@
         {
           "source": "human_review",
           "url": "https://www.tomsuozzi.com/",
-          "retrieved_at": "2026-08-30T14:23:36.579519",
+          "retrieved_at": "2026-08-30T14:29:42.524079",
           "note": "reviewed by kyle@kyletharp.com on 2026-08-28"
         },
         {
@@ -20469,7 +20543,7 @@
         {
           "source": "human_review",
           "url": "https://jeffriesforcongress.com/",
-          "retrieved_at": "2026-08-30T14:23:36.579515",
+          "retrieved_at": "2026-08-30T14:29:42.524072",
           "note": "reviewed by kyle@kyletharp.com on 2026-08-28"
         },
         {
@@ -20589,7 +20663,7 @@
         {
           "source": "human_review",
           "url": "https://www.bradlanderforcongress.com/issues",
-          "retrieved_at": "2026-08-30T14:23:36.579441",
+          "retrieved_at": "2026-08-30T14:29:42.523903",
           "note": "reviewed by kyle@kyletharp.com on 2026-08-28"
         },
         {
@@ -21191,7 +21265,7 @@
         {
           "source": "human_review",
           "url": "https://patryanforcongress.com/",
-          "retrieved_at": "2026-08-30T14:23:36.579523",
+          "retrieved_at": "2026-08-30T14:29:42.524086",
           "note": "reviewed by kyle@kyletharp.com on 2026-08-28"
         },
         {
@@ -22246,7 +22320,7 @@
         {
           "source": "human_review",
           "url": "https://poindexterforcongress.com/",
-          "retrieved_at": "2026-08-30T14:23:36.579534",
+          "retrieved_at": "2026-08-30T14:29:42.524104",
           "note": "reviewed by kyle@kyletharp.com on 2026-08-28"
         },
         {
@@ -22666,7 +22740,7 @@
         {
           "source": "human_review",
           "url": "https://sykes.house.gov/issues/health-care",
-          "retrieved_at": "2026-08-30T14:23:36.579549",
+          "retrieved_at": "2026-08-30T14:29:42.524128",
           "note": "reviewed by kyle@kyletharp.com on 2026-08-28"
         },
         {
@@ -23891,7 +23965,7 @@
         {
           "source": "human_review",
           "url": "https://www.scanlonforcongress.com/about",
-          "retrieved_at": "2026-08-30T14:23:36.579593",
+          "retrieved_at": "2026-08-30T14:29:42.524183",
           "note": "reviewed by kyle@kyletharp.com on 2026-08-28"
         }
       ],
@@ -23951,7 +24025,7 @@
         {
           "source": "human_review",
           "url": "https://chrissyhoulahanforcongress.com/",
-          "retrieved_at": "2026-08-30T14:23:36.579600",
+          "retrieved_at": "2026-08-30T14:29:42.524198",
           "note": "reviewed by kyle@kyletharp.com on 2026-08-28"
         }
       ],
@@ -25666,7 +25740,7 @@
         {
           "source": "human_review",
           "url": "https://nashvillebanner.com/2026/07/16/victoria-broderick-congress-tennessee-district-4/",
-          "retrieved_at": "2026-08-30T14:23:36.579584",
+          "retrieved_at": "2026-08-30T14:29:42.524172",
           "note": "reviewed by kyle@kyletharp.com on 2026-08-28"
         }
       ],
@@ -27945,7 +28019,7 @@
         {
           "source": "human_review",
           "url": "https://www.sylviaforcongress.com/issues",
-          "retrieved_at": "2026-08-30T14:23:36.579563",
+          "retrieved_at": "2026-08-30T14:29:42.524149",
           "note": "reviewed by kyle@kyletharp.com on 2026-08-28"
         }
       ],
@@ -27977,9 +28051,18 @@
         "https://www.haynesforcongress.com/issues/congressional-priorities-for-economic-security",
         "https://www.haynesforcongress.com/issues/development-without-displacement-rebuilding-what-gerrymandering-stripped-away"
       ],
-      "m4a_tier": "no_coverage_position",
-      "m4a_evidence": [],
-      "m4a_notes": "",
+      "m4a_tier": "aca_strengthen",
+      "m4a_evidence": [
+        {
+          "quote": "Expand Access to affordable housing, childcare, healthcare, and paid family leave.",
+          "url": "https://www.haynesforcongress.com/issues/congressional-priorities-for-economic-security",
+          "matched_rule": "aca.coverage_access",
+          "tier": "aca_strengthen",
+          "negated": false,
+          "context": "neutral"
+        }
+      ],
+      "m4a_notes": "REVIEW: weak evidence",
       "resolved_tier": "explicit_m4a",
       "bucket": "supports_m4a",
       "evidence_basis": "human_review",
@@ -28011,7 +28094,7 @@
         {
           "source": "human_review",
           "url": "https://theintercept.com/2026/02/04/texas-jasmine-crockett-house-primary-frederick-haynes/",
-          "retrieved_at": "2026-08-30T14:23:36.579572",
+          "retrieved_at": "2026-08-30T14:29:42.524161",
           "note": "reviewed by kyle@kyletharp.com on 2026-08-28"
         }
       ],
@@ -28170,12 +28253,11 @@
       "campaign_url_confidence": 0.85,
       "issues_urls": [
         "https://colinallred.com/",
-        "https://colinallred.com/about",
-        "https://colinallred.com/on-the-issues"
+        "https://colinallred.com/affordability"
       ],
       "m4a_tier": "no_coverage_position",
       "m4a_evidence": [],
-      "m4a_notes": "",
+      "m4a_notes": "https://colinallred.com/affordability: page had too little text to classify",
       "resolved_tier": "aca_strengthen",
       "bucket": "does_not_support_m4a",
       "evidence_basis": "human_review",
@@ -28201,7 +28283,7 @@
         {
           "source": "human_review",
           "url": "https://colinallred.com/",
-          "retrieved_at": "2026-08-30T14:23:36.579529",
+          "retrieved_at": "2026-08-30T14:29:42.524095",
           "note": "reviewed by kyle@kyletharp.com on 2026-08-28"
         },
         {
@@ -30708,7 +30790,7 @@
         {
           "source": "human_review",
           "url": "https://www.ueunion.org/political-action/2019/ue-members-press-congresswoman-gwen-moore-to-support-medicare-for-all",
-          "retrieved_at": "2026-08-30T14:23:36.579539",
+          "retrieved_at": "2026-08-30T14:29:42.524113",
           "note": "reviewed by kyle@kyletharp.com on 2026-08-28"
         },
         {

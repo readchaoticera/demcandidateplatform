@@ -1,14 +1,14 @@
 # Medicare for All support among Democratic U.S. House candidates
 
-Generated 2026-08-30 14:23 UTC, reflecting the field as of August 30, 2026.
+Generated 2026-08-30 14:29 UTC, reflecting the field as of August 30, 2026.
 
 ## Coverage first
 
 - **436** Democratic candidates recorded as on the November ballot.
-- **347** (80%) had a position we could actually read and classify.
-- **89** could not be classified (no site, unreachable, or too little readable text).
+- **348** (80%) had a position we could actually read and classify.
+- **88** could not be classified (no site, unreachable, or too little readable text).
 - **20 seats** are in states whose field is not yet settled: primaries still to come, or no party nomination at all. No candidate list compiled today can cover them.
-- **76** of the classified rows are flagged for human review; see `needs_review.csv`.
+- **84** of the classified rows are flagged for human review; see `needs_review.csv`.
 
 > **Coverage is below 80%.** The shares below should be read as describing the
 > candidates we could read, not the full field.
@@ -17,8 +17,8 @@ Generated 2026-08-30 14:23 UTC, reflecting the field as of August 30, 2026.
 
 | Reading of "supports Medicare for All" | Count | Share of classified | Share of all on-ballot |
 |---|---|---|---|
-| Explicit endorsement only | 76 | 21.9% | 17.4% |
-| Explicit + single-payer in substance | 76 | 21.9% | 17.4% |
+| Explicit endorsement only | 76 | 21.8% | 17.4% |
+| Explicit + single-payer in substance | 76 | 21.8% | 17.4% |
 
 ## Adding the legislative record and news coverage
 
@@ -46,20 +46,20 @@ On the combined measure, **163** candidates (38.1% of those with a known positio
 
 | Position tier | Campaign site | Share | Combined | Share |
 |---|---|---|---|---|
-| `explicit_m4a` | 76 | 21.9% | 163 | 38.1% |
+| `explicit_m4a` | 76 | 21.8% | 163 | 38.1% |
 | `single_payer_substance` | 0 | 0.0% | 1 | 0.2% |
 | `public_option` | 15 | 4.3% | 24 | 5.6% |
-| `aca_strengthen` | 184 | 53.0% | 211 | 49.3% |
-| `no_coverage_position` | 72 | 20.7% | 29 | 6.8% |
+| `aca_strengthen` | 192 | 55.2% | 215 | 50.2% |
+| `no_coverage_position` | 65 | 18.7% | 25 | 5.8% |
 | `opposed` | 0 | 0.0% | 0 | 0.0% |
-| `unknown` | 89 | n/a | 8 | n/a |
+| `unknown` | 88 | n/a | 8 | n/a |
 
 ## By incumbency
 
 | Group | Explicit M4A | Classified | Share |
 |---|---|---|---|
 | incumbent | 25 | 134 | 18.7% |
-| non-incumbent | 51 | 213 | 23.9% |
+| non-incumbent | 51 | 214 | 23.8% |
 
 ## Known gaps
 

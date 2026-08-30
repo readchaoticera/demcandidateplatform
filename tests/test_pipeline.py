@@ -387,3 +387,13 @@ def test_sub_page_hint_tries_the_site_root_first():
                                   ["https://example.org/endorsements/"])
     assert seen[0] == "https://example.org/"
     assert "https://example.org/endorsements/" in seen
+
+
+def test_affordability_pages_are_followed():
+    # Campaigns increasingly file healthcare under cost of living rather than
+    # under an issues index. Chris Jones states his only coverage position on
+    # /affordability/, which the issue-link vocabulary did not reach.
+    from dcp.crawl import ISSUE_LINK, NOT_AN_ISSUES_PAGE
+    for path in ("/affordability/", "/affordable-care", "/cost-of-living"):
+        assert ISSUE_LINK.search(path), path
+        assert not NOT_AN_ISSUES_PAGE.search(path), path

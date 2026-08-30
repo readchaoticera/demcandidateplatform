@@ -169,8 +169,14 @@ ACA_RULES: tuple[Rule, ...] = (
          r"\b(rural|community)\s+(hospital|clinic|health\s+cent(er|re))s?\b",
          weight=1.0, requires_affirm=False),
     Rule("aca.coverage_access", M4ATier.ACA_STRENGTHEN,
+         # The adjective slot has to hold more than one word. Campaigns stack
+         # them - "quality, affordable healthcare", "high-quality accessible
+         # health care" - and a single optional "affordable" missed every such
+         # line, leaving the candidate reading as stating no position at all.
+         # Bounded at three words and no sentence break, so it cannot run on
+         # into an unrelated clause.
          r"\b(expand\w*|increas\w*|improv\w*)\s+(access\s+to\s+)?"
-         r"(affordable\s+)?(health\s?care|health\s+coverage|coverage)\b",
+         r"(?:[a-z][a-z\-]*,?\s+){0,3}(health\s?care|health\s+coverage|coverage)\b",
          weight=1.0, requires_affirm=False),
     Rule("aca.universal_aspiration", M4ATier.ACA_STRENGTHEN,
          # "Guarantee affordable health care for every American" with no

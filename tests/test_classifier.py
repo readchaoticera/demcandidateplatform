@@ -315,3 +315,29 @@ def test_universal_healthcare_does_not_count_when_negated_or_attributed():
                      "My opponent wants universal healthcare paid for by your taxes. "):
         res = classify_text(pad + sentence + pad, source_url="https://example.org/issues")
         assert res.tier is M4ATier.NO_COVERAGE_POSITION, sentence
+
+
+def test_coverage_access_tolerates_stacked_adjectives():
+    # Campaigns write "quality, affordable healthcare", not the single
+    # "affordable" the rule used to allow. Every such line read as no position.
+    from dcp.classify.classifier import classify_text
+    from dcp.models import M4ATier
+    pad = "Our campaign is about working families and this district. " * 4
+    for line in ("Expand access to quality, affordable healthcare and lower out-of-pocket costs. ",
+                 "I will improve high-quality accessible healthcare for all Arkansans. ",
+                 "We must expand access to affordable health care. "):
+        res = classify_text(pad + line + pad, source_url="https://example.org/issues")
+        assert res.tier is M4ATier.ACA_STRENGTHEN, line
+        assert "aca.coverage_access" in res.matched_rules
+
+
+def test_coverage_access_does_not_run_into_an_unrelated_clause():
+    # The adjective slot is bounded and cannot cross a sentence, so "expand
+    # access to" something that is not coverage must not match.
+    from dcp.classify.classifier import classify_text
+    from dcp.models import M4ATier
+    pad = "Our campaign is about working families and this district. " * 4
+    for line in ("We will expand access to the ballot box and protect voting rights. ",
+                 "Expand broadband so rural families can reach jobs and school. "):
+        res = classify_text(pad + line + pad, source_url="https://example.org/issues")
+        assert res.tier is M4ATier.NO_COVERAGE_POSITION, line

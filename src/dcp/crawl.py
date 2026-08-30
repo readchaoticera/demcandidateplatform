@@ -31,7 +31,11 @@ ISSUE_LINK = re.compile(
     r"where[\s\-_]?i[\s\-_]?stand|on[\s\-_]the[\s\-_]issues|agenda|vision|plan|"
     r"values|beliefs|principles|commitments|solutions|"
     r"fight(ing)?[\s\-_]?for|stands?[\s\-_]?for|our[\s\-_]?work|"
-    r"the[\s\-_]?record|my[\s\-_]?record|accomplishments",
+    r"the[\s\-_]?record|my[\s\-_]?record|accomplishments|"
+    # Campaigns increasingly file healthcare under cost of living rather than
+    # under an issues index: Chris Jones states his only coverage position on
+    # /affordability/, which nothing above reaches.
+    r"affordab|cost[\s\-_]?of[\s\-_]?living",
     re.IGNORECASE,
 )
 
