@@ -32,7 +32,23 @@ FACES = {
 #: the zone. Counts, not shares: the chart answers "how many", and the field
 #: sizes that would turn these into rates are given in the footnote instead.
 BAR_ZONE_PX = 830
-ACCENT = "#419eff"
+
+#: A diverging partisan ramp, not a categorical set: blue poles through a
+#: neutral grey midpoint to red. Colour is redundant here - every bar is named
+#: in the axis label beside it and carries its own number - so identity never
+#: rests on hue, and the pale steps are legible because of the direct labels.
+#: Lean D and Lean R are currently empty; their steps sit between the
+#: neighbours so the ramp stays ordered if either ever fills.
+RATING_COLORS = {
+    "Solid D": "#419eff",
+    "Likely D": "#9ec9f5",
+    "Lean D": "#c9e0f8",
+    "Toss Up": "#d9d9d9",
+    "Lean R": "#ffd0dc",
+    "Likely R": "#ffaabe",
+    "Solid R": "#fa2c5d",
+}
+FALLBACK_COLOR = "#419eff"
 
 
 def _fetch_fonts() -> dict[str, str]:
@@ -84,13 +100,14 @@ def render_html(rows: list[tuple[str, int, int]], fonts: dict[str, str],
         width = round(sup / top * BAR_ZONE_PX)
         bars.append(
             f'<div class="row"><div class="cat">{label}</div>'
-            f'<div class="bar" style="width:{width}px"></div>'
+            f'<div class="bar" style="width:{width}px;'
+            f'background:{RATING_COLORS.get(label, FALLBACK_COLOR)}"></div>'
             f'<div class="val"><b>{sup}</b></div></div>'
         )
     # The bars are counts, so the size of each field is the context that makes
     # them readable: 48 out of 188 Solid R seats is not 48 out of 20.
     field = ", ".join(f"{r} {n}" for r, n, _ in rows)
-    small_note = f"Democratic candidates in each group: {field}. "
+    small_note = f"Democrats in each group: {field}. "
 
     face = lambda fam, wt, key: (
         f"@font-face{{font-family:'{fam}';font-weight:{wt};"
@@ -103,26 +120,25 @@ def render_html(rows: list[tuple[str, int, int]], fonts: dict[str, str],
 *{{margin:0;padding:0;box-sizing:border-box}}
 body{{width:1520px;background:#fff;font-family:'Inter',sans-serif;color:#111418;
      padding:52px 60px 34px;-webkit-font-smoothing:antialiased}}
-h1{{font-family:'Plex',serif;font-weight:700;font-size:43px;letter-spacing:-.4px;line-height:1.12}}
-.sub{{font-size:19.5px;color:#5b6675;margin-top:13px;line-height:1.5;max-width:1260px}}
-.chart{{margin-top:40px;border-left:2px solid #e6ecf3;margin-left:186px}}
-.row{{display:flex;align-items:center;height:80px;margin-left:-186px}}
-.cat{{width:186px;text-align:right;padding-right:22px;font-size:23px;font-weight:600;flex:none}}
-.bar{{height:44px;background:{ACCENT};border-radius:0 5px 5px 0;flex:none}}
-.val{{padding-left:16px;white-space:nowrap}}
-.val b{{font-size:27px;font-weight:600}}
-.foot{{margin-top:30px;padding-top:18px;border-top:1px solid #e6ecf3;
-      font-size:15.5px;color:#5b6675;line-height:1.55}}
+h1{{font-family:'Plex',serif;font-weight:700;font-size:47px;letter-spacing:-.45px;line-height:1.1}}
+.sub{{font-size:23px;color:#5b6675;margin-top:15px;line-height:1.48;max-width:1330px}}
+.chart{{margin-top:44px;border-left:2px solid #e6ecf3;margin-left:200px}}
+.row{{display:flex;align-items:center;height:66px;margin-left:-186px}}
+.cat{{width:200px;text-align:right;padding-right:24px;font-size:27px;font-weight:600;flex:none}}
+.bar{{height:46px;border-radius:0 5px 5px 0;flex:none}}
+.val{{padding-left:18px;white-space:nowrap}}
+.val b{{font-size:33px;font-weight:600}}
+.foot{{margin-top:34px;padding-top:20px;border-top:1px solid #e6ecf3;
+      font-size:16.5px;color:#5b6675;line-height:1.55}}
 </style></head><body>
 <h1>Democrats Backing Medicare for All, by District Competitiveness</h1>
 <p class="sub">Number of Democratic candidates on the November 2026 U.S. House ballot who back
 Medicare for All or single-payer &mdash; counting cosponsors of H.R.3069 alongside those who say so
 publicly &mdash; grouped by The Cook Political Report&rsquo;s rating of the seat.</p>
 <div class="chart">{''.join(bars)}</div>
-<p class="foot">Chart: Kyle Tharp &#124; Chaotic Era Newsletter &#124; Data: candidates&rsquo; own
-campaign sites, the H.R.3069 cosponsor roll and news coverage, as of {as_of}.
-Cook ratings as of {ratings_as_of}.<br>{small_note}Excludes the D.C. delegate seat, which Cook
-does not rate.</p>
+<p class="foot">Chart: Kyle Tharp &#124; Chaotic Era Newsletter &#124; Data: campaign sites, the
+H.R.3069 cosponsor roll and news coverage, as of {as_of}. Cook ratings as of {ratings_as_of}.
+<br>{small_note}Excludes the D.C. delegate seat, which Cook does not rate.</p>
 </body></html>"""
 
 
