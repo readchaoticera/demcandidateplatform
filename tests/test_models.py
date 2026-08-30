@@ -174,7 +174,7 @@ def test_incumbent_needs_cosponsorship_for_an_m4a_finding():
     from dcp.models import Bucket, M4ATier
     c = _member(secondary_tier=M4ATier.EXPLICIT_M4A)
     assert c.resolved_tier is M4ATier.UNKNOWN
-    assert c.bucket is Bucket.NO_POSITION_FOUND
+    assert c.bucket is Bucket.DOES_NOT_SUPPORT_M4A
     assert c.evidence_basis == "none"
 
 
@@ -239,3 +239,24 @@ def test_delegate_seats_stay_out_of_the_apportionment_tables():
     assert len(codes) == 435
     assert "DC-AL" not in codes
     assert "DC" not in SEAT_COUNTS
+
+
+def test_every_tier_maps_to_one_of_the_two_buckets():
+    # The presentation collapsed to two. Nothing may fall outside them, and
+    # the finer tier has to survive so the split can be restored.
+    from dcp.models import Bucket, BUCKET_ORDER, BUCKET_LABELS, M4ATier, bucket_for
+    assert set(BUCKET_ORDER) == {Bucket.SUPPORTS_M4A, Bucket.DOES_NOT_SUPPORT_M4A}
+    assert set(BUCKET_LABELS) == set(BUCKET_ORDER)
+    for tier in M4ATier:
+        assert bucket_for(tier) in BUCKET_ORDER
+
+
+def test_silence_now_counts_as_not_supporting():
+    # An editorial choice, and one that asserts more than the sources do: a
+    # candidate whose site could not be read at all lands here too. The tier
+    # keeps the distinction the bucket gives up.
+    from dcp.models import Bucket, M4ATier, bucket_for
+    assert bucket_for(M4ATier.NO_COVERAGE_POSITION) is Bucket.DOES_NOT_SUPPORT_M4A
+    assert bucket_for(M4ATier.UNKNOWN) is Bucket.DOES_NOT_SUPPORT_M4A
+    assert bucket_for(M4ATier.ACA_STRENGTHEN) is Bucket.DOES_NOT_SUPPORT_M4A
+    assert M4ATier.UNKNOWN is not M4ATier.NO_COVERAGE_POSITION

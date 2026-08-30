@@ -86,9 +86,13 @@
             campaign-site-only reading is shown inside the row for comparison.
           </li>
           <li>
-            <strong>“Does not support” means a stated position that is not Medicare for All</strong>
-            — a public option, ACA measures, or explicit opposition. It is never inferred from
-            silence: a candidate with nothing stated is counted under <em>No position found</em>.
+            <strong>“Does not support” means no Medicare for All position was found anywhere.</strong>
+            That covers three different things, and only the first is a stated contrary position: a
+            candidate who backs a public option, ACA measures or outright opposition; one whose
+            material was read and states nothing about how coverage should work; and one whose site
+            could not be read at all. The last two are inferences from silence, and the third is not
+            evidence about the candidate. Open any row to see which applies — the finer seven-tier
+            classification is kept per candidate, and in the CSV.
           </li>
           <li>
             <strong>A sitting member has to have signed the bill.</strong> Cosponsoring H.R.3069
@@ -140,7 +144,7 @@
         "use strict";
         var DATA = null, rows = [], sortKey = "d", sortAsc = true;
         var state = { q: "", state: "", basis: "", rating: "", buckets: new Set() };
-        var BUCKET_ORDER = ["supports_m4a", "does_not_support_m4a", "no_position_found"];
+        var BUCKET_ORDER = ["supports_m4a", "does_not_support_m4a"];
 
         function $(id) { return document.getElementById(id); }
         function esc(s) {
@@ -329,7 +333,7 @@
         function statCards(s) {
           [["On the ballot", s.total, "Democratic candidates, 3 November"],
            ["Supports Medicare for All", s.buckets.supports_m4a, "or single-payer, across all evidence sources"],
-           ["Does not support Medicare for All", s.buckets.does_not_support_m4a, "states a coverage position that is not Medicare for All"]
+           ["Does not support Medicare for All", s.buckets.does_not_support_m4a, "no Medicare for All position found in any source"]
           ].forEach(function (t) {
             var d = document.createElement("div");
             d.className = "stat";

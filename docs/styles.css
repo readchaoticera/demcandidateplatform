@@ -156,6 +156,10 @@ tbody tr.r:hover { background: #f4f9ff; }
 .pos-supports_m4a         { background: #dbe9ff; color: #1d4ed8; border-color: #b8d4ff; }
 .pos-does_not_support_m4a { background: #eef1f5; color: #5b6675; border-color: #dbe2ea; }
 .pos-no_position_found    { background: transparent; color: #9aa6b2; border-color: #e6ecf3; }
+/* The "of which" row: a component of the row above, not a bucket of its own. */
+.subrow td { color: var(--ink-soft); font-size: 0.9em; }
+.subrow td:first-child { padding-left: 22px; }
+.dot-hatch { background: repeating-linear-gradient(45deg, #cdd9e8 0 3px, #eef2f7 3px 6px); }
 
 /* ---------- Cook Political Report race ratings ----------
    The Cook Political Report's rating for the district, not this project's, and

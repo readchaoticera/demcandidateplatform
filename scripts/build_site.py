@@ -35,7 +35,6 @@ TIER_LABELS = {
 BUCKET_LABELS = {
     "supports_m4a": "Supports Medicare for All or single-payer",
     "does_not_support_m4a": "Does not support Medicare for All",
-    "no_position_found": "No position found",
 }
 
 #: Cook's scale, safe Democratic to safe Republican. Drives both the filter

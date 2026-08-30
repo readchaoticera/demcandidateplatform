@@ -1,6 +1,6 @@
 # Medicare for All support among Democratic U.S. House candidates
 
-Generated 2026-08-30 14:29 UTC, reflecting the field as of August 30, 2026.
+Generated 2026-08-30 14:32 UTC, reflecting the field as of August 30, 2026.
 
 ## Coverage first
 

@@ -168,6 +168,10 @@ tbody tr.r:hover { background: #f4f9ff; }
 .pos-supports_m4a         { background: #dbe9ff; color: #1d4ed8; border-color: #b8d4ff; }
 .pos-does_not_support_m4a { background: #eef1f5; color: #5b6675; border-color: #dbe2ea; }
 .pos-no_position_found    { background: transparent; color: #9aa6b2; border-color: #e6ecf3; }
+/* The "of which" row: a component of the row above, not a bucket of its own. */
+.subrow td { color: var(--ink-soft); font-size: 0.9em; }
+.subrow td:first-child { padding-left: 22px; }
+.dot-hatch { background: repeating-linear-gradient(45deg, #cdd9e8 0 3px, #eef2f7 3px 6px); }
 
 /* ---------- Cook Political Report race ratings ----------
    The Cook Political Report's rating for the district, not this project's, and
@@ -323,6 +327,7 @@ main { max-width: 860px; }
         <p class="dek">
           Every Democratic candidate on the November ballot, and one marked exception, measured three ways — what they publish,
           what they have signed, and what has been reported — and the large gap between the first two.
+          Candidates split two ways: those with a Medicare for All position on record, and everyone else.
         </p>
       </section>
 
@@ -341,8 +346,8 @@ main { max-width: 860px; }
         </div>
         <section class="stats" style="margin-top:20px">
           <div class="stat"><span class="k">On the ballot</span><span class="v">436</span><span class="n">Democratic candidates, plus two marked exceptions</span></div>
-          <div class="stat"><span class="k">With a position</span><span class="v">403</span><span class="n">from at least one source</span></div>
-          <div class="stat"><span class="k">No position found</span><span class="v">33</span><span class="n">anywhere we looked</span></div>
+          <div class="stat"><span class="k">With a stated position</span><span class="v">403</span><span class="n">from at least one source</span></div>
+          <div class="stat"><span class="k">Nothing found</span><span class="v">33</span><span class="n">of those counted as not supporting</span></div>
         </section>
         <div class="methodology" style="margin-top:20px">
           <h2>Three kinds of evidence, not one</h2>
@@ -396,13 +401,13 @@ main { max-width: 860px; }
         <div class="chart-legend">
           <span class="lg"><i class="dot" style="background:var(--accent)"></i>Supports Medicare for All or single-payer</span>
           <span class="lg"><i class="dot" style="background:#9aa6b2"></i>Does not support Medicare for All</span>
-          <span class="lg"><i class="dot" style="background:#cdd9e8"></i>No position found</span>
+          <span class="lg"><i class="dot dot-hatch"></i>&hellip; of which nothing was found either way</span>
         </div>
         <div class="sumrow" style="padding-top:0">
-          <div class="sumrow-track" role="img" aria-label="436 candidates: 164 support Medicare for All or single-payer, 239 do not support it, 33 no position found.">
+          <div class="sumrow-track" role="img" aria-label="436 candidates: 164 support Medicare for All or single-payer, 272 do not, of whom 33 state no position anywhere.">
             <span class="sumseg seg-supports_m4a" style="width:37.61%"></span>
             <span class="sumseg seg-does_not_support_m4a" style="width:54.82%"></span>
-            <span class="sumseg seg-no_position_found" style="width:10.19%"></span>
+            <span class="sumseg seg-no_position_found" style="width:7.57%"></span>
           </div>
         </div>
 
@@ -429,10 +434,10 @@ main { max-width: 860px; }
               </tr>
               <tr>
                 <td><span class="pos pos-does_not_support_m4a">Does not support Medicare for All</span></td>
-                <td class="num">207</td><td class="num">47.5%</td><td class="num">239</td><td class="num">54.8%</td>
+                <td class="num">360</td><td class="num">82.6%</td><td class="num">272</td><td class="num">62.4%</td>
               </tr>
-              <tr>
-                <td><span class="pos pos-no_position_found">No position found</span></td>
+              <tr class="subrow">
+                <td>&hellip; of which no position was found either way</td>
                 <td class="num">153</td><td class="num">35.1%</td><td class="num">33</td><td class="num">7.6%</td>
               </tr>
             </tbody>
@@ -441,14 +446,14 @@ main { max-width: 860px; }
 
         <div class="prose" style="margin-top:18px">
           <p>
-            <strong>33 candidates have no coverage position we could establish anywhere.</strong> That
+            <strong>33 of those 272 have no coverage position we could establish anywhere.</strong> That
             is not silence on health — many write at length about cancer research, mental health,
             reproductive care or veterans’ services. They simply take no position on the insurance
             question.
           </p>
           <p>
-            Almost no candidate argues against Medicare for All in so many words. The 239 in the middle
-            are not campaigning against it — they are campaigning on something else, usually protecting
+            Almost no candidate argues against Medicare for All in so many words. The 239 who do state a
+            position are not campaigning against it — they are campaigning on something else, usually protecting
             the ACA, cutting drug costs or defending Medicaid.
           </p>
         </div>
@@ -536,14 +541,18 @@ main { max-width: 860px; }
             races were postponed following <em>Louisiana v. Callais</em>.
           </li>
           <li>
-            <strong>“Does not support” means a stated position that is not Medicare for All</strong> — a
-            public option, ACA measures, or explicit opposition. It is never inferred from silence: a
-            candidate with nothing stated is counted under <em>No position found</em>.
+            <strong>“Does not support” means no Medicare for All position was found anywhere</strong>,
+            which covers three different things. Only the first is a stated contrary position: a
+            candidate who backs a public option, ACA measures or outright opposition; one whose
+            material was read and states nothing about how coverage should work; and one whose site
+            could not be read at all. The last two are inferences from silence, and the third is not
+            evidence about the candidate — it is a 403, or a page that serves a crawler nothing.
           </li>
           <li>
-            <strong>The last bucket merges two different facts.</strong> “Read it, states no coverage
-            position” and “could not read it” are not the same thing. The finer seven-tier
-            classification is kept per candidate in the tracker and the CSV.
+            <strong>Which of the three applies is still recorded.</strong> The bucket is a
+            presentation choice; the finer seven-tier classification is kept on every candidate, in
+            the tracker and in the CSV, so the split can be read back at any time. 33 of the 272
+            here state no position anywhere, and 88 of the 436 could not be read.
           </li>
           <li>
             <strong>A campaign website is not a voting record, and a voting record is not a campaign.</strong>
