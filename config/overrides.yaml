@@ -220,3 +220,19 @@ overrides:
       the record.
     reviewed_by: kyle@kyletharp.com
     reviewed_on: 2026-08-28
+
+  - name: Frederick Haynes III
+    district: TX-30
+    tier: explicit_m4a
+    source: https://theintercept.com/2026/02/04/texas-jasmine-crockett-house-primary-frederick-haynes/
+    note: >-
+      Campaigned on Medicare for All. The Intercept: "Haynes is running on
+      abolishing Immigration and Customs Enforcement, providing Medicare for
+      All, getting dark money out of elections, and banning congressional stock
+      trading." Common Dreams reports the same on his primary win, and KERA
+      that he emphasised "health care for all" at his campaign kickoff. His own
+      site does not carry it: the issues page lists economic, environmental,
+      educational and ethics planks with no healthcare section, which is why
+      the classifier read no coverage position.
+    reviewed_by: kyle@kyletharp.com
+    reviewed_on: 2026-08-28
